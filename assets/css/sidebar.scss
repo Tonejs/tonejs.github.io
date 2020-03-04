@@ -33,6 +33,7 @@
 		height: calc(100% - 20px);
 		width: 3px;
 		left: $sidebarWidth - 10px;
+		pointer-events: none;
 	}
 
 	#scroller {
