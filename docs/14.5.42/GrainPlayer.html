@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Inconsolata|Roboto&display=swap" rel="stylesheet">
 	<link href="./assets/main.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
 	<div id="class-page">
 		<div id="content-container">
@@ -2215,5 +2217,13 @@ See <a href="#toDestination">toDestination</a></p>
 	</div>
 	<script src="./assets/app.bundle.js"></script>
 	<script src="https://unpkg.com/tone@14.5.42"></script>
+
+	
+		<script type="module">
+			import { Oscillator } from "https://unpkg.com/tone@14.5.42?module"
+			const osc = new Oscillator()
+			osc.dispose()
+		</script>
 </body>
+
 </html>
