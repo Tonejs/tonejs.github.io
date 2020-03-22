@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Inconsolata|Roboto&display=swap" rel="stylesheet">
 	<link href="./assets/main.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
 	<div id="class-page">
 		{{> class }}
@@ -16,5 +18,9 @@
 	<script src="./assets/app.bundle.js"></script>
 	{{!-- load Tone.js from unpkg --}}
 	<script src="https://unpkg.com/tone@{{version}}"></script>
+
+	{{!-- load a small module script to preload some modules --}}
+	{{{unpkg}}}
 </body>
+
 </html>

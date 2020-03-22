@@ -1,10 +1,10 @@
 const marked = require('marked')
 const hljs = require('highlight.js')
-import {registerHelper} from 'handlebars'
+import { registerHelper, SafeString } from 'handlebars'
 
 
 marked.setOptions({
-	highlight: function(code, lang) {
+	highlight: function (code, lang) {
 		if (lang) {
 			console.log(code)
 			return code
@@ -20,29 +20,29 @@ marked.setOptions({
 			// // return hljs.highlight(lang, code).value;
 		} else {
 			return `<div class="ascii-diagram">
-						<div class="center">${code.split('').map((letter:string) => {
-							if (letter.match(/[\-\+\|><]/g)){
-								return `<span>${letter}</span>`
-							} else {
-								return letter
-							}
-						}).join('')}</div>
+						<div class="center">${code.split('').map((letter: string) => {
+				if (letter.match(/[\-\+\|><]/g)) {
+					return `<span>${letter}</span>`
+				} else {
+					return letter
+				}
+			}).join('')}</div>
 					</div>`
 		}
 	}
 });
 
-export async function registerHelpers(allData: any){
+export async function registerHelpers(allData: any) {
 
 	/**
 	 * Convert this into markdown
 	 */
-	registerHelper('markdown', function(content){
+	registerHelper('markdown', function (content) {
 		let text = content.fn(this)
 		const brackets: RegExp = /\[\[([^\]]+)\]\]/g
 		//if it refers to an internal function
-		function isClassOrFunction(name: string): boolean{
-			if (name.includes('.')){
+		function isClassOrFunction(name: string): boolean {
+			if (name.includes('.')) {
 				name = name.split('.')[0]
 			}
 			return allData.children.findIndex((doc) => {
@@ -58,18 +58,18 @@ export async function registerHelpers(allData: any){
 
 	const cachedIds: Map<number, Object> = new Map()
 	function getObjectFromId(id: number, data): any {
-		if (cachedIds.has(id)){
+		if (cachedIds.has(id)) {
 			return cachedIds.get(id)
 		} else {
-			for (let i = 0; i < data.children.length; i++){
+			for (let i = 0; i < data.children.length; i++) {
 				const obj = data.children[i]
-				if (obj.id === id){
+				if (obj.id === id) {
 					cachedIds.set(id, obj);
 					return obj
 				}
-				if (obj.children){
+				if (obj.children) {
 					const results = getObjectFromId(id, obj)
-					if (results){
+					if (results) {
 						return results;
 					}
 				}
@@ -80,36 +80,36 @@ export async function registerHelpers(allData: any){
 	/**
 	 * Resolve the id, return the corresponding object
 	 */
-	registerHelper('resolveId', function(id: number, context){
+	registerHelper('resolveId', function (id: number, context) {
 		return getObjectFromId(id, allData)
 	})
 
 	/**
 	 * get the current version
 	 */
-	registerHelper('version', function(){
+	registerHelper('version', function () {
 		return allData.version
 	})
 
 	/**
 	 * Get the class constructor
 	 */
-	registerHelper('getConstructor', function(data){
+	registerHelper('getConstructor', function (data) {
 		return data.children.filter(data => data.kindString === "Constructor")
 	})
 
 	/**
 	 * Get all of the properties and accessors belonging to a class
 	 */
-	registerHelper('getProperties', function(data){
+	registerHelper('getProperties', function (data) {
 		const props = data.children.filter(data => data.kindString === "Property" || data.kindString === "Accessor")
 		return props.sort((a, b) => a.name.localeCompare(b.name))
 	})
-	
+
 	/**
 	 * Get all of the methods belonging to a class
 	 */
-	registerHelper('getMethods', function(data){
+	registerHelper('getMethods', function (data) {
 		const props = data.children.filter(data => data.kindString === "Method")
 		return props.sort((a, b) => a.name.localeCompare(b.name))
 	})
@@ -117,24 +117,24 @@ export async function registerHelpers(allData: any){
 	/**
 	 * Moves comments from implemented class to the implementing class when there is no comment
 	 */
-	registerHelper('implementedBy', function(doc){
-		if (doc.implementedTypes && doc.implementedTypes.length){
+	registerHelper('implementedBy', function (doc) {
+		if (doc.implementedTypes && doc.implementedTypes.length) {
 			const implementer = getObjectFromId(doc.implementedTypes[0].id, allData)
-			if (implementer){
+			if (implementer) {
 				doc.children.forEach(prop => {
 					const implementingProp = implementer.children.find(child => child.name === prop.name)
-					if (implementingProp){
-						if (prop.kindString === 'Accessor'){
+					if (implementingProp) {
+						if (prop.kindString === 'Accessor') {
 							prop.getSignature.forEach((signature, i) => {
-								if (!signature.comment && implementingProp.comment){
+								if (!signature.comment && implementingProp.comment) {
 									signature.comment = implementingProp.comment
 								}
 							})
-						} else if (prop.kindString === 'Property' && !prop.comment){
+						} else if (prop.kindString === 'Property' && !prop.comment) {
 							prop.comment = implementingProp.comment
-						} else if (prop.kindString === 'Method'){
+						} else if (prop.kindString === 'Method') {
 							prop.signatures.forEach((signature, i) => {
-								if (!signature.comment && implementingProp.signatures && implementingProp.signatures[i]){
+								if (!signature.comment && implementingProp.signatures && implementingProp.signatures[i]) {
 									signature.comment = implementingProp.signatures[i].comment
 								}
 							})
@@ -148,15 +148,15 @@ export async function registerHelpers(allData: any){
 	/**
 	 * Navigate up the hierarchy to find the comment which corresponds to the id
 	 */
-	registerHelper('resolveComment', function(id: number, context){
+	registerHelper('resolveComment', function (id: number, context) {
 		// console.log(context)
 		let origObject = getObjectFromId(id, allData)
 		let i = 0
-		while(origObject && (origObject.overwrites || origObject.implements) && 
-			origObject.signatures && !origObject.signatures.some(sig => sig.comment)){
+		while (origObject && (origObject.overwrites || origObject.implements) &&
+			origObject.signatures && !origObject.signatures.some(sig => sig.comment)) {
 			origObject = getObjectFromId(origObject.overwrites.id, allData)
 			//make sure you don't go into an infinite loop
-			if (i++ > 100){
+			if (i++ > 100) {
 				break;
 			}
 		}
@@ -166,7 +166,7 @@ export async function registerHelpers(allData: any){
 	/**
 	 * highlight a block of code as javascript
 	 */
-	registerHelper('highlight', function(code: string, context){
+	registerHelper('highlight', function (code: string, context) {
 		return `<code class="language-js hljs">${hljs.highlight('typescript', code).value}</code>`;
 	})
 
@@ -203,22 +203,22 @@ export async function registerHelpers(allData: any){
 	/**
 	 * Test if the method or class is deprecated
 	 */
-	registerHelper('isDeprecated', function(obj: any, context){
-		return obj.comment && 
-			obj.comment.tags && 
-			obj.comment.tags.findIndex(({tag}) => tag === 'deprecated') !== -1
+	registerHelper('isDeprecated', function (obj: any, context) {
+		return obj.comment &&
+			obj.comment.tags &&
+			obj.comment.tags.findIndex(({ tag }) => tag === 'deprecated') !== -1
 	})
 
 	/**
 	 * Generate a link for a type
 	 */
-	registerHelper('typeLink', function(id: number, context){
+	registerHelper('typeLink', function (id: number, context) {
 		const obj = getObjectFromId(id, allData)
-		if (obj && obj.kindString === 'Class'){
+		if (obj && obj.kindString === 'Class') {
 			return obj.name
-		} else if (obj && obj.kindString === 'Interface'){
+		} else if (obj && obj.kindString === 'Interface') {
 			return `interface/${obj.name}`
-		} else if (obj && obj.kindString === 'Type alias'){
+		} else if (obj && obj.kindString === 'Type alias') {
 			return `type/${obj.name}`
 		}
 		// return `<code class="language-js">${hljs.highlight('js', code).value}</code>`;
@@ -227,7 +227,7 @@ export async function registerHelpers(allData: any){
 	/**
 	 * Replace one string with another in the file
 	 */
-	registerHelper('replace', function(word, replaceA, withB){
+	registerHelper('replace', function (word, replaceA, withB) {
 		// console.log(word, other)
 		return word.replace(replaceA, withB)
 	})
@@ -247,7 +247,7 @@ export async function registerHelpers(allData: any){
 	 */
 	registerHelper('compact', function (options: any): string {
 		const lines = options.fn(this).split('\n');
-	
+
 		for (let i = 0, c = lines.length; i < c; i++) {
 			lines[i] = lines[i].trim().replace(/&nbsp;/, ' ');
 		}
@@ -263,8 +263,8 @@ export async function registerHelpers(allData: any){
 			return group.categories && group.title !== "Type aliases"
 		}).map(group => {
 			return {
-				title : group.title,
-				children: group.categories.filter(({title}) => title !== 'Global').map(({title, children}) => {
+				title: group.title,
+				children: group.categories.filter(({ title }) => title !== 'Global').map(({ title, children }) => {
 					return {
 						title,
 						children: children.map((id) => getObjectFromId(id, allData).name)
@@ -281,16 +281,25 @@ export async function registerHelpers(allData: any){
 		const min = obj.find(o => o.tag === 'min')
 		const max = obj.find(o => o.tag === 'max')
 		let ret = ""
-		if (min || max){
+		if (min || max) {
 			ret += "Range: "
-			if (min && max){
+			if (min && max) {
 				ret += `${min.text} to ${max.text}`
-			} else if (min){
+			} else if (min) {
 				ret += `${min.text} (min)`
-			} else if (max){
+			} else if (max) {
 				ret += `${max.text} (max)`
 			}
 		}
 		return ret
+	})
+
+	registerHelper('unpkg', () => {
+		return (`
+		<script type="module">
+			import { Oscillator } from "https://unpkg.com/tone@${allData.version}?module"
+			const osc = new Oscillator()
+			osc.dispose()
+		</script>`)
 	})
 }
