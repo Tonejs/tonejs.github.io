@@ -1,0 +1,176 @@
+.signature {
+  display: block;
+  padding: 0 10px 0 20px;
+  border-left: 3px solid black;
+  margin-bottom: 60px; }
+  .signature h4 {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    font-weight: bold; }
+  .signature .signature-symbol {
+    display: inline-block;
+    letter-spacing: 0.1px; }
+  .signature .signature-prefix {
+    font-family: monospace;
+    background-color: #8C8C8C;
+    color: white;
+    border-radius: 3px;
+    padding: 3px;
+    margin-right: 5px;
+    font-size: 0.7em !important; }
+  .signature .signature-title .new {
+    color: #7F33ED; }
+  .signature .signature-title .section-link {
+    color: #8C8C8C;
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 0.2s; }
+    .signature .signature-title .section-link:hover {
+      opacity: 1; }
+  .signature .signature-parameter {
+    margin: 10px 20px; }
+    .signature .signature-parameter .name {
+      font-weight: bold; }
+    .signature .signature-parameter #top, .signature .signature-parameter #bottom {
+      display: inline-block;
+      vertical-align: text-top; }
+    .signature .signature-parameter:nth-child(1) .name {
+      color: #7f33ed; }
+    .signature .signature-parameter:nth-child(2) .name {
+      color: #9b33e6; }
+    .signature .signature-parameter:nth-child(3) .name {
+      color: #b633de; }
+    .signature .signature-parameter .name {
+      color: #ED33CF; }
+  .signature .function {
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: rgba(236, 236, 236, 0.5);
+    padding: 10px; }
+    .signature .function .explanation {
+      display: none;
+      margin-left: 0px; }
+    .signature .function h5 {
+      margin-left: 0px;
+      font-size: 0.8em;
+      text-transform: uppercase;
+      margin-bottom: 0px; }
+    .signature .function .parameters {
+      margin-left: 30px; }
+      .signature .function .parameters .parameter {
+        margin: 20px 0;
+        display: block; }
+        .signature .function .parameters .parameter .name {
+          font-weight: bold;
+          margin-right: 0px; }
+        .signature .function .parameters .parameter .signature-symbol {
+          margin-right: 2px; }
+        .signature .function .parameters .parameter .default-value {
+          margin-left: 0.6em; }
+        .signature .function .parameters .parameter .description {
+          display: block;
+          margin: 10px 0 0 30px; }
+        .signature .function .parameters .parameter:nth-child(1) .name {
+          color: #7f33ed; }
+        .signature .function .parameters .parameter:nth-child(2) .name {
+          color: #9b33e6; }
+        .signature .function .parameters .parameter:nth-child(3) .name {
+          color: #b633de; }
+        .signature .function .parameters .parameter .name {
+          color: #ED33CF; }
+    .signature .function .description {
+      display: block;
+      margin: 20px 0 0 60px; }
+  .signature .description .nominal-range {
+    font-size: 0.9em;
+    color: #444;
+    line-height: 1.3em;
+    font-weight: 100; }
+  .property-container .signature:nth-child(0) {
+    border-color: #3344ed; }
+  .property-container .signature:nth-child(1) {
+    border-color: #3b43ed; }
+  .property-container .signature:nth-child(2) {
+    border-color: #4442ed; }
+  .property-container .signature:nth-child(3) {
+    border-color: #4c41ed; }
+  .property-container .signature:nth-child(4) {
+    border-color: #5541ed; }
+  .property-container .signature:nth-child(5) {
+    border-color: #5d40ed; }
+  .property-container .signature:nth-child(6) {
+    border-color: #663fed; }
+  .property-container .signature:nth-child(7) {
+    border-color: #6e3eed; }
+  .property-container .signature:nth-child(8) {
+    border-color: #773ded; }
+  .property-container .signature:nth-child(9) {
+    border-color: #7f3ced; }
+  .property-container .signature:nth-child(10) {
+    border-color: #883ced; }
+  .property-container .signature:nth-child(11) {
+    border-color: #903bed; }
+  .property-container .signature:nth-child(12) {
+    border-color: #983aed; }
+  .property-container .signature:nth-child(13) {
+    border-color: #a139ed; }
+  .property-container .signature:nth-child(14) {
+    border-color: #a938ed; }
+  .property-container .signature:nth-child(15) {
+    border-color: #b237ed; }
+  .property-container .signature:nth-child(16) {
+    border-color: #ba36ed; }
+  .property-container .signature:nth-child(17) {
+    border-color: #c336ed; }
+  .property-container .signature:nth-child(18) {
+    border-color: #cb35ed; }
+  .property-container .signature:nth-child(19) {
+    border-color: #d434ed; }
+  .property-container .signature {
+    border-color: #dc33ed; }
+  .method-container .signature:nth-child(0) {
+    border-color: #33a1ed; }
+  .method-container .signature:nth-child(1) {
+    border-color: #379ced; }
+  .method-container .signature:nth-child(2) {
+    border-color: #3b96ed; }
+  .method-container .signature:nth-child(3) {
+    border-color: #3e91ed; }
+  .method-container .signature:nth-child(4) {
+    border-color: #428bed; }
+  .method-container .signature:nth-child(5) {
+    border-color: #4686ed; }
+  .method-container .signature:nth-child(6) {
+    border-color: #4a80ed; }
+  .method-container .signature:nth-child(7) {
+    border-color: #4e7bed; }
+  .method-container .signature:nth-child(8) {
+    border-color: #5175ed; }
+  .method-container .signature:nth-child(9) {
+    border-color: #5570ed; }
+  .method-container .signature:nth-child(10) {
+    border-color: #596aed; }
+  .method-container .signature:nth-child(11) {
+    border-color: #5d65ed; }
+  .method-container .signature:nth-child(12) {
+    border-color: #615fed; }
+  .method-container .signature:nth-child(13) {
+    border-color: #645aed; }
+  .method-container .signature:nth-child(14) {
+    border-color: #6854ed; }
+  .method-container .signature:nth-child(15) {
+    border-color: #6c4fed; }
+  .method-container .signature:nth-child(16) {
+    border-color: #7049ed; }
+  .method-container .signature:nth-child(17) {
+    border-color: #7444ed; }
+  .method-container .signature:nth-child(18) {
+    border-color: #773eed; }
+  .method-container .signature:nth-child(19) {
+    border-color: #7b39ed; }
+  .method-container .signature {
+    border-color: #7f33ed; }
+
+.property h4, .property .property-type {
+  display: inline-block; }
