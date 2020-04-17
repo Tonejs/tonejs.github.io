@@ -294,12 +294,15 @@ export async function registerHelpers(allData: any) {
 		return ret
 	})
 
-	registerHelper('unpkg', () => {
-		return (`
-		<script type="module">
-			import { Oscillator } from "https://unpkg.com/tone@${allData.version}?module"
-			const osc = new Oscillator()
-			osc.dispose()
-		</script>`)
+	/**
+	 * Parse the example
+	 */
+	registerHelper('offlineExample', (obj) => {
+		const offline = obj.filter(o => o.tag === 'offline')[0]
+		if (offline) {
+			return `data-offline-example="${offline.text}"`
+		} else {
+			return ''
+		}
 	})
 }
