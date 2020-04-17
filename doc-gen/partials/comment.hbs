@@ -4,11 +4,10 @@
 		{{#if comment.tags}}
 			{{!-- nominal range --}}
 			<span class="nominal-range">{{nominalRange comment.tags}}</span>
-
 			{{#each comment.tags}}
 				{{!-- EXAMPLES --}}
 				{{#ifCond tag '==' 'example'}}
-					<div class="example">
+					<div {{{offlineExample ../comment.tags}}} class="example">
 						<pre>{{{highlight text}}}</pre>
 					</div>
 				{{/ifCond}}
