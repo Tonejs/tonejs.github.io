@@ -86,7 +86,7 @@ into the parameter of any method which takes time as an argument.</p>
 	</div>
 </div>					<div class="constructor-container">
 			<h3><a name="constructor">Constructor</a></h3>
-						<div class="signature">
+					<div class="signature">
 	
 	<div class="function">
 
@@ -399,8 +399,7 @@ created for the instance are disconnected and freed for garbage collection.</p>
 an array of frequencies transposed by those intervals.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Frequency } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 Frequency(<span class="hljs-string">"A4"</span>).harmonize([<span class="hljs-number">0</span>, <span class="hljs-number">3</span>, <span class="hljs-number">7</span>]); <span class="hljs-comment">// ["A4", "C5", "E5"]</span>
@@ -479,8 +478,7 @@ percentage which will move the time value towards the ideal
 quantized value by that percentage.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Time } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 Time(<span class="hljs-number">21</span>).quantize(<span class="hljs-number">2</span>); <span class="hljs-comment">// returns 22</span>
@@ -548,8 +546,7 @@ Time(<span class="hljs-number">0.6</span>).quantize(<span class="hljs-string">"4
 		<p>Return the value of the frequency as a MIDI note</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Midi } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 Midi(<span class="hljs-number">60</span>).toFrequency(); <span class="hljs-comment">// 261.6255653005986</span>
@@ -582,8 +579,7 @@ Midi(<span class="hljs-number">60</span>).toFrequency(); <span class="hljs-comme
 		<p>Return the value of the frequency as a MIDI note</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Midi } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 Midi(<span class="hljs-number">60</span>).toMidi(); <span class="hljs-comment">// 60</span>
@@ -646,8 +642,7 @@ Midi(<span class="hljs-number">60</span>).toMidi(); <span class="hljs-comment">/
 closest representation between 1m to 128th note.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Time } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-comment">// if the Transport is at 120bpm:</span>
@@ -684,8 +679,7 @@ Time(<span class="hljs-number">2</span>).toNotation(); <span class="hljs-comment
 		<p>Return the value of the frequency in Scientific Pitch Notation</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Frequency } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 Frequency(<span class="hljs-number">69</span>, <span class="hljs-string">"midi"</span>).toNote(); <span class="hljs-comment">// "A4"</span>
@@ -779,8 +773,7 @@ Frequency(<span class="hljs-number">69</span>, <span class="hljs-string">"midi"<
 		<p>Convert the class to a string</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator();
@@ -846,8 +839,7 @@ Frequency(<span class="hljs-number">69</span>, <span class="hljs-string">"midi"<
 		<p>Transposes the frequency by the given number of semitones.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Midi } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 Midi(<span class="hljs-string">"A4"</span>).transpose(<span class="hljs-number">3</span>); <span class="hljs-comment">// "C5"</span>
@@ -1579,12 +1571,6 @@ Midi(<span class="hljs-string">"A4"</span>).transpose(<span class="hljs-number">
 	<script src="./assets/app.bundle.js"></script>
 	<script src="https://unpkg.com/tone@14.6.0"></script>
 
-	
-		<script type="module">
-			import { Oscillator } from "https://unpkg.com/tone@14.6.0?module"
-			const osc = new Oscillator()
-			osc.dispose()
-		</script>
 </body>
 
 </html>

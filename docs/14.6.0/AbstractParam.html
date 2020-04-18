@@ -284,8 +284,7 @@ rampTime is the time that it takes to reach over 99% of the way towards the valu
 is similar to setTargetAtTime except the third argument is a time instead of a &#39;timeConstant&#39;</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator().toDestination().start();
@@ -324,8 +323,7 @@ the current time and current value to the given value over the
 duration of the rampTime.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { FeedbackDelay, Noise } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> delay = <span class="hljs-keyword">new</span> FeedbackDelay(<span class="hljs-number">0.5</span>, <span class="hljs-number">0.98</span>).toDestination();
@@ -394,8 +392,7 @@ the previous scheduled parameter value to the given value.</p>
 may invalidate the returned value.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { now, Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator().toDestination().start();
@@ -438,8 +435,7 @@ the current time and current value to the given value over the
 duration of the rampTime.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { FeedbackDelay, Noise } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> delay = <span class="hljs-keyword">new</span> FeedbackDelay(<span class="hljs-number">0.5</span>, <span class="hljs-number">0.98</span>).toDestination();
@@ -512,15 +508,14 @@ Automatically selects the best ramp type (exponential or linear)
 depending on the <code>units</code> of the signal</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator().toDestination().start();
 <span class="hljs-comment">// schedule it to ramp either linearly or exponentially depending on the units</span>
 osc.frequency.rampTo(<span class="hljs-string">"A2"</span>, <span class="hljs-number">10</span>);</code></pre>
 					</div>
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator().toDestination().start();
@@ -561,8 +556,7 @@ is useful since it will do a <code>setValueAtTime</code> with whatever the curre
 value at the given time is.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator().toDestination().start();
@@ -629,8 +623,7 @@ a rate having the given time constant.</p>
 		<p>Schedules a parameter value change at the given time.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator().toDestination().start();
@@ -698,8 +691,7 @@ is an exponential approach it will continue approaching after the ramp duration.
 rampTime is the time that it takes to reach over 99% of the way towards the value.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator().toDestination().start();
@@ -1400,12 +1392,6 @@ osc.frequency.targetRampTo(<span class="hljs-string">"C4"</span>, <span class="h
 	<script src="./assets/app.bundle.js"></script>
 	<script src="https://unpkg.com/tone@14.6.0"></script>
 
-	
-		<script type="module">
-			import { Oscillator } from "https://unpkg.com/tone@14.6.0?module"
-			const osc = new Oscillator()
-			osc.dispose()
-		</script>
 </body>
 
 </html>

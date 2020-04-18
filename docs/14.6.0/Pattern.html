@@ -30,8 +30,7 @@
 in a number of patterns.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Pattern } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> pattern = <span class="hljs-keyword">new</span> Pattern(<span class="hljs-function">(<span class="hljs-params">time, note</span>) =&gt;</span> {
@@ -107,7 +106,7 @@ in a number of patterns.</p>
 	</div>
 </div>					<div class="constructor-container">
 			<h3><a name="constructor">Constructor</a></h3>
-						<div class="signature">
+					<div class="signature">
 	
 	<div class="function">
 
@@ -122,7 +121,7 @@ in a number of patterns.</p>
 	<div id="code-links">
 					</div>
 </div>
-						<div class="signature">
+					<div class="signature">
 	
 	<div class="function">
 
@@ -155,8 +154,7 @@ in a number of patterns.</p>
 		<p>The number of seconds of 1 processing block (128 samples)</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Destination } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-built_in">console</span>.log(Destination.blockTime);
@@ -308,8 +306,7 @@ Or give it a time value which it will randomize by.</p>
 		<p>The time between successive callbacks.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Loop, Transport } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> loop = <span class="hljs-keyword">new</span> Loop();
@@ -502,8 +499,7 @@ A <code>playbackRate</code> of 2 would be twice as fast.</p>
 		<p>The duration in seconds of one sample.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Transport } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-built_in">console</span>.log(Transport.sampleTime);
@@ -686,8 +682,7 @@ A <code>playbackRate</code> of 2 would be twice as fast.</p>
 		<p>Get the object&#39;s attributes.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator();
@@ -752,8 +747,7 @@ A <code>playbackRate</code> of 2 would be twice as fast.</p>
 		<p>Return the current time of the Context clock without any lookAhead.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Transport } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-built_in">console</span>.log(Transport.immediate());
@@ -789,8 +783,7 @@ A <code>playbackRate</code> of 2 would be twice as fast.</p>
 		<p>Return the current time of the Context clock plus the lookAhead.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Transport } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-built_in">console</span>.log(Transport.now());
@@ -826,8 +819,7 @@ A <code>playbackRate</code> of 2 would be twice as fast.</p>
 		<p>Set multiple properties at once with an object.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Filter } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> filter = <span class="hljs-keyword">new</span> Filter();
@@ -994,8 +986,7 @@ filter.set({
 		<p>Convert the class to a string</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator();
@@ -1728,12 +1719,6 @@ filter.set({
 	<script src="./assets/app.bundle.js"></script>
 	<script src="https://unpkg.com/tone@14.6.0"></script>
 
-	
-		<script type="module">
-			import { Oscillator } from "https://unpkg.com/tone@14.6.0?module"
-			const osc = new Oscillator()
-			osc.dispose()
-		</script>
 </body>
 
 </html>

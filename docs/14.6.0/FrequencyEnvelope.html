@@ -24,8 +24,7 @@ and <a href="#octaves">octaves</a>. It can also have an optional <a href="#expon
 which it ramps.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { FrequencyEnvelope, Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> oscillator = <span class="hljs-keyword">new</span> Oscillator().toDestination().start();
@@ -122,7 +121,7 @@ freqEnv.triggerAttack();
 	</div>
 </div>					<div class="constructor-container">
 			<h3><a name="constructor">Constructor</a></h3>
-						<div class="signature">
+					<div class="signature">
 	
 	<div class="function">
 
@@ -137,7 +136,7 @@ freqEnv.triggerAttack();
 	<div id="code-links">
 					</div>
 </div>
-						<div class="signature">
+					<div class="signature">
 	
 	<div class="function">
 
@@ -181,7 +180,6 @@ time it takes for the envelope to reach it&#39;s maximum value.</p>
 					</div></code></pre>
 			<span class="nominal-range">Range: 0 to 2
 </span>
-
 	</div>
 
 				<div id="code-links">
@@ -217,14 +215,13 @@ Can be any of these strings:</p>
 </ul>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Envelope } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> env = <span class="hljs-keyword">new</span> Envelope();
 env.attackCurve = <span class="hljs-string">"linear"</span>;</code></pre>
 					</div>
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Envelope } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> env = <span class="hljs-keyword">new</span> Envelope();
@@ -280,8 +277,7 @@ starts at.</p>
 		<p>The number of seconds of 1 processing block (128 samples)</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Destination } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-built_in">console</span>.log(Destination.blockTime);
@@ -455,7 +451,6 @@ over the duration of the decay time to it&#39;s sustain value.</p>
 					</div></code></pre>
 			<span class="nominal-range">Range: 0 to 2
 </span>
-
 	</div>
 
 				<div id="code-links">
@@ -481,8 +476,7 @@ over the duration of the decay time to it&#39;s sustain value.</p>
 		<p>The shape of the decay either &quot;linear&quot; or &quot;exponential&quot;</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Envelope } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> env = <span class="hljs-keyword">new</span> Envelope();
@@ -605,8 +599,7 @@ created for the instance are disconnected and freed for garbage collection.</p>
 For source nodes, this will be 0.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Gain } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> node = <span class="hljs-keyword">new</span> Gain();
@@ -728,7 +721,6 @@ duration of the release time.</p>
 					</div></code></pre>
 			<span class="nominal-range">Range: 0 to 5
 </span>
-
 	</div>
 
 				<div id="code-links">
@@ -754,8 +746,7 @@ duration of the release time.</p>
 		<p>The shape of the release. See the attack curve types.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Envelope } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> env = <span class="hljs-keyword">new</span> Envelope();
@@ -788,8 +779,7 @@ env.releaseCurve = <span class="hljs-string">"linear"</span>;
 		<p>The duration in seconds of one sample.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Transport } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-built_in">console</span>.log(Transport.sampleTime);
@@ -969,8 +959,7 @@ Good for visualizing the envelope curve</p>
 		<p>Connect the output of this node to the rest of the nodes in series.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Destination, Filter, Oscillator, Volume } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator().start();
@@ -1131,8 +1120,7 @@ osc.chain(filter, volume, Destination);
 		<p>Get the object&#39;s attributes.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator();
@@ -1229,8 +1217,7 @@ return the unconverted (raw) value.</p>
 		<p>Return the current time of the Context clock without any lookAhead.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Transport } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-built_in">console</span>.log(Transport.immediate());
@@ -1266,8 +1253,7 @@ return the unconverted (raw) value.</p>
 		<p>Return the current time of the Context clock plus the lookAhead.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Transport } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-built_in">console</span>.log(Transport.now());
@@ -1303,8 +1289,7 @@ return the unconverted (raw) value.</p>
 		<p>Set multiple properties at once with an object.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Filter } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> filter = <span class="hljs-keyword">new</span> Filter();
@@ -1347,8 +1332,7 @@ filter.set({
 		<p>Connect the output to the context&#39;s destination node.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator().start();
@@ -1418,7 +1402,6 @@ osc.toDestination();
 See <a href="#toDestination">toDestination</a></p>
 
 			<span class="nominal-range"></span>
-
 	</div>
 
 	<div class="function">
@@ -1480,8 +1463,7 @@ See <a href="#toDestination">toDestination</a></p>
 		<p>Convert the class to a string</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator();
@@ -1549,8 +1531,7 @@ See <a href="#toDestination">toDestination</a></p>
 		<p>Trigger the attack/decay portion of the ADSR envelope.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { AmplitudeEnvelope, Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> env = <span class="hljs-keyword">new</span> AmplitudeEnvelope().toDestination();
@@ -1592,8 +1573,7 @@ env.triggerAttack(<span class="hljs-string">"+0.5"</span>, <span class="hljs-num
 some duration, then triggerRelease.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { AmplitudeEnvelope, Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> env = <span class="hljs-keyword">new</span> AmplitudeEnvelope().toDestination();
@@ -1634,8 +1614,7 @@ env.triggerAttackRelease(<span class="hljs-number">0.5</span>);
 		<p>Triggers the release of the envelope.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { AmplitudeEnvelope, Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> env = <span class="hljs-keyword">new</span> AmplitudeEnvelope().toDestination();
@@ -2342,12 +2321,6 @@ env.triggerRelease(<span class="hljs-string">"+0.5"</span>);
 	<script src="./assets/app.bundle.js"></script>
 	<script src="https://unpkg.com/tone@14.6.0"></script>
 
-	
-		<script type="module">
-			import { Oscillator } from "https://unpkg.com/tone@14.6.0?module"
-			const osc = new Oscillator()
-			osc.dispose()
-		</script>
 </body>
 
 </html>

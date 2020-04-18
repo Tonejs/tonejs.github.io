@@ -30,8 +30,7 @@
 callback for a single or repeatable events along the timeline.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { PolySynth, Sequence, ToneEvent, Transport } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 
@@ -120,7 +119,7 @@ callback for a single or repeatable events along the timeline.</p>
 	</div>
 </div>					<div class="constructor-container">
 			<h3><a name="constructor">Constructor</a></h3>
-						<div class="signature">
+					<div class="signature">
 	
 	<div class="function">
 
@@ -135,7 +134,7 @@ callback for a single or repeatable events along the timeline.</p>
 	<div id="code-links">
 					</div>
 </div>
-						<div class="signature">
+					<div class="signature">
 	
 	<div class="function">
 
@@ -168,8 +167,7 @@ callback for a single or repeatable events along the timeline.</p>
 		<p>The number of seconds of 1 processing block (128 samples)</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Destination } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-built_in">console</span>.log(Destination.blockTime);
@@ -298,8 +296,7 @@ to the callback time. If the value is given as a time, it will randomize
 by that amount.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { ToneEvent } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> event = <span class="hljs-keyword">new</span> ToneEvent();
@@ -437,8 +434,7 @@ if ToneEvent.loop is true.</p>
 		<p>The playback rate of the note. Defaults to 1.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { ToneEvent } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> note = <span class="hljs-keyword">new</span> ToneEvent();
@@ -515,8 +511,7 @@ it is not set to loop.</p>
 		<p>The duration in seconds of one sample.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Transport } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-built_in">console</span>.log(Transport.sampleTime);
@@ -690,8 +685,7 @@ callback function.</p>
 		<p>Get the object&#39;s attributes.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator();
@@ -756,8 +750,7 @@ callback function.</p>
 		<p>Return the current time of the Context clock without any lookAhead.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Transport } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-built_in">console</span>.log(Transport.immediate());
@@ -793,8 +786,7 @@ callback function.</p>
 		<p>Return the current time of the Context clock plus the lookAhead.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Transport } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-built_in">console</span>.log(Transport.now());
@@ -830,8 +822,7 @@ callback function.</p>
 		<p>Set multiple properties at once with an object.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Filter } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> filter = <span class="hljs-keyword">new</span> Filter();
@@ -992,8 +983,7 @@ filter.set({
 		<p>Convert the class to a string</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator();
@@ -1726,12 +1716,6 @@ filter.set({
 	<script src="./assets/app.bundle.js"></script>
 	<script src="https://unpkg.com/tone@14.6.0"></script>
 
-	
-		<script type="module">
-			import { Oscillator } from "https://unpkg.com/tone@14.6.0?module"
-			const osc = new Oscillator()
-			osc.dispose()
-		</script>
 </body>
 
 </html>

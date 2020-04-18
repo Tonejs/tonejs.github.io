@@ -108,7 +108,7 @@ Inspiration from <a href="https://shorturl.at/rSZ12">Sound on Sound</a>.</p>
 	</div>
 </div>					<div class="constructor-container">
 			<h3><a name="constructor">Constructor</a></h3>
-						<div class="signature">
+					<div class="signature">
 	
 	<div class="function">
 
@@ -141,8 +141,7 @@ Inspiration from <a href="https://shorturl.at/rSZ12">Sound on Sound</a>.</p>
 		<p>The number of seconds of 1 processing block (128 samples)</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Destination } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-built_in">console</span>.log(Destination.blockTime);
@@ -398,7 +397,6 @@ see Tone.FMOscillator.harmonicity</p>
 
 			<span class="nominal-range">Range: 0.1 to 10
 </span>
-
 	</div>
 
 				<div id="code-links">
@@ -447,7 +445,6 @@ see <a href="FMOscillator#modulationIndex">FMOscillator.modulationIndex</a></p>
 
 			<span class="nominal-range">Range: 1 to 100
 </span>
-
 	</div>
 
 				<div id="code-links">
@@ -489,8 +486,7 @@ see <a href="FMOscillator#modulationIndex">FMOscillator.modulationIndex</a></p>
 For source nodes, this will be 0.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Gain } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> node = <span class="hljs-keyword">new</span> Gain();
@@ -555,7 +551,6 @@ that the filter ramps during the attack/decay envelope</p>
 
 			<span class="nominal-range">Range: 0 to 8
 </span>
-
 	</div>
 
 				<div id="code-links">
@@ -648,7 +643,6 @@ This value should be between [0, 7000]</p>
 
 			<span class="nominal-range">Range: 0 to 7000
 </span>
-
 	</div>
 
 				<div id="code-links">
@@ -672,8 +666,7 @@ This value should be between [0, 7000]</p>
 		<p>The duration in seconds of one sample.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Transport } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-built_in">console</span>.log(Transport.sampleTime);
@@ -729,8 +722,7 @@ This value should be between [0, 7000]</p>
 		<p>The volume of the output in decibels.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { AMSynth } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> amSynth = <span class="hljs-keyword">new</span> AMSynth().toDestination();
@@ -762,8 +754,7 @@ amSynth.triggerAttackRelease(<span class="hljs-string">"G#3"</span>, <span class
 		<p>Connect the output of this node to the rest of the nodes in series.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Destination, Filter, Oscillator, Volume } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator().start();
@@ -924,8 +915,7 @@ osc.chain(filter, volume, Destination);
 		<p>Get the object&#39;s attributes.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator();
@@ -1019,8 +1009,7 @@ the envelope(s) value at the time.</p>
 		<p>Return the current time of the Context clock without any lookAhead.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Transport } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-built_in">console</span>.log(Transport.immediate());
@@ -1056,8 +1045,7 @@ the envelope(s) value at the time.</p>
 		<p>Return the current time of the Context clock plus the lookAhead.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Transport } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-built_in">console</span>.log(Transport.now());
@@ -1093,8 +1081,7 @@ the envelope(s) value at the time.</p>
 		<p>Set multiple properties at once with an object.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Filter } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> filter = <span class="hljs-keyword">new</span> Filter();
@@ -1138,8 +1125,7 @@ filter.set({
 will set immediately.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Synth } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> synth = <span class="hljs-keyword">new</span> Synth().toDestination();
@@ -1181,8 +1167,7 @@ synth.setNote(<span class="hljs-string">"F#6"</span>, <span class="hljs-string">
 <a href="#triggerAttack">triggerAttack</a> and <a href="#triggerRelease">triggerRelease</a> will be scheduled along the transport.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { FMSynth, Transport } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> fmSynth = <span class="hljs-keyword">new</span> FMSynth().toDestination();
@@ -1226,8 +1211,7 @@ Transport.start();
 		<p>Connect the output to the context&#39;s destination node.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator().start();
@@ -1297,7 +1281,6 @@ osc.toDestination();
 See <a href="#toDestination">toDestination</a></p>
 
 			<span class="nominal-range"></span>
-
 	</div>
 
 	<div class="function">
@@ -1359,8 +1342,7 @@ See <a href="#toDestination">toDestination</a></p>
 		<p>Convert the class to a string</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator();
@@ -1428,8 +1410,7 @@ See <a href="#toDestination">toDestination</a></p>
 		<p>Trigger the attack of the note optionally with a given velocity.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Synth } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> synth = <span class="hljs-keyword">new</span> Synth().toDestination();
@@ -1469,8 +1450,7 @@ synth.triggerAttack(<span class="hljs-string">"C4"</span>, <span class="hljs-str
 		<p>Trigger the attack and then the release after the duration.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Synth } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> synth = <span class="hljs-keyword">new</span> Synth().toDestination();
@@ -1510,8 +1490,7 @@ synth.triggerAttackRelease(<span class="hljs-string">"C4"</span>, <span class="h
 		<p>Trigger the release portion of the envelope</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Synth } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> synth = <span class="hljs-keyword">new</span> Synth().toDestination();
@@ -2246,12 +2225,6 @@ synth.triggerRelease(<span class="hljs-string">"+1"</span>);
 	<script src="./assets/app.bundle.js"></script>
 	<script src="https://unpkg.com/tone@14.6.0"></script>
 
-	
-		<script type="module">
-			import { Oscillator } from "https://unpkg.com/tone@14.6.0?module"
-			const osc = new Oscillator()
-			osc.dispose()
-		</script>
 </body>
 
 </html>

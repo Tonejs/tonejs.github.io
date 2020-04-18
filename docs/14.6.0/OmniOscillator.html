@@ -36,8 +36,7 @@ For example: <code>omniOsc.type = &quot;fatsawtooth&quot;</code> will create set
 to a FatOscillator of type &quot;sawtooth&quot;.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { OmniOscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> omniOsc = <span class="hljs-keyword">new</span> OmniOscillator(<span class="hljs-string">"C#4"</span>, <span class="hljs-string">"pwm"</span>);</code></pre>
@@ -134,7 +133,7 @@ to a FatOscillator of type &quot;sawtooth&quot;.</p>
 	</div>
 </div>					<div class="constructor-container">
 			<h3><a name="constructor">Constructor</a></h3>
-						<div class="signature">
+					<div class="signature">
 	
 	<div class="function">
 
@@ -149,7 +148,7 @@ to a FatOscillator of type &quot;sawtooth&quot;.</p>
 	<div id="code-links">
 					</div>
 </div>
-						<div class="signature">
+					<div class="signature">
 	
 	<div class="function">
 
@@ -181,8 +180,7 @@ to a FatOscillator of type &quot;sawtooth&quot;.</p>
 		<p>The base type of the oscillator. See <a href="Oscillator#baseType">Oscillator.baseType</a></p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { OmniOscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> omniOsc = <span class="hljs-keyword">new</span> OmniOscillator(<span class="hljs-number">440</span>, <span class="hljs-string">"fmsquare4"</span>);
@@ -214,8 +212,7 @@ omniOsc.partialCount; <span class="hljs-comment">// 4</span>
 		<p>The number of seconds of 1 processing block (128 samples)</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Destination } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-built_in">console</span>.log(Destination.blockTime);
@@ -510,7 +507,6 @@ see <a href="PWMOscillator">PWMOscillator</a></p>
 
 			<span class="nominal-range">Range: 0.1 to 5
 </span>
-
 	</div>
 
 				<div id="code-links">
@@ -578,8 +574,7 @@ See <a href="AMOscillator">AMOscillator</a> or <a href="FMOscillator">FMOscillat
 		<p>Mute the output.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator().toDestination().start();
@@ -631,8 +626,7 @@ osc.mute = <span class="hljs-literal">true</span>;
 For source nodes, this will be 0.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Gain } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> node = <span class="hljs-keyword">new</span> Gain();
@@ -801,8 +795,7 @@ See <a href="Oscillator#partials">Oscillator.partials</a></p>
 		<p>The duration in seconds of one sample.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Transport } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-built_in">console</span>.log(Transport.sampleTime);
@@ -833,8 +826,7 @@ See <a href="Oscillator#partials">Oscillator.partials</a></p>
 		<p>The source type of the oscillator.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { OmniOscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> omniOsc = <span class="hljs-keyword">new</span> OmniOscillator(<span class="hljs-number">440</span>, <span class="hljs-string">"fmsquare"</span>);
@@ -886,8 +878,7 @@ See <a href="FatOscillator#count">FatOscillator.count</a></p>
 		<p>Returns the playback state of the source, either &quot;started&quot; or &quot;stopped&quot;.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Player } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> player = <span class="hljs-keyword">new</span> Player(<span class="hljs-string">"https://tonejs.github.io/examples/audio/FWDL.mp3"</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
@@ -925,8 +916,7 @@ oscillator&#39;s class are accessible when the oscillator is set to that type, b
 when it&#39;s not.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { OmniOscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> omniOsc = <span class="hljs-keyword">new</span> OmniOscillator().toDestination().start();
@@ -935,7 +925,7 @@ omniOsc.type = <span class="hljs-string">"pwm"</span>;
 <span class="hljs-comment">// only when the type is "pwm".</span>
 omniOsc.modulationFrequency.value = <span class="hljs-number">0.5</span>;</code></pre>
 					</div>
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { OmniOscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> omniOsc = <span class="hljs-keyword">new</span> OmniOscillator().toDestination().start();
@@ -991,8 +981,7 @@ omniOsc.modulationType = <span class="hljs-string">"sawtooth"</span>;
 		<p>The volume of the output in decibels.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { PWMOscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> source = <span class="hljs-keyword">new</span> PWMOscillator().toDestination();
@@ -1026,8 +1015,7 @@ source.volume.value = <span class="hljs-number">-6</span>;
 See <a href="PWMOscillator#width">PWMOscillator.width</a></p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { OmniOscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> omniOsc = <span class="hljs-keyword">new</span> OmniOscillator(<span class="hljs-number">440</span>, <span class="hljs-string">"pulse"</span>);
@@ -1080,8 +1068,7 @@ omniOsc.width.value = <span class="hljs-number">0.2</span>;
 		<p>Connect the output of this node to the rest of the nodes in series.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Destination, Filter, Oscillator, Volume } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator().start();
@@ -1242,8 +1229,7 @@ osc.chain(filter, volume, Destination);
 		<p>Get the object&#39;s attributes.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator();
@@ -1308,8 +1294,7 @@ osc.chain(filter, volume, Destination);
 		<p>Return the current time of the Context clock without any lookAhead.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Transport } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-built_in">console</span>.log(Transport.immediate());
@@ -1345,8 +1330,7 @@ osc.chain(filter, volume, Destination);
 		<p>Return the current time of the Context clock plus the lookAhead.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Transport } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-built_in">console</span>.log(Transport.now());
@@ -1413,8 +1397,7 @@ osc.chain(filter, volume, Destination);
 		<p>Set multiple properties at once with an object.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Filter } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> filter = <span class="hljs-keyword">new</span> Filter();
@@ -1455,8 +1438,7 @@ filter.set({
 start the source now.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> source = <span class="hljs-keyword">new</span> Oscillator().toDestination();
@@ -1496,8 +1478,7 @@ source.start(<span class="hljs-string">"+0.5"</span>); <span class="hljs-comment
 stop the source now.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> source = <span class="hljs-keyword">new</span> Oscillator().toDestination();
@@ -1539,8 +1520,7 @@ calls to <code>start</code> and <code>stop</code> are synced to the TransportTim
 instead of the AudioContext time.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator, Transport } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator().toDestination();
@@ -1583,8 +1563,7 @@ Transport.loopEnd = <span class="hljs-number">1</span>;
 		<p>Connect the output to the context&#39;s destination node.</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator().start();
@@ -1654,7 +1633,6 @@ osc.toDestination();
 See <a href="#toDestination">toDestination</a></p>
 
 			<span class="nominal-range"></span>
-
 	</div>
 
 	<div class="function">
@@ -1716,8 +1694,7 @@ See <a href="#toDestination">toDestination</a></p>
 		<p>Convert the class to a string</p>
 
 			<span class="nominal-range"></span>
-
-					<div class="example">
+					<div  class="example">
 						<pre><code class="language-js hljs">
 <span class="hljs-keyword">import</span> { Oscillator } <span class="hljs-keyword">from</span> <span class="hljs-string">"tone"</span>;
 <span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Oscillator();
@@ -2479,12 +2456,6 @@ See <a href="#toDestination">toDestination</a></p>
 	<script src="./assets/app.bundle.js"></script>
 	<script src="https://unpkg.com/tone@14.6.0"></script>
 
-	
-		<script type="module">
-			import { Oscillator } from "https://unpkg.com/tone@14.6.0?module"
-			const osc = new Oscillator()
-			osc.dispose()
-		</script>
 </body>
 
 </html>
