@@ -1,5 +1,6 @@
 import { IS_IFRAME, getVersion } from "./common"
 import * as monaco from "monaco-editor";
+import { IframeExample } from "./iframe";
 
 // add Tone.js to it
 async function fetchToneDts() {
@@ -11,101 +12,6 @@ async function fetchToneDts() {
 		throw new Error("couldn't load description")
 	}
 }
-
-async function runCode(code, element, offlineRender = "") {
-	const iframe = document.createElement('iframe');
-	iframe.sandbox.add("allow-scripts")
-	iframe.sandbox.add("allow-same-origin")
-	iframe.allow = "autoplay"
-	element.appendChild(iframe)
-	const version = getVersion()
-	const unpkgTone = `https://unpkg.com/tone@${version}`
-	const isOffline = offlineRender !== ""
-	const content = /*javascript*/`
-	<style>
-		body {
-			height: 300px;
-			margin: 0px;
-			position: absolute;
-			top: 0px;
-			left: 0px;
-			width: 100%;
-		}
-	</style>
-	<script>
-	// don't print the tone.js logging to the console
-	window.TONE_SILENCE_LOGGING = true;
-	//overwrite console.log to send info the client
-	const originalLog = console.log.bind(console)
-	console.log = (...args) => {
-		originalLog(...args)
-		// defer the logging until after it's loaded
-		setTimeout(() => {
-			window.parent.postMessage({ console : args }, "*")
-		}, 1)
-	}
-	</script>
-	<script src="${unpkgTone}"></script>
-	<script src="https://www.unpkg.com/@tonejs/plot@0.0.34/dist/index.js"></script>
-	<script>
-		if (!${isOffline}){
-			// stop it after 30 seconds max
-			Tone.Destination.volume.rampTo(-Infinity, 1, "+30");
-			setTimeout(() => {
-				// let the parent know 
-				window.parent.postMessage({ done : true }, "*")
-			}, 32000)
-		}
-	</script>
-	<script>
-		window.onerror = e => {
-			window.parent.postMessage({ error : e }, "*")
-		}
-		window.parent.postMessage({ loaded : true }, "*")
-		if (${isOffline}){
-			Tone.Offline(() => {
-				${code}
-			}, ${offlineRender.split(' ').join(', ')}).then(buffer => {
-				const plot = TonePlot.Plot.signal(buffer)
-				document.body.appendChild(plot)
-			}).catch(e => {
-				window.parent.postMessage({ error : e }, "*")
-			})
-		} else {
-			${code}
-		}
-	</script>
-	`
-	const blob = new Blob([content], { type: 'text/html' })
-	const loaded = new Promise((done) => {
-		iframe.onload = done
-	})
-	iframe.src = URL.createObjectURL(blob)
-	await loaded
-	await Promise.race([
-		new Promise((done, error) => {
-			window.addEventListener('message', e => {
-				if (e.source === iframe.contentWindow) {
-					if (e.data.loaded) {
-						done()
-					} else if (e.data.error) {
-						error(e.data.error)
-					}
-				}
-			})
-		}),
-		new Promise((_, error) => {
-			// 10 second timeout
-			setTimeout(() => {
-				error("Timeout!")
-			}, 10000)
-		})
-	])
-	return iframe
-}
-
-const runText = "► Run"
-const stopText = "◼ Stop"
 
 async function main() {
 
@@ -119,7 +25,7 @@ async function main() {
 		}
 	};
 
-	document.querySelectorAll(".example pre").forEach((example: HTMLElement) => {
+	document.querySelectorAll(".example pre").forEach(async (example: HTMLElement) => {
 
 		const content = example.textContent;
 
@@ -141,6 +47,9 @@ async function main() {
 			element.classList.add('offline')
 		}
 
+		const runText = !offlineRender ? "► Run" : "↻ Render"
+		const stopText = "❙❙ Running"
+
 		//add a run button to the bottom
 		const button = document.createElement("button")
 		button.textContent = runText
@@ -149,65 +58,55 @@ async function main() {
 		infoText.id = 'info'
 		element.appendChild(infoText)
 
-		let iframe = null
-		let iframePromise = null
-		button.addEventListener("click", async e => {
-			// stop the previous one if it's an offline render
-			if (button.textContent === runText) {
-				if (offlineRender) {
-					stopIframe()
-				}
-				infoText.textContent = ""
-				button.textContent = "Loading..."
-				button.disabled = true
-				iframePromise = runCode(editor.getValue(), element, offlineRender)
-				try {
-					iframe = await iframePromise
-					button.disabled = false
-					button.textContent = !offlineRender ? stopText : runText
-					window.addEventListener('message', e => {
-						if (iframe && e.source === iframe.contentWindow) {
-							if (e.data.done) {
-								stopIframe()
-							} else if (e.data.error) {
-								iframeError(e.data.error)
-							} else if (e.data.console) {
-								infoText.classList.remove('error')
-								infoText.textContent = `log: ${e.data.console.map(c => JSON.stringify(c))}`
-							}
-						}
-					})
-				} catch (e) {
-					iframeError(e)
-				}
-			} else {
-				stopIframe()
-			}
-		})
-
-		function stopIframe() {
-			button.textContent = runText
-			button.disabled = false
-			if (iframe) {
-				iframe.remove()
-				iframe = null
-				iframePromise = null
-			} else if (iframePromise) {
-				//stop it once it's started
-				iframePromise.then(stopIframe)
+		const iframeExample = new IframeExample(element, offlineRender)
+		iframeExample.onmessage = message => {
+			if (message.error) {
+				reset()
+				infoText.textContent = '› ' + message.error
+				infoText.classList.add('error')
+			} else if (message.console) {
+				infoText.textContent = '› ' + message.console.map(msg => JSON.stringify(msg)).join(', ')
+			} else if (message.done) {
+				reset()
 			}
 		}
 
-		function iframeError(e) {
-			stopIframe()
-			infoText.textContent = e
-			infoText.classList.add('error')
+		// if it's offline, render it immediately
+		if (offlineRender) {
+			await render()
+		}
+
+		button.addEventListener("click", async e => {
+
+
+			if (button.textContent === runText) {
+				await render()
+			} else if (button.textContent === stopText) {
+				reset()
+			}
+		})
+
+		function reset() {
+			iframeExample.stop()
+			button.textContent = runText
+			infoText.classList.remove('error')
+			infoText.textContent = ""
+			button.disabled = false
+		}
+
+		async function render() {
+			infoText.textContent = ""
+			button.textContent = "Loading..."
+			button.disabled = true
+			await iframeExample.load(editor.getValue())
+			button.disabled = false
+			button.textContent = !offlineRender ? stopText : runText
 		}
 
 		//cancel it
 		editor.onDidChangeModelContent(() => {
 			if (!offlineRender) {
-				stopIframe()
+				reset()
 			}
 		})
 	});
