@@ -53,7 +53,7 @@ export class IframeExample {
 	}
 
 	private iframeBody() {
-		const assetPath = `http://${window.location.host}/docs/${getVersion()}/assets/js`
+		const assetPath = `${window.location.protocol}//${window.location.host}/docs/${getVersion()}/assets/js`
 		console.log(assetPath)
 		return /*javascript*/`
 			<script src="${assetPath}/Tone.js"></script>
