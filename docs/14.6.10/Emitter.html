@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Emitter</title>
+	<link href="https://fonts.googleapis.com/css?family=Inconsolata|Roboto&display=swap" rel="stylesheet">
+	<link href="./assets/main.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<div id="class-page">
+		<div id="content-container">
+	
+	<div id="class-container">
+		<h2 id="class-name">Emitter
+				&lt;
+					
+					EventType
+				&gt;
+		</h2>
+			<ul>
+					<li>EventType<span class="signature-symbol">: </span><span class="type"><span class="signature-type"><span>string</span></span>	</span></li>
+			</ul>
+		<div id="comment">
+				<div class="description">
+		<p>Emitter gives classes which extend it
+the ability to listen for and emit events.
+Inspiration and reference from Jerome Etienne&#39;s <a href="https://github.com/jeromeetienne/microevent.js">MicroEvent</a>.
+MIT (c) 2011 Jerome Etienne.</p>
+
+	</div>
+		</div>
+		<div id="class-members">
+			<div  class="hierarchy">
+	<h3>Hierarchy</h3>
+	<ul>
+			<li>
+				<span class="type"><span class="signature-type"><a href="Tone">Tone</a></span>	</span>			</li>
+		<ul>
+			<li class="hierarchy-target">Emitter</li>
+			<ul>
+					<li>
+						<span class="type"><span class="signature-type"><a href="BaseContext">BaseContext</a></span>	</span>					</li>
+			</ul>
+		</ul>
+	</ul>
+</div>
+			<div id="class-index">
+	<h3>Index</h3>
+	<div>
+		<div class="constructor">
+			<h4>Constructor</h4>
+			<ul>
+			</ul>
+		</div>
+		<div class="properties">
+			<h4>Properties</h4>
+			<ul>
+						<li><a href="#debug">debug</a></li>
+						<li><a href="#disposed">disposed</a></li>
+						<li><a href="#name">name</a></li>
+						<li><a href="#version">version</a></li>
+			</ul>
+		</div>
+		<div class="methods">
+			<h4>Methods</h4>
+			<ul>
+						<li><a href="#dispose">dispose</a></li>
+						<li><a href="#emit">emit</a></li>
+						<li><a href="#getDefaults">getDefaults</a></li>
+						<li><a href="#mixin">mixin</a></li>
+						<li><a href="#off">off</a></li>
+						<li><a href="#on">on</a></li>
+						<li><a href="#once">once</a></li>
+						<li><a href="#toString">toString</a></li>
+			</ul>
+		</div>
+	</div>
+</div>						<div class="property-container">
+	<h3>Properties</h3>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="debug">
+		debug
+		<a class="section-link" href="#debug">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+						<span class="type"><span class="signature-type"><span>boolean</span></span>	</span>				</span>
+						<div class="description">
+		<p>Set this debug flag to log all events that happen in this class.</p>
+
+	</div>
+
+				<div id="code-links">
+						<div class="inherited-from">
+		<span>Inherited from </span><a href=Tone#debug>Tone.debug</a>
+	</div>
+						<div class="code-link">
+				Defined in: <a target="_blank" href="https://github.com/Tonejs/Tone.js/blob/c4e4b61/Tone/Tone/core/Tone.ts#L48">Tone/core/Tone.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="disposed">
+		disposed
+		<a class="section-link" href="#disposed">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+							<span class="signature-prefix">readonly</span>
+								<span class="type"><span class="signature-type"><span>boolean</span></span>	</span>				</span>
+							<div class="description">
+		<p>Indicates if the instance was disposed. &#39;Disposing&#39; an
+instance means that all of the Web Audio nodes that were
+created for the instance are disconnected and freed for garbage collection.</p>
+
+	</div>
+
+				<div id="code-links">
+						<div class="inherited-from">
+		<span>Inherited from </span><a href=Tone#disposed>Tone.disposed</a>
+	</div>
+						<div class="code-link">
+				Defined in: <a target="_blank" href="https://github.com/Tonejs/Tone.js/blob/c4e4b61/Tone/Tone/core/Tone.ts#L92">Tone/core/Tone.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="name">
+		name
+		<a class="section-link" href="#name">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+						<span class="type"><span class="signature-type"><span>string</span></span>	</span>				</span>
+					
+				<div id="code-links">
+											<div class="code-link">
+				Defined in: <a target="_blank" href="https://github.com/Tonejs/Tone.js/blob/c4e4b61/Tone/Tone/core/util/Emitter.ts#L16">Tone/core/util/Emitter.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+		<span class="signature-prefix">static</span>
+	<a name="version">
+		version
+		<a class="section-link" href="#version">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+						<span class="type"><span class="signature-type"><span>string</span></span>	</span>				</span>
+						<div class="description">
+		<p>The version number semver</p>
+
+	</div>
+
+				<div id="code-links">
+						<div class="inherited-from">
+		<span>Inherited from </span><a href=Tone#version>Tone.version</a>
+	</div>
+						<div class="code-link">
+				Defined in: <a target="_blank" href="https://github.com/Tonejs/Tone.js/blob/c4e4b61/Tone/Tone/core/Tone.ts#L27">Tone/core/Tone.ts</a>
+	</div>
+				</div>
+			</div>
+</div>			<div class="method-container">
+	<h3>Methods</h3>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="dispose">
+		dispose
+		<a class="section-link" href="#dispose">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Clean up</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">dispose</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank" href="https://github.com/Tonejs/Tone.js/blob/c4e4b61/Tone/Tone/core/util/Emitter.ts#L119">Tone/core/util/Emitter.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="emit">
+		emit
+		<a class="section-link" href="#emit">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Invoke all of the callbacks bound to the event
+with any arguments passed in.</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">emit</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">event</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><span>any</span></span>	</span>									</span><span class="signature-symbol">,</span>									<div class="description"><p>The name of the event.</p></div></div><div class="parameter"><span class="signature-symbol" title="multiple">...</span><span class="name">args</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="type"><span class="signature-type"><span>any</span></span>	</span><span class="signature-symbol">[]</span>	</span>									</span>									<div class="description"><p>The arguments to pass to the functions listening.</p></div></div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank" href="https://github.com/Tonejs/Tone.js/blob/c4e4b61/Tone/Tone/core/util/Emitter.ts#L93">Tone/core/util/Emitter.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+		<span class="signature-prefix">static</span>
+	<a name="getDefaults">
+		getDefaults
+		<a class="section-link" href="#getDefaults">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Returns all of the default options belonging to the class.</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">getDefaults</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><a href="interface/BaseToneOptions">BaseToneOptions</a></span>	</span>	</div>
+
+	<div id="code-links">
+			<div class="inherited-from">
+		<span>Inherited from </span><a href=Tone#getDefaults>Tone.getDefaults</a>
+	</div>
+			<div class="code-link">
+				Defined in: <a target="_blank" href="https://github.com/Tonejs/Tone.js/blob/c4e4b61/Tone/Tone/core/Tone.ts#L37">Tone/core/Tone.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+		<span class="signature-prefix">static</span>
+	<a name="mixin">
+		mixin
+		<a class="section-link" href="#mixin">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Add Emitter functions (on/off/emit) to the object</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">mixin</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">constr</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><span>any</span></span>	</span>									</span>													</div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>void</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank" href="https://github.com/Tonejs/Tone.js/blob/c4e4b61/Tone/Tone/core/util/Emitter.ts#L108">Tone/core/util/Emitter.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="off">
+		off
+		<a class="section-link" href="#off">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Remove the event listener.</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">off</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">event</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><span>EventType</span></span>	</span>									</span><span class="signature-symbol">,</span>									<div class="description"><p>The event to stop listening to.</p></div></div><div class="parameter"><span class="name">callback</span><span class="signature-symbol" title="optional">?</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="type"><span class="signature-type"><span>undefined</span></span>	</span><span class="signature-symbol"> | </span><span class="type"><span class="signature-symbol">(</span><span>args</span><span class="signature-symbol">) => </span><span class="type"><span class="signature-type"><span>void</span></span>	</span>	</span></span>									</span>									<div class="description"><p>The callback which was bound to the event with Emitter.on.If no callback is given, all callbacks events are removed.</p></div></div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank" href="https://github.com/Tonejs/Tone.js/blob/c4e4b61/Tone/Tone/core/util/Emitter.ts#L65">Tone/core/util/Emitter.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="on">
+		on
+		<a class="section-link" href="#on">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Bind a callback to a specific event.</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">on</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">event</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><span>EventType</span></span>	</span>									</span><span class="signature-symbol">,</span>									<div class="description"><p>The name of the event to listen for.</p></div></div><div class="parameter"><span class="name">callback</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-symbol">(</span><span>args</span><span class="signature-symbol">) => </span><span class="type"><span class="signature-type"><span>void</span></span>	</span>	</span>									</span>									<div class="description"><p>The callback to invoke when the event is emitted</p></div></div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank" href="https://github.com/Tonejs/Tone.js/blob/c4e4b61/Tone/Tone/core/util/Emitter.ts#L28">Tone/core/util/Emitter.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="once">
+		once
+		<a class="section-link" href="#once">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Bind a callback which is only invoked once</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">once</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">event</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><span>EventType</span></span>	</span>									</span><span class="signature-symbol">,</span>									<div class="description"><p>The name of the event to listen for.</p></div></div><div class="parameter"><span class="name">callback</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-symbol">(</span><span>args</span><span class="signature-symbol">) => </span><span class="type"><span class="signature-type"><span>void</span></span>	</span>	</span>									</span>									<div class="description"><p>The callback to invoke when the event is emitted</p></div></div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank" href="https://github.com/Tonejs/Tone.js/blob/c4e4b61/Tone/Tone/core/util/Emitter.ts#L48">Tone/core/util/Emitter.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="toString">
+		toString
+		<a class="section-link" href="#toString">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Convert the class to a string</p>
+
+			<span class="nominal-range"></span>
+					<div  class="example">
+						<pre><code class="language-js hljs">
+<span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Tone.Oscillator();
+<span class="hljs-built_in">console</span>.log(osc.toString());
+</code></pre>
+					</div>
+	</div>
+
+	<div class="function">
+
+		<span class="name">toString</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>string</span></span>	</span>	</div>
+
+	<div id="code-links">
+			<div class="inherited-from">
+		<span>Inherited from </span><a href=Tone#toString>Tone.toString</a>
+	</div>
+			<div class="code-link">
+				Defined in: <a target="_blank" href="https://github.com/Tonejs/Tone.js/blob/c4e4b61/Tone/Tone/core/Tone.ts#L102">Tone/core/Tone.ts</a>
+	</div>
+	</div>
+</div>
+</div>		</div>
+	</div>
+</div>		<div id="sidebar">
+	<div id="topbar">
+		<a href="https://tonejs.github.io">Tone.js</a>
+		<span id="version">v14.6.10</span>
+	</div>
+	<div id="contents">
+		<div id="search">
+			<input type="text" placeholder="Search">
+			<button aria-label="clear">
+				&#215;
+			</button>
+		</div>
+		<div id="inner">
+					<div class="section">
+						<h3>Classes</h3>
+							<div class="category">
+								<h4>Core</h4>
+								<div>
+											<div class="instance">
+													<a href="Clock">
+														Clock
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Context">
+														Context
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Delay">
+														Delay
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Destination">
+														Destination
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Draw">
+														Draw
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Gain">
+														Gain
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Listener">
+														Listener
+													</a>
+											</div>
+											<div class="instance">
+													<a href="OfflineContext">
+														OfflineContext
+													</a>
+											</div>
+											<div class="instance">
+													<a href="ToneAudioBuffer">
+														ToneAudioBuffer
+													</a>
+											</div>
+											<div class="instance">
+													<a href="ToneAudioBuffers">
+														ToneAudioBuffers
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Transport">
+														Transport
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Source</h4>
+								<div>
+											<div class="instance">
+													<a href="AMOscillator">
+														AMOscillator
+													</a>
+											</div>
+											<div class="instance">
+													<a href="FMOscillator">
+														FMOscillator
+													</a>
+											</div>
+											<div class="instance">
+													<a href="FatOscillator">
+														FatOscillator
+													</a>
+											</div>
+											<div class="instance">
+													<a href="GrainPlayer">
+														GrainPlayer
+													</a>
+											</div>
+											<div class="instance">
+													<a href="LFO">
+														LFO
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Noise">
+														Noise
+													</a>
+											</div>
+											<div class="instance">
+													<a href="OmniOscillator">
+														OmniOscillator
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Oscillator">
+														Oscillator
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PWMOscillator">
+														PWMOscillator
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Player">
+														Player
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Players">
+														Players
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PulseOscillator">
+														PulseOscillator
+													</a>
+											</div>
+											<div class="instance">
+													<a href="ToneBufferSource">
+														ToneBufferSource
+													</a>
+											</div>
+											<div class="instance">
+													<a href="ToneOscillatorNode">
+														ToneOscillatorNode
+													</a>
+											</div>
+											<div class="instance">
+													<a href="UserMedia">
+														UserMedia
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Instrument</h4>
+								<div>
+											<div class="instance">
+													<a href="AMSynth">
+														AMSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="DuoSynth">
+														DuoSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="FMSynth">
+														FMSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="MembraneSynth">
+														MembraneSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="MetalSynth">
+														MetalSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="MonoSynth">
+														MonoSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="NoiseSynth">
+														NoiseSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PluckSynth">
+														PluckSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PolySynth">
+														PolySynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Sampler">
+														Sampler
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Synth">
+														Synth
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Effect</h4>
+								<div>
+											<div class="instance">
+													<a href="AutoFilter">
+														AutoFilter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="AutoPanner">
+														AutoPanner
+													</a>
+											</div>
+											<div class="instance">
+													<a href="AutoWah">
+														AutoWah
+													</a>
+											</div>
+											<div class="instance">
+													<a href="BitCrusher">
+														BitCrusher
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Chebyshev">
+														Chebyshev
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Chorus">
+														Chorus
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Distortion">
+														Distortion
+													</a>
+											</div>
+											<div class="instance">
+													<a href="FeedbackDelay">
+														FeedbackDelay
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Freeverb">
+														Freeverb
+													</a>
+											</div>
+											<div class="instance">
+													<a href="FrequencyShifter">
+														FrequencyShifter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="JCReverb">
+														JCReverb
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Phaser">
+														Phaser
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PingPongDelay">
+														PingPongDelay
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PitchShift">
+														PitchShift
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Reverb">
+														Reverb
+													</a>
+											</div>
+											<div class="instance">
+													<a href="StereoWidener">
+														StereoWidener
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Tremolo">
+														Tremolo
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Vibrato">
+														Vibrato
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Component</h4>
+								<div>
+											<div class="instance">
+													<a href="AmplitudeEnvelope">
+														AmplitudeEnvelope
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Analyser">
+														Analyser
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Channel">
+														Channel
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Compressor">
+														Compressor
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Convolver">
+														Convolver
+													</a>
+											</div>
+											<div class="instance">
+													<a href="CrossFade">
+														CrossFade
+													</a>
+											</div>
+											<div class="instance">
+													<a href="DCMeter">
+														DCMeter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="EQ3">
+														EQ3
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Envelope">
+														Envelope
+													</a>
+											</div>
+											<div class="instance">
+													<a href="FFT">
+														FFT
+													</a>
+											</div>
+											<div class="instance">
+													<a href="FeedbackCombFilter">
+														FeedbackCombFilter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Filter">
+														Filter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Follower">
+														Follower
+													</a>
+											</div>
+											<div class="instance">
+													<a href="LowpassCombFilter">
+														LowpassCombFilter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Merge">
+														Merge
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Meter">
+														Meter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Mono">
+														Mono
+													</a>
+											</div>
+											<div class="instance">
+													<a href="MultibandSplit">
+														MultibandSplit
+													</a>
+											</div>
+											<div class="instance">
+													<a href="OnePoleFilter">
+														OnePoleFilter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PanVol">
+														PanVol
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Panner">
+														Panner
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Panner3D">
+														Panner3D
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PhaseShiftAllpass">
+														PhaseShiftAllpass
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Solo">
+														Solo
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Split">
+														Split
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Volume">
+														Volume
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Waveform">
+														Waveform
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Signal</h4>
+								<div>
+											<div class="instance">
+													<a href="Abs">
+														Abs
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Add">
+														Add
+													</a>
+											</div>
+											<div class="instance">
+													<a href="AudioToGain">
+														AudioToGain
+													</a>
+											</div>
+											<div class="instance">
+													<a href="GainToAudio">
+														GainToAudio
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Multiply">
+														Multiply
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Negate">
+														Negate
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Pow">
+														Pow
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Scale">
+														Scale
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Signal">
+														Signal
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Subtract">
+														Subtract
+													</a>
+											</div>
+											<div class="instance">
+													<a href="ToneConstantSource">
+														ToneConstantSource
+													</a>
+											</div>
+											<div class="instance">
+													<a href="WaveShaper">
+														WaveShaper
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Zero">
+														Zero
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Event</h4>
+								<div>
+											<div class="instance">
+													<a href="Loop">
+														Loop
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Part">
+														Part
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Pattern">
+														Pattern
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Sequence">
+														Sequence
+													</a>
+											</div>
+											<div class="instance">
+													<a href="ToneEvent">
+														ToneEvent
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Unit</h4>
+								<div>
+											<div class="instance">
+													<a href="FrequencyClass">
+														FrequencyClass
+													</a>
+											</div>
+											<div class="instance">
+													<a href="MidiClass">
+														MidiClass
+													</a>
+											</div>
+											<div class="instance">
+													<a href="TicksClass">
+														TicksClass
+													</a>
+											</div>
+											<div class="instance">
+													<a href="TimeClass">
+														TimeClass
+													</a>
+											</div>
+											<div class="instance">
+													<a href="TransportTimeClass">
+														TransportTimeClass
+													</a>
+											</div>
+								</div>
+							</div>
+					</div>
+					<div class="section">
+						<h3>Variables</h3>
+							<div class="category">
+								<h4>Core</h4>
+								<div>
+											<div class="instance">
+													<a href="context">
+														context
+													</a>
+											</div>
+											<div class="instance">
+													<a href="immediate">
+														immediate
+													</a>
+											</div>
+											<div class="instance">
+													<a href="loaded">
+														loaded
+													</a>
+											</div>
+											<div class="instance">
+													<a href="now">
+														now
+													</a>
+											</div>
+								</div>
+							</div>
+					</div>
+					<div class="section">
+						<h3>Functions</h3>
+							<div class="category">
+								<h4>Core</h4>
+								<div>
+											<div class="instance">
+													<a href="fn/Offline">
+														Offline
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/getContext">
+														getContext
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/setContext">
+														setContext
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/start">
+														start
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Unit</h4>
+								<div>
+											<div class="instance">
+													<a href="fn/Frequency">
+														Frequency
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/Midi">
+														Midi
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/Ticks">
+														Ticks
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/Time">
+														Time
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/TransportTime">
+														TransportTime
+													</a>
+											</div>
+								</div>
+							</div>
+					</div>
+		</div>
+	</div>
+</div>
+	</div>
+	<script src="./assets/app.bundle.js"></script>
+	<script src="https://unpkg.com/tone@14.6.10"></script>
+
+</body>
+
+</html>
