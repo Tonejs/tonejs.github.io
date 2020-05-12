@@ -21,7 +21,6 @@ const latestVersion = execSync(`npm show tone@latest version`).toString().trim()
 createRedirects(latestVersion, 'latest')
 
 // redirect from the root
-const latestVersion = execSync(`npm show tone@latest version`).toString().trim()
 createRedirects(latestVersion, '')
 
 // do that for 'next tag
