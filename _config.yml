@@ -1,5 +1,5 @@
 sass:
-    sass_dir: assets/css
+  sass_dir: assets/css
 
 markdown: kramdown
 
@@ -14,3 +14,6 @@ exclude:
   - images/original
   - images/scripts
   - doc-gen
+  - generate_docs
+  - get-module
+  - build
