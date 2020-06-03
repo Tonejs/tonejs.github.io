@@ -5,6 +5,10 @@ title: Tone.js
 
 <link rel="stylesheet" type="text/css" href="assets/css/index.css">
 
+<div id="marquee">
+Black Lives Matter. <a href="https://secure.actblue.com/donate/ms_blm_homepage_2019">donate here</a>
+</div>
+
 <div id="basicLinks">
 	<span class="introSegment">
 		<a href="https://github.com/Tonejs/Tone.js">Github</a>
@@ -22,8 +26,7 @@ title: Tone.js
 
 # Tone.js
 
-Tone.js is a framework for creating interactive music in the browser. It provides advanced scheduling capabilities, synths and effects, and intuitive musical abstractions built on top of the [Web Audio API](https://webaudio.github.io/web-audio-api/). 
-
+Tone.js is a framework for creating interactive music in the browser. It provides advanced scheduling capabilities, synths and effects, and intuitive musical abstractions built on top of the [Web Audio API](https://webaudio.github.io/web-audio-api/).
 
 # Hello Tone
 
@@ -37,15 +40,15 @@ Tone.js is a framework for creating interactive music in the browser. It provide
 
 ### triggerAttackRelease
 
-The first argument to `triggerAttackRelease` is the frequency which can either be a number (like `440`) or as "pitch-octave" notation (like `"D#2"`). 
+The first argument to `triggerAttackRelease` is the frequency which can either be a number (like `440`) or as "pitch-octave" notation (like `"D#2"`).
 
 The second argument is the duration that the note is held. This value can either be in seconds, or as a [tempo-relative value](https://github.com/Tonejs/Tone.js/wiki/Time).
 
-The third (optional) argument is when the note should be scheduled to play. With no argument, the note plays immediately, but it can also be scheduled to play anytime in the future. 
+The third (optional) argument is when the note should be scheduled to play. With no argument, the note plays immediately, but it can also be scheduled to play anytime in the future.
 
 # Time
 
-Web Audio has advanced, sample accurate scheduling capabilities. The AudioContext time, which is the reference clock that Web Audio uses to schedule events, starts at 0 when the page (or iframe) loads and counts up in seconds. 
+Web Audio has advanced, sample accurate scheduling capabilities. The AudioContext time, which is the reference clock that Web Audio uses to schedule events, starts at 0 when the page (or iframe) loads and counts up in seconds.
 
 <script async src="//jsfiddle.net/yotammann/uekh0v5f/embed/js,result/"></script>
 
@@ -67,7 +70,7 @@ Instead of scheduling relative when the page load (AudioContext time = 0) like t
 
 <script async src="//jsfiddle.net/yotammann/sw8wy7rb/embed/js,result/"></script>
 
-One-time and repeated events can be scheduled relative to the Transport's position (instead of just the AudioContext time) using `schedule` and `scheduleRepeat`. The Transport will invoke the scheduled callback and return the precise AudioContext time of the scheduled event. 
+One-time and repeated events can be scheduled relative to the Transport's position (instead of just the AudioContext time) using `schedule` and `scheduleRepeat`. The Transport will invoke the scheduled callback and return the precise AudioContext time of the scheduled event.
 
 Since Javascript callbacks are **not** precisely timed, the sample-accurate time of the event is passed into the callback function. **Use this time value to schedule the events**.
 
@@ -95,11 +98,11 @@ Tone.Part allows you to schedule an array of events which can be started, stoppe
 
 <script async src="//jsfiddle.net/yotammann/w39e6450/embed/js,result/"></script>
 
-All of the Tone.Event classes also allow you to adjust the playbackRate separate from the Transport's bpm. This can create some interesting [phasing](https://tonejs.github.io/examples/pianoPhase.html). 
+All of the Tone.Event classes also allow you to adjust the playbackRate separate from the Transport's bpm. This can create some interesting [phasing](https://tonejs.github.io/examples/pianoPhase.html).
 
 # Instruments
 
-Pass in JSON settings for any of the Tone.js instruments, effects and components to set their values. The synths and effects are capable of a diverse range of sounds. 
+Pass in JSON settings for any of the Tone.js instruments, effects and components to set their values. The synths and effects are capable of a diverse range of sounds.
 
 <script async src="//jsfiddle.net/yotammann/47cnLxn6/embed/js,result/"></script>
 
@@ -111,7 +114,7 @@ All instruments are monophonic (one voice) but can be made polyphonic when the c
 
 # Effects
 
-In the above examples, the synthesizer was always connected directly to the [master output](https://tonejs.github.io/docs/#Master), but the output of the synth could also be routed through one (or more) effects before going to the speakers. 
+In the above examples, the synthesizer was always connected directly to the [master output](https://tonejs.github.io/docs/#Master), but the output of the synth could also be routed through one (or more) effects before going to the speakers.
 
 <script async src="//jsfiddle.net/yotammann/o6cfwp2k/embed/js,result/"></script>
 
@@ -127,7 +130,7 @@ Tone has a few basic audio sources like [Tone.Oscillator](https://tonejs.github.
 
 # Signals
 
-Like the underlying Web Audio API, Tone.js is built with audio-rate signal control over nearly everything. This is a powerful feature which allows for sample-accurate synchronization and scheduling of parameters. 
+Like the underlying Web Audio API, Tone.js is built with audio-rate signal control over nearly everything. This is a powerful feature which allows for sample-accurate synchronization and scheduling of parameters.
 
 <script async src="//jsfiddle.net/yotammann/x3kehc9x/embed/js,result/"></script>
 
@@ -136,8 +139,6 @@ Like the underlying Web Audio API, Tone.js is built with audio-rate signal contr
 # Additional Resources
 
 More resources can be found on the [github page](https://github.com/Tonejs/Tone.js), [forum](https://groups.google.com/forum/#!forum/tonejs), [wiki](https://github.com/Tonejs/Tone.js/wiki), and [demos](https://tonejs.github.io/demos)
-
-
 
 <script type="text/javascript">
 

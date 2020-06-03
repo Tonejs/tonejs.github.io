@@ -1,9 +1,15 @@
 ---
 ---
+
 @import "common.scss";
 
-#basicLinks {
+#marquee {
+	width: 100%;
+	height: 40px;
+	margin-top: 20px;
+}
 
+#basicLinks {
 	$height: 30px;
 
 	position: relative;
