@@ -10,7 +10,7 @@ The class file begins with short description of that class followed by a list of
 
 ## Constructor
 
-The constructor function shows the parameter names, types and a short description for each paramter. All class constructors in Tone.js accept an object in the constructor. The defaults values for that options object are shown below the constructor.
+The constructor function shows the parameter names, types and a short description for each parameter. All class constructors in Tone.js accept an object in the constructor. The defaults values for that options object are shown below the constructor.
 
 ## Members
 
