@@ -1,0 +1,115 @@
+[
+	{
+		"name": "function"
+	},
+	{
+		"description": "Default units",
+		"name": "Default",
+		"value": "number"
+	},
+	{
+		"description": "Time can be described in a number of ways. Read more [Time](https://github.com/Tonejs/Tone.js/wiki/Time).\n\n * Numbers, which will be taken literally as the time (in seconds).\n * Notation, (\"4n\", \"8t\") describes time in BPM and time signature relative values.\n * TransportTime, (\"4:3:2\") will also provide tempo and time signature relative times\n in the form BARS:QUARTERS:SIXTEENTHS.\n * Frequency, (\"8hz\") is converted to the length of the cycle in seconds.\n * Now-Relative, (\"+1\") prefix any of the above with \"+\" and it will be interpreted as\n \"the current time plus whatever expression follows\".\n * Object, ({\"4n\" : 3, \"8t\" : -1}). The resulting time is equal to the sum of all of the keys multiplied by the values in the object. \n * No Argument, for methods which accept time, no argument will be interpreted as\n \"now\" (i.e. the currentTime).",
+		"name": "Time",
+		"value": "time"
+	},
+	{
+		"description": "Frequency can be described similar to time, except ultimately the\n values are converted to frequency instead of seconds. A number\n is taken literally as the value in hertz. Additionally any of the\n Time encodings can be used. Note names in the form\n of NOTE OCTAVE (i.e. C4) are also accepted and converted to their\n frequency value.",
+		"name": "Frequency",
+		"value": "frequency"
+	},
+	{
+		"description": "TransportTime describes a position along the Transport's timeline. It is\n similar to Time in that it uses all the same encodings, but TransportTime specifically\n pertains to the Transport's timeline, which is startable, stoppable, loopable, and seekable.\n [Read more](https://github.com/Tonejs/Tone.js/wiki/TransportTime)",
+		"name": "TransportTime",
+		"value": "transportTime"
+	},
+	{
+		"description": "Ticks are the basic subunit of the Transport. They are\n the smallest unit of time that the Transport supports.",
+		"name": "Ticks",
+		"value": "ticks"
+	},
+	{
+		"description": "Normal values are within the range [0, 1].",
+		"name": "NormalRange",
+		"value": "normalRange"
+	},
+	{
+		"description": "AudioRange values are between [-1, 1].",
+		"name": "AudioRange",
+		"value": "audioRange"
+	},
+	{
+		"description": "Decibels are a logarithmic unit of measurement which is useful for volume\n because of the logarithmic way that we perceive loudness. 0 decibels\n means no change in volume. -10db is approximately half as loud and 10db\n is twice is loud.",
+		"name": "Decibels",
+		"value": "db"
+	},
+	{
+		"description": "Half-step note increments, i.e. 12 is an octave above the root. and 1 is a half-step up.",
+		"name": "Interval",
+		"value": "interval"
+	},
+	{
+		"description": "Beats per minute.",
+		"name": "BPM",
+		"value": "bpm"
+	},
+	{
+		"description": "The value must be greater than or equal to 0.",
+		"name": "Positive",
+		"value": "positive"
+	},
+	{
+		"description": "Gain is the ratio between input and output of a signal.\n A gain of 0 is the same as silencing the signal. A gain of\n 1, causes no change to the incoming signal.",
+		"name": "Gain",
+		"value": "gain"
+	},
+	{
+		"description": "A cent is a hundredth of a semitone.",
+		"name": "Cents",
+		"value": "cents"
+	},
+	{
+		"description": "Angle between 0 and 360.",
+		"name": "Degrees",
+		"value": "degrees"
+	},
+	{
+		"description": "A number representing a midi note.",
+		"name": "MIDI",
+		"value": "midi"
+	},
+	{
+		"description": "A colon-separated representation of time in the form of\n Bars:Beats:Sixteenths.",
+		"name": "BarsBeatsSixteenths",
+		"value": "barsBeatsSixteenths"
+	},
+	{
+		"description": "Sampling is the reduction of a continuous signal to a discrete signal.\n Audio is typically sampled 44100 times per second.",
+		"name": "Samples",
+		"value": "samples"
+	},
+	{
+		"description": "Hertz are a frequency representation defined as one cycle per second.",
+		"name": "Hertz",
+		"value": "hertz"
+	},
+	{
+		"description": "A frequency represented by a letter name,\n accidental and octave. This system is known as\n [Scientific Pitch Notation](https://en.wikipedia.org/wiki/Scientific_pitch_notation).",
+		"name": "Note",
+		"value": "note"
+	},
+	{
+		"description": "One millisecond is a thousandth of a second.",
+		"name": "Milliseconds",
+		"value": "milliseconds"
+	},
+	{
+		"description": "Seconds are the time unit of the AudioContext. In the end,\n all values need to be evaluated to seconds.",
+		"name": "Seconds",
+		"value": "seconds"
+	},
+	{
+		"description": "A string representing a duration relative to a measure.\n * \"4n\" = quarter note\n * \"2m\" = two measures\n * \"8t\" = eighth-note triplet",
+		"name": "Notation",
+		"value": "notation"
+	}
+]
