@@ -106,10 +106,6 @@
   url : http://2016.management/
   image : https://drive.google.com/thumbnail?id=1Dk1_58Bgn_JrSVSvxqemw1C4lX-0xAAy&sz=w400-h400
 
-- title : Poco Apollo
-  url : http://pocoapollo.hdor.is/
-  image : https://drive.google.com/thumbnail?id=1ly4aztfxXQNUAFvoZeDHlx8FvoQAoHbl&sz=w400-h400
-
 - title : microscale
   url : http://alestsurko.by/microscale/
   image : https://drive.google.com/thumbnail?id=1aYFF9KVylI2S2K5wF4Sdf6wniZkzgYzR&sz=w400-h400
@@ -157,10 +153,6 @@
 - title : discreetmusic
   url : https://mezoistvan.github.io/discreetmusic
   image : https://drive.google.com/thumbnail?id=15-kjkN-XdViUCo8JJdJVgk0TrRib8gH5&sz=w400-h400
-
-- title : nude
-  url : https://mezoistvan.github.io/nude
-  image : https://drive.google.com/thumbnail?id=1I-K7cLGHcOYHcGEpa8g1MlvgJDDaJRA8&sz=w400-h400
 
 - title : Beat Bucket
   url : https://joebeachjoebeach.github.io/beat-bucket/
@@ -234,14 +226,6 @@
   url : https://indiebubbler.github.io/metro
   image : https://drive.google.com/thumbnail?id=1OzneEClIIQ8EdBHGMc0uDVgbD_Kdv7uz&sz=w400-h400
 
-- title : ChordQuery Chord Finder
-  url : https://app.chordquery.com/
-  image : https://drive.google.com/thumbnail?id=1vJKFKi1jpNg3mYLH9UupOvzk5RY1-QC2&sz=w400-h400
-
-- title : Busy Beats
-  url : https://busybeats.co.uk
-  image : https://drive.google.com/thumbnail?id=1QDvhCSg59d67ca6vESrn4yLXXkpl1f4J&sz=w400-h400
-
 - title : Akson
   url : www.akson.xyz
   image : https://drive.google.com/thumbnail?id=1yI02wdBVYkAglmfrKChm9TBAj9_X9eQi&sz=w400-h400
@@ -254,7 +238,7 @@
   url : https://lazerbea.ms/lb011/
   image : https://drive.google.com/thumbnail?id=1WHJHPdZ3rf05820LekQ7XIMpBXEd1_mE&sz=w400-h400
 
-- title : Orbitals for clarinet and mobile devices
+- title : "Orbitals" for clarinet and mobile devices
   url : https://youtu.be/oi_C-AvaWr0
   image : https://drive.google.com/thumbnail?id=1qqfOPkLg9tbjocJukHQdZDMjuVomHHGz&sz=w400-h400
 
@@ -289,3 +273,68 @@
 - title : seaOrgan
   url : http://seaorgan.net/
   image : https://drive.google.com/thumbnail?id=1zVCMlJhhQwelubqpZBkckliMTpzX5HTk&sz=w400-h400
+
+- title : Five
+  url : https://www.omrinuri.com/play/five
+  image : https://drive.google.com/thumbnail?id=1zgcXhphdj5KM_NOW891LsTjBjwbX3EvC&sz=w400-h400
+
+- title : polymetric drum machine
+  url : https://react-drum-machine-6f184.firebaseapp.com/
+  image : https://drive.google.com/thumbnail?id=1OSegCyxczl_OctZklENAUxc26ZkY1zpL&sz=w400-h400
+
+- title : Workshop p5js and ToneJS
+  url : https://asanzdiego.github.io/workshop-p5js-and-tonejs/example-07/index.html
+  image : https://drive.google.com/thumbnail?id=1IvKyhgFZ-_-CiQ49WbhVtI1RjQCk_xsn&sz=w400-h400
+
+- title : ToneMatrix Redux
+  url : https://www.maxlaumeister.com/tonematrix/
+  image : https://drive.google.com/thumbnail?id=1Ln9oMuDpKXACiUjO63Lv5dGxBK87rgFH&sz=w400-h400
+
+- title : Universal Tone Generator
+  url : http://utg.ezralafleur.com/
+  image : https://drive.google.com/thumbnail?id=1_z34mT6LCMrkYn0a3U9MurqW8_qYVbc8&sz=w400-h400
+
+- title : Mizik
+  url : https://mizikgame.com
+  image : https://drive.google.com/thumbnail?id=1tvil7dlNXkzaLBg1eAV_8yqEf0GHh1oP&sz=w400-h400
+
+- title : Eyes
+  url : https://skyl.fr/play/eyes
+  image : https://drive.google.com/thumbnail?id=15PSFmZlEKMk_h1zGuBYcywGP2ufjiAlT&sz=w400-h400
+
+- title : Virus
+  url : https://skyl.fr/play/virus
+  image : https://drive.google.com/thumbnail?id=1QODXF_5MndhdZdWllbBo9TGELl9n-O3J&sz=w400-h400
+
+- title : Compozer
+  url : https://compozer.netlify.app/
+  image : https://drive.google.com/thumbnail?id=1GpEEQHxR0mhdD1tjmSTUjZXb2qKSfDZI&sz=w400-h400
+
+- title : Shape Your Music
+  url : https://shapeyourmusic.dev/
+  image : https://drive.google.com/thumbnail?id=1MPbt61TImWY39I0X7DQIxeEFS_jgbPLo&sz=w400-h400
+
+- title : Tweakable
+  url : https://tweakable.org
+  image : https://drive.google.com/thumbnail?id=1twGBQs4Ch9Oa3Kn_ooSBM1IxH_MeC0Yz&sz=w400-h400
+
+- title : Scale Blitz
+  url : https://smithsa.github.io/scales/
+  image : https://drive.google.com/thumbnail?id=1Mq3CGWYO8QW738tW66DlF59tqd8hQONt&sz=w400-h400
+
+- title : Musical Bingo
+  url : https://diegodorado.com/es/labs/bingo/
+  image : https://drive.google.com/thumbnail?id=1EvkjAngjp3LFdcmQojErJpu_qN_4xhCX&sz=w400-h400
+
+- title : Dunka Dunka
+  url : https://dunkadunka.com/
+  image : https://drive.google.com/thumbnail?id=109QweLLnbXb8kQlSC81usGpFKVvIuYBf&sz=w400-h400
+
+- title : Weather Synth
+  url : https://psherrard.github.io/patrickSherrardProject5/
+  image : https://drive.google.com/thumbnail?id=1N0xP9di0VOgnK7qSsomq1FGvs798GhyA&sz=w400-h400
+
+- title : ToneMatrix Redux
+  url : https://www.maxlaumeister.com/tonematrix/
+  image : https://drive.google.com/thumbnail?id=19bC70dC08AmMMh0uP22GR3BeMnQhFaZq&sz=w400-h400
+
