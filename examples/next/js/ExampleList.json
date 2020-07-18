@@ -1,4 +1,4 @@
-var ExampleList = {
+{
 	"Basic" : {
 		"Oscillators" : "oscillator",
 		"Envelope" : "envelope",
@@ -11,6 +11,7 @@ var ExampleList = {
 		"Synth" : "simpleSynth",
 		"MonoSynth" : "monoSynth",
 		"FMSynth" : "fmSynth",
+		"AMSynth" : "amSynth",
 		"PolySynth" : "polySynth",
 		"FatOscillator" : "jump",
 		"MetalSynth" : "bembe",
@@ -22,7 +23,8 @@ var ExampleList = {
 		"PingPongDelay" : "pingPongDelay",
 		"Buses" : "buses",
 		"Reverb" : "reverb",
-		"Spatialization" : "spatialPanner"
+		"Spatialization" : "spatialPanner",
+		"PitchShift" : "pitchShift"
 	},
 	"Sequencing / Timing" : {
 		"Step Sequencer" : "stepSequencer",
@@ -34,7 +36,7 @@ var ExampleList = {
 	},
 	"Signals" : {
 		"Control Voltage" : "signal",
-		"Ramping Values" : "rampTo",
+		"Ramping Values" : "rampTo"
 	},
 	"Visualization" : {
 		"Animation Sync" : "animationSync",
@@ -43,7 +45,6 @@ var ExampleList = {
 		"Meter" : "meter"
 	},
 	"Misc" : {
-		"Module Loaders" : "require",
 		"Offline Rendering" : "offline"
-	},
-};
+	}
+}

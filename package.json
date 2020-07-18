@@ -13,7 +13,8 @@
 		"build:js": "webpack --config ./doc-gen/scripts/webpack.config.js",
 		"test:output_dir": "[ -z \"$npm_config_output\" ] && echo \"SPECIFY OUTPUT DIR\" && exit 1 || echo $npm_config_output",
 		"build:docs": "npm run test:output_dir && npm run build:html && npm run build:js &&npm run build:css",
-		"build": "node scripts/build_latest.js && node scripts/create_redirect.js"
+		"build": "node scripts/build_latest.js && node scripts/create_redirect.js",
+		"examples": "node scripts/copy_examples.js"
 	},
 	"repository": {
 		"type": "git",
@@ -40,6 +41,7 @@
 		"monaco-editor": "^0.18.1",
 		"node-sass": "^4.13.1",
 		"style-loader": "^1.0.0",
+		"tmp": "^0.2.1",
 		"ts-loader": "^6.2.0",
 		"ts-node": "^8.4.1",
 		"typescript": "^3.6.4",
