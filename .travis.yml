@@ -2,18 +2,18 @@ sudo: false
 dist: trusty
 language: node_js
 node_js:
-- '11'
+    - "11"
 install:
-- npm install
-- git config --global user.email "travis@travis-ci.org"
-- git config --global user.name "Travis CI"
-script: 
-- npm run build
+    - npm install
+    - git config --global user.email "travis@travis-ci.org"
+    - git config --global user.name "Travis CI"
+script:
+    - npm run build
 deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GH_TOKEN
-  keep-history: true
-  target-branch: master
-  on:
-    branch: master
+    provider: pages
+    skip-cleanup: true
+    github-token: $GH_TOKEN
+    keep-history: true
+    target-branch: master
+    on:
+        branch: master
