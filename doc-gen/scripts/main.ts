@@ -1,3 +1,3 @@
-import './example'
-import './sidebar'
-import './type'
+import "./example";
+import "./sidebar";
+import "./type";
