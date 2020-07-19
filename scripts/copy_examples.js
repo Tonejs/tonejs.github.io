@@ -13,7 +13,7 @@ try {
 	});
 
 	const examplesDir = path.resolve(__dirname, "../examples");
-	const nextExamples = path.resolve(__dirname, "../examples/next");
+	const nextExamples = path.resolve(__dirname, "../next-examples");
 	console.log("removing previous examples");
 	fs.removeSync(examplesDir);
 
