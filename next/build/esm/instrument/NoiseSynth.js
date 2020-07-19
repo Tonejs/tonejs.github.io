@@ -1,0 +1,91 @@
+import { AmplitudeEnvelope } from "../component/envelope/AmplitudeEnvelope";
+import { omitFromObject, optionsFromArguments } from "../core/util/Defaults";
+import { Noise } from "../source/Noise";
+import { Instrument } from "./Instrument";
+import { ToneAudioNode } from "../core/context/ToneAudioNode";
+import { Envelope } from "../component/envelope/Envelope";
+import { Source } from "../source/Source";
+/**
+ * Tone.NoiseSynth is composed of [[Noise]] through an [[AmplitudeEnvelope]].
+ * ```
+ * +-------+   +-------------------+
+ * | Noise +>--> AmplitudeEnvelope +>--> Output
+ * +-------+   +-------------------+
+ * ```
+ * @example
+ * const noiseSynth = new Tone.NoiseSynth().toDestination();
+ * noiseSynth.triggerAttackRelease("8n", 0.05);
+ * @category Instrument
+ */
+export class NoiseSynth extends Instrument {
+    constructor() {
+        super(optionsFromArguments(NoiseSynth.getDefaults(), arguments));
+        this.name = "NoiseSynth";
+        const options = optionsFromArguments(NoiseSynth.getDefaults(), arguments);
+        this.noise = new Noise(Object.assign({
+            context: this.context,
+        }, options.noise));
+        this.envelope = new AmplitudeEnvelope(Object.assign({
+            context: this.context,
+        }, options.envelope));
+        // connect the noise to the output
+        this.noise.chain(this.envelope, this.output);
+    }
+    static getDefaults() {
+        return Object.assign(Instrument.getDefaults(), {
+            envelope: Object.assign(omitFromObject(Envelope.getDefaults(), Object.keys(ToneAudioNode.getDefaults())), {
+                decay: 0.1,
+                sustain: 0.0,
+            }),
+            noise: Object.assign(omitFromObject(Noise.getDefaults(), Object.keys(Source.getDefaults())), {
+                type: "white",
+            }),
+        });
+    }
+    /**
+     * Start the attack portion of the envelopes. Unlike other
+     * instruments, Tone.NoiseSynth doesn't have a note.
+     * @example
+     * const noiseSynth = new Tone.NoiseSynth().toDestination();
+     * noiseSynth.triggerAttack();
+     */
+    triggerAttack(time, velocity = 1) {
+        time = this.toSeconds(time);
+        // the envelopes
+        this.envelope.triggerAttack(time, velocity);
+        // start the noise
+        this.noise.start(time);
+        if (this.envelope.sustain === 0) {
+            this.noise.stop(time + this.toSeconds(this.envelope.attack) + this.toSeconds(this.envelope.decay));
+        }
+        return this;
+    }
+    /**
+     * Start the release portion of the envelopes.
+     */
+    triggerRelease(time) {
+        time = this.toSeconds(time);
+        this.envelope.triggerRelease(time);
+        this.noise.stop(time + this.toSeconds(this.envelope.release));
+        return this;
+    }
+    sync() {
+        this._syncMethod("triggerAttack", 0);
+        this._syncMethod("triggerRelease", 0);
+        return this;
+    }
+    triggerAttackRelease(duration, time, velocity = 1) {
+        time = this.toSeconds(time);
+        duration = this.toSeconds(duration);
+        this.triggerAttack(time, velocity);
+        this.triggerRelease(time + duration);
+        return this;
+    }
+    dispose() {
+        super.dispose();
+        this.noise.dispose();
+        this.envelope.dispose();
+        return this;
+    }
+}
+//# sourceMappingURL=NoiseSynth.js.map

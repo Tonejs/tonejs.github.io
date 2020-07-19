@@ -1,0 +1,53 @@
+import { ToneAudioNode } from "../../core/context/ToneAudioNode";
+import { optionsFromArguments } from "../../core/util/Defaults";
+import { FeedbackCombFilter } from "./FeedbackCombFilter";
+import { OnePoleFilter } from "./OnePoleFilter";
+/**
+ * A lowpass feedback comb filter. It is similar to
+ * [[FeedbackCombFilter]], but includes a lowpass filter.
+ * @category Component
+ */
+export class LowpassCombFilter extends ToneAudioNode {
+    constructor() {
+        super(optionsFromArguments(LowpassCombFilter.getDefaults(), arguments, ["delayTime", "resonance", "dampening"]));
+        this.name = "LowpassCombFilter";
+        const options = optionsFromArguments(LowpassCombFilter.getDefaults(), arguments, ["delayTime", "resonance", "dampening"]);
+        this._combFilter = this.output = new FeedbackCombFilter({
+            context: this.context,
+            delayTime: options.delayTime,
+            resonance: options.resonance,
+        });
+        this.delayTime = this._combFilter.delayTime;
+        this.resonance = this._combFilter.resonance;
+        this._lowpass = this.input = new OnePoleFilter({
+            context: this.context,
+            frequency: options.dampening,
+            type: "lowpass",
+        });
+        // connections
+        this._lowpass.connect(this._combFilter);
+    }
+    static getDefaults() {
+        return Object.assign(ToneAudioNode.getDefaults(), {
+            dampening: 3000,
+            delayTime: 0.1,
+            resonance: 0.5,
+        });
+    }
+    /**
+     * The dampening control of the feedback
+     */
+    get dampening() {
+        return this._lowpass.frequency;
+    }
+    set dampening(fq) {
+        this._lowpass.frequency = fq;
+    }
+    dispose() {
+        super.dispose();
+        this._combFilter.dispose();
+        this._lowpass.dispose();
+        return this;
+    }
+}
+//# sourceMappingURL=LowpassCombFilter.js.map

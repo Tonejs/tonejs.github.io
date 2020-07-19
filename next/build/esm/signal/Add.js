@@ -1,0 +1,48 @@
+import { connectSeries } from "../core/context/ToneAudioNode";
+import { Gain } from "../core/context/Gain";
+import { optionsFromArguments } from "../core/util/Defaults";
+import { Signal } from "./Signal";
+/**
+ * Add a signal and a number or two signals. When no value is
+ * passed into the constructor, Tone.Add will sum input and `addend`
+ * If a value is passed into the constructor, the it will be added to the input.
+ *
+ * @offline 0.5 1
+ * @example
+ * const add = new Tone.Add(2).toDestination();
+ * add.addend.setValueAtTime(1, 0.2);
+ * const signal = new Tone.Signal(2);
+ * // add a signal and a scalar
+ * signal.connect(add);
+ * signal.setValueAtTime(1, 0.1);
+ * @category Signal
+ */
+export class Add extends Signal {
+    constructor() {
+        super(Object.assign(optionsFromArguments(Add.getDefaults(), arguments, ["value"])));
+        this.override = false;
+        this.name = "Add";
+        /**
+         * the summing node
+         */
+        this._sum = new Gain({ context: this.context });
+        this.input = this._sum;
+        this.output = this._sum;
+        /**
+         * The value which is added to the input signal
+         */
+        this.addend = this._param;
+        connectSeries(this._constantSource, this._sum);
+    }
+    static getDefaults() {
+        return Object.assign(Signal.getDefaults(), {
+            value: 0,
+        });
+    }
+    dispose() {
+        super.dispose();
+        this._sum.dispose();
+        return this;
+    }
+}
+//# sourceMappingURL=Add.js.map

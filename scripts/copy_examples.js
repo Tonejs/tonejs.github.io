@@ -13,10 +13,12 @@ try {
 	});
 
 	const examplesDir = path.resolve(__dirname, "../examples");
-	const nextExamples = path.resolve(__dirname, "../next-examples");
+	const nextDir = path.resolve(__dirname, "../next");
+	const nextExamples = path.resolve(nextDir, "examples");
+	const nextBuild = path.resolve(nextDir, "build");
 	console.log("removing previous examples");
 	fs.removeSync(examplesDir);
-	fs.removeSync(nextExamples);
+	fs.removeSync(nextDir);
 
 	console.log("copying latest examples from master branch");
 	fs.copySync(path.resolve(tmpDir.name, "examples"), examplesDir);
@@ -27,6 +29,13 @@ try {
 		cwd: tmpDir.name,
 	});
 	fs.copySync(path.resolve(tmpDir.name, "examples"), nextExamples);
+
+	console.log("installing tone@next");
+	execSync("npm i tone@next");
+	fs.copySync(
+		path.resolve(__dirname, "../node_modules/tone/build"),
+		nextBuild
+	);
 } finally {
 	console.log("cleaning up");
 	tmpDir.removeCallback();
