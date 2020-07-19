@@ -16,9 +16,18 @@ try {
 	const nextDir = path.resolve(__dirname, "../next");
 	const nextExamples = path.resolve(nextDir, "examples");
 	const nextBuild = path.resolve(nextDir, "build");
+	const buildPath = path.resolve(__dirname, "../build");
 	console.log("removing previous examples");
 	fs.removeSync(examplesDir);
 	fs.removeSync(nextDir);
+	fs.removeSync(buildPath);
+
+	console.log("installing tone@latest");
+	execSync("npm i tone@latest");
+	fs.copySync(
+		path.resolve(__dirname, "../node_modules/tone/build"),
+		buildPath
+	);
 
 	console.log("copying latest examples from master branch");
 	fs.copySync(path.resolve(tmpDir.name, "examples"), examplesDir);
