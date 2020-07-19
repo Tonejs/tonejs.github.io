@@ -16,6 +16,7 @@ try {
 	const nextExamples = path.resolve(__dirname, "../next-examples");
 	console.log("removing previous examples");
 	fs.removeSync(examplesDir);
+	fs.removeSync(nextExamples);
 
 	console.log("copying latest examples from master branch");
 	fs.copySync(path.resolve(tmpDir.name, "examples"), examplesDir);
