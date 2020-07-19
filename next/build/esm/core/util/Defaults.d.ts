@@ -15,7 +15,7 @@ export declare function deepEquals(arrayA: number[] | string[], arrayB: number[]
 /**
  * Convert an args array into an object.
  */
-export declare function optionsFromArguments<T extends object>(defaults: T, argsArray: IArguments, keys?: string[], objKey?: string): T;
+export declare function optionsFromArguments<T extends object>(defaults: T, argsArray: IArguments, keys?: Array<keyof T>, objKey?: keyof T): T;
 /**
  * Return this instances default values by calling Constructor.getDefaults()
  */

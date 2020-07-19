@@ -14,14 +14,3 @@ export declare const noOp: (...args: any[]) => any;
 export declare type RecursivePartial<T> = {
     [P in keyof T]?: T[P] extends Array<infer U> ? Array<RecursivePartial<U>> : T[P] extends object ? RecursivePartial<T[P]> : T[P];
 };
-/**
- * Recursive Omit modified from here: https://stackoverflow.com/a/54487392/1146428
- */
-declare type OmitDistributive<T, K extends string | number> = T extends any ? (T extends object ? Id<RecursiveOmit<T, K>> : T) : never;
-declare type Id<T> = {} & {
-    [P in keyof T]: T[P];
-};
-export declare type RecursiveOmit<T extends any, K extends string | number> = Omit<{
-    [P in keyof T]: OmitDistributive<T[P], K>;
-}, K>;
-export {};
