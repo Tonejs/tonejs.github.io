@@ -190,7 +190,7 @@ export class ToneAudioNode extends ToneWithContext {
     /**
      * Connect the output of this node to the rest of the nodes in series.
      * @example
-     * const player = new Tone.Player("https://tonejs.github.io/examples/audio/FWDL.mp3");
+     * const player = new Tone.Player("https://tonejs.github.io/audio/drum-samples/handdrum-loop.mp3");
      * player.autostart = true;
      * const filter = new Tone.AutoFilter(4).start();
      * const distortion = new Tone.Distortion(0.5);
@@ -204,7 +204,7 @@ export class ToneAudioNode extends ToneWithContext {
     /**
      * connect the output of this node to the rest of the nodes in parallel.
      * @example
-     * const player = new Tone.Player("https://tonejs.github.io/examples/audio/FWDL.mp3");
+     * const player = new Tone.Player("https://tonejs.github.io/audio/drum-samples/conga-rhythm.mp3");
      * player.autostart = true;
      * const pitchShift = new Tone.PitchShift(4).toDestination();
      * const filter = new Tone.Filter("G5").toDestination();
