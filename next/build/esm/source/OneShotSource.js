@@ -1,5 +1,5 @@
 import { Gain } from "../core/context/Gain";
-import { ToneAudioNode } from "../core/context/ToneAudioNode";
+import { ToneAudioNode, } from "../core/context/ToneAudioNode";
 import { noOp } from "../core/util/Interface";
 import { assert } from "../core/util/Debug";
 /**
@@ -41,7 +41,8 @@ export class OneShotSource extends ToneAudioNode {
          */
         this.getStateAtTime = function (time) {
             const computedTime = this.toSeconds(time);
-            if (this._startTime !== -1 && computedTime >= this._startTime &&
+            if (this._startTime !== -1 &&
+                computedTime >= this._startTime &&
                 (this._stopTime === -1 || computedTime <= this._stopTime)) {
                 return "started";
             }
@@ -143,7 +144,15 @@ export class OneShotSource extends ToneAudioNode {
             this.onended = noOp;
             // dispose when it's ended to free up for garbage collection only in the online context
             if (!this.context.isOffline) {
-                setTimeout(() => this.dispose(), 1000);
+                const disposeCallback = () => this.dispose();
+                // @ts-ignore
+                if (typeof window.requestIdleCallback !== "undefined") {
+                    // @ts-ignore
+                    window.requestIdleCallback(disposeCallback);
+                }
+                else {
+                    setTimeout(disposeCallback, 1000);
+                }
             }
         }
     }
