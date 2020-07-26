@@ -7,6 +7,7 @@ export interface ChannelOptions extends ToneAudioNodeOptions {
     volume: Decibels;
     solo: boolean;
     mute: boolean;
+    channelCount: number;
 }
 /**
  * Channel provides a channel strip interface with volume, pan, solo and mute controls.
