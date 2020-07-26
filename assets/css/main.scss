@@ -1,11 +1,25 @@
 ---
 ---
+
 @import "common.scss";
 
-$padding : 10px;
+$padding: 10px;
 
 body {
-	font-family : 'Inconsolata', monospace;
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: "Inconsolata", monospace;
+	}
+
+	h4 {
+		font-size: 1.2em;
+		font-weight: bold;
+	}
+
 	font-size: 16px;
 	margin: $margin;
 	line-height: 22px;
@@ -35,14 +49,18 @@ body {
 		margin: 5px;
 	}
 
+	tone-code,
 	pre {
 		tab-size: 4;
-		font-size: 0.85em;
+		width: 100%;
+		display: block;
 	}
 
 	#content {
 		position: relative;
-		max-width: 1000px;
+		max-width: 900px;
 		margin: 0 auto 0 auto;
+		font-family: sans-serif;
+		padding: 20px;
 	}
 }

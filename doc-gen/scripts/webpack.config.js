@@ -4,8 +4,6 @@ module.exports = {
 	mode: "production",
 	entry: {
 		app: "./doc-gen/scripts/main.ts",
-		"editor.worker": "monaco-editor/esm/vs/editor/editor.worker.js",
-		"ts.worker": "monaco-editor/esm/vs/language/typescript/ts.worker",
 	},
 	resolve: {
 		extensions: [".ts", ".js"],

@@ -4,13 +4,24 @@ sass:
 markdown: kramdown
 
 kramdown:
-  input: GFM
-  syntax_highlighter: rouge
+    input: GFM
+    syntax_highlighter: rouge
+
+keep_files:
+    - docs
+    - examples
+    - next
+    - build
 
 exclude:
-  - .DS_Store
-  - Gemfile.lock
-  - node_modules
-  - images/original
-  - images/scripts
-  - doc-gen
+    - .DS_Store
+    - Gemfile.lock
+    - node_modules
+    - scripts
+    - doc-gen
+    - generate_docs
+    - docs/test
+    - docs
+    - examples
+    - next
+    - build
