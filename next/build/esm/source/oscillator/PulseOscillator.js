@@ -36,9 +36,10 @@ import { generateWaveform } from "./OscillatorInterface";
  *       | |                                         | |
  * +-----+ +-------+                                 +-+
  * ```
- * @offline 0.1 1
  * @example
- * const pulse = new Tone.PulseOscillator(50, 0.4).toDestination().start();
+ * return Tone.Offline(() => {
+ * 	const pulse = new Tone.PulseOscillator(50, 0.4).toDestination().start();
+ * }, 0.1, 1);
  * @category Source
  */
 export class PulseOscillator extends Source {

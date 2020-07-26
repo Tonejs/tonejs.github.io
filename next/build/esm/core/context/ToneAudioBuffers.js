@@ -9,8 +9,8 @@ import { assert } from "../util/Debug";
  *
  * @example
  * const pianoSamples = new Tone.ToneAudioBuffers({
- * 	C1: "https://tonejs.github.io/examples/audio/casio/C1.mp3",
- * 	C2: "https://tonejs.github.io/examples/audio/casio/C2.mp3",
+ * 	A1: "https://tonejs.github.io/audio/casio/A1.mp3",
+ * 	A2: "https://tonejs.github.io/audio/casio/A2.mp3",
  * }, () => {
  * 	const player = new Tone.Player().toDestination();
  * 	// play one of the samples when they all load
@@ -21,11 +21,11 @@ import { assert } from "../util/Debug";
  * // To pass in additional parameters in the second parameter
  * const buffers = new Tone.ToneAudioBuffers({
  * 	 urls: {
- * 		 C1: "C1.mp3",
- * 		 C2: "C2.mp3",
+ * 		 A1: "A1.mp3",
+ * 		 A2: "A2.mp3",
  * 	 },
  * 	 onload: () => console.log("loaded"),
- * 	 baseUrl: "https://tonejs.github.io/examples/audio/casio/"
+ * 	 baseUrl: "https://tonejs.github.io/audio/casio/"
  * });
  * @category Core
  */

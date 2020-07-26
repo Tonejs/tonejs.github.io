@@ -28,15 +28,16 @@ export interface EnvelopeOptions extends ToneAudioNodeOptions {
  *    /                         \
  *   /                           \
  * ```
- * @offline 1.5 1
  * @example
- * const env = new Tone.Envelope({
- * 	attack: 0.1,
- * 	decay: 0.2,
- * 	sustain: 0.5,
- * 	release: 0.8,
- * }).toDestination();
- * env.triggerAttackRelease(0.5);
+ * return Tone.Offline(() => {
+ * 	const env = new Tone.Envelope({
+ * 		attack: 0.1,
+ * 		decay: 0.2,
+ * 		sustain: 0.5,
+ * 		release: 0.8,
+ * 	}).toDestination();
+ * 	env.triggerAttackRelease(0.5);
+ * }, 1.5, 1);
  * @category Component
  */
 export declare class Envelope extends ToneAudioNode<EnvelopeOptions> {
@@ -183,38 +184,41 @@ export declare class Envelope extends ToneAudioNode<EnvelopeOptions> {
      * Can also be an array which describes the curve. Values
      * in the array are evenly subdivided and linearly
      * interpolated over the duration of the attack.
-     * @offline 1 1
      * @example
-     * const env = new Tone.Envelope(0.4).toDestination();
-     * env.attackCurve = "linear";
-     * env.triggerAttack();
+     * return Tone.Offline(() => {
+     * 	const env = new Tone.Envelope(0.4).toDestination();
+     * 	env.attackCurve = "linear";
+     * 	env.triggerAttack();
+     * }, 1, 1);
      */
     get attackCurve(): EnvelopeCurve;
     set attackCurve(curve: EnvelopeCurve);
     /**
      * The shape of the release. See the attack curve types.
-     * @offline 1 1
      * @example
-     * const env = new Tone.Envelope({
-     * 	release: 0.8
-     * }).toDestination();
-     * env.triggerAttack();
-     * // release curve could also be defined by an array
-     * env.releaseCurve = [1, 0.3, 0.4, 0.2, 0.7, 0];
-     * env.triggerRelease(0.2);
+     * return Tone.Offline(() => {
+     * 	const env = new Tone.Envelope({
+     * 		release: 0.8
+     * 	}).toDestination();
+     * 	env.triggerAttack();
+     * 	// release curve could also be defined by an array
+     * 	env.releaseCurve = [1, 0.3, 0.4, 0.2, 0.7, 0];
+     * 	env.triggerRelease(0.2);
+     * }, 1, 1);
      */
     get releaseCurve(): EnvelopeCurve;
     set releaseCurve(curve: EnvelopeCurve);
     /**
      * The shape of the decay either "linear" or "exponential"
-     * @offline 1 1
      * @example
-     * const env = new Tone.Envelope({
-     * 	sustain: 0.1,
-     * 	decay: 0.5
-     * }).toDestination();
-     * env.decayCurve = "linear";
-     * env.triggerAttack();
+     * return Tone.Offline(() => {
+     * 	const env = new Tone.Envelope({
+     * 		sustain: 0.1,
+     * 		decay: 0.5
+     * 	}).toDestination();
+     * 	env.decayCurve = "linear";
+     * 	env.triggerAttack();
+     * }, 1, 1);
      */
     get decayCurve(): BasicEnvelopeCurve;
     set decayCurve(curve: BasicEnvelopeCurve);

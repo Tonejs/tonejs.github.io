@@ -7,10 +7,11 @@ import { readOnly } from "../core/util/Interface";
  * Output 1 if the signal is greater than the value, otherwise outputs 0.
  * can compare two signals or a signal and a number.
  *
- * @offline 0.1 1
  * @example
- * const gt = new Tone.GreaterThan(2).toDestination();
- * const sig = new Tone.Signal(4).connect(gt);
+ * return Tone.Offline(() => {
+ * 	const gt = new Tone.GreaterThan(2).toDestination();
+ * 	const sig = new Tone.Signal(4).connect(gt);
+ * }, 0.1, 1);
  */
 export class GreaterThan extends Signal {
     constructor() {
