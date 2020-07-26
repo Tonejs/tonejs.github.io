@@ -21,7 +21,3 @@ exclude:
     - doc-gen
     - generate_docs
     - docs/test
-    - docs
-    - examples
-    - next
-    - build
