@@ -7,7 +7,7 @@
 			{{#each comment.tags}}
 				{{!-- EXAMPLES --}}
 				{{#ifCond tag '==' 'example'}}
-					<div {{{offlineExample ../comment.tags}}} class="example">
+					<div class="example">
 						<pre>{{{highlight text}}}</pre>
 					</div>
 				{{/ifCond}}
