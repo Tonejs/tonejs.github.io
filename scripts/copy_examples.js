@@ -32,6 +32,19 @@ try {
 	console.log("copying latest examples from master branch");
 	fs.copySync(path.resolve(tmpDir.name, "examples"), examplesDir);
 
+	// copy the README, rename to index.md
+	const indexmd = path.resolve(__dirname, "../index.md");
+	fs.moveSync(path.resolve(tmpDir.name, "README.md"), indexmd, {
+		overwrite: true,
+	});
+	// prepend the front-matter
+	fs.writeFileSync(
+		indexmd,
+		`---\nlayout: default\ntitle: Tone.js\n---\n\n${fs
+			.readFileSync(indexmd)
+			.toString()}`
+	);
+
 	console.log("copying 'next' examples from 'dev' branch");
 	fs.ensureDirSync(nextExamples);
 	execSync(`git checkout origin/dev`, {
