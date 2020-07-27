@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>AbstractParam</title>
+	<link href="https://fonts.googleapis.com/css?family=Inconsolata|Roboto&display=swap" rel="stylesheet">
+	<link href="./assets/main.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<div id="class-page">
+		<div id="content-container">
+	
+	<div id="class-container">
+		<h2 id="class-name">AbstractParam
+				&lt;
+					
+					TypeName
+				&gt;
+		</h2>
+			<ul>
+					<li>TypeName<span class="signature-symbol">: </span><span class="type"><span class="signature-type"><a href="type/UnitName">UnitName</a></span>	</span></li>
+			</ul>
+		<div id="comment">
+				<div class="description">
+		<p>Abstract base class for <a href="Param">Param</a> and <a href="Signal">Signal</a></p>
+
+	</div>
+		</div>
+		<div id="class-members">
+			<div  class="hierarchy">
+	<h3>Hierarchy</h3>
+	<ul>
+		<ul>
+			<li class="hierarchy-target">AbstractParam</li>
+			<ul>
+			</ul>
+		</ul>
+	</ul>
+</div>
+			<div id="class-index">
+	<h3>Index</h3>
+	<div>
+		<div class="constructor">
+			<h4>Constructor</h4>
+			<ul>
+			</ul>
+		</div>
+		<div class="properties">
+			<h4>Properties</h4>
+			<ul>
+						<li><a href="#convert">convert</a></li>
+						<li><a href="#maxValue">maxValue</a></li>
+						<li><a href="#minValue">minValue</a></li>
+						<li><a href="#overridden">overridden</a></li>
+						<li><a href="#units">units</a></li>
+						<li><a href="#value">value</a></li>
+			</ul>
+		</div>
+		<div class="methods">
+			<h4>Methods</h4>
+			<ul>
+						<li><a href="#cancelAndHoldAtTime">cancelAndHoldAtTime</a></li>
+						<li><a href="#cancelScheduledValues">cancelScheduledValues</a></li>
+						<li><a href="#exponentialApproachValueAtTime">exponentialApproachValueAtTime</a></li>
+						<li><a href="#exponentialRampTo">exponentialRampTo</a></li>
+						<li><a href="#exponentialRampToValueAtTime">exponentialRampToValueAtTime</a></li>
+						<li><a href="#getValueAtTime">getValueAtTime</a></li>
+						<li><a href="#linearRampTo">linearRampTo</a></li>
+						<li><a href="#linearRampToValueAtTime">linearRampToValueAtTime</a></li>
+						<li><a href="#rampTo">rampTo</a></li>
+						<li><a href="#setRampPoint">setRampPoint</a></li>
+						<li><a href="#setTargetAtTime">setTargetAtTime</a></li>
+						<li><a href="#setValueAtTime">setValueAtTime</a></li>
+						<li><a href="#setValueCurveAtTime">setValueCurveAtTime</a></li>
+						<li><a href="#targetRampTo">targetRampTo</a></li>
+			</ul>
+		</div>
+	</div>
+</div>						<div class="property-container">
+	<h3>Properties</h3>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="convert">
+		convert
+		<a class="section-link" href="#convert">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+						<span class="type"><span class="signature-type"><span>boolean</span></span>	</span>				</span>
+						<div class="description">
+		<p>If the value should be converted or not</p>
+
+	</div>
+
+				<div id="code-links">
+											<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/a25fd28/Tone/core/context/AbstractParam.ts#L227">Tone/core/context/AbstractParam.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="maxValue">
+		maxValue
+		<a class="section-link" href="#maxValue">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+						<span class="type"><span class="signature-type"><span>number</span></span>	</span>				</span>
+						<div class="description">
+		<p>The maximum value of the output given the units</p>
+
+	</div>
+
+				<div id="code-links">
+											<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/a25fd28/Tone/core/context/AbstractParam.ts#L248">Tone/core/context/AbstractParam.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="minValue">
+		minValue
+		<a class="section-link" href="#minValue">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+						<span class="type"><span class="signature-type"><span>number</span></span>	</span>				</span>
+						<div class="description">
+		<p>The minimum value of the output given the units</p>
+
+	</div>
+
+				<div id="code-links">
+											<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/a25fd28/Tone/core/context/AbstractParam.ts#L243">Tone/core/context/AbstractParam.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="overridden">
+		overridden
+		<a class="section-link" href="#overridden">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+						<span class="type"><span class="signature-type"><span>boolean</span></span>	</span>				</span>
+						<div class="description">
+		<p>True if the signal value is being overridden by
+a connected signal. Internal use only.</p>
+
+	</div>
+
+				<div id="code-links">
+											<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/a25fd28/Tone/core/context/AbstractParam.ts#L238">Tone/core/context/AbstractParam.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="units">
+		units
+		<a class="section-link" href="#units">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+						<span class="type"><span class="signature-type"><a href="type/UnitName">UnitName</a></span>	</span>				</span>
+						<div class="description">
+		<p>The unit type</p>
+
+	</div>
+
+				<div id="code-links">
+											<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/a25fd28/Tone/core/context/AbstractParam.ts#L232">Tone/core/context/AbstractParam.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="value">
+		value
+		<a class="section-link" href="#value">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+						<span class="type"><span class="signature-type">[object Object]</span>	</span>				</span>
+						<div class="description">
+		<p>The current value of the parameter. Setting this value
+is equivalent to setValueAtTime(value, context.currentTime)</p>
+
+	</div>
+
+				<div id="code-links">
+											<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/a25fd28/Tone/core/context/AbstractParam.ts#L222">Tone/core/context/AbstractParam.ts</a>
+	</div>
+				</div>
+			</div>
+</div>			<div class="method-container">
+	<h3>Methods</h3>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="cancelAndHoldAtTime">
+		cancelAndHoldAtTime
+		<a class="section-link" href="#cancelAndHoldAtTime">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>This is similar to <a href="#cancelScheduledValues">cancelScheduledValues</a> except
+it holds the automated value at time until the next automated event.</p>
+
+			<span class="nominal-range"></span>
+					<div class="example">
+						<pre><code class="language-js hljs">
+<span class="hljs-keyword">return</span> Tone.Offline(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+	<span class="hljs-keyword">const</span> signal = <span class="hljs-keyword">new</span> Tone.Signal(<span class="hljs-number">0</span>).toDestination();
+	signal.linearRampTo(<span class="hljs-number">1</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0</span>);
+	signal.cancelAndHoldAtTime(<span class="hljs-number">0.3</span>);
+}, <span class="hljs-number">0.5</span>, <span class="hljs-number">1</span>);
+</code></pre>
+					</div>
+	</div>
+
+	<div class="function">
+
+		<span class="name">cancelAndHoldAtTime</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">time</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/Time">Time</a></span>	</span>									</span>													</div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/a25fd28/Tone/core/context/AbstractParam.ts#L197">Tone/core/context/AbstractParam.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="cancelScheduledValues">
+		cancelScheduledValues
+		<a class="section-link" href="#cancelScheduledValues">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Cancels all scheduled parameter changes with times greater than or
+equal to startTime.</p>
+
+			<span class="nominal-range"></span>
+					<div class="example">
+						<pre><code class="language-js hljs">
+<span class="hljs-keyword">return</span> Tone.Offline(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+	<span class="hljs-keyword">const</span> signal = <span class="hljs-keyword">new</span> Tone.Signal(<span class="hljs-number">0</span>).toDestination();
+	signal.setValueAtTime(<span class="hljs-number">0.1</span>, <span class="hljs-number">0.1</span>);
+	signal.setValueAtTime(<span class="hljs-number">0.2</span>, <span class="hljs-number">0.2</span>);
+	signal.setValueAtTime(<span class="hljs-number">0.3</span>, <span class="hljs-number">0.3</span>);
+	signal.setValueAtTime(<span class="hljs-number">0.4</span>, <span class="hljs-number">0.4</span>);
+	<span class="hljs-comment">// cancels the last two scheduled changes</span>
+	signal.cancelScheduledValues(<span class="hljs-number">0.3</span>);
+}, <span class="hljs-number">0.5</span>, <span class="hljs-number">1</span>);
+</code></pre>
+					</div>
+	</div>
+
+	<div class="function">
+
+		<span class="name">cancelScheduledValues</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">time</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/Time">Time</a></span>	</span>									</span>													</div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/a25fd28/Tone/core/context/AbstractParam.ts#L185">Tone/core/context/AbstractParam.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="exponentialApproachValueAtTime">
+		exponentialApproachValueAtTime
+		<a class="section-link" href="#exponentialApproachValueAtTime">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Start exponentially approaching the target value at the given time. Since it
+is an exponential approach it will continue approaching after the ramp duration. The
+rampTime is the time that it takes to reach over 99% of the way towards the value. This methods
+is similar to setTargetAtTime except the third argument is a time instead of a &#39;timeConstant&#39;</p>
+
+			<span class="nominal-range"></span>
+					<div class="example">
+						<pre><code class="language-js hljs">
+<span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Tone.Oscillator().toDestination().start();
+<span class="hljs-comment">// exponential approach over 4 seconds starting in 1 second</span>
+osc.frequency.exponentialApproachValueAtTime(<span class="hljs-string">"C4"</span>, <span class="hljs-string">"+1"</span>, <span class="hljs-number">4</span>);
+</code></pre>
+					</div>
+	</div>
+
+	<div class="function">
+
+		<span class="name">exponentialApproachValueAtTime</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">value</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type">[object Object]</span>	</span>									</span><span class="signature-symbol">,</span>									<div class="description"><p>The value to ramp to.</p></div></div><div class="parameter"><span class="name">time</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/Time">Time</a></span>	</span>									</span><span class="signature-symbol">,</span>									<div class="description"><p>When the ramp should start.</p></div></div><div class="parameter"><span class="name">rampTime</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/Time">Time</a></span>	</span>									</span>									<div class="description"><p>the time that it takes the value to ramp from it&#39;s current value</p></div></div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/a25fd28/Tone/core/context/AbstractParam.ts#L144">Tone/core/context/AbstractParam.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="exponentialRampTo">
+		exponentialRampTo
+		<a class="section-link" href="#exponentialRampTo">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Schedules an exponential continuous change in parameter value from
+the current time and current value to the given value over the
+duration of the rampTime.</p>
+
+			<span class="nominal-range"></span>
+					<div class="example">
+						<pre><code class="language-js hljs">
+<span class="hljs-keyword">const</span> delay = <span class="hljs-keyword">new</span> Tone.FeedbackDelay(<span class="hljs-number">0.5</span>, <span class="hljs-number">0.98</span>).toDestination();
+<span class="hljs-comment">// a short burst of noise through the feedback delay</span>
+<span class="hljs-keyword">const</span> noise = <span class="hljs-keyword">new</span> Tone.Noise().connect(delay).start().stop(<span class="hljs-string">"+0.1"</span>);
+<span class="hljs-comment">// making the delay time shorter over time will also make the pitch rise</span>
+delay.delayTime.exponentialRampTo(<span class="hljs-number">0.01</span>, <span class="hljs-number">20</span>);
+</code></pre>
+					</div>
+	</div>
+
+	<div class="function">
+
+		<span class="name">exponentialRampTo</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">value</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type">[object Object]</span>	</span>									</span><span class="signature-symbol">,</span>									<div class="description"><p>The value to ramp to.</p></div></div><div class="parameter"><span class="name">rampTime</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/Time">Time</a></span>	</span>									</span><span class="signature-symbol">,</span>									<div class="description"><p>the time that it takes thevalue to ramp from it&#39;s current value</p></div></div><div class="parameter"><span class="name">startTime</span><span class="signature-symbol" title="optional">?</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/Time">Time</a></span>	</span>									</span>									<div class="description"><p>When the ramp should start.</p></div></div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/a25fd28/Tone/core/context/AbstractParam.ts#L94">Tone/core/context/AbstractParam.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="exponentialRampToValueAtTime">
+		exponentialRampToValueAtTime
+		<a class="section-link" href="#exponentialRampToValueAtTime">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Schedules an exponential continuous change in parameter value from
+the previous scheduled parameter value to the given value.</p>
+
+			<span class="nominal-range"></span>
+					<div class="example">
+						<pre><code class="language-js hljs">
+<span class="hljs-keyword">return</span> Tone.Offline(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+	<span class="hljs-keyword">const</span> signal = <span class="hljs-keyword">new</span> Tone.Signal(<span class="hljs-number">0</span>).toDestination();
+	<span class="hljs-comment">// the ramp is starts from the previously scheduled value</span>
+	signal.setValueAtTime(<span class="hljs-number">0</span>, <span class="hljs-number">0.1</span>);
+	signal.exponentialRampToValueAtTime(<span class="hljs-number">1</span>, <span class="hljs-number">0.4</span>);
+}, <span class="hljs-number">0.5</span>, <span class="hljs-number">1</span>);
+</code></pre>
+					</div>
+	</div>
+
+	<div class="function">
+
+		<span class="name">exponentialRampToValueAtTime</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">value</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type">[object Object]</span>	</span>									</span><span class="signature-symbol">,</span>													</div><div class="parameter"><span class="name">time</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/Time">Time</a></span>	</span>									</span>													</div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/a25fd28/Tone/core/context/AbstractParam.ts#L77">Tone/core/context/AbstractParam.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="getValueAtTime">
+		getValueAtTime
+		<a class="section-link" href="#getValueAtTime">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Get the signals value at the given time. Subsequent scheduling
+may invalidate the returned value.</p>
+
+			<span class="nominal-range"></span>
+					<div class="example">
+						<pre><code class="language-js hljs">
+<span class="hljs-keyword">const</span> signal = <span class="hljs-keyword">new</span> Tone.Signal().toDestination();
+<span class="hljs-comment">// ramp up to '8' over 3 seconds</span>
+signal.rampTo(<span class="hljs-number">8</span>, <span class="hljs-number">3</span>);
+<span class="hljs-comment">// ramp back down to '0' over 3 seconds</span>
+signal.rampTo(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>, <span class="hljs-string">"+3"</span>);
+setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+	<span class="hljs-comment">// check the value every 100 ms</span>
+	<span class="hljs-built_in">console</span>.log(signal.getValueAtTime(Tone.now()));
+}, <span class="hljs-number">100</span>);
+</code></pre>
+					</div>
+	</div>
+
+	<div class="function">
+
+		<span class="name">getValueAtTime</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">time</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/Time">Time</a></span>	</span>									</span>									<div class="description"><p>When to get the value</p></div></div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type">[object Object]</span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/a25fd28/Tone/core/context/AbstractParam.ts#L36">Tone/core/context/AbstractParam.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="linearRampTo">
+		linearRampTo
+		<a class="section-link" href="#linearRampTo">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Schedules an linear continuous change in parameter value from
+the current time and current value to the given value over the
+duration of the rampTime.</p>
+
+			<span class="nominal-range"></span>
+					<div class="example">
+						<pre><code class="language-js hljs">
+<span class="hljs-keyword">return</span> Tone.Offline(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+	<span class="hljs-keyword">const</span> signal = <span class="hljs-keyword">new</span> Tone.Signal(<span class="hljs-number">1</span>).toDestination();
+	signal.linearRampTo(<span class="hljs-number">0</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.1</span>);
+}, <span class="hljs-number">0.5</span>, <span class="hljs-number">1</span>);
+</code></pre>
+					</div>
+	</div>
+
+	<div class="function">
+
+		<span class="name">linearRampTo</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">value</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type">[object Object]</span>	</span>									</span><span class="signature-symbol">,</span>									<div class="description"><p>The value to ramp to.</p></div></div><div class="parameter"><span class="name">rampTime</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/Time">Time</a></span>	</span>									</span><span class="signature-symbol">,</span>									<div class="description"><p>the time that it takes thevalue to ramp from it&#39;s current value</p></div></div><div class="parameter"><span class="name">startTime</span><span class="signature-symbol" title="optional">?</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/Time">Time</a></span>	</span>									</span>									<div class="description"><p>When the ramp should start.</p></div></div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>				<div class="description">
+					this
+				</div>
+	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/a25fd28/Tone/core/context/AbstractParam.ts#L112">Tone/core/context/AbstractParam.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="linearRampToValueAtTime">
+		linearRampToValueAtTime
+		<a class="section-link" href="#linearRampToValueAtTime">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Schedules a linear continuous change in parameter value from the
+previous scheduled parameter value to the given value.</p>
+
+			<span class="nominal-range"></span>
+					<div class="example">
+						<pre><code class="language-js hljs">
+<span class="hljs-keyword">return</span> Tone.Offline(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+	<span class="hljs-keyword">const</span> signal = <span class="hljs-keyword">new</span> Tone.Signal(<span class="hljs-number">0</span>).toDestination();
+	<span class="hljs-comment">// the ramp is starts from the previously scheduled value</span>
+	signal.setValueAtTime(<span class="hljs-number">0</span>, <span class="hljs-number">0.1</span>);
+	signal.linearRampToValueAtTime(<span class="hljs-number">1</span>, <span class="hljs-number">0.4</span>);
+}, <span class="hljs-number">0.5</span>, <span class="hljs-number">1</span>);
+</code></pre>
+					</div>
+	</div>
+
+	<div class="function">
+
+		<span class="name">linearRampToValueAtTime</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">value</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type">[object Object]</span>	</span>									</span><span class="signature-symbol">,</span>													</div><div class="parameter"><span class="name">time</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/Time">Time</a></span>	</span>									</span>													</div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/a25fd28/Tone/core/context/AbstractParam.ts#L64">Tone/core/context/AbstractParam.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="rampTo">
+		rampTo
+		<a class="section-link" href="#rampTo">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Ramps to the given value over the duration of the rampTime.
+Automatically selects the best ramp type (exponential or linear)
+depending on the <code>units</code> of the signal</p>
+
+			<span class="nominal-range"></span>
+					<div class="example">
+						<pre><code class="language-js hljs">
+<span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Tone.Oscillator().toDestination().start();
+<span class="hljs-comment">// schedule it to ramp either linearly or exponentially depending on the units</span>
+osc.frequency.rampTo(<span class="hljs-string">"A2"</span>, <span class="hljs-number">10</span>);</code></pre>
+					</div>
+					<div class="example">
+						<pre><code class="language-js hljs">
+<span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Tone.Oscillator().toDestination().start();
+<span class="hljs-comment">// schedule it to ramp starting at a specific time</span>
+osc.frequency.rampTo(<span class="hljs-string">"A2"</span>, <span class="hljs-number">10</span>, <span class="hljs-string">"+2"</span>);
+</code></pre>
+					</div>
+	</div>
+
+	<div class="function">
+
+		<span class="name">rampTo</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">value</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type">[object Object]</span>	</span>									</span><span class="signature-symbol">,</span>													</div><div class="parameter"><span class="name">rampTime</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/Time">Time</a></span>	</span>									</span><span class="signature-symbol">,</span>									<div class="description"><p>The time that it takes the value to ramp from it&#39;s current value</p></div></div><div class="parameter"><span class="name">startTime</span><span class="signature-symbol" title="optional">?</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/Time">Time</a></span>	</span>									</span>									<div class="description"><p>When the ramp should start.</p></div></div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/a25fd28/Tone/core/context/AbstractParam.ts#L216">Tone/core/context/AbstractParam.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="setRampPoint">
+		setRampPoint
+		<a class="section-link" href="#setRampPoint">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Creates a schedule point with the current value at the current time.
+Automation methods like <a href="#linearRampToValueAtTime">linearRampToValueAtTime</a> and <a href="#exponentialRampToValueAtTime">exponentialRampToValueAtTime</a>
+require a starting automation value usually set by <a href="#setValueAtTime">setValueAtTime</a>. This method
+is useful since it will do a <code>setValueAtTime</code> with whatever the currently computed
+value at the given time is.</p>
+
+			<span class="nominal-range"></span>
+					<div class="example">
+						<pre><code class="language-js hljs">
+<span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Tone.Oscillator().toDestination().start();
+<span class="hljs-comment">// set the frequency to "G4" in exactly 1 second from now.</span>
+osc.frequency.setRampPoint(<span class="hljs-string">"+1"</span>);
+osc.frequency.linearRampToValueAtTime(<span class="hljs-string">"C1"</span>, <span class="hljs-string">"+2"</span>);
+</code></pre>
+					</div>
+	</div>
+
+	<div class="function">
+
+		<span class="name">setRampPoint</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">time</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/Time">Time</a></span>	</span>									</span>									<div class="description"><p>When to add a ramp point.</p></div></div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/a25fd28/Tone/core/context/AbstractParam.ts#L51">Tone/core/context/AbstractParam.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="setTargetAtTime">
+		setTargetAtTime
+		<a class="section-link" href="#setTargetAtTime">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Start exponentially approaching the target value at the given time with
+a rate having the given time constant.</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">setTargetAtTime</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">value</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type">[object Object]</span>	</span>									</span><span class="signature-symbol">,</span>													</div><div class="parameter"><span class="name">startTime</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/Time">Time</a></span>	</span>									</span><span class="signature-symbol">,</span>													</div><div class="parameter"><span class="name">timeConstant</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><span>number</span></span>	</span>									</span>									<div class="description"></div></div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/a25fd28/Tone/core/context/AbstractParam.ts#L153">Tone/core/context/AbstractParam.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="setValueAtTime">
+		setValueAtTime
+		<a class="section-link" href="#setValueAtTime">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Schedules a parameter value change at the given time.</p>
+
+			<span class="nominal-range"></span>
+					<div class="example">
+						<pre><code class="language-js hljs">
+<span class="hljs-keyword">return</span> Tone.Offline(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+	<span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Tone.Oscillator(<span class="hljs-number">20</span>).toDestination().start();
+	<span class="hljs-comment">// set the frequency to 40 at exactly 0.25 seconds</span>
+	osc.frequency.setValueAtTime(<span class="hljs-number">40</span>, <span class="hljs-number">0.25</span>);
+}, <span class="hljs-number">0.5</span>, <span class="hljs-number">1</span>);
+</code></pre>
+					</div>
+	</div>
+
+	<div class="function">
+
+		<span class="name">setValueAtTime</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">value</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type">[object Object]</span>	</span>									</span><span class="signature-symbol">,</span>									<div class="description"><p>The value to set the signal.</p></div></div><div class="parameter"><span class="name">time</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/Time">Time</a></span>	</span>									</span>									<div class="description"><p>The time when the change should occur.</p></div></div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/a25fd28/Tone/core/context/AbstractParam.ts#L19">Tone/core/context/AbstractParam.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="setValueCurveAtTime">
+		setValueCurveAtTime
+		<a class="section-link" href="#setValueCurveAtTime">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Sets an array of arbitrary parameter values starting at the given time
+for the given duration.</p>
+
+			<span class="nominal-range"></span>
+					<div class="example">
+						<pre><code class="language-js hljs">
+<span class="hljs-keyword">return</span> Tone.Offline(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+	<span class="hljs-keyword">const</span> signal = <span class="hljs-keyword">new</span> Tone.Signal(<span class="hljs-number">1</span>).toDestination();
+	signal.setValueCurveAtTime([<span class="hljs-number">1</span>, <span class="hljs-number">0.2</span>, <span class="hljs-number">0.8</span>, <span class="hljs-number">0.1</span>, <span class="hljs-number">0</span>], <span class="hljs-number">0.2</span>, <span class="hljs-number">0.3</span>);
+}, <span class="hljs-number">0.5</span>, <span class="hljs-number">1</span>);
+</code></pre>
+					</div>
+	</div>
+
+	<div class="function">
+
+		<span class="name">setValueCurveAtTime</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">values</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="type"><span class="signature-type">[object Object]</span>	</span><span class="signature-symbol">[]</span>	</span>									</span><span class="signature-symbol">,</span>													</div><div class="parameter"><span class="name">startTime</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/Time">Time</a></span>	</span>									</span><span class="signature-symbol">,</span>													</div><div class="parameter"><span class="name">duration</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/Time">Time</a></span>	</span>									</span><span class="signature-symbol">,</span>													</div><div class="parameter"><span class="name">scaling</span><span class="signature-symbol" title="optional">?</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="type"><span class="signature-type"><span>undefined</span></span>	</span><span class="signature-symbol"> | </span><span class="type"><span class="signature-type"><span>number</span></span>	</span></span>									</span>									<div class="description"><p>If the values in the curve should be scaled by some value</p></div></div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/a25fd28/Tone/core/context/AbstractParam.ts#L169">Tone/core/context/AbstractParam.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="targetRampTo">
+		targetRampTo
+		<a class="section-link" href="#targetRampTo">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Start exponentially approaching the target value at the given time. Since it
+is an exponential approach it will continue approaching after the ramp duration. The
+rampTime is the time that it takes to reach over 99% of the way towards the value.</p>
+
+			<span class="nominal-range"></span>
+					<div class="example">
+						<pre><code class="language-js hljs"></code></pre>
+					</div>
+					<div class="example">
+						<pre><code class="language-js hljs">
+<span class="hljs-keyword">return</span> Tone.Offline(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+	<span class="hljs-keyword">const</span> signal = <span class="hljs-keyword">new</span> Tone.Signal(<span class="hljs-number">1</span>).toDestination();
+	signal.targetRampTo(<span class="hljs-number">0</span>, <span class="hljs-number">0.3</span>, <span class="hljs-number">0.1</span>);
+}, <span class="hljs-number">0.5</span>, <span class="hljs-number">1</span>);
+</code></pre>
+					</div>
+	</div>
+
+	<div class="function">
+
+		<span class="name">targetRampTo</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">value</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type">[object Object]</span>	</span>									</span><span class="signature-symbol">,</span>									<div class="description"><p>The value to ramp to.</p></div></div><div class="parameter"><span class="name">rampTime</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/Time">Time</a></span>	</span>									</span><span class="signature-symbol">,</span>									<div class="description"><p>the time that it takes thevalue to ramp from it&#39;s current value</p></div></div><div class="parameter"><span class="name">startTime</span><span class="signature-symbol" title="optional">?</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/Time">Time</a></span>	</span>									</span>									<div class="description"><p>When the ramp should start.</p></div></div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/a25fd28/Tone/core/context/AbstractParam.ts#L129">Tone/core/context/AbstractParam.ts</a>
+	</div>
+	</div>
+</div>
+</div>		</div>
+	</div>
+</div>		<div id="sidebar">
+	<div id="topbar">
+		<a href="https://tonejs.github.io">Tone.js</a>
+		<span id="version">v14.7.37</span>
+	</div>
+	<div id="contents">
+		<div id="search">
+			<input type="text" placeholder="Search">
+			<button aria-label="clear">
+				&#215;
+			</button>
+		</div>
+		<div id="inner">
+					<div class="section">
+						<h3>Classes</h3>
+							<div class="category">
+								<h4>Core</h4>
+								<div>
+											<div class="instance">
+													<a href="Clock">
+														Clock
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Context">
+														Context
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Delay">
+														Delay
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Destination">
+														Destination
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Draw">
+														Draw
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Gain">
+														Gain
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Listener">
+														Listener
+													</a>
+											</div>
+											<div class="instance">
+													<a href="OfflineContext">
+														OfflineContext
+													</a>
+											</div>
+											<div class="instance">
+													<a href="ToneAudioBuffer">
+														ToneAudioBuffer
+													</a>
+											</div>
+											<div class="instance">
+													<a href="ToneAudioBuffers">
+														ToneAudioBuffers
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Transport">
+														Transport
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Source</h4>
+								<div>
+											<div class="instance">
+													<a href="AMOscillator">
+														AMOscillator
+													</a>
+											</div>
+											<div class="instance">
+													<a href="FMOscillator">
+														FMOscillator
+													</a>
+											</div>
+											<div class="instance">
+													<a href="FatOscillator">
+														FatOscillator
+													</a>
+											</div>
+											<div class="instance">
+													<a href="GrainPlayer">
+														GrainPlayer
+													</a>
+											</div>
+											<div class="instance">
+													<a href="LFO">
+														LFO
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Noise">
+														Noise
+													</a>
+											</div>
+											<div class="instance">
+													<a href="OmniOscillator">
+														OmniOscillator
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Oscillator">
+														Oscillator
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PWMOscillator">
+														PWMOscillator
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Player">
+														Player
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Players">
+														Players
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PulseOscillator">
+														PulseOscillator
+													</a>
+											</div>
+											<div class="instance">
+													<a href="ToneBufferSource">
+														ToneBufferSource
+													</a>
+											</div>
+											<div class="instance">
+													<a href="ToneOscillatorNode">
+														ToneOscillatorNode
+													</a>
+											</div>
+											<div class="instance">
+													<a href="UserMedia">
+														UserMedia
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Instrument</h4>
+								<div>
+											<div class="instance">
+													<a href="AMSynth">
+														AMSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="DuoSynth">
+														DuoSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="FMSynth">
+														FMSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="MembraneSynth">
+														MembraneSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="MetalSynth">
+														MetalSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="MonoSynth">
+														MonoSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="NoiseSynth">
+														NoiseSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PluckSynth">
+														PluckSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PolySynth">
+														PolySynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Sampler">
+														Sampler
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Synth">
+														Synth
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Effect</h4>
+								<div>
+											<div class="instance">
+													<a href="AutoFilter">
+														AutoFilter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="AutoPanner">
+														AutoPanner
+													</a>
+											</div>
+											<div class="instance">
+													<a href="AutoWah">
+														AutoWah
+													</a>
+											</div>
+											<div class="instance">
+													<a href="BitCrusher">
+														BitCrusher
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Chebyshev">
+														Chebyshev
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Chorus">
+														Chorus
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Distortion">
+														Distortion
+													</a>
+											</div>
+											<div class="instance">
+													<a href="FeedbackDelay">
+														FeedbackDelay
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Freeverb">
+														Freeverb
+													</a>
+											</div>
+											<div class="instance">
+													<a href="FrequencyShifter">
+														FrequencyShifter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="JCReverb">
+														JCReverb
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Phaser">
+														Phaser
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PingPongDelay">
+														PingPongDelay
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PitchShift">
+														PitchShift
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Reverb">
+														Reverb
+													</a>
+											</div>
+											<div class="instance">
+													<a href="StereoWidener">
+														StereoWidener
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Tremolo">
+														Tremolo
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Vibrato">
+														Vibrato
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Component</h4>
+								<div>
+											<div class="instance">
+													<a href="AmplitudeEnvelope">
+														AmplitudeEnvelope
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Analyser">
+														Analyser
+													</a>
+											</div>
+											<div class="instance">
+													<a href="BiquadFilter">
+														BiquadFilter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Channel">
+														Channel
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Compressor">
+														Compressor
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Convolver">
+														Convolver
+													</a>
+											</div>
+											<div class="instance">
+													<a href="CrossFade">
+														CrossFade
+													</a>
+											</div>
+											<div class="instance">
+													<a href="DCMeter">
+														DCMeter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="EQ3">
+														EQ3
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Envelope">
+														Envelope
+													</a>
+											</div>
+											<div class="instance">
+													<a href="FFT">
+														FFT
+													</a>
+											</div>
+											<div class="instance">
+													<a href="FeedbackCombFilter">
+														FeedbackCombFilter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Filter">
+														Filter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Follower">
+														Follower
+													</a>
+											</div>
+											<div class="instance">
+													<a href="LowpassCombFilter">
+														LowpassCombFilter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Merge">
+														Merge
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Meter">
+														Meter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Mono">
+														Mono
+													</a>
+											</div>
+											<div class="instance">
+													<a href="MultibandSplit">
+														MultibandSplit
+													</a>
+											</div>
+											<div class="instance">
+													<a href="OnePoleFilter">
+														OnePoleFilter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PanVol">
+														PanVol
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Panner">
+														Panner
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Panner3D">
+														Panner3D
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PhaseShiftAllpass">
+														PhaseShiftAllpass
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Solo">
+														Solo
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Split">
+														Split
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Volume">
+														Volume
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Waveform">
+														Waveform
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Signal</h4>
+								<div>
+											<div class="instance">
+													<a href="Abs">
+														Abs
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Add">
+														Add
+													</a>
+											</div>
+											<div class="instance">
+													<a href="AudioToGain">
+														AudioToGain
+													</a>
+											</div>
+											<div class="instance">
+													<a href="GainToAudio">
+														GainToAudio
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Multiply">
+														Multiply
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Negate">
+														Negate
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Pow">
+														Pow
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Scale">
+														Scale
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Signal">
+														Signal
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Subtract">
+														Subtract
+													</a>
+											</div>
+											<div class="instance">
+													<a href="ToneConstantSource">
+														ToneConstantSource
+													</a>
+											</div>
+											<div class="instance">
+													<a href="WaveShaper">
+														WaveShaper
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Zero">
+														Zero
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Event</h4>
+								<div>
+											<div class="instance">
+													<a href="Loop">
+														Loop
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Part">
+														Part
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Pattern">
+														Pattern
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Sequence">
+														Sequence
+													</a>
+											</div>
+											<div class="instance">
+													<a href="ToneEvent">
+														ToneEvent
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Unit</h4>
+								<div>
+											<div class="instance">
+													<a href="FrequencyClass">
+														FrequencyClass
+													</a>
+											</div>
+											<div class="instance">
+													<a href="MidiClass">
+														MidiClass
+													</a>
+											</div>
+											<div class="instance">
+													<a href="TicksClass">
+														TicksClass
+													</a>
+											</div>
+											<div class="instance">
+													<a href="TimeClass">
+														TimeClass
+													</a>
+											</div>
+											<div class="instance">
+													<a href="TransportTimeClass">
+														TransportTimeClass
+													</a>
+											</div>
+								</div>
+							</div>
+					</div>
+					<div class="section">
+						<h3>Functions</h3>
+							<div class="category">
+								<h4>Core</h4>
+								<div>
+											<div class="instance">
+													<a href="fn/Offline">
+														Offline
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/getContext">
+														getContext
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/getDestination">
+														getDestination
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/getDraw">
+														getDraw
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/getListener">
+														getListener
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/getTransport">
+														getTransport
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/immediate">
+														immediate
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/loaded">
+														loaded
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/now">
+														now
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/setContext">
+														setContext
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/start">
+														start
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Unit</h4>
+								<div>
+											<div class="instance">
+													<a href="fn/Frequency">
+														Frequency
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/Midi">
+														Midi
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/Ticks">
+														Ticks
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/Time">
+														Time
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/TransportTime">
+														TransportTime
+													</a>
+											</div>
+								</div>
+							</div>
+					</div>
+		</div>
+	</div>
+</div>
+	</div>
+	<script src="./assets/app.bundle.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.37/Tone.js"></script>
+	<script src="https://unpkg.com/@tonejs/ui/build/code.js"></script>
+</body>
+
+</html>
