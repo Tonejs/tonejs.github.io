@@ -5,13 +5,14 @@ import { ToneAudioNode } from "./ToneAudioNode";
 /**
  * Wrapper around Web Audio's native [DelayNode](http://webaudio.github.io/web-audio-api/#the-delaynode-interface).
  * @category Core
- * @offline 0.5 1
  * @example
- * const delay = new Tone.Delay(0.1).toDestination();
- * // connect the signal to both the delay and the destination
- * const pulse = new Tone.PulseOscillator().connect(delay).toDestination();
- * // start and stop the pulse
- * pulse.start(0).stop(0.01);
+ * return Tone.Offline(() => {
+ * 	const delay = new Tone.Delay(0.1).toDestination();
+ * 	// connect the signal to both the delay and the destination
+ * 	const pulse = new Tone.PulseOscillator().connect(delay).toDestination();
+ * 	// start and stop the pulse
+ * 	pulse.start(0).stop(0.01);
+ * }, 0.5, 1);
  */
 export class Delay extends ToneAudioNode {
     constructor() {

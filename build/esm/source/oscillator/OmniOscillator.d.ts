@@ -35,9 +35,10 @@ declare type IsPulseOscillator<Osc, Ret> = Osc extends PulseOscillator ? Ret : u
 declare type IsFMOscillator<Osc, Ret> = Osc extends FMOscillator ? Ret : undefined;
 /**
  * OmniOscillator aggregates all of the oscillator types into one.
- * @offline 0.1 1
  * @example
- * const omniOsc = new Tone.OmniOscillator("C#4", "pwm").toDestination().start();
+ * return Tone.Offline(() => {
+ * 	const omniOsc = new Tone.OmniOscillator("C#4", "pwm").toDestination().start();
+ * }, 0.1, 1);
  * @category Source
  */
 export declare class OmniOscillator<OscType extends AnyOscillator> extends Source<OmniOscillatorConstructorOptions> implements Omit<ToneOscillatorInterface, "type"> {
