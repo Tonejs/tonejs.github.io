@@ -278,6 +278,8 @@ export class Context extends BaseContext {
      * const context = new Tone.Context({ latencyHint: "playback" });
      * // set this context as the global Context
      * Tone.setContext(context);
+     * // the global context is gettable with Tone.getContext()
+     * console.log(Tone.getContext().latencyHint);
      */
     get latencyHint() {
         return this._latencyHint;

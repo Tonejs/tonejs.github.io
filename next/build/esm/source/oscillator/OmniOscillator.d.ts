@@ -5,7 +5,7 @@ import { AMOscillator } from "./AMOscillator";
 import { FatOscillator } from "./FatOscillator";
 import { FMOscillator } from "./FMOscillator";
 import { Oscillator } from "./Oscillator";
-import { OmniOscillatorConstructorOptions, OmniOscillatorOptions, OmniOscillatorType, ToneOscillatorInterface, ToneOscillatorType } from "./OscillatorInterface";
+import { OmniOscillatorOptions, OmniOscillatorType, ToneOscillatorInterface, ToneOscillatorType } from "./OscillatorInterface";
 import { PulseOscillator } from "./PulseOscillator";
 import { PWMOscillator } from "./PWMOscillator";
 export { OmniOscillatorOptions } from "./OscillatorInterface";
@@ -41,7 +41,7 @@ declare type IsFMOscillator<Osc, Ret> = Osc extends FMOscillator ? Ret : undefin
  * }, 0.1, 1);
  * @category Source
  */
-export declare class OmniOscillator<OscType extends AnyOscillator> extends Source<OmniOscillatorConstructorOptions> implements Omit<ToneOscillatorInterface, "type"> {
+export declare class OmniOscillator<OscType extends AnyOscillator> extends Source<OmniOscillatorOptions> implements Omit<ToneOscillatorInterface, "type"> {
     readonly name: string;
     readonly frequency: Signal<"frequency">;
     readonly detune: Signal<"cents">;
@@ -58,7 +58,7 @@ export declare class OmniOscillator<OscType extends AnyOscillator> extends Sourc
      * @param type The type of the oscillator.
      */
     constructor(frequency?: Frequency, type?: OmniOscillatorType);
-    constructor(options?: Partial<OmniOscillatorConstructorOptions>);
+    constructor(options?: Partial<OmniOscillatorOptions>);
     static getDefaults(): OmniOscillatorOptions;
     /**
      * start the oscillator
@@ -93,7 +93,7 @@ export declare class OmniOscillator<OscType extends AnyOscillator> extends Sourc
     set partials(partials: number[]);
     get partialCount(): number;
     set partialCount(partialCount: number);
-    set(props: Partial<OmniOscillatorConstructorOptions>): this;
+    set(props: Partial<OmniOscillatorOptions>): this;
     /**
      * connect the oscillator to the frequency and detune signals
      */

@@ -61,10 +61,13 @@ export class ToneWithContext extends Tone {
         return 128 / this.context.sampleRate;
     }
     /**
-     * Convert the incoming time to seconds
+     * Convert the incoming time to seconds.
+     * This is calculated against the current [[Tone.Transport]] bpm
      * @example
      * const gain = new Tone.Gain();
-     * console.log(gain.toSeconds("4n"));
+     * setInterval(() => console.log(gain.toSeconds("4n")), 100);
+     * // ramp the tempo to 60 bpm over 30 seconds
+     * Tone.getTransport().bpm.rampTo(60, 30);
      */
     toSeconds(time) {
         return new TimeClass(this.context, time).toSeconds();
@@ -135,12 +138,14 @@ export class ToneWithContext extends Tone {
     /**
      * Set multiple properties at once with an object.
      * @example
-     * const filter = new Tone.Filter();
+     * const filter = new Tone.Filter().toDestination();
      * // set values using an object
      * filter.set({
-     * 	frequency: 300,
+     * 	frequency: "C6",
      * 	type: "highpass"
      * });
+     * const player = new Tone.Player("https://tonejs.github.io/audio/berklee/Analogsynth_octaves_highmid.mp3").connect(filter);
+     * player.autostart = true;
      */
     set(props) {
         Object.keys(props).forEach(attribute => {
