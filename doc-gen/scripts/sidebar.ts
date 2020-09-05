@@ -37,3 +37,6 @@ if (searchField) {
 		testSearch("");
 	});
 }
+
+//scroll to target item
+document.querySelector("#sidebar .target")?.scrollIntoView();
