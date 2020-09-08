@@ -40,7 +40,7 @@ if (searchField) {
 
 //scroll to target item if not in mobile view
 const classPageElement = document.querySelector("#class-page");
-if (getComputedStyle(classPageElement).display === "block") {
+if (getComputedStyle(classPageElement).display === "flex") {
 	const targetElement = document.querySelector("#sidebar .target");
 	if (targetElement) {targetElement.scrollIntoView()}
 }
