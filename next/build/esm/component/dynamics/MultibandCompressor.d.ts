@@ -21,6 +21,7 @@ export interface MultibandCompressorOptions extends ToneAudioNodeOptions {
  * 		threshold: -12
  * 	}
  * });
+ * @category Component
  */
 export declare class MultibandCompressor extends ToneAudioNode<MultibandCompressorOptions> {
     readonly name: string;

@@ -6,11 +6,12 @@ import { Subtract } from "../../signal/Subtract";
 import { Gain } from "../../core/context/Gain";
 import { optionsFromArguments } from "../../core/util/Defaults";
 /**
- * MidSideMerge merges the mid and side signal after they've been separated by [[MidSideMerge]]
+ * MidSideMerge merges the mid and side signal after they've been separated by [[MidSideSplit]]
  * ```
  * Mid = (Left+Right)/sqrt(2);   // obtain mid-signal from left and right
- * Side = (Left-Right)/sqrt(2);   // obtain side-signal from left and righ
+ * Side = (Left-Right)/sqrt(2);   // obtain side-signal from left and right
  * ```
+ * @category Component
  */
 export class MidSideMerge extends ToneAudioNode {
     constructor() {

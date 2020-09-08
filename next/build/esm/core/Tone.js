@@ -9,6 +9,7 @@ import { theWindow } from "./context/AudioContext";
 import { log } from "./util/Debug";
 /**
  * @class  Tone is the base class of all other classes.
+ * @category Core
  * @constructor
  */
 export class Tone {

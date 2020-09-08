@@ -14,6 +14,7 @@ export interface GateOptions extends ToneAudioNodeOptions {
  * const mic = new Tone.UserMedia().connect(gate);
  * // the gate will only pass through the incoming
  * // signal when it's louder than -30db
+ * @category Component
  */
 export declare class Gate extends ToneAudioNode<GateOptions> {
     readonly name: string;

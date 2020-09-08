@@ -52,6 +52,10 @@ export declare abstract class Instrument<Options extends InstrumentOptions> exte
      */
     sync(): this;
     /**
+     * set _sync
+     */
+    protected _syncState(): boolean;
+    /**
      * Wrap the given method so that it can be synchronized
      * @param method Which method to wrap and sync
      * @param  timePosition What position the time argument appears in

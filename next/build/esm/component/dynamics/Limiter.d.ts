@@ -16,6 +16,7 @@ export interface LimiterOptions extends ToneAudioNodeOptions {
  * const limiter = new Tone.Limiter(-20).toDestination();
  * const oscillator = new Tone.Oscillator().connect(limiter);
  * oscillator.start();
+ * @category Component
  */
 export declare class Limiter extends ToneAudioNode<LimiterOptions> {
     readonly name: string;

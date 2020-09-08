@@ -246,8 +246,10 @@ export class PolySynth extends Instrument {
         return this;
     }
     sync() {
-        this._syncMethod("triggerAttack", 1);
-        this._syncMethod("triggerRelease", 1);
+        if (this._syncState()) {
+            this._syncMethod("triggerAttack", 1);
+            this._syncMethod("triggerRelease", 1);
+        }
         return this;
     }
     /**
