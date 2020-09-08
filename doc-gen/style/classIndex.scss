@@ -33,7 +33,7 @@
 	}
 
 	.methods {
-		h4 {
+		h4, h5 {
 			color: $methodColor;
 		}
 		li {
@@ -42,13 +42,20 @@
 	}
 	
 	.properties {
-		h4 {
+		h4, h5 {
 			color: $memberColor;
 		}
 		li {
 			@include interpolate($memberColor, adjust-hue($memberColor, 30), 20, 'color');
 		}
 	}
+	
+	.methods h5, .properties h5 {
+		margin-bottom: -12px;
+		margin-top: -5px;
+		font-weight: normal;
+	}
+	
 	li a {
 		color: inherit;
 		text-decoration: none;
