@@ -39,4 +39,5 @@ if (searchField) {
 }
 
 //scroll to target item
-document.querySelector("#sidebar .target")?.scrollIntoView();
+const targetElement = document.querySelector("#sidebar .target");
+if (targetElement) {targetElement.scrollIntoView()}
