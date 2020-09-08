@@ -15,6 +15,7 @@ import { readOnly } from "../../core/util/Interface";
  * const limiter = new Tone.Limiter(-20).toDestination();
  * const oscillator = new Tone.Oscillator().connect(limiter);
  * oscillator.start();
+ * @category Component
  */
 export class Limiter extends ToneAudioNode {
     constructor() {

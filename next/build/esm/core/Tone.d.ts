@@ -2,6 +2,7 @@ export interface BaseToneOptions {
 }
 /**
  * @class  Tone is the base class of all other classes.
+ * @category Core
  * @constructor
  */
 export declare abstract class Tone {

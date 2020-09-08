@@ -16,6 +16,7 @@ import { assertRange } from "../../core/util/Debug";
  * });
  * freqEnv.connect(oscillator.frequency);
  * freqEnv.triggerAttack();
+ * @category Component
  */
 export class FrequencyEnvelope extends Envelope {
     constructor() {

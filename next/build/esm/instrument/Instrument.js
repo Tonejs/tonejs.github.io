@@ -47,12 +47,22 @@ export class Instrument extends ToneAudioNode {
      * Tone.Transport.start();
      */
     sync() {
-        if (!this._synced) {
-            this._synced = true;
+        if (this._syncState()) {
             this._syncMethod("triggerAttack", 1);
             this._syncMethod("triggerRelease", 0);
         }
         return this;
+    }
+    /**
+     * set _sync
+     */
+    _syncState() {
+        let changed = false;
+        if (!this._synced) {
+            this._synced = true;
+            changed = true;
+        }
+        return changed;
     }
     /**
      * Wrap the given method so that it can be synchronized

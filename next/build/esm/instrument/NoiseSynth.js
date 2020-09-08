@@ -70,8 +70,10 @@ export class NoiseSynth extends Instrument {
         return this;
     }
     sync() {
-        this._syncMethod("triggerAttack", 0);
-        this._syncMethod("triggerRelease", 0);
+        if (this._syncState()) {
+            this._syncMethod("triggerAttack", 0);
+            this._syncMethod("triggerRelease", 0);
+        }
         return this;
     }
     triggerAttackRelease(duration, time, velocity = 1) {

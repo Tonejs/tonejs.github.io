@@ -18,6 +18,7 @@ export interface FrequencyEnvelopeOptions extends EnvelopeOptions {
  * });
  * freqEnv.connect(oscillator.frequency);
  * freqEnv.triggerAttack();
+ * @category Component
  */
 export declare class FrequencyEnvelope extends Envelope {
     readonly name: string;

@@ -29,6 +29,7 @@ import { optionsFromArguments } from "../../core/util/Defaults";
  * 	anchor.href = url;
  * 	anchor.click();
  * }, 4000);
+ * @category Component
  */
 export class Recorder extends ToneAudioNode {
     constructor() {

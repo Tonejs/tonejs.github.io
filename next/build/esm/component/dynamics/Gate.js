@@ -14,6 +14,7 @@ import { dbToGain, gainToDb } from "../../core/type/Conversions";
  * const mic = new Tone.UserMedia().connect(gate);
  * // the gate will only pass through the incoming
  * // signal when it's louder than -30db
+ * @category Component
  */
 export class Gate extends ToneAudioNode {
     constructor() {

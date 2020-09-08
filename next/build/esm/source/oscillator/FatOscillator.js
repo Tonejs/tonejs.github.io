@@ -148,7 +148,7 @@ export class FatOscillator extends Source {
     }
     set phase(phase) {
         this._phase = phase;
-        this._forEach(osc => osc.phase = phase);
+        this._forEach((osc, i) => osc.phase = this._phase + (i / this.count) * 360);
     }
     get baseType() {
         return this._oscillators[0].baseType;
