@@ -125,30 +125,6 @@ export async function registerHelpers(allData: any) {
 	});
 
 	/**
-	 * Check if a class has any unique properties
-	 */
-	registerHelper("hasOwnProperties", function (data) {
-		for (const dataChild of data.children) {
-			if ( ((dataChild.kindString === "Property") || (dataChild.kindString === "Accessor")) && !dataChild.inheritedFrom ) {
-				return true;
-			}
-		}
-		return false;
-	});
-
-	/**
-	 * Check if a class has any inherited properties
-	 */
-	registerHelper("hasInheritedProperties", function (data) {
-		for (const dataChild of data.children) {
-			if ( ((dataChild.kindString === "Property") || (dataChild.kindString === "Accessor")) && dataChild.inheritedFrom ) {
-				return true;
-			}
-		}
-		return false;
-	});
-
-	/**
 	 * Get all of the methods belonging to a class
 	 */
 	registerHelper("getMethods", function (data) {
@@ -156,30 +132,6 @@ export async function registerHelpers(allData: any) {
 			(data) => data.kindString === "Method"
 		);
 		return props.sort((a, b) => a.name.localeCompare(b.name));
-	});
-
-	/**
-	 * Check if a class has any unique methods
-	 */
-	registerHelper("hasOwnMethods", function (data) {
-		for (const dataChild of data.children) {
-			if ((dataChild.kindString === "Method") && !dataChild.inheritedFrom) {
-				return true;
-			}
-		}
-		return false;
-	});
-
-	/**
-	 * Check if a class has any inherited methods
-	 */
-	registerHelper("hasInheritedMethods", function (data) {
-		for (const dataChild of data.children) {
-			if ((dataChild.kindString === "Method") && dataChild.inheritedFrom) {
-				return true;
-			}
-		}
-		return false;
 	});
 
 	/**

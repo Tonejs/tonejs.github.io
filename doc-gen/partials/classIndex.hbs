@@ -15,57 +15,23 @@
 		</div>
 		<div class="properties">
 			<h4>Properties</h4>
-			{{#if (hasOwnProperties this)}}
-				<h5>Own</h5>
-				<ul>
-					{{#with (getProperties this)}}
-						{{#each this}}					
-							{{#unless inheritedFrom}}
-								<li><a href="#{{name}}">{{name}}</a></li>
-							{{/unless}}
-						{{/each}}
-					{{/with}}
-				</ul>
-			{{/if}}
-			{{#if (hasInheritedProperties this)}}
-				<h5>Inherited</h5>
-				<ul>
-					{{#with (getProperties this)}}
-						{{#each this}}					
-							{{#if inheritedFrom}}
-								<li><a href="#{{name}}">{{name}}</a></li>
-							{{/if}}
-						{{/each}}
-					{{/with}}
-				</ul>
-			{{/if}}
+			<ul>
+				{{#with (getProperties this)}}
+					{{#each this}}
+						<li><a href="#{{name}}">{{name}}</a></li>
+					{{/each}}
+				{{/with}}
+			</ul>
 		</div>
 		<div class="methods">
 			<h4>Methods</h4>
-			{{#if (hasOwnMethods this)}}
-				<h5>Own</h5>
-				<ul>
-					{{#with (getMethods this)}}
-						{{#each this}}
-							{{#unless inheritedFrom}}
-								<li><a href="#{{name}}">{{name}}</a></li>
-							{{/unless}}
-						{{/each}}
-					{{/with}}
-				</ul>
-			{{/if}}
-			{{#if (hasInheritedMethods this)}}
-				<h5>Inherited</h5>
-				<ul>
-					{{#with (getMethods this)}}
-						{{#each this}}
-							{{#if inheritedFrom}}
-								<li><a href="#{{name}}">{{name}}</a></li>
-							{{/if}}
-						{{/each}}
-					{{/with}}
-				</ul>
-			{{/if}}
+			<ul>
+				{{#with (getMethods this)}}
+					{{#each this}}
+						<li><a href="#{{name}}">{{name}}</a></li>
+					{{/each}}
+				{{/with}}
+			</ul>
 		</div>
 	</div>
 </div>
