@@ -56,3 +56,20 @@
 		display: inline-block;
 	}
 }
+
+#back-to-top {
+	position: fixed;
+	bottom: 5px;
+	right: 20px;
+	
+	a {
+		text-decoration: none;		
+		opacity: .3;
+		font-size: 170%;
+		text-shadow: 1px 1px aqua;
+		
+		&:hover {
+			opacity: .9;
+		}
+	}
+}
