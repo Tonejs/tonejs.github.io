@@ -49,6 +49,7 @@
 			@include interpolate($memberColor, adjust-hue($memberColor, 30), 20, 'color');
 		}
 	}
+	
 	li a {
 		color: inherit;
 		text-decoration: none;
