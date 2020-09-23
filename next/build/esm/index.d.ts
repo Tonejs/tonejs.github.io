@@ -22,7 +22,7 @@ export declare function immediate(): Seconds;
  * See [[Transport]]
  * @category Core
  */
-export declare const Transport: import("./classes").Transport;
+export declare const Transport: import("./core/clock/Transport").Transport;
 /**
  * The Transport object belonging to the global Tone.js Context.
  * See [[Transport]]
@@ -34,11 +34,11 @@ export declare function getTransport(): import("./core/clock/Transport").Transpo
  * See [[Destination]]
  * @category Core
  */
-export declare const Destination: import("./classes").Destination;
+export declare const Destination: import("./core/context/Destination").Destination;
 /**
  * @deprecated Use [[Destination]]
  */
-export declare const Master: import("./classes").Destination;
+export declare const Master: import("./core/context/Destination").Destination;
 /**
  * The Destination (output) belonging to the global Tone.js Context.
  * See [[Destination]]
@@ -60,7 +60,7 @@ export declare function getListener(): import("./core/context/Listener").Listene
  * See [[Draw]]
  * @category Core
  */
-export declare const Draw: import("./classes").Draw;
+export declare const Draw: import("./core/util/Draw").Draw;
 /**
  * Get the singleton attached to the global context.
  * Draw is used to synchronize the draw frame with the Transport's callbacks.
