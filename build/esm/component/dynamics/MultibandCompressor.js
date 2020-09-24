@@ -15,6 +15,7 @@ import { Gain } from "../../core/context/Gain";
  * 		threshold: -12
  * 	}
  * });
+ * @category Component
  */
 export class MultibandCompressor extends ToneAudioNode {
     constructor() {

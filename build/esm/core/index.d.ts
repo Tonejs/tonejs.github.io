@@ -1,9 +1,7 @@
 export * from "./clock/Clock";
-export * from "./clock/Transport";
 export * from "./context/Context";
 export * from "./context/BaseContext";
 export * from "./context/Delay";
-export * from "./context/Destination";
 export * from "./context/Gain";
 export * from "./context/Offline";
 export * from "./context/OfflineContext";
@@ -16,7 +14,7 @@ export * from "./type/Midi";
 export * from "./type/Time";
 export * from "./type/Ticks";
 export * from "./type/TransportTime";
-export * from "./util/Draw";
+import "./util/Draw";
 export * from "./util/Emitter";
 export * from "./util/IntervalTimeline";
 export * from "./util/StateTimeline";

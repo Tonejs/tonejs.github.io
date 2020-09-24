@@ -30,7 +30,9 @@ export declare class Channel extends ToneAudioNode<ChannelOptions> {
      */
     private _panVol;
     /**
-     * The L/R panning control.
+     * The L/R panning control. -1 = hard left, 1 = hard right.
+     * @min -1
+     * @max 1
      */
     readonly pan: Param<"audioRange">;
     /**

@@ -8,6 +8,7 @@ import { Pow } from "./Pow";
  * @example
  * const scaleExp = new Tone.ScaleExp(0, 100, 2);
  * const signal = new Tone.Signal(0.5).connect(scaleExp);
+ * @category Signal
  */
 export class ScaleExp extends Scale {
     constructor() {

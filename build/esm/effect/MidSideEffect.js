@@ -9,6 +9,7 @@ import { MidSideMerge } from "../component/channel/MidSideMerge";
  * Applies a Mid/Side seperation and recombination.
  * Algorithm found in [kvraudio forums](http://www.kvraudio.com/forum/viewtopic.php?t=212587).
  * This is a base-class for Mid/Side Effects.
+ * @category Effect
  */
 export class MidSideEffect extends Effect {
     constructor(options) {

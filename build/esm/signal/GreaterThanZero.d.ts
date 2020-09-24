@@ -9,6 +9,7 @@ export declare type GreaterThanZeroOptions = SignalOperatorOptions;
  * 	const sig = new Tone.Signal(0.5).connect(gt0);
  * 	sig.setValueAtTime(-1, 0.05);
  * }, 0.1, 1);
+ * @category Signal
  */
 export declare class GreaterThanZero extends SignalOperator<GreaterThanZeroOptions> {
     readonly name: string;

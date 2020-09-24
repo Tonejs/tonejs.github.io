@@ -11,7 +11,7 @@ export declare function deepMerge<T, U, V, W>(target: T, source1: U, source2: V,
 /**
  * Returns true if the two arrays have the same value for each of the elements
  */
-export declare function deepEquals(arrayA: number[] | string[], arrayB: number[] | string[]): boolean;
+export declare function deepEquals<T>(arrayA: T[], arrayB: T[]): boolean;
 /**
  * Convert an args array into an object.
  */

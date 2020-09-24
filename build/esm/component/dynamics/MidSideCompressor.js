@@ -7,6 +7,7 @@ import { readOnly } from "../../core/util/Interface";
 /**
  * MidSideCompressor applies two different compressors to the [[mid]]
  * and [[side]] signal components of the input. See [[MidSideSplit]] and [[MidSideMerge]].
+ * @category Component
  */
 export class MidSideCompressor extends ToneAudioNode {
     constructor() {

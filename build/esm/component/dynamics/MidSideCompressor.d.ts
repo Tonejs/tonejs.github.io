@@ -8,6 +8,7 @@ export interface MidSideCompressorOptions extends ToneAudioNodeOptions {
 /**
  * MidSideCompressor applies two different compressors to the [[mid]]
  * and [[side]] signal components of the input. See [[MidSideSplit]] and [[MidSideMerge]].
+ * @category Component
  */
 export declare class MidSideCompressor extends ToneAudioNode<MidSideCompressorOptions> {
     readonly name: string;
