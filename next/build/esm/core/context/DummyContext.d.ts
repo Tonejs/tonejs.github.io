@@ -24,6 +24,7 @@ export declare class DummyContext extends BaseContext {
     createStereoPanner(): StereoPannerNode;
     createWaveShaper(): WaveShaperNode;
     createMediaStreamSource(_stream: MediaStream): MediaStreamAudioSourceNode;
+    createMediaElementSource(_element: HTMLMediaElement): MediaElementAudioSourceNode;
     createMediaStreamDestination(): MediaStreamAudioDestinationNode;
     decodeAudioData(_audioData: ArrayBuffer): Promise<AudioBuffer>;
     createAudioWorkletNode(_name: string, _options?: Partial<AudioWorkletNodeOptions>): AudioWorkletNode;

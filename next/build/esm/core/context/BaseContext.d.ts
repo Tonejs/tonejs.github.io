@@ -5,7 +5,8 @@ declare type Draw = import("../util/Draw").Draw;
 declare type Destination = import("./Destination").Destination;
 declare type Transport = import("../clock/Transport").Transport;
 declare type Listener = import("./Listener").Listener;
-declare type BaseAudioContextSubset = import("./Context").BaseAudioContextSubset;
+export declare type ExcludedFromBaseAudioContext = "onstatechange" | "addEventListener" | "removeEventListener" | "listener" | "dispatchEvent" | "audioWorklet" | "destination" | "createScriptProcessor";
+export declare type BaseAudioContextSubset = Omit<BaseAudioContext, ExcludedFromBaseAudioContext>;
 export declare type ContextLatencyHint = AudioContextLatencyCategory;
 export declare abstract class BaseContext extends Emitter<"statechange" | "tick"> implements BaseAudioContextSubset {
     abstract createAnalyser(): AnalyserNode;
@@ -26,6 +27,7 @@ export declare abstract class BaseContext extends Emitter<"statechange" | "tick"
     abstract createStereoPanner(): StereoPannerNode;
     abstract createWaveShaper(): WaveShaperNode;
     abstract createMediaStreamSource(_stream: MediaStream): MediaStreamAudioSourceNode;
+    abstract createMediaElementSource(_element: HTMLMediaElement): MediaElementAudioSourceNode;
     abstract createMediaStreamDestination(): MediaStreamAudioDestinationNode;
     abstract decodeAudioData(_audioData: ArrayBuffer): Promise<AudioBuffer>;
     abstract createAudioWorkletNode(_name: string, _options?: Partial<AudioWorkletNodeOptions>): AudioWorkletNode;
