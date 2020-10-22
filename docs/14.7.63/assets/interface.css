@@ -1,0 +1,61 @@
+#interface-container h2 {
+  font-size: 1em; }
+  #interface-container h2 .name {
+    font-weight: bold; }
+
+#interface-container .interface-properties {
+  margin-left: 0px;
+  margin-bottom: 10px;
+  border-color: #ECECEC; }
+  #interface-container .interface-properties .interface-property {
+    display: block;
+    margin: 10px 0px; }
+    #interface-container .interface-properties .interface-property .name {
+      font-weight: bold; }
+    #interface-container .interface-properties .interface-property .signature-symbol, #interface-container .interface-properties .interface-property .type {
+      color: black; }
+    #interface-container .interface-properties .interface-property .description {
+      display: block;
+      margin: 10px 0 0 30px; }
+    #interface-container .interface-properties .interface-property:nth-child(0) {
+      color: #7f33ed; }
+    #interface-container .interface-properties .interface-property:nth-child(1) {
+      color: #8533eb; }
+    #interface-container .interface-properties .interface-property:nth-child(2) {
+      color: #8a33e9; }
+    #interface-container .interface-properties .interface-property:nth-child(3) {
+      color: #9033e6; }
+    #interface-container .interface-properties .interface-property:nth-child(4) {
+      color: #9533e4; }
+    #interface-container .interface-properties .interface-property:nth-child(5) {
+      color: #9b33e2; }
+    #interface-container .interface-properties .interface-property:nth-child(6) {
+      color: #a033e0; }
+    #interface-container .interface-properties .interface-property:nth-child(7) {
+      color: #a633dd; }
+    #interface-container .interface-properties .interface-property:nth-child(8) {
+      color: #ab33db; }
+    #interface-container .interface-properties .interface-property:nth-child(9) {
+      color: #b133d9; }
+    #interface-container .interface-properties .interface-property:nth-child(10) {
+      color: #b633d7; }
+    #interface-container .interface-properties .interface-property:nth-child(11) {
+      color: #bc33d4; }
+    #interface-container .interface-properties .interface-property:nth-child(12) {
+      color: #c133d2; }
+    #interface-container .interface-properties .interface-property:nth-child(13) {
+      color: #c733d0; }
+    #interface-container .interface-properties .interface-property:nth-child(14) {
+      color: #cc33ce; }
+    #interface-container .interface-properties .interface-property:nth-child(15) {
+      color: #d233cb; }
+    #interface-container .interface-properties .interface-property:nth-child(16) {
+      color: #d733c9; }
+    #interface-container .interface-properties .interface-property:nth-child(17) {
+      color: #dd33c7; }
+    #interface-container .interface-properties .interface-property:nth-child(18) {
+      color: #e233c5; }
+    #interface-container .interface-properties .interface-property:nth-child(19) {
+      color: #e833c2; }
+    #interface-container .interface-properties .interface-property {
+      color: #ed33c0; }

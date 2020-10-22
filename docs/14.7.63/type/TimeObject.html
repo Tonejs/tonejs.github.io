@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link href="https://fonts.googleapis.com/css?family=Inconsolata|Roboto&display=swap" rel="stylesheet">
+	<base href="../">
+	<link href="./assets/main.css" rel="stylesheet" type="text/css">
+	<title>TimeObject</title>
+</head>
+<body>
+	<div id="default-container">
+		<div id="type-container">
+			<span id="type-name">
+				type TimeObject
+			</span>
+			<span id="definition">
+				<span class="signature-symbol"> = </span>
+				<span class="type"></span>			</span>
+		</div>
+		<div id="comment">
+				<div class="description">
+		<p>A time object has a subdivision as the keys and a number as the values.</p>
+
+			<span class="nominal-range"></span>
+					<div class="example">
+						<pre><code class="language-js hljs">
+Tone.Time({
+	<span class="hljs-string">"2n"</span>: <span class="hljs-number">1</span>,
+	<span class="hljs-string">"8n"</span>: <span class="hljs-number">3</span>
+}).valueOf(); <span class="hljs-comment">// 2n + 8n * 3</span></code></pre>
+					</div>
+	</div>
+		</div>
+		<div id="code-links">
+				<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/aed85b0/Tone/core/type/Units.ts#L66">Tone/core/type/Units.ts</a>
+	</div>
+		</div>
+	</div>
+	<script src="./assets/app.bundle.js"></script>
+</body>
+</html>
