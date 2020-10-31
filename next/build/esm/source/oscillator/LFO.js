@@ -76,7 +76,7 @@ export class LFO extends ToneAudioNode {
         this.min = options.min;
         this.max = options.max;
         // connect it up
-        this._oscillator.chain(this._a2g, this._amplitudeGain, this._scaler);
+        this._oscillator.chain(this._amplitudeGain, this._a2g, this._scaler);
         this._zeros.connect(this._a2g);
         this._stoppedSignal.connect(this._a2g);
         readOnly(this, ["amplitude", "frequency"]);
