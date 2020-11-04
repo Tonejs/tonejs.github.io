@@ -1,4 +1,4 @@
-import { Frequency, NormalRange, Positive, Time } from "../../core/type/Units";
+import { Frequency, NormalRange, Time } from "../../core/type/Units";
 import { Envelope, EnvelopeOptions } from "./Envelope";
 export interface FrequencyEnvelopeOptions extends EnvelopeOptions {
     baseFrequency: Frequency;
@@ -57,8 +57,8 @@ export declare class FrequencyEnvelope extends Envelope {
      * The number of octaves above the baseFrequency that the
      * envelope will scale to.
      */
-    get octaves(): Positive;
-    set octaves(octaves: Positive);
+    get octaves(): number;
+    set octaves(octaves: number);
     /**
      * The envelope's exponent value.
      */

@@ -66,7 +66,6 @@ export class FrequencyEnvelope extends Envelope {
         return this._octaves;
     }
     set octaves(octaves) {
-        assertRange(octaves, 0);
         this._octaves = octaves;
         this._scale.max = this._baseFrequency * Math.pow(2, octaves);
     }
