@@ -1,0 +1,42 @@
+a.typeLink {
+  color: black; }
+
+.type-block {
+  display: inline-block; }
+  .type-block .type {
+    margin-left: 5px; }
+
+.type {
+  display: inline-block;
+  position: relative; }
+  .type a, .type span {
+    margin: 0 1px; }
+  .type a {
+    color: black; }
+  .type iframe {
+    position: absolute;
+    bottom: 15px;
+    left: -20px;
+    background-color: white;
+    border: none;
+    display: none;
+    width: 460px;
+    border-radius: 10px;
+    height: 200px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    z-index: 10000;
+    opacity: 0; }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+    .type iframe.hover {
+      display: block;
+      animation: fadeIn 0.5s;
+      animation-delay: 0.5s;
+      animation-fill-mode: forwards; }
+    .type iframe.hover.down {
+      bottom: unset;
+      top: 15px; }
