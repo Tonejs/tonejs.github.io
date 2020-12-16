@@ -241,7 +241,8 @@ export class Param extends ToneWithContext {
     }
     exponentialRampToValueAtTime(value, endTime) {
         let numericValue = this._fromType(value);
-        numericValue = Math.max(this._minOutput, numericValue);
+        // the value can't be 0
+        numericValue = EQ(numericValue, 0) ? this._minOutput : numericValue;
         this._assertRange(numericValue);
         const computedTime = this.toSeconds(endTime);
         assert(isFinite(numericValue) && isFinite(computedTime), `Invalid argument(s) to exponentialRampToValueAtTime: ${JSON.stringify(value)}, ${JSON.stringify(endTime)}`);

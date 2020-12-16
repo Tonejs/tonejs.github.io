@@ -83,7 +83,7 @@ export declare class PitchShift extends FeedbackEffect<PitchShiftOptions> {
      * signal, but larger values will result in smoother pitch shifting for larger intervals.
      * A nominal range of 0.03 to 0.1 is recommended.
      */
-    get windowSize(): any;
-    set windowSize(size: any);
+    get windowSize(): Seconds;
+    set windowSize(size: Seconds);
     dispose(): this;
 }
