@@ -4,7 +4,7 @@ import { isAudioContext } from "../util/AdvancedTypeCheck";
 import { optionsFromArguments } from "../util/Defaults";
 import { Timeline } from "../util/Timeline";
 import { isDefined, isString } from "../util/TypeCheck";
-import { createAudioContext, createAudioWorkletNode } from "./AudioContext";
+import { createAudioContext, createAudioWorkletNode, } from "./AudioContext";
 import { closeContext, initializeContext } from "./ContextInitialization";
 import { BaseContext } from "./BaseContext";
 import { assert } from "../util/Debug";
@@ -43,7 +43,9 @@ export class Context extends BaseContext {
          * Maps a module name to promise of the addModule method
          */
         this._workletModules = new Map();
-        const options = optionsFromArguments(Context.getDefaults(), arguments, ["context"]);
+        const options = optionsFromArguments(Context.getDefaults(), arguments, [
+            "context",
+        ]);
         if (options.context) {
             this._context = options.context;
         }
@@ -242,7 +244,7 @@ export class Context extends BaseContext {
     workletsAreReady() {
         return __awaiter(this, void 0, void 0, function* () {
             const promises = [];
-            this._workletModules.forEach(promise => promises.push(promise));
+            this._workletModules.forEach((promise) => promises.push(promise));
             yield Promise.all(promises);
         });
     }
@@ -389,7 +391,7 @@ export class Context extends BaseContext {
         super.dispose();
         this._ticker.dispose();
         this._timeouts.dispose();
-        Object.keys(this._constants).map(val => this._constants[val].disconnect());
+        Object.keys(this._constants).map((val) => this._constants[val].disconnect());
         return this;
     }
     //---------------------------
@@ -433,7 +435,7 @@ export class Context extends BaseContext {
      * @param  id  The ID returned from setTimeout
      */
     clearTimeout(id) {
-        this._timeouts.forEach(event => {
+        this._timeouts.forEach((event) => {
             if (event.id === id) {
                 this._timeouts.remove(event);
             }

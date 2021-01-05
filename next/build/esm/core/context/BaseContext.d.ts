@@ -50,6 +50,7 @@ export declare abstract class BaseContext extends Emitter<"statechange" | "tick"
     abstract get destination(): Destination;
     abstract now(): Seconds;
     abstract immediate(): Seconds;
+    toJSON(): Record<string, any>;
     readonly isOffline: boolean;
 }
 export {};
