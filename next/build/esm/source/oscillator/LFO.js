@@ -47,12 +47,7 @@ export class LFO extends ToneAudioNode {
         // @ts-ignore
         this._clampValue = Param.prototype._clampValue;
         const options = optionsFromArguments(LFO.getDefaults(), arguments, ["frequency", "min", "max"]);
-        // @ts-ignore
-        this._oscillator = new Oscillator({
-            context: this.context,
-            frequency: options.frequency,
-            type: options.type,
-        });
+        this._oscillator = new Oscillator(options);
         this.frequency = this._oscillator.frequency;
         this._amplitudeGain = new Gain({
             context: this.context,
@@ -83,12 +78,11 @@ export class LFO extends ToneAudioNode {
         this.phase = options.phase;
     }
     static getDefaults() {
-        return Object.assign(ToneAudioNode.getDefaults(), {
+        return Object.assign(Oscillator.getDefaults(), {
             amplitude: 1,
             frequency: "4n",
             max: 1,
             min: 0,
-            phase: 0,
             type: "sine",
             units: "number",
         });
@@ -135,6 +129,13 @@ export class LFO extends ToneAudioNode {
         return this;
     }
     /**
+     * After the oscillator waveform is updated, reset the `_stoppedSignal` value to match the updated waveform
+     */
+    _setStoppedValue() {
+        this._stoppedValue = this._oscillator.getInitialValue();
+        this._stoppedSignal.value = this._stoppedValue;
+    }
+    /**
      * The minimum output of the LFO.
      */
     get min() {
@@ -162,8 +163,17 @@ export class LFO extends ToneAudioNode {
     }
     set type(type) {
         this._oscillator.type = type;
-        this._stoppedValue = this._oscillator.getInitialValue();
-        this._stoppedSignal.value = this._stoppedValue;
+        this._setStoppedValue();
+    }
+    /**
+     * The oscillator's partials array: See [[Oscillator.partials]]
+     */
+    get partials() {
+        return this._oscillator.partials;
+    }
+    set partials(partials) {
+        this._oscillator.partials = partials;
+        this._setStoppedValue();
     }
     /**
      * The phase of the LFO.
@@ -173,8 +183,7 @@ export class LFO extends ToneAudioNode {
     }
     set phase(phase) {
         this._oscillator.phase = phase;
-        this._stoppedValue = this._oscillator.getInitialValue();
-        this._stoppedSignal.value = this._stoppedValue;
+        this._setStoppedValue();
     }
     /**
      * The output units of the LFO.
