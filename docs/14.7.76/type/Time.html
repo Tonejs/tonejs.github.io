@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link href="https://fonts.googleapis.com/css?family=Inconsolata|Roboto&display=swap" rel="stylesheet">
+	<base href="../">
+	<link href="./assets/main.css" rel="stylesheet" type="text/css">
+	<title>Time</title>
+</head>
+<body>
+	<div id="default-container">
+		<div id="type-container">
+			<span id="type-name">
+				type Time
+			</span>
+			<span id="definition">
+				<span class="signature-symbol"> = </span>
+				<span class="type"><span class="type"><span class="signature-type"><span>string</span></span>	</span><span class="signature-symbol"> | </span><span class="type"><span class="signature-type"><a href="type/Seconds">Seconds</a></span>	</span><span class="signature-symbol"> | </span><span class="type"><span class="signature-type"><a href="type/TimeObject">TimeObject</a></span>	</span><span class="signature-symbol"> | </span><span class="type"><span class="signature-type"><a href="type/Subdivision">Subdivision</a></span>	</span></span>			</span>
+		</div>
+		<div id="comment">
+				<div class="description">
+		<p>Time can be described in a number of ways. Read more <a href="https://github.com/Tonejs/Tone.js/wiki/Time">Time</a>.</p>
+<ul>
+<li>Numbers, which will be taken literally as the time (in seconds).</li>
+<li>Notation, (&quot;4n&quot;, &quot;8t&quot;) describes time in BPM and time signature relative values.</li>
+<li>TransportTime, (&quot;4:3:2&quot;) will also provide tempo and time signature relative times in the form BARS:QUARTERS:SIXTEENTHS.</li>
+<li>Frequency, (&quot;8hz&quot;) is converted to the length of the cycle in seconds.</li>
+<li>Now-Relative, (&quot;+1&quot;) prefix any of the above with &quot;+&quot; and it will be interpreted as &quot;the current time plus whatever expression follows&quot;.</li>
+<li>Object, ({&quot;4n&quot; : 3, &quot;8t&quot; : -1}). The resulting time is equal to the sum of all of the keys multiplied by the values in the object.</li>
+<li>No Argument, for methods which accept time, no argument will be interpreted as &quot;now&quot; (i.e. the currentTime).</li>
+</ul>
+
+	</div>
+		</div>
+		<div id="code-links">
+				<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/dc9de66/Tone/core/type/Units.ts#L81">Tone/core/type/Units.ts</a>
+	</div>
+		</div>
+	</div>
+	<script src="./assets/app.bundle.js"></script>
+</body>
+</html>
