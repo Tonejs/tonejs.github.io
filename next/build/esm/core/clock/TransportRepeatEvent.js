@@ -1,5 +1,6 @@
 import { TicksClass } from "../type/Ticks";
 import { TransportEvent } from "./TransportEvent";
+import { GT, LT } from "../util/Math";
 /**
  * TransportRepeatEvent is an internal class used by Tone.Transport
  * to schedule repeat events. This class should not be instantiated directly.
@@ -27,11 +28,12 @@ export class TransportRepeatEvent extends TransportEvent {
          */
         this._boundRestart = this._restart.bind(this);
         const options = Object.assign(TransportRepeatEvent.getDefaults(), opts);
-        this.duration = new TicksClass(transport.context, options.duration).valueOf();
-        this._interval = new TicksClass(transport.context, options.interval).valueOf();
+        this.duration = options.duration;
+        this._interval = options.interval;
         this._nextTick = options.time;
         this.transport.on("start", this._boundRestart);
         this.transport.on("loopStart", this._boundRestart);
+        this.transport.on("ticks", this._boundRestart);
         this.context = this.transport.context;
         this._restart();
     }
@@ -54,31 +56,43 @@ export class TransportRepeatEvent extends TransportEvent {
         super.invoke(time);
     }
     /**
+     * Create an event on the transport on the nextTick
+     */
+    _createEvent() {
+        if (LT(this._nextTick, this.floatTime + this.duration)) {
+            return this.transport.scheduleOnce(this.invoke.bind(this), new TicksClass(this.context, this._nextTick).toSeconds());
+        }
+        return -1;
+    }
+    /**
      * Push more events onto the timeline to keep up with the position of the timeline
      */
     _createEvents(time) {
         // schedule the next event
-        const ticks = this.transport.getTicksAtTime(time);
-        if (ticks >= this.time && ticks >= this._nextTick && this._nextTick + this._interval < this.time + this.duration) {
+        // const ticks = this.transport.getTicksAtTime(time);
+        // if the next tick is within the bounds set by "duration"
+        if (LT(this._nextTick + this._interval, this.floatTime + this.duration)) {
             this._nextTick += this._interval;
             this._currentId = this._nextId;
             this._nextId = this.transport.scheduleOnce(this.invoke.bind(this), new TicksClass(this.context, this._nextTick).toSeconds());
         }
     }
     /**
-     * Push more events onto the timeline to keep up with the position of the timeline
+     * Re-compute the events when the transport time has changed from a start/ticks/loopStart event
      */
     _restart(time) {
         this.transport.clear(this._currentId);
         this.transport.clear(this._nextId);
-        this._nextTick = this.time;
+        // start at the first event
+        this._nextTick = this.floatTime;
         const ticks = this.transport.getTicksAtTime(time);
-        if (ticks > this.time) {
-            this._nextTick = this.time + Math.ceil((ticks - this.time) / this._interval) * this._interval;
+        if (GT(ticks, this.time)) {
+            // the event is not being scheduled from the beginning and should be offset
+            this._nextTick = this.floatTime + Math.ceil((ticks - this.floatTime) / this._interval) * this._interval;
         }
-        this._currentId = this.transport.scheduleOnce(this.invoke.bind(this), new TicksClass(this.context, this._nextTick).toSeconds());
+        this._currentId = this._createEvent();
         this._nextTick += this._interval;
-        this._nextId = this.transport.scheduleOnce(this.invoke.bind(this), new TicksClass(this.context, this._nextTick).toSeconds());
+        this._nextId = this._createEvent();
     }
     /**
      * Clean up
@@ -89,6 +103,7 @@ export class TransportRepeatEvent extends TransportEvent {
         this.transport.clear(this._nextId);
         this.transport.off("start", this._boundRestart);
         this.transport.off("loopStart", this._boundRestart);
+        this.transport.off("ticks", this._boundRestart);
         return this;
     }
 }

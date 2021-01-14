@@ -115,15 +115,6 @@ export class Transport extends ToneWithContext {
      * @param  tickTime clock relative tick time
      */
     _processTick(tickTime, ticks) {
-        // handle swing
-        if (this._swingAmount > 0 &&
-            ticks % this._ppq !== 0 && // not on a downbeat
-            ticks % (this._swingTicks * 2) !== 0) {
-            // add some swing
-            const progress = (ticks % (this._swingTicks * 2)) / (this._swingTicks * 2);
-            const amount = Math.sin((progress) * Math.PI) * this._swingAmount;
-            tickTime += new TicksClass(this.context, this._swingTicks * 2 / 3).toSeconds() * amount;
-        }
         // do the loop test
         if (this._loop.get(tickTime)) {
             if (ticks >= this._loopEnd) {
@@ -133,6 +124,15 @@ export class Transport extends ToneWithContext {
                 this.emit("loopStart", tickTime, this._clock.getSecondsAtTime(tickTime));
                 this.emit("loop", tickTime);
             }
+        }
+        // handle swing
+        if (this._swingAmount > 0 &&
+            ticks % this._ppq !== 0 && // not on a downbeat
+            ticks % (this._swingTicks * 2) !== 0) {
+            // add some swing
+            const progress = (ticks % (this._swingTicks * 2)) / (this._swingTicks * 2);
+            const amount = Math.sin((progress) * Math.PI) * this._swingAmount;
+            tickTime += new TicksClass(this.context, this._swingTicks * 2 / 3).toSeconds() * amount;
         }
         // invoke the timeline events scheduled on this tick
         this._timeline.forEachAtTime(ticks, event => event.invoke(tickTime));
@@ -446,7 +446,8 @@ export class Transport extends ToneWithContext {
             if (this.state === "started") {
                 const ticks = this._clock.getTicksAtTime(now);
                 // schedule to start on the next tick, #573
-                const time = this._clock.getTimeOfTick(Math.ceil(ticks));
+                const remainingTick = this._clock.frequency.getDurationOfTicks(Math.ceil(ticks) - ticks, now);
+                const time = now + remainingTick;
                 this.emit("stop", time);
                 this._clock.setTicksAtTime(t, time);
                 // restart it with the new time

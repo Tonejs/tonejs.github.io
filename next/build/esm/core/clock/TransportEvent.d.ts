@@ -32,6 +32,11 @@ export declare class TransportEvent {
      */
     private _once;
     /**
+     * The remaining value between the passed in time, and Math.floor(time).
+     * This value is later added back when scheduling to get sub-tick precision.
+     */
+    protected _remainderTime: number;
+    /**
      * @param transport The transport object which the event belongs to
      */
     constructor(transport: Transport, opts: Partial<TransportEventOptions>);
@@ -40,6 +45,10 @@ export declare class TransportEvent {
      * Current ID counter
      */
     private static _eventId;
+    /**
+     * Get the time and remainder time.
+     */
+    protected get floatTime(): number;
     /**
      * Invoke the event callback.
      * @param  time  The AudioContext time in seconds of the event

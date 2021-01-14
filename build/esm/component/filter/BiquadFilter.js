@@ -34,7 +34,8 @@ export class BiquadFilter extends ToneAudioNode {
         });
         this.gain = new Param({
             context: this.context,
-            units: "gain",
+            units: "decibels",
+            convert: false,
             value: options.gain,
             param: this._filter.gain,
         });

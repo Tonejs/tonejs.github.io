@@ -107,7 +107,7 @@ export class TimeClass extends TimeBaseClass {
     toTicks() {
         const quarterTime = this._beatsToUnits(1);
         const quarters = this.valueOf() / quarterTime;
-        return Math.round(quarters * this._getPPQ());
+        return quarters * this._getPPQ();
     }
     /**
      * Return the time in seconds.

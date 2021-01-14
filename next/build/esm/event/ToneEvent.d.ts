@@ -158,7 +158,7 @@ export declare class ToneEvent<ValueType = any> extends ToneWithContext<ToneEven
     get loop(): boolean | number;
     set loop(loop: boolean | number);
     /**
-     * The playback rate of the note. Defaults to 1.
+     * The playback rate of the event. Defaults to 1.
      * @example
      * const note = new Tone.ToneEvent();
      * note.loop = true;

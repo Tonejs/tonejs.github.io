@@ -15,7 +15,7 @@ interface TransportOptions extends ToneWithContextOptions {
     loopEnd: Time;
     ppq: number;
 }
-declare type TransportEventNames = "start" | "stop" | "pause" | "loop" | "loopEnd" | "loopStart";
+declare type TransportEventNames = "start" | "stop" | "pause" | "loop" | "loopEnd" | "loopStart" | "ticks";
 declare type TransportCallback = (time: Seconds) => void;
 /**
  * Transport for timing musical events.

@@ -64,6 +64,9 @@ export class DummyContext extends BaseContext {
     createMediaStreamSource(_stream) {
         return {};
     }
+    createMediaElementSource(_element) {
+        return {};
+    }
     createMediaStreamDestination() {
         return {};
     }

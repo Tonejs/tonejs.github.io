@@ -51,11 +51,15 @@ export declare class TransportRepeatEvent extends TransportEvent {
      */
     invoke(time: Seconds): void;
     /**
+     * Create an event on the transport on the nextTick
+     */
+    private _createEvent;
+    /**
      * Push more events onto the timeline to keep up with the position of the timeline
      */
     private _createEvents;
     /**
-     * Push more events onto the timeline to keep up with the position of the timeline
+     * Re-compute the events when the transport time has changed from a start/ticks/loopStart event
      */
     private _restart;
     /**

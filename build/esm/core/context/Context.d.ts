@@ -1,14 +1,11 @@
 import { TickerClockSource } from "../clock/Ticker";
 import { Seconds } from "../type/Units";
-import { Omit } from "../util/Interface";
 import { AnyAudioContext } from "./AudioContext";
 import { BaseContext, ContextLatencyHint } from "./BaseContext";
 declare type Transport = import("../clock/Transport").Transport;
 declare type Destination = import("./Destination").Destination;
 declare type Listener = import("./Listener").Listener;
 declare type Draw = import("../util/Draw").Draw;
-export declare type ExcludedFromBaseAudioContext = "onstatechange" | "addEventListener" | "removeEventListener" | "listener" | "dispatchEvent" | "audioWorklet" | "destination" | "createScriptProcessor";
-export declare type BaseAudioContextSubset = Omit<BaseAudioContext, ExcludedFromBaseAudioContext>;
 export interface ContextOptions {
     clockSource: TickerClockSource;
     latencyHint: ContextLatencyHint;
@@ -106,6 +103,7 @@ export declare class Context extends BaseContext {
     createStereoPanner(): StereoPannerNode;
     createWaveShaper(): WaveShaperNode;
     createMediaStreamSource(stream: MediaStream): MediaStreamAudioSourceNode;
+    createMediaElementSource(element: HTMLMediaElement): MediaElementAudioSourceNode;
     createMediaStreamDestination(): MediaStreamAudioDestinationNode;
     decodeAudioData(audioData: ArrayBuffer): Promise<AudioBuffer>;
     /**

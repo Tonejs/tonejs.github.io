@@ -1,18 +1,16 @@
 import { Param } from "../../core/context/Param";
-import { InputNode, OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
+import { InputNode, OutputNode, ToneAudioNode } from "../../core/context/ToneAudioNode";
 import { Degrees, Frequency, NormalRange, Time, UnitName } from "../../core/type/Units";
 import { BasicPlaybackState } from "../../core/util/StateTimeline";
 import { Signal } from "../../signal/Signal";
 import { ToneOscillatorType } from "./Oscillator";
-export interface LFOOptions extends ToneAudioNodeOptions {
-    type: ToneOscillatorType;
+import { ToneOscillatorOptions } from "./OscillatorInterface";
+export declare type LFOOptions = {
     min: number;
     max: number;
-    phase: Degrees;
-    frequency: Frequency;
     amplitude: NormalRange;
     units: UnitName;
-}
+} & ToneOscillatorOptions;
 /**
  * LFO stands for low frequency oscillator. LFO produces an output signal
  * which can be attached to an AudioParam or Tone.Signal
@@ -115,6 +113,10 @@ export declare class LFO extends ToneAudioNode<LFOOptions> {
      */
     unsync(): this;
     /**
+     * After the oscillator waveform is updated, reset the `_stoppedSignal` value to match the updated waveform
+     */
+    private _setStoppedValue;
+    /**
      * The minimum output of the LFO.
      */
     get min(): number;
@@ -129,6 +131,11 @@ export declare class LFO extends ToneAudioNode<LFOOptions> {
      */
     get type(): ToneOscillatorType;
     set type(type: ToneOscillatorType);
+    /**
+     * The oscillator's partials array: See [[Oscillator.partials]]
+     */
+    get partials(): number[];
+    set partials(partials: number[]);
     /**
      * The phase of the LFO.
      */

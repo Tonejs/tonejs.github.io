@@ -10,7 +10,7 @@ import { readOnly } from "../core/util/Interface";
  * Read more on the chorus effect on [SoundOnSound](http://www.soundonsound.com/sos/jun04/articles/synthsecrets.htm).
  *
  * @example
- * const chorus = new Tone.Chorus(4, 2.5, 0.5);
+ * const chorus = new Tone.Chorus(4, 2.5, 0.5).toDestination().start();
  * const synth = new Tone.PolySynth().connect(chorus);
  * synth.triggerAttackRelease(["C3", "E3", "G3"], "8n");
  *

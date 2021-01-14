@@ -10,9 +10,6 @@ import { assert } from "../util/Debug";
  * AudioBuffer loading and storage. ToneAudioBuffer is used internally by all
  * classes that make requests for audio files such as Tone.Player,
  * Tone.Sampler and Tone.Convolver.
- * Aside from load callbacks from individual buffers, ToneAudioBuffer
- * provides events which keep track of the loading progress
- * of _all_ of the buffers. These are ToneAudioBuffer.on("load" / "progress" / "error")
  * @example
  * const buffer = new Tone.ToneAudioBuffer("https://tonejs.github.io/audio/casio/A1.mp3", () => {
  * 	console.log("loaded");
@@ -301,7 +298,7 @@ export class ToneAudioBuffer extends Tone {
     static load(url) {
         return __awaiter(this, void 0, void 0, function* () {
             // test if the url contains multiple extensions
-            const matches = url.match(/\[(.+\|?)+\]$/);
+            const matches = url.match(/\[([^\]\[]+\|.+)\]$/);
             if (matches) {
                 const extensions = matches[1].split("|");
                 let extension = extensions[0];

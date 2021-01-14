@@ -38,7 +38,7 @@ export declare class BiquadFilter extends ToneAudioNode<BiquadFilterOptions> {
     /**
      * The gain of the filter. Its value is in dB units. The gain is only used for lowshelf, highshelf, and peaking filters.
      */
-    readonly gain: Param<"gain">;
+    readonly gain: Param<"decibels">;
     private readonly _filter;
     /**
      * @param frequency The cutoff frequency of the filter.

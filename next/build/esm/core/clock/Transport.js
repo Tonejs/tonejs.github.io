@@ -454,6 +454,7 @@ export class Transport extends ToneWithContext {
                 this.emit("start", time, this._clock.getSecondsAtTime(time));
             }
             else {
+                this.emit("ticks", now);
                 this._clock.setTicksAtTime(t, now);
             }
         }
@@ -464,7 +465,7 @@ export class Transport extends ToneWithContext {
      * @return The tick value at the given time.
      */
     getTicksAtTime(time) {
-        return Math.round(this._clock.getTicksAtTime(time));
+        return this._clock.getTicksAtTime(time);
     }
     /**
      * Return the elapsed seconds at the given time.

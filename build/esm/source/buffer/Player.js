@@ -118,11 +118,7 @@ export class Player extends Source {
             offset = defaultArg(offset, 0);
         }
         // compute the values in seconds
-        let computedOffset = this.toSeconds(offset);
-        // if it's synced, it should factor in the playback rate for computing the offset
-        if (this._synced) {
-            computedOffset *= this._playbackRate;
-        }
+        const computedOffset = this.toSeconds(offset);
         // compute the duration which is either the passed in duration of the buffer.duration - offset
         const origDuration = duration;
         duration = defaultArg(duration, Math.max(this._buffer.duration - computedOffset, 0));
