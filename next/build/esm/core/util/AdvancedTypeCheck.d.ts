@@ -1,3 +1,4 @@
+import { AudioBuffer } from "standardized-audio-context";
 /**
  * Test if the given value is an instanceof AudioParam
  */
