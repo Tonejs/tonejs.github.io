@@ -1,0 +1,2436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Context</title>
+	<link href="https://fonts.googleapis.com/css?family=Inconsolata|Roboto&display=swap" rel="stylesheet">
+	<link href="./assets/main.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<div id="class-page">
+		<div id="content-container">
+	
+	<div id="class-container">
+		<h2 id="class-name">Context
+		</h2>
+		<div id="comment">
+				<div class="description">
+		<p>Wrapper around the native AudioContext.</p>
+
+	</div>
+		</div>
+		<div id="class-members">
+			<div  class="hierarchy">
+	<h3>Hierarchy</h3>
+	<ul>
+			<li>
+				<span class="type"><span class="signature-type"><a href="BaseContext">BaseContext</a></span>	</span>			</li>
+		<ul>
+			<li class="hierarchy-target">Context</li>
+			<ul>
+					<li>
+						<span class="type"><span class="signature-type"><a href="OfflineContext">OfflineContext</a></span>	</span>					</li>
+			</ul>
+		</ul>
+	</ul>
+</div>
+			<div id="class-index">
+	<h3>Index</h3>
+	<div>
+		<div class="constructor">
+			<h4>Constructor</h4>
+			<ul>
+						<li><a href="#constructor">constructor</a></li>
+			</ul>
+		</div>
+		<div class="properties">
+			<h4>Properties</h4>
+			<ul>
+						<li><a href="#clockSource">clockSource</a></li>
+						<li><a href="#currentTime">currentTime</a></li>
+						<li><a href="#debug">debug</a></li>
+						<li><a href="#destination">destination</a></li>
+						<li><a href="#disposed">disposed</a></li>
+						<li><a href="#draw">draw</a></li>
+						<li><a href="#isOffline">isOffline</a></li>
+						<li><a href="#latencyHint">latencyHint</a></li>
+						<li><a href="#listener">listener</a></li>
+						<li><a href="#lookAhead">lookAhead</a></li>
+						<li><a href="#name">name</a></li>
+						<li><a href="#rawContext">rawContext</a></li>
+						<li><a href="#sampleRate">sampleRate</a></li>
+						<li><a href="#state">state</a></li>
+						<li><a href="#transport">transport</a></li>
+						<li><a href="#updateInterval">updateInterval</a></li>
+						<li><a href="#version">version</a></li>
+			</ul>
+		</div>
+		<div class="methods">
+			<h4>Methods</h4>
+			<ul>
+						<li><a href="#addAudioWorkletModule">addAudioWorkletModule</a></li>
+						<li><a href="#clearInterval">clearInterval</a></li>
+						<li><a href="#clearTimeout">clearTimeout</a></li>
+						<li><a href="#close">close</a></li>
+						<li><a href="#createAnalyser">createAnalyser</a></li>
+						<li><a href="#createAudioWorkletNode">createAudioWorkletNode</a></li>
+						<li><a href="#createBiquadFilter">createBiquadFilter</a></li>
+						<li><a href="#createBuffer">createBuffer</a></li>
+						<li><a href="#createBufferSource">createBufferSource</a></li>
+						<li><a href="#createChannelMerger">createChannelMerger</a></li>
+						<li><a href="#createChannelSplitter">createChannelSplitter</a></li>
+						<li><a href="#createConstantSource">createConstantSource</a></li>
+						<li><a href="#createConvolver">createConvolver</a></li>
+						<li><a href="#createDelay">createDelay</a></li>
+						<li><a href="#createDynamicsCompressor">createDynamicsCompressor</a></li>
+						<li><a href="#createGain">createGain</a></li>
+						<li><a href="#createIIRFilter">createIIRFilter</a></li>
+						<li><a href="#createMediaElementSource">createMediaElementSource</a></li>
+						<li><a href="#createMediaStreamDestination">createMediaStreamDestination</a></li>
+						<li><a href="#createMediaStreamSource">createMediaStreamSource</a></li>
+						<li><a href="#createOscillator">createOscillator</a></li>
+						<li><a href="#createPanner">createPanner</a></li>
+						<li><a href="#createPeriodicWave">createPeriodicWave</a></li>
+						<li><a href="#createStereoPanner">createStereoPanner</a></li>
+						<li><a href="#createWaveShaper">createWaveShaper</a></li>
+						<li><a href="#decodeAudioData">decodeAudioData</a></li>
+						<li><a href="#dispose">dispose</a></li>
+						<li><a href="#emit">emit</a></li>
+						<li><a href="#getConstant">getConstant</a></li>
+						<li><a href="#getDefaults">getDefaults</a></li>
+						<li><a href="#immediate">immediate</a></li>
+						<li><a href="#mixin">mixin</a></li>
+						<li><a href="#now">now</a></li>
+						<li><a href="#off">off</a></li>
+						<li><a href="#on">on</a></li>
+						<li><a href="#once">once</a></li>
+						<li><a href="#resume">resume</a></li>
+						<li><a href="#setInterval">setInterval</a></li>
+						<li><a href="#setTimeout">setTimeout</a></li>
+						<li><a href="#toJSON">toJSON</a></li>
+						<li><a href="#toString">toString</a></li>
+			</ul>
+		</div>
+	</div>
+</div>					<div class="constructor-container">
+			<h3><a name="constructor">Constructor</a></h3>
+					<div class="signature">
+	
+	<div class="function">
+
+		<span class="name">new Context</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">context</span><span class="signature-symbol" title="optional">?</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/AnyAudioContext">AnyAudioContext</a></span>	</span>									</span>													</div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><a href="Context">Context</a></span>	</span>	</div>
+
+	<div id="code-links">
+					</div>
+</div>
+					<div class="signature">
+	
+	<div class="function">
+
+		<span class="name">new Context</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">options</span><span class="signature-symbol" title="optional">?</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><span>Partial</span></span><span class="signature-symbol">&lt;</span><span class="type"><span class="signature-type"><a href="interface/ContextOptions">ContextOptions</a></span>	</span><span class="signature-symbol">&gt;</span>	</span>									</span>													</div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><a href="Context">Context</a></span>	</span>	</div>
+
+	<div id="code-links">
+					</div>
+</div>
+		</div>
+			<div class="property-container">
+	<h3>Properties</h3>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="clockSource">
+		clockSource
+		<a class="section-link" href="#clockSource">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+								<span class="type"><span class="signature-type"><a href="type/TickerClockSource">TickerClockSource</a></span>	</span>				</span>
+							<div class="description">
+		<p>What the source of the clock is, either &quot;worker&quot; (default),
+&quot;timeout&quot;, or &quot;offline&quot; (none).</p>
+
+	</div>
+
+				<div id="code-links">
+											<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L408">Tone/core/context/Context.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="currentTime">
+		currentTime
+		<a class="section-link" href="#currentTime">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+							<span class="signature-prefix">readonly</span>
+								<span class="type"><span class="signature-type"><a href="type/Seconds">Seconds</a></span>	</span>				</span>
+							<div class="description">
+		<p>The current time in seconds of the AudioContext.</p>
+
+	</div>
+
+				<div id="code-links">
+											<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L266">Tone/core/context/Context.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="debug">
+		debug
+		<a class="section-link" href="#debug">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+						<span class="type"><span class="signature-type"><span>boolean</span></span>	</span>				</span>
+						<div class="description">
+		<p>Set this debug flag to log all events that happen in this class.</p>
+
+	</div>
+
+				<div id="code-links">
+						<div class="inherited-from">
+		<span>Inherited from </span><a href=Tone#debug>Tone.debug</a>
+	</div>
+						<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/Tone.ts#L49">Tone/core/Tone.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="destination">
+		destination
+		<a class="section-link" href="#destination">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+								<span class="type"><span class="signature-type"><a href="Destination">Destination</a></span>	</span>				</span>
+							<div class="description">
+		<p>A reference to the Context&#39;s destination node.</p>
+
+	</div>
+
+				<div id="code-links">
+											<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L327">Tone/core/context/Context.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="disposed">
+		disposed
+		<a class="section-link" href="#disposed">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+							<span class="signature-prefix">readonly</span>
+								<span class="type"><span class="signature-type"><span>boolean</span></span>	</span>				</span>
+							<div class="description">
+		<p>Indicates if the instance was disposed. &#39;Disposing&#39; an
+instance means that all of the Web Audio nodes that were
+created for the instance are disconnected and freed for garbage collection.</p>
+
+	</div>
+
+				<div id="code-links">
+						<div class="inherited-from">
+		<span>Inherited from </span><a href=Tone#disposed>Tone.disposed</a>
+	</div>
+						<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/Tone.ts#L93">Tone/core/Tone.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="draw">
+		draw
+		<a class="section-link" href="#draw">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+								<span class="type"><span class="signature-type"><span>Draw</span></span>	</span>				</span>
+							<div class="description">
+		<p>This is the Draw object for the context which is useful for synchronizing the draw frame with the Tone.js clock.</p>
+
+	</div>
+
+				<div id="code-links">
+											<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L315">Tone/core/context/Context.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="isOffline">
+		isOffline
+		<a class="section-link" href="#isOffline">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+						<span class="type"><span class="signature-type"><span>boolean</span></span>	</span>				</span>
+						<div class="description">
+		<p>Indicates if the context is an OfflineAudioContext or an AudioContext</p>
+
+	</div>
+
+				<div id="code-links">
+											<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L107">Tone/core/context/Context.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="latencyHint">
+		latencyHint
+		<a class="section-link" href="#latencyHint">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+							<span class="signature-prefix">readonly</span>
+								<span class="type"><span class="type"><span class="signature-type"><a href="type/ContextLatencyHint">ContextLatencyHint</a></span>	</span><span class="signature-symbol"> | </span><span class="type"><span class="signature-type"><a href="type/Seconds">Seconds</a></span>	</span></span>				</span>
+							<div class="description">
+		<p>The type of playback, which affects tradeoffs between audio
+output latency and responsiveness.
+In addition to setting the value in seconds, the latencyHint also
+accepts the strings &quot;interactive&quot; (prioritizes low latency),
+&quot;playback&quot; (prioritizes sustained playback), &quot;balanced&quot; (balances
+latency and performance).</p>
+
+			<span class="nominal-range"></span>
+					<div class="example">
+						<pre><code class="language-js hljs">
+<span class="hljs-comment">// prioritize sustained playback</span>
+<span class="hljs-keyword">const</span> context = <span class="hljs-keyword">new</span> Tone.Context({ latencyHint: <span class="hljs-string">"playback"</span> });
+<span class="hljs-comment">// set this context as the global Context</span>
+Tone.setContext(context);
+<span class="hljs-comment">// the global context is gettable with Tone.getContext()</span>
+<span class="hljs-built_in">console</span>.log(Tone.getContext().latencyHint);
+</code></pre>
+					</div>
+	</div>
+
+				<div id="code-links">
+											<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L430">Tone/core/context/Context.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="listener">
+		listener
+		<a class="section-link" href="#listener">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+								<span class="type"><span class="signature-type"><a href="Listener">Listener</a></span>	</span>				</span>
+							<div class="description">
+		<p>The listener</p>
+
+	</div>
+
+				<div id="code-links">
+											<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L285">Tone/core/context/Context.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="lookAhead">
+		lookAhead
+		<a class="section-link" href="#lookAhead">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+						<span class="type"><span class="signature-type"><a href="type/Seconds">Seconds</a></span>	</span>				</span>
+						<div class="description">
+		<p>The amount of time into the future events are scheduled. Giving Web Audio
+a short amount of time into the future to schedule events can reduce clicks and
+improve performance. This value can be set to 0 to get the lowest latency.</p>
+
+	</div>
+
+				<div id="code-links">
+											<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L47">Tone/core/context/Context.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="name">
+		name
+		<a class="section-link" href="#name">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+						<span class="type"><span class="signature-type"><span>string</span></span>	</span>				</span>
+					
+				<div id="code-links">
+											<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L40">Tone/core/context/Context.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="rawContext">
+		rawContext
+		<a class="section-link" href="#rawContext">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+							<span class="signature-prefix">readonly</span>
+								<span class="type"><span class="signature-type"><a href="type/AnyAudioContext">AnyAudioContext</a></span>	</span>				</span>
+							<div class="description">
+		<p>The unwrapped AudioContext or OfflineAudioContext</p>
+
+	</div>
+
+				<div id="code-links">
+											<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L460">Tone/core/context/Context.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="sampleRate">
+		sampleRate
+		<a class="section-link" href="#sampleRate">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+							<span class="signature-prefix">readonly</span>
+								<span class="type"><span class="signature-type"><span>number</span></span>	</span>				</span>
+							<div class="description">
+		<p>The current time in seconds of the AudioContext.</p>
+
+	</div>
+
+				<div id="code-links">
+											<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L278">Tone/core/context/Context.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="state">
+		state
+		<a class="section-link" href="#state">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+							<span class="signature-prefix">readonly</span>
+								<span class="type"><span class="signature-type"><span>AudioContextState</span></span>	</span>				</span>
+							<div class="description">
+		<p>The current time in seconds of the AudioContext.</p>
+
+	</div>
+
+				<div id="code-links">
+											<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L272">Tone/core/context/Context.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="transport">
+		transport
+		<a class="section-link" href="#transport">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+								<span class="type"><span class="signature-type"><span>Transport</span></span>	</span>				</span>
+							<div class="description">
+		<p>There is only one Transport per Context. It is created on initialization.</p>
+
+	</div>
+
+				<div id="code-links">
+											<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L300">Tone/core/context/Context.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+	<a name="updateInterval">
+		updateInterval
+		<a class="section-link" href="#updateInterval">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+								<span class="type"><span class="signature-type"><a href="type/Seconds">Seconds</a></span>	</span>				</span>
+							<div class="description">
+		<p>How often the interval callback is invoked.
+This number corresponds to how responsive the scheduling
+can be. context.updateInterval + context.lookAhead gives you the
+total latency between scheduling an event and hearing it.</p>
+
+	</div>
+
+				<div id="code-links">
+											<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L397">Tone/core/context/Context.ts</a>
+	</div>
+				</div>
+			</div>
+			<div class="property signature">
+				<h4 class='signature-title'>
+		<span class="signature-prefix">static</span>
+	<a name="version">
+		version
+		<a class="section-link" href="#version">#</a>
+	</a>
+
+</h4>
+				<span class="property-type">
+						<span class="type"><span class="signature-type"><span>string</span></span>	</span>				</span>
+						<div class="description">
+		<p>The version number semver</p>
+
+	</div>
+
+				<div id="code-links">
+						<div class="inherited-from">
+		<span>Inherited from </span><a href=Tone#version>Tone.version</a>
+	</div>
+						<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/Tone.ts#L28">Tone/core/Tone.ts</a>
+	</div>
+				</div>
+			</div>
+</div>			<div class="method-container">
+	<h3>Methods</h3>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="addAudioWorkletModule">
+		addAudioWorkletModule
+		<a class="section-link" href="#addAudioWorkletModule">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Add an AudioWorkletProcessor module</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">addAudioWorkletModule</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">url</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><span>string</span></span>	</span>									</span><span class="signature-symbol">,</span>									<div class="description"><p>The url of the module</p></div></div><div class="parameter"><span class="name">name</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><span>string</span></span>	</span>									</span>									<div class="description"><p>The name of the module</p></div></div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>Promise</span></span><span class="signature-symbol">&lt;</span><span class="type"><span class="signature-type"><span>void</span></span>	</span><span class="signature-symbol">&gt;</span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L364">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="clearInterval">
+		clearInterval
+		<a class="section-link" href="#clearInterval">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Clear the function scheduled by <a href="#setInterval">setInterval</a></p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">clearInterval</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">id</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><span>number</span></span>	</span>									</span>													</div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L602">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="clearTimeout">
+		clearTimeout
+		<a class="section-link" href="#clearTimeout">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Clears a previously scheduled timeout with Tone.context.setTimeout</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">clearTimeout</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">id</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><span>number</span></span>	</span>									</span>									<div class="description"><p>The ID returned from setTimeout</p></div></div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L590">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="close">
+		close
+		<a class="section-link" href="#close">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Close the context. Once closed, the context can no longer be used and
+any AudioNodes created from the context will be silent.</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">close</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>Promise</span></span><span class="signature-symbol">&lt;</span><span class="type"><span class="signature-type"><span>void</span></span>	</span><span class="signature-symbol">&gt;</span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L498">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="createAnalyser">
+		createAnalyser
+		<a class="section-link" href="#createAnalyser">#</a>
+	</a>
+
+</h4>						
+	<div class="function">
+
+		<span class="name">createAnalyser</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>AnalyserNode</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L166">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="createAudioWorkletNode">
+		createAudioWorkletNode
+		<a class="section-link" href="#createAudioWorkletNode">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Create an audio worklet node from a name and options. The module
+must first be loaded using <a href="#addAudioWorkletModule">addAudioWorkletModule</a>.</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">createAudioWorkletNode</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">name</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><span>string</span></span>	</span>									</span><span class="signature-symbol">,</span>													</div><div class="parameter"><span class="name">options</span><span class="signature-symbol" title="optional">?</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><span>Partial</span></span><span class="signature-symbol">&lt;</span><span class="type"><span class="signature-type"><span>AudioWorkletNodeOptions</span></span>	</span><span class="signature-symbol">&gt;</span>	</span>									</span>													</div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>AudioWorkletNode</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L352">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="createBiquadFilter">
+		createBiquadFilter
+		<a class="section-link" href="#createBiquadFilter">#</a>
+	</a>
+
+</h4>						
+	<div class="function">
+
+		<span class="name">createBiquadFilter</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>BiquadFilterNode</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L175">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="createBuffer">
+		createBuffer
+		<a class="section-link" href="#createBuffer">#</a>
+	</a>
+
+</h4>						
+	<div class="function">
+
+		<span class="name">createBuffer</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">numberOfChannels</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><span>number</span></span>	</span>									</span><span class="signature-symbol">,</span>													</div><div class="parameter"><span class="name">length</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><span>number</span></span>	</span>									</span><span class="signature-symbol">,</span>													</div><div class="parameter"><span class="name">sampleRate</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><span>number</span></span>	</span>									</span>													</div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>AudioBuffer</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L178">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="createBufferSource">
+		createBufferSource
+		<a class="section-link" href="#createBufferSource">#</a>
+	</a>
+
+</h4>						
+	<div class="function">
+
+		<span class="name">createBufferSource</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>AudioBufferSourceNode</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L172">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="createChannelMerger">
+		createChannelMerger
+		<a class="section-link" href="#createChannelMerger">#</a>
+	</a>
+
+</h4>						
+	<div class="function">
+
+		<span class="name">createChannelMerger</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">numberOfInputs</span><span class="signature-symbol" title="optional">?</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="type"><span class="signature-type"><span>number</span></span>	</span><span class="signature-symbol"> | </span><span class="type"><span class="signature-type"><span>undefined</span></span>	</span></span>									</span>													</div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>ChannelMergerNode</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L185">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="createChannelSplitter">
+		createChannelSplitter
+		<a class="section-link" href="#createChannelSplitter">#</a>
+	</a>
+
+</h4>						
+	<div class="function">
+
+		<span class="name">createChannelSplitter</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">numberOfOutputs</span><span class="signature-symbol" title="optional">?</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="type"><span class="signature-type"><span>number</span></span>	</span><span class="signature-symbol"> | </span><span class="type"><span class="signature-type"><span>undefined</span></span>	</span></span>									</span>													</div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>ChannelSplitterNode</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L190">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="createConstantSource">
+		createConstantSource
+		<a class="section-link" href="#createConstantSource">#</a>
+	</a>
+
+</h4>						
+	<div class="function">
+
+		<span class="name">createConstantSource</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>ConstantSourceNode</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L195">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="createConvolver">
+		createConvolver
+		<a class="section-link" href="#createConvolver">#</a>
+	</a>
+
+</h4>						
+	<div class="function">
+
+		<span class="name">createConvolver</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>ConvolverNode</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L198">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="createDelay">
+		createDelay
+		<a class="section-link" href="#createDelay">#</a>
+	</a>
+
+</h4>						
+	<div class="function">
+
+		<span class="name">createDelay</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">maxDelayTime</span><span class="signature-symbol" title="optional">?</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="type"><span class="signature-type"><span>number</span></span>	</span><span class="signature-symbol"> | </span><span class="type"><span class="signature-type"><span>undefined</span></span>	</span></span>									</span>													</div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>DelayNode</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L201">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="createDynamicsCompressor">
+		createDynamicsCompressor
+		<a class="section-link" href="#createDynamicsCompressor">#</a>
+	</a>
+
+</h4>						
+	<div class="function">
+
+		<span class="name">createDynamicsCompressor</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>DynamicsCompressorNode</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L204">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="createGain">
+		createGain
+		<a class="section-link" href="#createGain">#</a>
+	</a>
+
+</h4>						
+	<div class="function">
+
+		<span class="name">createGain</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>GainNode</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L207">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="createIIRFilter">
+		createIIRFilter
+		<a class="section-link" href="#createIIRFilter">#</a>
+	</a>
+
+</h4>						
+	<div class="function">
+
+		<span class="name">createIIRFilter</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">feedForward</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="type"><span class="type"><span class="signature-type"><span>number</span></span>	</span><span class="signature-symbol">[]</span>	</span><span class="signature-symbol"> | </span><span class="type"><span class="signature-type"><span>Float32Array</span></span>	</span></span>									</span><span class="signature-symbol">,</span>													</div><div class="parameter"><span class="name">feedback</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="type"><span class="type"><span class="signature-type"><span>number</span></span>	</span><span class="signature-symbol">[]</span>	</span><span class="signature-symbol"> | </span><span class="type"><span class="signature-type"><span>Float32Array</span></span>	</span></span>									</span>													</div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>IIRFilterNode</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L210">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="createMediaElementSource">
+		createMediaElementSource
+		<a class="section-link" href="#createMediaElementSource">#</a>
+	</a>
+
+</h4>						
+	<div class="function">
+
+		<span class="name">createMediaElementSource</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">element</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><span>HTMLMediaElement</span></span>	</span>									</span>													</div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>MediaElementAudioSourceNode</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L241">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="createMediaStreamDestination">
+		createMediaStreamDestination
+		<a class="section-link" href="#createMediaStreamDestination">#</a>
+	</a>
+
+</h4>						
+	<div class="function">
+
+		<span class="name">createMediaStreamDestination</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>MediaStreamAudioDestinationNode</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L251">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="createMediaStreamSource">
+		createMediaStreamSource
+		<a class="section-link" href="#createMediaStreamSource">#</a>
+	</a>
+
+</h4>						
+	<div class="function">
+
+		<span class="name">createMediaStreamSource</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">stream</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><span>MediaStream</span></span>	</span>									</span>													</div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>MediaStreamAudioSourceNode</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L233">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="createOscillator">
+		createOscillator
+		<a class="section-link" href="#createOscillator">#</a>
+	</a>
+
+</h4>						
+	<div class="function">
+
+		<span class="name">createOscillator</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>OscillatorNode</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L169">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="createPanner">
+		createPanner
+		<a class="section-link" href="#createPanner">#</a>
+	</a>
+
+</h4>						
+	<div class="function">
+
+		<span class="name">createPanner</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>PannerNode</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L217">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="createPeriodicWave">
+		createPeriodicWave
+		<a class="section-link" href="#createPeriodicWave">#</a>
+	</a>
+
+</h4>						
+	<div class="function">
+
+		<span class="name">createPeriodicWave</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">real</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="type"><span class="type"><span class="signature-type"><span>number</span></span>	</span><span class="signature-symbol">[]</span>	</span><span class="signature-symbol"> | </span><span class="type"><span class="signature-type"><span>Float32Array</span></span>	</span></span>									</span><span class="signature-symbol">,</span>													</div><div class="parameter"><span class="name">imag</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="type"><span class="type"><span class="signature-type"><span>number</span></span>	</span><span class="signature-symbol">[]</span>	</span><span class="signature-symbol"> | </span><span class="type"><span class="signature-type"><span>Float32Array</span></span>	</span></span>									</span><span class="signature-symbol">,</span>													</div><div class="parameter"><span class="name">constraints</span><span class="signature-symbol" title="optional">?</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="type"><span class="signature-type"><span>PeriodicWaveConstraints</span></span>	</span><span class="signature-symbol"> | </span><span class="type"><span class="signature-type"><span>undefined</span></span>	</span></span>									</span>													</div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>PeriodicWave</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L220">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="createStereoPanner">
+		createStereoPanner
+		<a class="section-link" href="#createStereoPanner">#</a>
+	</a>
+
+</h4>						
+	<div class="function">
+
+		<span class="name">createStereoPanner</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>StereoPannerNode</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L227">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="createWaveShaper">
+		createWaveShaper
+		<a class="section-link" href="#createWaveShaper">#</a>
+	</a>
+
+</h4>						
+	<div class="function">
+
+		<span class="name">createWaveShaper</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>WaveShaperNode</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L230">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="decodeAudioData">
+		decodeAudioData
+		<a class="section-link" href="#decodeAudioData">#</a>
+	</a>
+
+</h4>						
+	<div class="function">
+
+		<span class="name">decodeAudioData</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">audioData</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><span>ArrayBuffer</span></span>	</span>									</span>													</div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>Promise</span></span><span class="signature-symbol">&lt;</span><span class="type"><span class="signature-type"><span>AudioBuffer</span></span>	</span><span class="signature-symbol">&gt;</span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L259">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="dispose">
+		dispose
+		<a class="section-link" href="#dispose">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Clean up. Also closes the audio context.</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">dispose</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L537">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="emit">
+		emit
+		<a class="section-link" href="#emit">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Invoke all of the callbacks bound to the event
+with any arguments passed in.</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">emit</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">event</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><span>any</span></span>	</span>									</span><span class="signature-symbol">,</span>									<div class="description"><p>The name of the event.</p></div></div><div class="parameter"><span class="signature-symbol" title="multiple">...</span><span class="name">args</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="type"><span class="signature-type"><span>any</span></span>	</span><span class="signature-symbol">[]</span>	</span>									</span>									<div class="description"><p>The arguments to pass to the functions listening.</p></div></div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+			<div class="inherited-from">
+		<span>Inherited from </span><a href=Emitter#emit>Emitter.emit</a>
+	</div>
+			<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/util/Emitter.ts#L94">Tone/core/util/Emitter.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="getConstant">
+		getConstant
+		<a class="section-link" href="#getConstant">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p><strong>Internal</strong> Generate a looped buffer at some constant value.</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">getConstant</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">val</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><span>number</span></span>	</span>									</span>													</div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>AudioBufferSourceNode</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L510">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+		<span class="signature-prefix">static</span>
+	<a name="getDefaults">
+		getDefaults
+		<a class="section-link" href="#getDefaults">#</a>
+	</a>
+
+</h4>							<div class="description">
+		<p>Returns all of the default options belonging to the class.</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">getDefaults</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><a href="interface/ContextOptions">ContextOptions</a></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L141">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="immediate">
+		immediate
+		<a class="section-link" href="#immediate">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>The current audio context time without the <a href="#lookAhead">lookAhead</a>.
+In most cases it is better to use <a href="now">now</a> instead of <a href="immediate">immediate</a> since
+with <a href="now">now</a> the <a href="#lookAhead">lookAhead</a> is applied equally to <em>all</em> components including internal components,
+to making sure that everything is scheduled in sync. Mixing <a href="now">now</a> and <a href="immediate">immediate</a>
+can cause some timing issues. If no lookAhead is desired, you can set the <a href="#lookAhead">lookAhead</a> to <code>0</code>.</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">immediate</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><a href="type/Seconds">Seconds</a></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L478">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+		<span class="signature-prefix">static</span>
+	<a name="mixin">
+		mixin
+		<a class="section-link" href="#mixin">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Add Emitter functions (on/off/emit) to the object</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">mixin</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">constr</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><span>any</span></span>	</span>									</span>													</div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>void</span></span>	</span>	</div>
+
+	<div id="code-links">
+			<div class="inherited-from">
+		<span>Inherited from </span><a href=Emitter#mixin>Emitter.mixin</a>
+	</div>
+			<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/util/Emitter.ts#L109">Tone/core/util/Emitter.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="now">
+		now
+		<a class="section-link" href="#now">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>The current audio context time plus a short <a href="#lookAhead">lookAhead</a>.</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">now</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><a href="type/Seconds">Seconds</a></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L467">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="off">
+		off
+		<a class="section-link" href="#off">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Remove the event listener.</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">off</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">event</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="type"><span class="signature-type">"statechange"</span>	</span><span class="signature-symbol"> | </span><span class="type"><span class="signature-type">"tick"</span>	</span></span>									</span><span class="signature-symbol">,</span>									<div class="description"><p>The event to stop listening to.</p></div></div><div class="parameter"><span class="name">callback</span><span class="signature-symbol" title="optional">?</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="type"><span class="signature-type"><span>undefined</span></span>	</span><span class="signature-symbol"> | </span><span class="type"><span class="signature-symbol">(</span><span>args</span><span class="signature-symbol">) => </span><span class="type"><span class="signature-type"><span>void</span></span>	</span>	</span></span>									</span>									<div class="description"><p>The callback which was bound to the event with Emitter.on.If no callback is given, all callbacks events are removed.</p></div></div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+			<div class="inherited-from">
+		<span>Inherited from </span><a href=Emitter#off>Emitter.off</a>
+	</div>
+			<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/util/Emitter.ts#L66">Tone/core/util/Emitter.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="on">
+		on
+		<a class="section-link" href="#on">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Bind a callback to a specific event.</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">on</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">event</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="type"><span class="signature-type">"statechange"</span>	</span><span class="signature-symbol"> | </span><span class="type"><span class="signature-type">"tick"</span>	</span></span>									</span><span class="signature-symbol">,</span>									<div class="description"><p>The name of the event to listen for.</p></div></div><div class="parameter"><span class="name">callback</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-symbol">(</span><span>args</span><span class="signature-symbol">) => </span><span class="type"><span class="signature-type"><span>void</span></span>	</span>	</span>									</span>									<div class="description"><p>The callback to invoke when the event is emitted</p></div></div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+			<div class="inherited-from">
+		<span>Inherited from </span><a href=Emitter#on>Emitter.on</a>
+	</div>
+			<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/util/Emitter.ts#L29">Tone/core/util/Emitter.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="once">
+		once
+		<a class="section-link" href="#once">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Bind a callback which is only invoked once</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">once</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">event</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="type"><span class="signature-type">"statechange"</span>	</span><span class="signature-symbol"> | </span><span class="type"><span class="signature-type">"tick"</span>	</span></span>									</span><span class="signature-symbol">,</span>									<div class="description"><p>The name of the event to listen for.</p></div></div><div class="parameter"><span class="name">callback</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-symbol">(</span><span>args</span><span class="signature-symbol">) => </span><span class="type"><span class="signature-type"><span>void</span></span>	</span>	</span>									</span>									<div class="description"><p>The callback to invoke when the event is emitted</p></div></div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>this</span></span>	</span>	</div>
+
+	<div id="code-links">
+			<div class="inherited-from">
+		<span>Inherited from </span><a href=Emitter#once>Emitter.once</a>
+	</div>
+			<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/util/Emitter.ts#L49">Tone/core/util/Emitter.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="resume">
+		resume
+		<a class="section-link" href="#resume">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Starts the audio context from a suspended state. This is required
+to initially start the AudioContext. See <a href="Tone#start">Tone.start</a></p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">resume</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>Promise</span></span><span class="signature-symbol">&lt;</span><span class="type"><span class="signature-type"><span>void</span></span>	</span><span class="signature-symbol">&gt;</span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L486">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="setInterval">
+		setInterval
+		<a class="section-link" href="#setInterval">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Adds a repeating event to the context&#39;s callback clock</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">setInterval</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">fn</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-symbol">(</span><span>args</span><span class="signature-symbol">) => </span><span class="type"><span class="signature-type"><span>void</span></span>	</span>	</span>									</span><span class="signature-symbol">,</span>													</div><div class="parameter"><span class="name">interval</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/Seconds">Seconds</a></span>	</span>									</span>													</div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>number</span></span>	</span>	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L609">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="setTimeout">
+		setTimeout
+		<a class="section-link" href="#setTimeout">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>A setTimeout which is guaranteed by the clock source.
+Also runs in the offline context.</p>
+
+	</div>
+
+	<div class="function">
+
+		<span class="name">setTimeout</span>
+		<span class="signature-symbol">(</span>
+			<div class="parameters">
+<div class="parameter"><span class="name">fn</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-symbol">(</span><span>args</span><span class="signature-symbol">) => </span><span class="type"><span class="signature-type"><span>void</span></span>	</span>	</span>									</span><span class="signature-symbol">,</span>									<div class="description"><p>The callback to invoke</p></div></div><div class="parameter"><span class="name">timeout</span><span class='type-block'><span class="signature-symbol">:</span><span class="type"><span class="signature-type"><a href="type/Seconds">Seconds</a></span>	</span>									</span>									<div class="description"><p>The timeout in seconds</p></div></div>			</div>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>number</span></span>	</span>				<div class="description">
+					ID to use when invoking Context.clearTimeout
+
+				</div>
+	</div>
+
+	<div id="code-links">
+					<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/Context.ts#L575">Tone/core/context/Context.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="toJSON">
+		toJSON
+		<a class="section-link" href="#toJSON">#</a>
+	</a>
+
+</h4>	
+	<div class="function">
+
+		<span class="name">toJSON</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>Record</span></span><span class="signature-symbol">&lt;</span><span class="type"><span class="signature-type"><span>string</span></span>	</span><span class="signature-symbol">, </span><span class="type"><span class="signature-type"><span>any</span></span>	</span><span class="signature-symbol">&gt;</span>	</span>	</div>
+
+	<div id="code-links">
+			<div class="inherited-from">
+		<span>Inherited from </span><a href=BaseContext#toJSON>BaseContext.toJSON</a>
+	</div>
+			<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/context/BaseContext.ts#L157">Tone/core/context/BaseContext.ts</a>
+	</div>
+	</div>
+</div>
+				<div class="signature">
+		<h4 class='signature-title'>
+	<a name="toString">
+		toString
+		<a class="section-link" href="#toString">#</a>
+	</a>
+
+</h4>		<div class="description">
+		<p>Convert the class to a string</p>
+
+			<span class="nominal-range"></span>
+					<div class="example">
+						<pre><code class="language-js hljs">
+<span class="hljs-keyword">const</span> osc = <span class="hljs-keyword">new</span> Tone.Oscillator();
+<span class="hljs-built_in">console</span>.log(osc.toString());
+</code></pre>
+					</div>
+	</div>
+
+	<div class="function">
+
+		<span class="name">toString</span>
+		<span class="signature-symbol">(</span>
+		<span class="signature-symbol">)</span>
+		<span class="signature-symbol"> => </span>
+		<span class="type"><span class="signature-type"><span>string</span></span>	</span>	</div>
+
+	<div id="code-links">
+			<div class="inherited-from">
+		<span>Inherited from </span><a href=Tone#toString>Tone.toString</a>
+	</div>
+			<div class="code-link">
+				Defined in: <a target="_blank"
+					href="https://github.com/Tonejs/Tone.js/blob/f9789df/Tone/core/Tone.ts#L103">Tone/core/Tone.ts</a>
+	</div>
+	</div>
+</div>
+</div>		</div>
+		<div id="back-to-top"><a href="#class-container" title="back to top">^</a></div>
+	</div>
+</div>		<div id="sidebar">
+	<div id="topbar">
+		<a href="https://tonejs.github.io">Tone.js</a>
+		<span id="version">v14.8.9</span>
+	</div>
+	<div id="contents">
+		<div id="search">
+			<input type="text" placeholder="Search">
+			<button aria-label="clear">
+				&#215;
+			</button>
+		</div>
+		<div id="inner">
+					<div class="section">
+						<h3>Classes</h3>
+							<div class="category">
+								<h4>Core</h4>
+								<div>
+											<div class="instance">
+													<a href="Clock">
+														Clock
+													</a>
+											</div>
+											<div class="instance target">
+												<a href="Context">
+													Context
+												</a>
+											</div>
+											<div class="instance">
+													<a href="Delay">
+														Delay
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Destination">
+														Destination
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Draw">
+														Draw
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Emitter">
+														Emitter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Gain">
+														Gain
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Listener">
+														Listener
+													</a>
+											</div>
+											<div class="instance">
+													<a href="OfflineContext">
+														OfflineContext
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Param">
+														Param
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Tone">
+														Tone
+													</a>
+											</div>
+											<div class="instance">
+													<a href="ToneAudioBuffer">
+														ToneAudioBuffer
+													</a>
+											</div>
+											<div class="instance">
+													<a href="ToneAudioBuffers">
+														ToneAudioBuffers
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Transport">
+														Transport
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Source</h4>
+								<div>
+											<div class="instance">
+													<a href="AMOscillator">
+														AMOscillator
+													</a>
+											</div>
+											<div class="instance">
+													<a href="FMOscillator">
+														FMOscillator
+													</a>
+											</div>
+											<div class="instance">
+													<a href="FatOscillator">
+														FatOscillator
+													</a>
+											</div>
+											<div class="instance">
+													<a href="GrainPlayer">
+														GrainPlayer
+													</a>
+											</div>
+											<div class="instance">
+													<a href="LFO">
+														LFO
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Noise">
+														Noise
+													</a>
+											</div>
+											<div class="instance">
+													<a href="OmniOscillator">
+														OmniOscillator
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Oscillator">
+														Oscillator
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PWMOscillator">
+														PWMOscillator
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Player">
+														Player
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Players">
+														Players
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PulseOscillator">
+														PulseOscillator
+													</a>
+											</div>
+											<div class="instance">
+													<a href="ToneBufferSource">
+														ToneBufferSource
+													</a>
+											</div>
+											<div class="instance">
+													<a href="ToneOscillatorNode">
+														ToneOscillatorNode
+													</a>
+											</div>
+											<div class="instance">
+													<a href="UserMedia">
+														UserMedia
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Instrument</h4>
+								<div>
+											<div class="instance">
+													<a href="AMSynth">
+														AMSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="DuoSynth">
+														DuoSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="FMSynth">
+														FMSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="MembraneSynth">
+														MembraneSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="MetalSynth">
+														MetalSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="MonoSynth">
+														MonoSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="NoiseSynth">
+														NoiseSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PluckSynth">
+														PluckSynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PolySynth">
+														PolySynth
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Sampler">
+														Sampler
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Synth">
+														Synth
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Effect</h4>
+								<div>
+											<div class="instance">
+													<a href="AutoFilter">
+														AutoFilter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="AutoPanner">
+														AutoPanner
+													</a>
+											</div>
+											<div class="instance">
+													<a href="AutoWah">
+														AutoWah
+													</a>
+											</div>
+											<div class="instance">
+													<a href="BitCrusher">
+														BitCrusher
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Chebyshev">
+														Chebyshev
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Chorus">
+														Chorus
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Distortion">
+														Distortion
+													</a>
+											</div>
+											<div class="instance">
+													<a href="FeedbackDelay">
+														FeedbackDelay
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Freeverb">
+														Freeverb
+													</a>
+											</div>
+											<div class="instance">
+													<a href="FrequencyShifter">
+														FrequencyShifter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="JCReverb">
+														JCReverb
+													</a>
+											</div>
+											<div class="instance">
+													<a href="MidSideEffect">
+														MidSideEffect
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Phaser">
+														Phaser
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PingPongDelay">
+														PingPongDelay
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PitchShift">
+														PitchShift
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Reverb">
+														Reverb
+													</a>
+											</div>
+											<div class="instance">
+													<a href="StereoWidener">
+														StereoWidener
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Tremolo">
+														Tremolo
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Vibrato">
+														Vibrato
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Component</h4>
+								<div>
+											<div class="instance">
+													<a href="AmplitudeEnvelope">
+														AmplitudeEnvelope
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Analyser">
+														Analyser
+													</a>
+											</div>
+											<div class="instance">
+													<a href="BiquadFilter">
+														BiquadFilter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Channel">
+														Channel
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Compressor">
+														Compressor
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Convolver">
+														Convolver
+													</a>
+											</div>
+											<div class="instance">
+													<a href="CrossFade">
+														CrossFade
+													</a>
+											</div>
+											<div class="instance">
+													<a href="DCMeter">
+														DCMeter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="EQ3">
+														EQ3
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Envelope">
+														Envelope
+													</a>
+											</div>
+											<div class="instance">
+													<a href="FFT">
+														FFT
+													</a>
+											</div>
+											<div class="instance">
+													<a href="FeedbackCombFilter">
+														FeedbackCombFilter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Filter">
+														Filter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Follower">
+														Follower
+													</a>
+											</div>
+											<div class="instance">
+													<a href="FrequencyEnvelope">
+														FrequencyEnvelope
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Gate">
+														Gate
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Limiter">
+														Limiter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="LowpassCombFilter">
+														LowpassCombFilter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Merge">
+														Merge
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Meter">
+														Meter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="MidSideCompressor">
+														MidSideCompressor
+													</a>
+											</div>
+											<div class="instance">
+													<a href="MidSideMerge">
+														MidSideMerge
+													</a>
+											</div>
+											<div class="instance">
+													<a href="MidSideSplit">
+														MidSideSplit
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Mono">
+														Mono
+													</a>
+											</div>
+											<div class="instance">
+													<a href="MultibandCompressor">
+														MultibandCompressor
+													</a>
+											</div>
+											<div class="instance">
+													<a href="MultibandSplit">
+														MultibandSplit
+													</a>
+											</div>
+											<div class="instance">
+													<a href="OnePoleFilter">
+														OnePoleFilter
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PanVol">
+														PanVol
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Panner">
+														Panner
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Panner3D">
+														Panner3D
+													</a>
+											</div>
+											<div class="instance">
+													<a href="PhaseShiftAllpass">
+														PhaseShiftAllpass
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Recorder">
+														Recorder
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Solo">
+														Solo
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Split">
+														Split
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Volume">
+														Volume
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Waveform">
+														Waveform
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Signal</h4>
+								<div>
+											<div class="instance">
+													<a href="Abs">
+														Abs
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Add">
+														Add
+													</a>
+											</div>
+											<div class="instance">
+													<a href="AudioToGain">
+														AudioToGain
+													</a>
+											</div>
+											<div class="instance">
+													<a href="GainToAudio">
+														GainToAudio
+													</a>
+											</div>
+											<div class="instance">
+													<a href="GreaterThan">
+														GreaterThan
+													</a>
+											</div>
+											<div class="instance">
+													<a href="GreaterThanZero">
+														GreaterThanZero
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Multiply">
+														Multiply
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Negate">
+														Negate
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Pow">
+														Pow
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Scale">
+														Scale
+													</a>
+											</div>
+											<div class="instance">
+													<a href="ScaleExp">
+														ScaleExp
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Signal">
+														Signal
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Subtract">
+														Subtract
+													</a>
+											</div>
+											<div class="instance">
+													<a href="ToneConstantSource">
+														ToneConstantSource
+													</a>
+											</div>
+											<div class="instance">
+													<a href="WaveShaper">
+														WaveShaper
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Zero">
+														Zero
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Event</h4>
+								<div>
+											<div class="instance">
+													<a href="Loop">
+														Loop
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Part">
+														Part
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Pattern">
+														Pattern
+													</a>
+											</div>
+											<div class="instance">
+													<a href="Sequence">
+														Sequence
+													</a>
+											</div>
+											<div class="instance">
+													<a href="ToneEvent">
+														ToneEvent
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Unit</h4>
+								<div>
+											<div class="instance">
+													<a href="FrequencyClass">
+														FrequencyClass
+													</a>
+											</div>
+											<div class="instance">
+													<a href="MidiClass">
+														MidiClass
+													</a>
+											</div>
+											<div class="instance">
+													<a href="TicksClass">
+														TicksClass
+													</a>
+											</div>
+											<div class="instance">
+													<a href="TimeClass">
+														TimeClass
+													</a>
+											</div>
+											<div class="instance">
+													<a href="TransportTimeClass">
+														TransportTimeClass
+													</a>
+											</div>
+								</div>
+							</div>
+					</div>
+					<div class="section">
+						<h3>Functions</h3>
+							<div class="category">
+								<h4>Core</h4>
+								<div>
+											<div class="instance">
+													<a href="fn/Offline">
+														Offline
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/getContext">
+														getContext
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/getDestination">
+														getDestination
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/getDraw">
+														getDraw
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/getListener">
+														getListener
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/getTransport">
+														getTransport
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/immediate">
+														immediate
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/loaded">
+														loaded
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/now">
+														now
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/setContext">
+														setContext
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/start">
+														start
+													</a>
+											</div>
+								</div>
+							</div>
+							<div class="category">
+								<h4>Unit</h4>
+								<div>
+											<div class="instance">
+													<a href="fn/Frequency">
+														Frequency
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/Midi">
+														Midi
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/Ticks">
+														Ticks
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/Time">
+														Time
+													</a>
+											</div>
+											<div class="instance">
+													<a href="fn/TransportTime">
+														TransportTime
+													</a>
+											</div>
+								</div>
+							</div>
+					</div>
+		</div>
+	</div>
+</div>
+	</div>
+	<script src="./assets/app.bundle.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.9/Tone.js"></script>
+	<script src="https://unpkg.com/@tonejs/ui/build/code.js"></script>
+</body>
+
+</html>
