@@ -8,7 +8,8 @@ import { version } from "../version";
 import { theWindow } from "./context/AudioContext";
 import { log } from "./util/Debug";
 /**
- * @class  Tone is the base class of all other classes.
+ * Tone is the base class of all other classes.
+ *
  * @category Core
  * @constructor
  */

@@ -9,7 +9,7 @@ declare type ClassesWithoutSingletons = Omit<typeof Classes, "Transport" | "Dest
  * The exported Tone object. Contains all of the classes that default
  * to the same context and contains a singleton Transport and Destination node.
  */
-declare type Tone = {
+declare type ToneObject = {
     Transport: Transport;
     Destination: Destination;
     Listener: Listener;
@@ -22,5 +22,5 @@ declare type Tone = {
  * Return an object with all of the classes bound to the passed in context
  * @param context The context to bind all of the nodes to
  */
-export declare function fromContext(context: Context): Tone;
+export declare function fromContext(context: Context): ToneObject;
 export {};
