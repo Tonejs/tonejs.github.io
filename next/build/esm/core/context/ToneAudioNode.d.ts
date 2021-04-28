@@ -160,3 +160,14 @@ export declare function connect(srcNode: OutputNode, dstNode: InputNode, outputN
  * @param inputNumber The input channel of the dstNode
  */
 export declare function disconnect(srcNode: OutputNode, dstNode?: InputNode, outputNumber?: number, inputNumber?: number): void;
+/**
+ * Connect the output of one or more source nodes to a single destination node
+ * @param nodes One or more source nodes followed by one destination node
+ * @example
+ * const player = new Tone.Player("https://tonejs.github.io/audio/drum-samples/conga-rhythm.mp3");
+ * const player1 = new Tone.Player("https://tonejs.github.io/audio/drum-samples/conga-rhythm.mp3");
+ * const filter = new Tone.Filter("G5").toDestination();
+ * // connect nodes to a common destination
+ * fanIn(player, player1, filter);
+ */
+export declare function fanIn(...nodes: OutputNode[]): void;

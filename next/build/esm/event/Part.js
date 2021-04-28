@@ -13,7 +13,7 @@ import { ToneEvent } from "./ToneEvent";
  * 	// the notes given as the second element in the array
  * 	// will be passed in as the second argument
  * 	synth.triggerAttackRelease(note, "8n", time);
- * }), [[0, "C2"], ["0:2", "C3"], ["0:3:2", "G2"]]);
+ * }), [[0, "C2"], ["0:2", "C3"], ["0:3:2", "G2"]]).start(0);
  * Tone.Transport.start();
  * @example
  * const synth = new Tone.Synth().toDestination();
