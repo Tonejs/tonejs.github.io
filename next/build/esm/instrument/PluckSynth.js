@@ -4,7 +4,7 @@ import { optionsFromArguments } from "../core/util/Defaults";
 import { Noise } from "../source/Noise";
 import { Instrument } from "./Instrument";
 /**
- * Karplus-String string synthesis.
+ * Karplus-Strong string synthesis.
  * @example
  * const plucky = new Tone.PluckSynth().toDestination();
  * plucky.triggerAttack("C4", "+0.5");

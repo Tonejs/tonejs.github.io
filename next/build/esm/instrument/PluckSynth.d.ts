@@ -8,7 +8,7 @@ export interface PluckSynthOptions extends InstrumentOptions {
     release: Time;
 }
 /**
- * Karplus-String string synthesis.
+ * Karplus-Strong string synthesis.
  * @example
  * const plucky = new Tone.PluckSynth().toDestination();
  * plucky.triggerAttack("C4", "+0.5");
