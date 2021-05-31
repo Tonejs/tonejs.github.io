@@ -1,0 +1,9 @@
+#topbar {
+  height: 40px;
+  padding: 20px;
+  padding-bottom: 0px;
+  font-size: 1.2em; }
+  #topbar a {
+    color: black; }
+    #topbar a:hover {
+      color: #22DBC0; }
