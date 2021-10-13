@@ -2,6 +2,7 @@ import { MidiClass } from "../core/type/Midi";
 import { deepMerge, omitFromObject, optionsFromArguments } from "../core/util/Defaults";
 import { isArray, isNumber } from "../core/util/TypeCheck";
 import { Instrument } from "./Instrument";
+import { Monophonic } from "./Monophonic";
 import { Synth } from "./Synth";
 import { assert, warn } from "../core/util/Debug";
 /**
@@ -97,6 +98,7 @@ export class PolySynth extends Instrument {
                 context: this.context,
                 onsilence: this._makeVoiceAvailable.bind(this),
             }));
+            assert(voice instanceof Monophonic, "Voice must extend Monophonic class");
             voice.connect(this.output);
             this._voices.push(voice);
             return voice;

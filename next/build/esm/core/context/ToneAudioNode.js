@@ -10,10 +10,6 @@ export class ToneAudioNode extends ToneWithContext {
     constructor() {
         super(...arguments);
         /**
-         * The name of the class
-         */
-        this.name = "ToneAudioNode";
-        /**
          * List all of the node that must be set to match the ChannelProperties
          */
         this._internalChannels = [];

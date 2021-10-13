@@ -176,7 +176,8 @@ export class OneShotSource extends ToneAudioNode {
     }
     dispose() {
         super.dispose();
-        this._gainNode.disconnect();
+        this._gainNode.dispose();
+        this.onended = noOp;
         return this;
     }
 }

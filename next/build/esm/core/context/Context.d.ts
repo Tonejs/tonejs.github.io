@@ -197,6 +197,10 @@ export declare class Context extends BaseContext {
     get rawContext(): AnyAudioContext;
     /**
      * The current audio context time plus a short [[lookAhead]].
+     * @example
+     * setInterval(() => {
+     * 	console.log("now", Tone.now());
+     * }, 100);
      */
     now(): Seconds;
     /**

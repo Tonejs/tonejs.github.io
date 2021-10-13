@@ -30,7 +30,7 @@ export class Meter extends MeterBase {
             context: this.context,
             size: 256,
             type: "waveform",
-            channels: options.channels,
+            channels: options.channelCount,
         });
         this.smoothing = options.smoothing,
             this.normalRange = options.normalRange;
@@ -39,7 +39,7 @@ export class Meter extends MeterBase {
         return Object.assign(MeterBase.getDefaults(), {
             smoothing: 0.8,
             normalRange: false,
-            channels: 1,
+            channelCount: 1,
         });
     }
     /**

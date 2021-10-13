@@ -63,7 +63,7 @@ export declare class Recorder extends ToneAudioNode<RecorderOptions> {
      * Start the Recorder. Returns a promise which resolves
      * when the recorder has started.
      */
-    start(): Promise<unknown>;
+    start(): Promise<void>;
     /**
      * Stop the recorder. Returns a promise with the recorded content until this point
      * encoded as [[mimeType]]

@@ -3,7 +3,7 @@ import { MeterBase, MeterBaseOptions } from "./MeterBase";
 export interface MeterOptions extends MeterBaseOptions {
     smoothing: NormalRange;
     normalRange: boolean;
-    channels: number;
+    channelCount: number;
 }
 /**
  * Meter gets the [RMS](https://en.wikipedia.org/wiki/Root_mean_square)

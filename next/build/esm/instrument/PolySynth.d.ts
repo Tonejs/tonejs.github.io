@@ -12,7 +12,7 @@ declare type VoiceConstructor<V> = {
     getDefaults: () => VoiceOptions<V>;
 } & (new (...args: any[]) => V);
 declare type OmitMonophonicOptions<T> = Omit<T, "context" | "onsilence">;
-declare type VoiceOptions<T> = T extends MembraneSynth ? MembraneSynthOptions : T extends MetalSynth ? MetalSynthOptions : T extends FMSynth ? FMSynthOptions : T extends MonoSynth ? MonoSynthOptions : T extends AMSynth ? AMSynthOptions : T extends Synth ? SynthOptions : never;
+declare type VoiceOptions<T> = T extends MembraneSynth ? MembraneSynthOptions : T extends MetalSynth ? MetalSynthOptions : T extends FMSynth ? FMSynthOptions : T extends MonoSynth ? MonoSynthOptions : T extends AMSynth ? AMSynthOptions : T extends Synth ? SynthOptions : T extends Monophonic<infer U> ? U : never;
 /**
  * The settable synth options. excludes monophonic options.
  */

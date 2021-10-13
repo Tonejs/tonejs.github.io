@@ -104,6 +104,12 @@ export declare class Players extends ToneAudioNode<PlayersOptions> {
      * @param  name A unique name to give the player
      * @param  url  Either the url of the bufer or a buffer which will be added with the given name.
      * @param callback  The callback to invoke when the url is loaded.
+     * @example
+     * const players = new Tone.Players();
+     * players.add("gong", "https://tonejs.github.io/audio/berklee/gong_1.mp3", () => {
+     * 	console.log("gong loaded");
+     * 	players.get("gong").start();
+     * });
      */
     add(name: string, url: string | ToneAudioBuffer | AudioBuffer, callback?: () => void): this;
     /**
