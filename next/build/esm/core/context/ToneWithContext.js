@@ -3,6 +3,7 @@ import { Tone } from "../Tone";
 import { FrequencyClass } from "../type/Frequency";
 import { TimeClass } from "../type/Time";
 import { TransportTimeClass } from "../type/TransportTime";
+import { assertUsedScheduleTime } from "../util/Debug";
 import { getDefaultsFromInstance, optionsFromArguments } from "../util/Defaults";
 import { isArray, isBoolean, isDefined, isNumber, isString, isUndef } from "../util/TypeCheck";
 /**
@@ -70,6 +71,7 @@ export class ToneWithContext extends Tone {
      * Tone.getTransport().bpm.rampTo(60, 30);
      */
     toSeconds(time) {
+        assertUsedScheduleTime(time);
         return new TimeClass(this.context, time).toSeconds();
     }
     /**

@@ -19,6 +19,10 @@ export class Instrument extends ToneAudioNode {
         this._synced = false;
         this._original_triggerAttack = this.triggerAttack;
         this._original_triggerRelease = this.triggerRelease;
+        /**
+         * The release which is scheduled to the timeline.
+         */
+        this._syncedRelease = (time) => this._original_triggerRelease(time);
         const options = optionsFromArguments(Instrument.getDefaults(), arguments);
         this._volume = this.output = new Volume({
             context: this.context,
@@ -50,6 +54,9 @@ export class Instrument extends ToneAudioNode {
         if (this._syncState()) {
             this._syncMethod("triggerAttack", 1);
             this._syncMethod("triggerRelease", 0);
+            this.context.transport.on("stop", this._syncedRelease);
+            this.context.transport.on("pause", this._syncedRelease);
+            this.context.transport.on("loopEnd", this._syncedRelease);
         }
         return this;
     }
@@ -90,6 +97,9 @@ export class Instrument extends ToneAudioNode {
             this._synced = false;
             this.triggerAttack = this._original_triggerAttack;
             this.triggerRelease = this._original_triggerRelease;
+            this.context.transport.off("stop", this._syncedRelease);
+            this.context.transport.off("pause", this._syncedRelease);
+            this.context.transport.off("loopEnd", this._syncedRelease);
         }
         return this;
     }

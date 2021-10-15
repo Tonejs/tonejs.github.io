@@ -93,6 +93,10 @@ export declare abstract class Instrument<Options extends InstrumentOptions> exte
     abstract triggerRelease(...args: any[]): this;
     private _original_triggerRelease;
     /**
+     * The release which is scheduled to the timeline.
+     */
+    protected _syncedRelease: (time: number) => this;
+    /**
      * clean up
      * @returns {Instrument} this
      */

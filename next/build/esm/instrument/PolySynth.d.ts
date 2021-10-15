@@ -153,6 +153,10 @@ export declare class PolySynth<Voice extends Monophonic<any> = Synth> extends In
     triggerAttackRelease(notes: Frequency | Frequency[], duration: Time | Time[], time?: Time, velocity?: NormalRange): this;
     sync(): this;
     /**
+     * The release which is scheduled to the timeline.
+     */
+    protected _syncedRelease: (time: number) => this;
+    /**
      * Set a member/attribute of the voices
      * @example
      * const poly = new Tone.PolySynth().toDestination();

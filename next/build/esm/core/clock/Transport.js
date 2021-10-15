@@ -1,10 +1,11 @@
 import { TimeClass } from "../../core/type/Time";
 import { TimelineValue } from "../../core/util/TimelineValue";
-import { onContextClose, onContextInit } from "../context/ContextInitialization";
+import { onContextClose, onContextInit, } from "../context/ContextInitialization";
 import { Gain } from "../context/Gain";
-import { ToneWithContext } from "../context/ToneWithContext";
+import { ToneWithContext, } from "../context/ToneWithContext";
 import { TicksClass } from "../type/Ticks";
 import { TransportTimeClass } from "../type/TransportTime";
+import { enterScheduledCallback } from "../util/Debug";
 import { optionsFromArguments } from "../util/Defaults";
 import { Emitter } from "../util/Emitter";
 import { readOnly, writable } from "../util/Interface";
@@ -131,11 +132,14 @@ export class Transport extends ToneWithContext {
             ticks % (this._swingTicks * 2) !== 0) {
             // add some swing
             const progress = (ticks % (this._swingTicks * 2)) / (this._swingTicks * 2);
-            const amount = Math.sin((progress) * Math.PI) * this._swingAmount;
-            tickTime += new TicksClass(this.context, this._swingTicks * 2 / 3).toSeconds() * amount;
+            const amount = Math.sin(progress * Math.PI) * this._swingAmount;
+            tickTime +=
+                new TicksClass(this.context, (this._swingTicks * 2) / 3).toSeconds() * amount;
         }
         // invoke the timeline events scheduled on this tick
-        this._timeline.forEachAtTime(ticks, event => event.invoke(tickTime));
+        enterScheduledCallback(true);
+        this._timeline.forEachAtTime(ticks, (event) => event.invoke(tickTime));
+        enterScheduledCallback(false);
     }
     //-------------------------------------
     // 	SCHEDULABLE EVENTS
@@ -234,8 +238,8 @@ export class Transport extends ToneWithContext {
      */
     cancel(after = 0) {
         const computedAfter = this.toTicks(after);
-        this._timeline.forEachFrom(computedAfter, event => this.clear(event.id));
-        this._repeatedEvents.forEachFrom(computedAfter, event => this.clear(event.id));
+        this._timeline.forEachFrom(computedAfter, (event) => this.clear(event.id));
+        this._repeatedEvents.forEachFrom(computedAfter, (event) => this.clear(event.id));
         return this;
     }
     //-------------------------------------
@@ -271,6 +275,8 @@ export class Transport extends ToneWithContext {
      * Tone.Transport.start("+1", "4:0:0");
      */
     start(time, offset) {
+        // start the context
+        this.context.resume();
         let offsetTicks;
         if (isDefined(offset)) {
             offsetTicks = this.toTicks(offset);
@@ -427,7 +433,7 @@ export class Transport extends ToneWithContext {
         if (this.loop) {
             const now = this.now();
             const ticks = this._clock.getTicksAtTime(now);
-            return (ticks - this._loopStart) / (this._loopEnd - this._loopStart);
+            return ((ticks - this._loopStart) / (this._loopEnd - this._loopStart));
         }
         else {
             return 0;
@@ -512,7 +518,7 @@ export class Transport extends ToneWithContext {
             const now = this.now();
             // the remainder of the current ticks and the subdivision
             const transportPos = this.getTicksAtTime(now);
-            const remainingTicks = subdivision - transportPos % subdivision;
+            const remainingTicks = subdivision - (transportPos % subdivision);
             return this._clock.nextTickTime(remainingTicks, now);
         }
     }
@@ -582,10 +588,10 @@ Emitter.mixin(Transport);
 //-------------------------------------
 // 	INITIALIZATION
 //-------------------------------------
-onContextInit(context => {
+onContextInit((context) => {
     context.transport = new Transport({ context });
 });
-onContextClose(context => {
+onContextClose((context) => {
     context.transport.dispose();
 });
 //# sourceMappingURL=Transport.js.map

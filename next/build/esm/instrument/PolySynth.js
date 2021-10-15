@@ -44,6 +44,10 @@ export class PolySynth extends Instrument {
          * A moving average of the number of active voices
          */
         this._averageActiveVoices = 0;
+        /**
+         * The release which is scheduled to the timeline.
+         */
+        this._syncedRelease = (time) => this.releaseAll(time);
         const options = optionsFromArguments(PolySynth.getDefaults(), arguments, ["voice", "options"]);
         // check against the old API (pre 14.3.0)
         assert(!isNumber(options.voice), "DEPRECATED: The polyphony count is no longer the first argument.");
@@ -253,6 +257,10 @@ export class PolySynth extends Instrument {
         if (this._syncState()) {
             this._syncMethod("triggerAttack", 1);
             this._syncMethod("triggerRelease", 1);
+            // make sure that the sound doesn't play after its been stopped
+            this.context.transport.on("stop", this._syncedRelease);
+            this.context.transport.on("pause", this._syncedRelease);
+            this.context.transport.on("loopEnd", this._syncedRelease);
         }
         return this;
     }
