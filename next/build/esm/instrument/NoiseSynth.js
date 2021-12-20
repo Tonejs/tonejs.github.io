@@ -2,7 +2,7 @@ import { AmplitudeEnvelope } from "../component/envelope/AmplitudeEnvelope";
 import { omitFromObject, optionsFromArguments } from "../core/util/Defaults";
 import { Noise } from "../source/Noise";
 import { Instrument } from "./Instrument";
-import { ToneAudioNode } from "../core/context/ToneAudioNode";
+import { ToneAudioNode, } from "../core/context/ToneAudioNode";
 import { Envelope } from "../component/envelope/Envelope";
 import { Source } from "../source/Source";
 /**
@@ -56,7 +56,9 @@ export class NoiseSynth extends Instrument {
         // start the noise
         this.noise.start(time);
         if (this.envelope.sustain === 0) {
-            this.noise.stop(time + this.toSeconds(this.envelope.attack) + this.toSeconds(this.envelope.decay));
+            this.noise.stop(time +
+                this.toSeconds(this.envelope.attack) +
+                this.toSeconds(this.envelope.decay));
         }
         return this;
     }
@@ -76,6 +78,16 @@ export class NoiseSynth extends Instrument {
         }
         return this;
     }
+    /**
+     * Trigger the attack and then the release after the duration.
+     * @param duration The amount of time to hold the note for
+     * @param time The time the note should start
+     * @param velocity The volume of the note (0-1)
+     * @example
+     * const noiseSynth = new Tone.NoiseSynth().toDestination();
+     * // hold the note for 0.5 seconds
+     * noiseSynth.triggerAttackRelease(0.5);
+     */
     triggerAttackRelease(duration, time, velocity = 1) {
         time = this.toSeconds(time);
         duration = this.toSeconds(duration);
