@@ -1,0 +1,1505 @@
+#sidebar {
+  height: 100vh;
+  display: flex;
+  flex-direction: column; }
+  #sidebar #topbar {
+    flex: 0 0 40px; }
+  #sidebar #contents {
+    flex: 1;
+    overflow-y: auto;
+    margin: 0px;
+    margin-top: 0px; }
+    #sidebar #contents:not([open]) summary {
+      display: block; }
+    @media (max-width: 900px) {
+      #sidebar #contents {
+        margin: 10px;
+        margin-top: 0px; } }
+    #sidebar #contents summary {
+      display: none; }
+      @media (max-width: 900px) {
+        #sidebar #contents summary {
+          display: block; } }
+  #sidebar #inner {
+    padding-bottom: 20px;
+    overflow-y: auto;
+    flex: 1; }
+  #sidebar h3, #sidebar h4 {
+    margin: 20px 0px 10px;
+    font-size: 16px;
+    color: #616161;
+    border-color: #616161; }
+  #sidebar .section, #sidebar .category {
+    margin: 10px 5px; }
+  #sidebar .instance.target a {
+    pointer-events: none;
+    font-weight: bold;
+    text-decoration: none; }
+  #sidebar .category:nth-child(0) .instance:nth-child(0) a {
+    color: #f5871f; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(1) a {
+    color: #f5841f; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(2) a {
+    color: #f5801f; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(3) a {
+    color: #f57d1f; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(4) a {
+    color: #f5791f; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(5) a {
+    color: #f57620; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(6) a {
+    color: #f57220; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(7) a {
+    color: #f56f20; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(8) a {
+    color: #f56b20; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(9) a {
+    color: #f56820; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(10) a {
+    color: #f56420; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(11) a {
+    color: #f56120; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(12) a {
+    color: #f55d20; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(13) a {
+    color: #f55a20; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(14) a {
+    color: #f55620; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(15) a {
+    color: #f55321; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(16) a {
+    color: #f55021; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(17) a {
+    color: #f54c21; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(18) a {
+    color: #f54921; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(19) a {
+    color: #f54521; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(20) a {
+    color: #f54221; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(21) a {
+    color: #f53e21; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(22) a {
+    color: #f53b21; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(23) a {
+    color: #f53721; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(24) a {
+    color: #f53421; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(25) a {
+    color: #f53022; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(26) a {
+    color: #f52d22; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(27) a {
+    color: #f52922; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(28) a {
+    color: #f52622; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(0) .instance:nth-child(29) a {
+    color: #f52222; }
+  #sidebar .category:nth-child(0) .instance a {
+    color: #f51f22; }
+  #sidebar .category:nth-child(1) .instance:nth-child(0) a {
+    color: #f28c1e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(1) a {
+    color: #f2881e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(2) a {
+    color: #f2851e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(3) a {
+    color: #f2811e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(4) a {
+    color: #f27e1e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(5) a {
+    color: #f27a1e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(6) a {
+    color: #f2771e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(7) a {
+    color: #f2731e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(8) a {
+    color: #f2701e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(9) a {
+    color: #f26c1e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(10) a {
+    color: #f2691e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(11) a {
+    color: #f2651e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(12) a {
+    color: #f2621e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(13) a {
+    color: #f25e1e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(14) a {
+    color: #f25b1e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(15) a {
+    color: #f2571e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(16) a {
+    color: #f2531e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(17) a {
+    color: #f2501e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(18) a {
+    color: #f24c1e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(19) a {
+    color: #f2491e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(20) a {
+    color: #f2451e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(21) a {
+    color: #f2421e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(22) a {
+    color: #f23e1e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(23) a {
+    color: #f23b1e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(24) a {
+    color: #f2371e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(25) a {
+    color: #f2341e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(26) a {
+    color: #f2301e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(27) a {
+    color: #f22d1e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(28) a {
+    color: #f2291e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(1) .instance:nth-child(29) a {
+    color: #f2261e; }
+  #sidebar .category:nth-child(1) .instance a {
+    color: #f2221e; }
+  #sidebar .category:nth-child(2) .instance:nth-child(0) a {
+    color: #ef911c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(1) a {
+    color: #ef8d1c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(2) a {
+    color: #ef8a1c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(3) a {
+    color: #ef861c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(4) a {
+    color: #ef831c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(5) a {
+    color: #ef7f1c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(6) a {
+    color: #ef7c1c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(7) a {
+    color: #ef781c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(8) a {
+    color: #ef751c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(9) a {
+    color: #ef711c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(10) a {
+    color: #ef6e1c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(11) a {
+    color: #ef6a1c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(12) a {
+    color: #ef671c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(13) a {
+    color: #ef631c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(14) a {
+    color: #ef601c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(15) a {
+    color: #ef5c1c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(16) a {
+    color: #ef591c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(17) a {
+    color: #ef551c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(18) a {
+    color: #ef521c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(19) a {
+    color: #ef4e1c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(20) a {
+    color: #ef4b1c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(21) a {
+    color: #ef471c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(22) a {
+    color: #ef441c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(23) a {
+    color: #ef401c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(24) a {
+    color: #ef3d1c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(25) a {
+    color: #ef391c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(26) a {
+    color: #ef361c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(27) a {
+    color: #ef321c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(28) a {
+    color: #ef2f1c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(2) .instance:nth-child(29) a {
+    color: #ef2b1c; }
+  #sidebar .category:nth-child(2) .instance a {
+    color: #ef281c; }
+  #sidebar .category:nth-child(3) .instance:nth-child(0) a {
+    color: #ec961b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(1) a {
+    color: #ec931b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(2) a {
+    color: #ec8f1b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(3) a {
+    color: #ec8c1b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(4) a {
+    color: #ec881b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(5) a {
+    color: #ec851b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(6) a {
+    color: #ec811b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(7) a {
+    color: #ec7e1b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(8) a {
+    color: #ec7a1b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(9) a {
+    color: #ec771b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(10) a {
+    color: #ec731b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(11) a {
+    color: #ec701b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(12) a {
+    color: #ec6c1b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(13) a {
+    color: #ec691b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(14) a {
+    color: #ec651b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(15) a {
+    color: #ec621b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(16) a {
+    color: #ec5e1b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(17) a {
+    color: #ec5b1b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(18) a {
+    color: #ec571b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(19) a {
+    color: #ec541b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(20) a {
+    color: #ec501b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(21) a {
+    color: #ec4d1b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(22) a {
+    color: #ec491b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(23) a {
+    color: #ec461b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(24) a {
+    color: #ec421b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(25) a {
+    color: #ec3f1b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(26) a {
+    color: #ec3b1b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(27) a {
+    color: #ec381b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(28) a {
+    color: #ec341b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(3) .instance:nth-child(29) a {
+    color: #ec311b; }
+  #sidebar .category:nth-child(3) .instance a {
+    color: #ec2e1b; }
+  #sidebar .category:nth-child(4) .instance:nth-child(0) a {
+    color: #e99b1a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(1) a {
+    color: #e9981a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(2) a {
+    color: #e9941a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(3) a {
+    color: #e9911a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(4) a {
+    color: #e98d1a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(5) a {
+    color: #e98a1a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(6) a {
+    color: #e9861a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(7) a {
+    color: #e9831a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(8) a {
+    color: #e97f1a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(9) a {
+    color: #e97c1a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(10) a {
+    color: #e9791a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(11) a {
+    color: #e9751a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(12) a {
+    color: #e9721a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(13) a {
+    color: #e96e1a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(14) a {
+    color: #e96b1a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(15) a {
+    color: #e9671a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(16) a {
+    color: #e9641a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(17) a {
+    color: #e9601a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(18) a {
+    color: #e95d1a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(19) a {
+    color: #e9591a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(20) a {
+    color: #e9561a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(21) a {
+    color: #e9531a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(22) a {
+    color: #e94f1a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(23) a {
+    color: #e94c1a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(24) a {
+    color: #e9481a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(25) a {
+    color: #e9451a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(26) a {
+    color: #e9411a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(27) a {
+    color: #e93e1a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(28) a {
+    color: #e93a1a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(4) .instance:nth-child(29) a {
+    color: #e9371a; }
+  #sidebar .category:nth-child(4) .instance a {
+    color: #e9341a; }
+  #sidebar .category:nth-child(5) .instance:nth-child(0) a {
+    color: #e6a018; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(1) a {
+    color: #e69d18; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(2) a {
+    color: #e69918; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(3) a {
+    color: #e69618; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(4) a {
+    color: #e69218; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(5) a {
+    color: #e68f18; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(6) a {
+    color: #e68b18; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(7) a {
+    color: #e68818; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(8) a {
+    color: #e68518; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(9) a {
+    color: #e68118; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(10) a {
+    color: #e67e18; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(11) a {
+    color: #e67a18; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(12) a {
+    color: #e67718; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(13) a {
+    color: #e67318; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(14) a {
+    color: #e67018; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(15) a {
+    color: #e66d18; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(16) a {
+    color: #e66918; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(17) a {
+    color: #e66618; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(18) a {
+    color: #e66218; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(19) a {
+    color: #e65f18; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(20) a {
+    color: #e65b18; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(21) a {
+    color: #e65818; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(22) a {
+    color: #e65418; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(23) a {
+    color: #e65118; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(24) a {
+    color: #e64e18; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(25) a {
+    color: #e64a18; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(26) a {
+    color: #e64718; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(27) a {
+    color: #e64318; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(28) a {
+    color: #e64018; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(5) .instance:nth-child(29) a {
+    color: #e63c18; }
+  #sidebar .category:nth-child(5) .instance a {
+    color: #e63918; }
+  #sidebar .category:nth-child(6) .instance:nth-child(0) a {
+    color: #e3a617; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(1) a {
+    color: #e3a317; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(2) a {
+    color: #e39f17; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(3) a {
+    color: #e39c17; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(4) a {
+    color: #e39817; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(5) a {
+    color: #e39517; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(6) a {
+    color: #e39217; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(7) a {
+    color: #e38e17; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(8) a {
+    color: #e38b17; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(9) a {
+    color: #e38717; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(10) a {
+    color: #e38417; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(11) a {
+    color: #e38117; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(12) a {
+    color: #e37d17; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(13) a {
+    color: #e37a17; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(14) a {
+    color: #e37617; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(15) a {
+    color: #e37317; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(16) a {
+    color: #e37017; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(17) a {
+    color: #e36c17; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(18) a {
+    color: #e36917; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(19) a {
+    color: #e36517; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(20) a {
+    color: #e36217; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(21) a {
+    color: #e35f17; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(22) a {
+    color: #e35b17; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(23) a {
+    color: #e35817; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(24) a {
+    color: #e35417; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(25) a {
+    color: #e35117; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(26) a {
+    color: #e34e17; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(27) a {
+    color: #e34a17; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(28) a {
+    color: #e34717; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(6) .instance:nth-child(29) a {
+    color: #e34317; }
+  #sidebar .category:nth-child(6) .instance a {
+    color: #e34017; }
+  #sidebar .category:nth-child(7) .instance:nth-child(0) a {
+    color: #e0ab16; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(1) a {
+    color: #e0a816; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(2) a {
+    color: #e0a416; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(3) a {
+    color: #e0a116; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(4) a {
+    color: #e09e16; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(5) a {
+    color: #e09a16; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(6) a {
+    color: #e09716; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(7) a {
+    color: #e09316; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(8) a {
+    color: #e09016; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(9) a {
+    color: #e08d16; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(10) a {
+    color: #e08916; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(11) a {
+    color: #e08616; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(12) a {
+    color: #e08316; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(13) a {
+    color: #e07f16; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(14) a {
+    color: #e07c16; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(15) a {
+    color: #e07916; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(16) a {
+    color: #e07516; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(17) a {
+    color: #e07216; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(18) a {
+    color: #e06e16; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(19) a {
+    color: #e06b16; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(20) a {
+    color: #e06816; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(21) a {
+    color: #e06416; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(22) a {
+    color: #e06116; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(23) a {
+    color: #e05e16; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(24) a {
+    color: #e05a16; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(25) a {
+    color: #e05716; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(26) a {
+    color: #e05316; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(27) a {
+    color: #e05016; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(28) a {
+    color: #e04d16; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(7) .instance:nth-child(29) a {
+    color: #e04916; }
+  #sidebar .category:nth-child(7) .instance a {
+    color: #e04616; }
+  #sidebar .category:nth-child(8) .instance:nth-child(0) a {
+    color: #ddb014; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(1) a {
+    color: #ddad14; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(2) a {
+    color: #dda914; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(3) a {
+    color: #dda614; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(4) a {
+    color: #dda314; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(5) a {
+    color: #dd9f14; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(6) a {
+    color: #dd9c14; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(7) a {
+    color: #dd9914; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(8) a {
+    color: #dd9514; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(9) a {
+    color: #dd9214; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(10) a {
+    color: #dd8f14; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(11) a {
+    color: #dd8b14; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(12) a {
+    color: #dd8814; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(13) a {
+    color: #dd8414; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(14) a {
+    color: #dd8114; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(15) a {
+    color: #dd7e14; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(16) a {
+    color: #dd7a14; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(17) a {
+    color: #dd7714; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(18) a {
+    color: #dd7414; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(19) a {
+    color: #dd7014; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(20) a {
+    color: #dd6d14; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(21) a {
+    color: #dd6a14; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(22) a {
+    color: #dd6614; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(23) a {
+    color: #dd6314; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(24) a {
+    color: #dd6014; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(25) a {
+    color: #dd5c14; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(26) a {
+    color: #dd5914; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(27) a {
+    color: #dd5614; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(28) a {
+    color: #dd5214; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(8) .instance:nth-child(29) a {
+    color: #dd4f14; }
+  #sidebar .category:nth-child(8) .instance a {
+    color: #dd4c14; }
+  #sidebar .category:nth-child(9) .instance:nth-child(0) a {
+    color: #dab513; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(1) a {
+    color: #dab213; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(2) a {
+    color: #daae13; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(3) a {
+    color: #daab13; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(4) a {
+    color: #daa813; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(5) a {
+    color: #daa413; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(6) a {
+    color: #daa113; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(7) a {
+    color: #da9e13; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(8) a {
+    color: #da9a13; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(9) a {
+    color: #da9713; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(10) a {
+    color: #da9413; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(11) a {
+    color: #da9113; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(12) a {
+    color: #da8d13; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(13) a {
+    color: #da8a13; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(14) a {
+    color: #da8713; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(15) a {
+    color: #da8313; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(16) a {
+    color: #da8013; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(17) a {
+    color: #da7d13; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(18) a {
+    color: #da7913; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(19) a {
+    color: #da7613; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(20) a {
+    color: #da7313; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(21) a {
+    color: #da6f13; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(22) a {
+    color: #da6c13; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(23) a {
+    color: #da6913; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(24) a {
+    color: #da6513; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(25) a {
+    color: #da6213; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(26) a {
+    color: #da5f13; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(27) a {
+    color: #da5b13; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(28) a {
+    color: #da5813; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(9) .instance:nth-child(29) a {
+    color: #da5513; }
+  #sidebar .category:nth-child(9) .instance a {
+    color: #da5213; }
+  #sidebar .category:nth-child(10) .instance:nth-child(0) a {
+    color: #d7ba12; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(1) a {
+    color: #d7b712; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(2) a {
+    color: #d7b312; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(3) a {
+    color: #d7b012; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(4) a {
+    color: #d7ad12; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(5) a {
+    color: #d7aa12; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(6) a {
+    color: #d7a612; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(7) a {
+    color: #d7a312; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(8) a {
+    color: #d7a012; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(9) a {
+    color: #d79c12; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(10) a {
+    color: #d79912; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(11) a {
+    color: #d79612; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(12) a {
+    color: #d79312; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(13) a {
+    color: #d78f12; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(14) a {
+    color: #d78c12; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(15) a {
+    color: #d78912; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(16) a {
+    color: #d78512; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(17) a {
+    color: #d78212; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(18) a {
+    color: #d77f12; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(19) a {
+    color: #d77c12; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(20) a {
+    color: #d77812; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(21) a {
+    color: #d77512; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(22) a {
+    color: #d77212; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(23) a {
+    color: #d76e12; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(24) a {
+    color: #d76b12; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(25) a {
+    color: #d76812; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(26) a {
+    color: #d76512; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(27) a {
+    color: #d76112; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(28) a {
+    color: #d75e12; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(10) .instance:nth-child(29) a {
+    color: #d75b12; }
+  #sidebar .category:nth-child(10) .instance a {
+    color: #d75812; }
+  #sidebar .category:nth-child(11) .instance:nth-child(0) a {
+    color: #d4bf10; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(1) a {
+    color: #d4bc10; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(2) a {
+    color: #d4b810; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(3) a {
+    color: #d4b510; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(4) a {
+    color: #d4b210; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(5) a {
+    color: #d4af10; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(6) a {
+    color: #d4ab10; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(7) a {
+    color: #d4a810; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(8) a {
+    color: #d4a510; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(9) a {
+    color: #d4a210; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(10) a {
+    color: #d49e10; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(11) a {
+    color: #d49b10; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(12) a {
+    color: #d49810; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(13) a {
+    color: #d49510; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(14) a {
+    color: #d49110; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(15) a {
+    color: #d48e10; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(16) a {
+    color: #d48b10; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(17) a {
+    color: #d48710; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(18) a {
+    color: #d48410; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(19) a {
+    color: #d48110; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(20) a {
+    color: #d47e10; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(21) a {
+    color: #d47a10; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(22) a {
+    color: #d47710; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(23) a {
+    color: #d47410; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(24) a {
+    color: #d47110; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(25) a {
+    color: #d46d10; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(26) a {
+    color: #d46a10; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(27) a {
+    color: #d46710; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(28) a {
+    color: #d46410; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .category:nth-child(11) .instance:nth-child(29) a {
+    color: #d46010; }
+  #sidebar .category:nth-child(11) .instance a {
+    color: #d45d10; }
+  #sidebar .instance a {
+    text-decoration: none; }
+  #sidebar #search {
+    margin: 10px;
+    font-size: 16px;
+    font-family: inherit;
+    flex: 0 0 30px;
+    height: 30px;
+    position: relative;
+    display: flex; }
+    #sidebar #search input {
+      flex: 1;
+      font-size: 0.8em;
+      padding: 5px;
+      font-family: inherit;
+      border: 2px solid #ECECEC;
+      -webkit-appearance: none;
+      appearance: none; }
+    #sidebar #search button {
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      background-color: transparent;
+      height: 30px;
+      width: 30px;
+      -webkit-appearance: none;
+      appearance: none;
+      border: none; }

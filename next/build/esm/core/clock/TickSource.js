@@ -21,6 +21,14 @@ export class TickSource extends ToneWithContext {
          * The offset values of the ticks
          */
         this._tickOffset = new Timeline();
+        /**
+         * Memoized values of getTicksAtTime at events with state other than "started"
+         */
+        this._ticksAtTime = new Timeline();
+        /**
+         * Memoized values of getSecondsAtTime at events with state other than "started"
+         */
+        this._secondsAtTime = new Timeline();
         const options = optionsFromArguments(TickSource.getDefaults(), arguments, ["frequency"]);
         this.frequency = new TickSignal({
             context: this.context,
@@ -58,6 +66,8 @@ export class TickSource extends ToneWithContext {
             if (isDefined(offset)) {
                 this.setTicksAtTime(offset, computedTime);
             }
+            this._ticksAtTime.cancel(computedTime);
+            this._secondsAtTime.cancel(computedTime);
         }
         return this;
     }
@@ -78,6 +88,8 @@ export class TickSource extends ToneWithContext {
         this._state.cancel(computedTime);
         this._state.setStateAtTime("stopped", computedTime);
         this.setTicksAtTime(0, computedTime);
+        this._ticksAtTime.cancel(computedTime);
+        this._secondsAtTime.cancel(computedTime);
         return this;
     }
     /**
@@ -88,6 +100,8 @@ export class TickSource extends ToneWithContext {
         const computedTime = this.toSeconds(time);
         if (this._state.getValueAtTime(computedTime) === "started") {
             this._state.setStateAtTime("paused", computedTime);
+            this._ticksAtTime.cancel(computedTime);
+            this._secondsAtTime.cancel(computedTime);
         }
         return this;
     }
@@ -99,6 +113,8 @@ export class TickSource extends ToneWithContext {
         time = this.toSeconds(time);
         this._state.cancel(time);
         this._tickOffset.cancel(time);
+        this._ticksAtTime.cancel(time);
+        this._secondsAtTime.cancel(time);
         return this;
     }
     /**
@@ -109,14 +125,17 @@ export class TickSource extends ToneWithContext {
     getTicksAtTime(time) {
         const computedTime = this.toSeconds(time);
         const stopEvent = this._state.getLastState("stopped", computedTime);
+        // get previously memoized ticks if available
+        const memoizedEvent = this._ticksAtTime.get(computedTime);
         // this event allows forEachBetween to iterate until the current time
         const tmpEvent = { state: "paused", time: computedTime };
         this._state.add(tmpEvent);
         // keep track of the previous offset event
-        let lastState = stopEvent;
-        let elapsedTicks = 0;
+        let lastState = memoizedEvent ? memoizedEvent : stopEvent;
+        let elapsedTicks = memoizedEvent ? memoizedEvent.ticks : 0;
+        let eventToMemoize = null;
         // iterate through all the events since the last stop
-        this._state.forEachBetween(stopEvent.time, computedTime + this.sampleTime, e => {
+        this._state.forEachBetween(lastState.time, computedTime + this.sampleTime, e => {
             let periodStartTime = lastState.time;
             // if there is an offset event in this period use that
             const offsetEvent = this._tickOffset.get(e.time);
@@ -126,11 +145,19 @@ export class TickSource extends ToneWithContext {
             }
             if (lastState.state === "started" && e.state !== "started") {
                 elapsedTicks += this.frequency.getTicksAtTime(e.time) - this.frequency.getTicksAtTime(periodStartTime);
+                // do not memoize the temporary event
+                if (e.time != tmpEvent.time) {
+                    eventToMemoize = { state: e.state, time: e.time, ticks: elapsedTicks };
+                }
             }
             lastState = e;
         });
         // remove the temporary event
         this._state.remove(tmpEvent);
+        // memoize the ticks at the most recent event with state other than "started"
+        if (eventToMemoize) {
+            this._ticksAtTime.add(eventToMemoize);
+        }
         // return the ticks
         return elapsedTicks;
     }
@@ -167,11 +194,14 @@ export class TickSource extends ToneWithContext {
         // this event allows forEachBetween to iterate until the current time
         const tmpEvent = { state: "paused", time };
         this._state.add(tmpEvent);
+        // get previously memoized seconds if available
+        const memoizedEvent = this._secondsAtTime.get(time);
         // keep track of the previous offset event
-        let lastState = stopEvent;
-        let elapsedSeconds = 0;
+        let lastState = memoizedEvent ? memoizedEvent : stopEvent;
+        let elapsedSeconds = memoizedEvent ? memoizedEvent.seconds : 0;
+        let eventToMemoize = null;
         // iterate through all the events since the last stop
-        this._state.forEachBetween(stopEvent.time, time + this.sampleTime, e => {
+        this._state.forEachBetween(lastState.time, time + this.sampleTime, e => {
             let periodStartTime = lastState.time;
             // if there is an offset event in this period use that
             const offsetEvent = this._tickOffset.get(e.time);
@@ -181,12 +211,20 @@ export class TickSource extends ToneWithContext {
             }
             if (lastState.state === "started" && e.state !== "started") {
                 elapsedSeconds += e.time - periodStartTime;
+                // do not memoize the temporary event
+                if (e.time != tmpEvent.time) {
+                    eventToMemoize = { state: e.state, time: e.time, seconds: elapsedSeconds };
+                }
             }
             lastState = e;
         });
         // remove the temporary event
         this._state.remove(tmpEvent);
-        // return the ticks
+        // memoize the seconds at the most recent event with state other than "started"
+        if (eventToMemoize) {
+            this._secondsAtTime.add(eventToMemoize);
+        }
+        // return the seconds
         return elapsedSeconds;
     }
     /**
@@ -202,6 +240,8 @@ export class TickSource extends ToneWithContext {
             ticks,
             time,
         });
+        this._ticksAtTime.cancel(time);
+        this._secondsAtTime.cancel(time);
         return this;
     }
     /**
@@ -277,6 +317,8 @@ export class TickSource extends ToneWithContext {
         super.dispose();
         this._state.dispose();
         this._tickOffset.dispose();
+        this._ticksAtTime.dispose();
+        this._secondsAtTime.dispose();
         this.frequency.dispose();
         return this;
     }
