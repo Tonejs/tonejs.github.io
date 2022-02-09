@@ -25,12 +25,6 @@ export interface ContextTimeoutEvent {
 export declare class Context extends BaseContext {
     readonly name: string;
     /**
-     * The amount of time into the future events are scheduled. Giving Web Audio
-     * a short amount of time into the future to schedule events can reduce clicks and
-     * improve performance. This value can be set to 0 to get the lowest latency.
-     */
-    lookAhead: Seconds;
-    /**
      * private reference to the BaseAudioContext
      */
     protected readonly _context: AnyAudioContext;
@@ -160,8 +154,9 @@ export declare class Context extends BaseContext {
     /**
      * How often the interval callback is invoked.
      * This number corresponds to how responsive the scheduling
-     * can be. context.updateInterval + context.lookAhead gives you the
-     * total latency between scheduling an event and hearing it.
+     * can be. Setting to 0 will result in the lowest practial interval
+     * based on context properties. context.updateInterval + context.lookAhead
+     * gives you the total latency between scheduling an event and hearing it.
      */
     get updateInterval(): Seconds;
     set updateInterval(interval: Seconds);
@@ -171,6 +166,15 @@ export declare class Context extends BaseContext {
      */
     get clockSource(): TickerClockSource;
     set clockSource(type: TickerClockSource);
+    /**
+     * The amount of time into the future events are scheduled. Giving Web Audio
+     * a short amount of time into the future to schedule events can reduce clicks and
+     * improve performance. This value can be set to 0 to get the lowest latency.
+     * Adjusting this value also affects the [[updateInterval]].
+     */
+    get lookAhead(): Seconds;
+    set lookAhead(time: Seconds);
+    private _lookAhead;
     /**
      * The type of playback, which affects tradeoffs between audio
      * output latency and responsiveness.
@@ -187,10 +191,6 @@ export declare class Context extends BaseContext {
      * console.log(Tone.getContext().latencyHint);
      */
     get latencyHint(): ContextLatencyHint | Seconds;
-    /**
-     * Update the lookAhead and updateInterval based on the latencyHint
-     */
-    private _setLatencyHint;
     /**
      * The unwrapped AudioContext or OfflineAudioContext
      */

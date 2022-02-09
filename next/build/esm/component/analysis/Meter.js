@@ -21,10 +21,6 @@ export class Meter extends MeterBase {
     constructor() {
         super(optionsFromArguments(Meter.getDefaults(), arguments, ["smoothing"]));
         this.name = "Meter";
-        /**
-         * The previous frame's value
-         */
-        this._rms = 0;
         const options = optionsFromArguments(Meter.getDefaults(), arguments, ["smoothing"]);
         this.input = this.output = this._analyser = new Analyser({
             context: this.context,
@@ -34,6 +30,8 @@ export class Meter extends MeterBase {
         });
         this.smoothing = options.smoothing,
             this.normalRange = options.normalRange;
+        this._rms = new Array(options.channelCount);
+        this._rms.fill(0);
     }
     static getDefaults() {
         return Object.assign(MeterBase.getDefaults(), {
@@ -60,13 +58,13 @@ export class Meter extends MeterBase {
     getValue() {
         const aValues = this._analyser.getValue();
         const channelValues = this.channels === 1 ? [aValues] : aValues;
-        const vals = channelValues.map(values => {
+        const vals = channelValues.map((values, index) => {
             const totalSquared = values.reduce((total, current) => total + current * current, 0);
             const rms = Math.sqrt(totalSquared / values.length);
             // the rms can only fall at the rate of the smoothing
             // but can jump up instantly
-            this._rms = Math.max(rms, this._rms * this.smoothing);
-            return this.normalRange ? this._rms : gainToDb(this._rms);
+            this._rms[index] = Math.max(rms, this._rms[index] * this.smoothing);
+            return this.normalRange ? this._rms[index] : gainToDb(this._rms[index]);
         });
         if (this.channels === 1) {
             return vals[0];

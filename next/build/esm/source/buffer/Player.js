@@ -185,7 +185,8 @@ export class Player extends Source {
         return this;
     }
     _restart(time, offset, duration) {
-        this._stop(time);
+        var _a;
+        (_a = [...this._activeSources].pop()) === null || _a === void 0 ? void 0 : _a.stop(time); // explicitly stop only the most recently created source, to avoid edge case when > 1 source exists and _stop() erroneously sets all stop times past original end offset
         this._start(time, offset, duration);
     }
     /**

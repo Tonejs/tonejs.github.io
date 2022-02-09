@@ -15,7 +15,6 @@ export interface MetalSynthOptions extends MonophonicOptions {
  * A highly inharmonic and spectrally complex source with a highpass filter
  * and amplitude envelope which is good for making metallophone sounds.
  * Based on CymbalSynth by [@polyrhythmatic](https://github.com/polyrhythmatic).
- * Inspiration from [Sound on Sound](https://shorturl.at/rSZ12).
  * @category Instrument
  */
 export declare class MetalSynth extends Monophonic<MetalSynthOptions> {

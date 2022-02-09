@@ -32,7 +32,7 @@ export declare class Meter extends MeterBase<MeterOptions> {
      */
     smoothing: number;
     /**
-     * The previous frame's value
+     * The previous frame's value for each channel.
      */
     private _rms;
     /**
