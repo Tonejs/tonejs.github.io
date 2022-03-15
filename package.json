@@ -39,7 +39,7 @@
 		"highlight.js": "^10.4.1",
 		"marked": "^0.7.0",
 		"monaco-editor": "^0.18.1",
-		"node-sass": "^4.13.1",
+		"node-sass": "^7.0.0",
 		"style-loader": "^1.0.0",
 		"tmp": "^0.2.1",
 		"tone": "^14.8.38",
