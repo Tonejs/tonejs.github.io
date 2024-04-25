@@ -13,8 +13,7 @@
 		"build:js": "webpack --config ./doc-gen/scripts/webpack.config.js",
 		"test:output_dir": "[ -z \"$npm_config_output\" ] && echo \"SPECIFY OUTPUT DIR\" && exit 1 || echo $npm_config_output",
 		"build:docs": "npm run test:output_dir && npm run build:html && npm run build:js &&npm run build:css",
-		"build:redir": "zx scripts/create_redirect.mjs",
-		"build": "zx scripts/build_latest.mjs && node scripts/create_redirect.js",
+		"build": "zx scripts/build_latest.mjs && zx scripts/create_redirect.mjs",
 		"examples": "node scripts/copy_examples.js"
 	},
 	"repository": {
