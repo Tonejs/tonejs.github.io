@@ -6,9 +6,9 @@ const path = require("path");
 
 const tmpDir = tmp.dirSync({ unsafeCleanup: true });
 try {
-	console.log("cloning Tone.js into tmp dir");
-	execSync(`git clone git://github.com/Tonejs/Tone.js ${tmpDir.name}`);
-	execSync(`git checkout origin/master`, {
+	console.log(`cloning Tone.js into ${tmpDir.name}`);
+	execSync(`git clone https://github.com/Tonejs/Tone.js ${tmpDir.name}`);
+	execSync(`git checkout origin/main`, {
 		cwd: tmpDir.name,
 	});
 
@@ -29,7 +29,7 @@ try {
 		buildPath
 	);
 
-	console.log("copying latest examples from master branch");
+	console.log("copying latest examples from main branch");
 	fs.copySync(path.resolve(tmpDir.name, "examples"), examplesDir);
 
 	// copy the README, rename to index.md
