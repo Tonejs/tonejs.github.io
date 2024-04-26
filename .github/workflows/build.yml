@@ -5,11 +5,15 @@ on:
     branches:
       - dev
       - master
+  # daily at midnight
+  schedule:
+    - cron: "0 0 * * *"
+
 jobs:
   build-latest:
     name: Get latest
     permissions:
-      contents: read
+      contents: write
       id-token: write
     runs-on: ubuntu-latest
     steps:
