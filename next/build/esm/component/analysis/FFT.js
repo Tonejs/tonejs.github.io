@@ -5,6 +5,7 @@ import { MeterBase } from "./MeterBase";
 import { assert } from "../../core/util/Debug";
 /**
  * Get the current frequency data of the connected audio source using a fast Fourier transform.
+ * Read more about FFT algorithms on [Wikipedia] (https://en.wikipedia.org/wiki/Fast_Fourier_transform).
  * @category Component
  */
 export class FFT extends MeterBase {

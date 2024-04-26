@@ -119,7 +119,7 @@ export declare class OmniOscillator<OscType extends AnyOscillator> extends Sourc
     set baseType(baseType: OscillatorType | "pwm" | "pulse");
     /**
      * The width of the oscillator when sourceType === "pulse".
-     * See [[PWMOscillator.width]]
+     * See [[PWMOscillator]]
      */
     get width(): IsPulseOscillator<OscType, Signal<"audioRange">>;
     /**

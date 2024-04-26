@@ -69,6 +69,10 @@ export declare class Context extends BaseContext {
      */
     private _initialized;
     /**
+     * Private indicator if a close() has been called on the context, since close is async
+     */
+    private _closeStarted;
+    /**
      * Indicates if the context is an OfflineAudioContext or an AudioContext
      */
     readonly isOffline: boolean;
@@ -135,7 +139,7 @@ export declare class Context extends BaseContext {
     /**
      * Maps a module name to promise of the addModule method
      */
-    private _workletModules;
+    private _workletPromise;
     /**
      * Create an audio worklet node from a name and options. The module
      * must first be loaded using [[addAudioWorkletModule]].
@@ -144,9 +148,8 @@ export declare class Context extends BaseContext {
     /**
      * Add an AudioWorkletProcessor module
      * @param url The url of the module
-     * @param name The name of the module
      */
-    addAudioWorkletModule(url: string, name: string): Promise<void>;
+    addAudioWorkletModule(url: string): Promise<void>;
     /**
      * Returns a promise which resolves when all of the worklets have been loaded on this context
      */
@@ -213,7 +216,7 @@ export declare class Context extends BaseContext {
     immediate(): Seconds;
     /**
      * Starts the audio context from a suspended state. This is required
-     * to initially start the AudioContext. See [[Tone.start]]
+     * to initially start the AudioContext. See [[start]]
      */
     resume(): Promise<void>;
     /**

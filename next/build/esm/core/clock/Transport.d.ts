@@ -256,18 +256,18 @@ export declare class Transport extends ToneWithContext<TransportOptions> impleme
     get position(): BarsBeatsSixteenths | Time;
     set position(progress: Time);
     /**
-     * The Transport's position in seconds
+     * The Transport's position in seconds.
      * Setting the value will jump to that position right away.
      */
     get seconds(): Seconds;
     set seconds(s: Seconds);
     /**
      * The Transport's loop position as a normalized value. Always
-     * returns 0 if the transport if loop is not true.
+     * returns 0 if the Transport.loop = false.
      */
     get progress(): NormalRange;
     /**
-     * The transports current tick position.
+     * The Transport's current tick position.
      */
     get ticks(): Ticks;
     set ticks(t: Ticks);

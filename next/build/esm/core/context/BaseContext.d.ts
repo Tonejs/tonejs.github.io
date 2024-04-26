@@ -32,7 +32,7 @@ export declare abstract class BaseContext extends Emitter<"statechange" | "tick"
     abstract decodeAudioData(_audioData: ArrayBuffer): Promise<AudioBuffer>;
     abstract createAudioWorkletNode(_name: string, _options?: Partial<AudioWorkletNodeOptions>): AudioWorkletNode;
     abstract get rawContext(): AnyAudioContext;
-    abstract addAudioWorkletModule(_url: string, _name: string): Promise<void>;
+    abstract addAudioWorkletModule(_url: string): Promise<void>;
     abstract lookAhead: number;
     abstract latencyHint: ContextLatencyHint | Seconds;
     abstract resume(): Promise<void>;

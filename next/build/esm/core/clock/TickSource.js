@@ -146,7 +146,7 @@ export class TickSource extends ToneWithContext {
             if (lastState.state === "started" && e.state !== "started") {
                 elapsedTicks += this.frequency.getTicksAtTime(e.time) - this.frequency.getTicksAtTime(periodStartTime);
                 // do not memoize the temporary event
-                if (e.time != tmpEvent.time) {
+                if (e.time !== tmpEvent.time) {
                     eventToMemoize = { state: e.state, time: e.time, ticks: elapsedTicks };
                 }
             }
@@ -212,7 +212,7 @@ export class TickSource extends ToneWithContext {
             if (lastState.state === "started" && e.state !== "started") {
                 elapsedSeconds += e.time - periodStartTime;
                 // do not memoize the temporary event
-                if (e.time != tmpEvent.time) {
+                if (e.time !== tmpEvent.time) {
                     eventToMemoize = { state: e.state, time: e.time, seconds: elapsedSeconds };
                 }
             }

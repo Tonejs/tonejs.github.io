@@ -7,7 +7,7 @@ import { Gain, } from "../core/context/Gain";
 import { Multiply } from "../signal/Multiply";
 import { deepMerge, omitFromObject, optionsFromArguments } from "../core/util/Defaults";
 /**
- * DuoSynth is a monophonic synth composed of two [[MonoSynths]] run in parallel with control over the
+ * DuoSynth is a monophonic synth composed of two [[MonoSynth]]s run in parallel with control over the
  * frequency ratio between the two voices and vibrato effect.
  * @example
  * const duoSynth = new Tone.DuoSynth().toDestination();

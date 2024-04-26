@@ -33,7 +33,7 @@ export declare abstract class Source<Options extends SourceOptions> extends Tone
      */
     private _volume;
     /**
-     * The output note
+     * The output node
      */
     output: OutputNode;
     /**

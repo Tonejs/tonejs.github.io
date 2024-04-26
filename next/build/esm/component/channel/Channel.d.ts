@@ -47,7 +47,7 @@ export declare class Channel extends ToneAudioNode<ChannelOptions> {
     constructor(options?: Partial<ChannelOptions>);
     static getDefaults(): ChannelOptions;
     /**
-     * Solo/unsolo the channel. Soloing is only relative to other [[Channels]] and [[Solo]] instances
+     * Solo/unsolo the channel. Soloing is only relative to other [[Channel]]s and [[Solo]] instances
      */
     get solo(): boolean;
     set solo(solo: boolean);

@@ -34,6 +34,10 @@ export class Context extends BaseContext {
          */
         this._initialized = false;
         /**
+         * Private indicator if a close() has been called on the context, since close is async
+         */
+        this._closeStarted = false;
+        /**
          * Indicates if the context is an OfflineAudioContext or an AudioContext
          */
         this.isOffline = false;
@@ -43,7 +47,7 @@ export class Context extends BaseContext {
         /**
          * Maps a module name to promise of the addModule method
          */
-        this._workletModules = new Map();
+        this._workletPromise = null;
         const options = optionsFromArguments(Context.getDefaults(), arguments, [
             "context",
         ]);
@@ -231,15 +235,14 @@ export class Context extends BaseContext {
     /**
      * Add an AudioWorkletProcessor module
      * @param url The url of the module
-     * @param name The name of the module
      */
-    addAudioWorkletModule(url, name) {
+    addAudioWorkletModule(url) {
         return __awaiter(this, void 0, void 0, function* () {
             assert(isDefined(this.rawContext.audioWorklet), "AudioWorkletNode is only available in a secure context (https or localhost)");
-            if (!this._workletModules.has(name)) {
-                this._workletModules.set(name, this.rawContext.audioWorklet.addModule(url));
+            if (!this._workletPromise) {
+                this._workletPromise = this.rawContext.audioWorklet.addModule(url);
             }
-            yield this._workletModules.get(name);
+            yield this._workletPromise;
         });
     }
     /**
@@ -247,9 +250,7 @@ export class Context extends BaseContext {
      */
     workletsAreReady() {
         return __awaiter(this, void 0, void 0, function* () {
-            const promises = [];
-            this._workletModules.forEach((promise) => promises.push(promise));
-            yield Promise.all(promises);
+            (yield this._workletPromise) ? this._workletPromise : Promise.resolve();
         });
     }
     //---------------------------
@@ -338,7 +339,7 @@ export class Context extends BaseContext {
     }
     /**
      * Starts the audio context from a suspended state. This is required
-     * to initially start the AudioContext. See [[Tone.start]]
+     * to initially start the AudioContext. See [[start]]
      */
     resume() {
         if (isAudioContext(this._context)) {
@@ -354,7 +355,8 @@ export class Context extends BaseContext {
      */
     close() {
         return __awaiter(this, void 0, void 0, function* () {
-            if (isAudioContext(this._context)) {
+            if (isAudioContext(this._context) && (this.state !== "closed") && !this._closeStarted) {
+                this._closeStarted = true;
                 yield this._context.close();
             }
             if (this._initialized) {
@@ -393,6 +395,7 @@ export class Context extends BaseContext {
         this._ticker.dispose();
         this._timeouts.dispose();
         Object.keys(this._constants).map((val) => this._constants[val].disconnect());
+        this.close();
         return this;
     }
     //---------------------------

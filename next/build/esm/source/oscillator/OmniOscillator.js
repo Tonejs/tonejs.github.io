@@ -233,7 +233,7 @@ export class OmniOscillator extends Source {
     }
     /**
      * The width of the oscillator when sourceType === "pulse".
-     * See [[PWMOscillator.width]]
+     * See [[PWMOscillator]]
      */
     get width() {
         if (this._getOscType(this._oscillator, "pulse")) {

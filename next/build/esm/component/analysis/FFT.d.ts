@@ -7,6 +7,7 @@ export interface FFTOptions extends MeterBaseOptions {
 }
 /**
  * Get the current frequency data of the connected audio source using a fast Fourier transform.
+ * Read more about FFT algorithms on [Wikipedia] (https://en.wikipedia.org/wiki/Fast_Fourier_transform).
  * @category Component
  */
 export declare class FFT extends MeterBase<FFTOptions> {

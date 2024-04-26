@@ -2,7 +2,7 @@ import { Seconds, Ticks } from "../type/Units";
 import { TimeClass } from "./Time";
 import { TimeBaseUnit, TimeValue } from "./TimeBase";
 /**
- * TransportTime is a the time along the Transport's
+ * TransportTime is a time along the Transport's
  * timeline. It is similar to Tone.Time, but instead of evaluating
  * against the AudioContext's clock, it is evaluated against
  * the Transport's position. See [TransportTime wiki](https://github.com/Tonejs/Tone.js/wiki/TransportTime).
@@ -16,8 +16,8 @@ export declare class TransportTimeClass<Type extends Seconds | Ticks = Seconds> 
     protected _now(): Type;
 }
 /**
- * TransportTime is a the time along the Transport's
- * timeline. It is similar to [[Time]], but instead of evaluating
+ * TransportTime is a time along the Transport's
+ * timeline. It is similar to Tone.Time, but instead of evaluating
  * against the AudioContext's clock, it is evaluated against
  * the Transport's position. See [TransportTime wiki](https://github.com/Tonejs/Tone.js/wiki/TransportTime).
  * @category Unit

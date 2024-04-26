@@ -186,11 +186,10 @@ export class Envelope extends ToneAudioNode {
      * }, 1, 1);
      */
     get decayCurve() {
-        return this._decayCurve;
+        return this._getCurve(this._decayCurve, "Out");
     }
     set decayCurve(curve) {
-        assert(["linear", "exponential"].some(c => c === curve), `Invalid envelope curve: ${curve}`);
-        this._decayCurve = curve;
+        this._setCurve("_decayCurve", "Out", curve);
     }
     /**
      * Trigger the attack/decay portion of the ADSR envelope.

@@ -168,6 +168,6 @@ export declare function disconnect(srcNode: OutputNode, dstNode?: InputNode, out
  * const player1 = new Tone.Player("https://tonejs.github.io/audio/drum-samples/conga-rhythm.mp3");
  * const filter = new Tone.Filter("G5").toDestination();
  * // connect nodes to a common destination
- * fanIn(player, player1, filter);
+ * Tone.fanIn(player, player1, filter);
  */
 export declare function fanIn(...nodes: OutputNode[]): void;

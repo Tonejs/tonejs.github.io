@@ -134,7 +134,7 @@ export class Players extends ToneAudioNode {
      * const players = new Tone.Players();
      * players.add("gong", "https://tonejs.github.io/audio/berklee/gong_1.mp3", () => {
      * 	console.log("gong loaded");
-     * 	players.get("gong").start();
+     * 	players.player("gong").start();
      * });
      */
     add(name, url, callback) {

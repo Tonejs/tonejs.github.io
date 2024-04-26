@@ -1,5 +1,6 @@
 import { TimeClass } from "../../core/type/Time";
 import { TimelineValue } from "../../core/util/TimelineValue";
+import { Pow } from "../../signal/Pow";
 import { onContextClose, onContextInit, } from "../context/ContextInitialization";
 import { Gain } from "../context/Gain";
 import { ToneWithContext, } from "../context/ToneWithContext";
@@ -414,7 +415,7 @@ export class Transport extends ToneWithContext {
         this.ticks = ticks;
     }
     /**
-     * The Transport's position in seconds
+     * The Transport's position in seconds.
      * Setting the value will jump to that position right away.
      */
     get seconds() {
@@ -427,7 +428,7 @@ export class Transport extends ToneWithContext {
     }
     /**
      * The Transport's loop position as a normalized value. Always
-     * returns 0 if the transport if loop is not true.
+     * returns 0 if the Transport.loop = false.
      */
     get progress() {
         if (this.loop) {
@@ -440,7 +441,7 @@ export class Transport extends ToneWithContext {
         }
     }
     /**
-     * The transports current tick position.
+     * The Transport's current tick position.
      */
     get ticks() {
         return this._clock.ticks;
@@ -532,13 +533,32 @@ export class Transport extends ToneWithContext {
      * 			Otherwise it will be computed based on their current values.
      */
     syncSignal(signal, ratio) {
+        const now = this.now();
+        let source = this.bpm;
+        let sourceValue = 1 / (60 / source.getValueAtTime(now) / this.PPQ);
+        let nodes = [];
+        // If the signal is in the time domain, sync it to the reciprocal of
+        // the tempo instead of the tempo.
+        if (signal.units === "time") {
+            // The input to Pow should be in the range [1 / 4096, 1], where
+            // where 4096 is half of the buffer size of Pow's waveshaper.
+            // Pick a scaling factor based on the initial tempo that ensures
+            // that the initial input is in this range, while leaving room for
+            // tempo changes.
+            const scaleFactor = 1 / 64 / sourceValue;
+            const scaleBefore = new Gain(scaleFactor);
+            const reciprocal = new Pow(-1);
+            const scaleAfter = new Gain(scaleFactor);
+            // @ts-ignore
+            source.chain(scaleBefore, reciprocal, scaleAfter);
+            source = scaleAfter;
+            sourceValue = 1 / sourceValue;
+            nodes = [scaleBefore, reciprocal, scaleAfter];
+        }
         if (!ratio) {
             // get the sync ratio
-            const now = this.now();
             if (signal.getValueAtTime(now) !== 0) {
-                const bpm = this.bpm.getValueAtTime(now);
-                const computedFreq = 1 / (60 / bpm / this.PPQ);
-                ratio = signal.getValueAtTime(now) / computedFreq;
+                ratio = signal.getValueAtTime(now) / sourceValue;
             }
             else {
                 ratio = 0;
@@ -546,12 +566,13 @@ export class Transport extends ToneWithContext {
         }
         const ratioSignal = new Gain(ratio);
         // @ts-ignore
-        this.bpm.connect(ratioSignal);
+        source.connect(ratioSignal);
         // @ts-ignore
         ratioSignal.connect(signal._param);
+        nodes.push(ratioSignal);
         this._syncedSignals.push({
             initial: signal.value,
-            ratio: ratioSignal,
+            nodes: nodes,
             signal,
         });
         signal.value = 0;
@@ -565,7 +586,7 @@ export class Transport extends ToneWithContext {
         for (let i = this._syncedSignals.length - 1; i >= 0; i--) {
             const syncedSignal = this._syncedSignals[i];
             if (syncedSignal.signal === signal) {
-                syncedSignal.ratio.dispose();
+                syncedSignal.nodes.forEach((node) => node.dispose());
                 syncedSignal.signal.value = syncedSignal.initial;
                 this._syncedSignals.splice(i, 1);
             }

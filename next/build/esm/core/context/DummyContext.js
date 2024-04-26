@@ -82,7 +82,7 @@ export class DummyContext extends BaseContext {
     get rawContext() {
         return {};
     }
-    addAudioWorkletModule(_url, _name) {
+    addAudioWorkletModule(_url) {
         return __awaiter(this, void 0, void 0, function* () {
             return Promise.resolve();
         });

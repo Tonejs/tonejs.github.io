@@ -29,7 +29,7 @@ export declare class DummyContext extends BaseContext {
     decodeAudioData(_audioData: ArrayBuffer): Promise<AudioBuffer>;
     createAudioWorkletNode(_name: string, _options?: Partial<AudioWorkletNodeOptions>): AudioWorkletNode;
     get rawContext(): AnyAudioContext;
-    addAudioWorkletModule(_url: string, _name: string): Promise<void>;
+    addAudioWorkletModule(_url: string): Promise<void>;
     lookAhead: number;
     latencyHint: number;
     resume(): Promise<void>;

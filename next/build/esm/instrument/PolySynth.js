@@ -7,7 +7,7 @@ import { Synth } from "./Synth";
 import { assert, warn } from "../core/util/Debug";
 /**
  * PolySynth handles voice creation and allocation for any
- * instruments passed in as the second paramter. PolySynth is
+ * instruments passed in as the second parameter. PolySynth is
  * not a synthesizer by itself, it merely manages voices of
  * one of the other types of synths, allowing any of the
  * monophonic synthesizers to be polyphonic.
@@ -206,7 +206,6 @@ export class PolySynth extends Instrument {
      * a note (or array of notes) needs to be passed in as the first argument.
      * @param  notes The notes to play. Accepts a single Frequency or an array of frequencies.
      * @param  time  When the release will be triggered.
-     * @example
      * @example
      * const poly = new Tone.PolySynth(Tone.AMSynth).toDestination();
      * poly.triggerAttack(["Ab3", "C4", "F5"]);

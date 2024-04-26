@@ -59,7 +59,7 @@ export declare abstract class ToneWithContext<Options extends ToneWithContextOpt
     get blockTime(): Seconds;
     /**
      * Convert the incoming time to seconds.
-     * This is calculated against the current [[Tone.Transport]] bpm
+     * This is calculated against the current [[Transport]] bpm
      * @example
      * const gain = new Tone.Gain();
      * setInterval(() => console.log(gain.toSeconds("4n")), 100);

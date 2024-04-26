@@ -43,7 +43,7 @@ export class Channel extends ToneAudioNode {
         });
     }
     /**
-     * Solo/unsolo the channel. Soloing is only relative to other [[Channels]] and [[Solo]] instances
+     * Solo/unsolo the channel. Soloing is only relative to other [[Channel]]s and [[Solo]] instances
      */
     get solo() {
         return this._solo.solo;
