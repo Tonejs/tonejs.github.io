@@ -1,0 +1,29 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - dev
+      - master
+jobs:
+  build-latest:
+    name: All tests
+    permissions:
+      contents: read
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+      - name: Setup Nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.12.0
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm install
+      - name: Build docs
+        run: npm run build
+      - name: Get examples
+        run: npm run examples
+      
