@@ -1,10 +1,6 @@
 name: Generate docs
 
 on:
-  push:
-    branches:
-      - dev
-      - master
   # daily at midnight
   schedule:
     - cron: "0 0 * * *"
@@ -34,6 +30,6 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
-          git commit -m "generated"
+          git commit -m "updated docs and examples"
           git push
       
