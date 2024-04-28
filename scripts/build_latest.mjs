@@ -25,7 +25,13 @@ async function generateDocs(branch, npmTag) {
     await $`git checkout origin/${branch}`;
     await $`npm i`;
     await $`npm run docs:json`;
-    await fs.copy(resolve(tmp.path, 'docs'), resolve(resolve(DOCS_DIR, version)))
+    await fs.copy(resolve(tmp.path, "docs"), resolve(DOCS_DIR, version));
+
+    // index.html should be modules.html
+    await fs.copy(
+      resolve(DOCS_DIR, version, "modules.html"),
+      resolve(DOCS_DIR, version, "index.html")
+    );
   });
 }
 
