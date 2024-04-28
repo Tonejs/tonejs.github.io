@@ -26,7 +26,12 @@ jobs:
         run: npm run build
       - name: Get examples
         run: npm run examples
-      - run: |
+      - name: Check if there are changes
+        id: changes
+        uses: UnicornGlobal/has-changes-action@v1.0.11
+      - name: Process changes
+        if: steps.changes.outputs.changed == 1
+        run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
