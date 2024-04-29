@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Setup Nodejs
         uses: actions/setup-node@v4
         with:
@@ -28,7 +28,7 @@ jobs:
         run: npm run examples
       - name: Check if there are changes
         id: changes
-        uses: UnicornGlobal/has-changes-action@v1.0.11
+        uses: UnicornGlobal/has-changes-action@v1.0.12
       - name: Push changes
         if: steps.changes.outputs.changed == 1
         run: |
