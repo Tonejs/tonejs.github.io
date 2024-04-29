@@ -1,6 +1,9 @@
 name: Generate docs
 
 on:
+  push:
+    branches:
+      - master
   # daily at midnight
   schedule:
     - cron: "0 0 * * *"
