@@ -5,8 +5,9 @@ import { MidSideSplit } from "../channel/MidSideSplit";
 import { MidSideMerge } from "../channel/MidSideMerge";
 import { readOnly } from "../../core/util/Interface";
 /**
- * MidSideCompressor applies two different compressors to the [[mid]]
- * and [[side]] signal components of the input. See [[MidSideSplit]] and [[MidSideMerge]].
+ * MidSideCompressor applies two different compressors to the {@link mid}
+ * and {@link side} signal components of the input.
+ * @see {@link MidSideSplit} and {@link MidSideMerge}.
  * @category Component
  */
 export class MidSideCompressor extends ToneAudioNode {

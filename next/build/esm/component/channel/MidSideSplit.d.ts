@@ -14,7 +14,7 @@ export declare class MidSideSplit extends ToneAudioNode<MidSideSplitOptions> {
     readonly name: string;
     readonly input: Split;
     /**
-     * There is no output node, use either [[mid]] or [[side]] outputs.
+     * There is no output node, use either {@link mid} or {@link side} outputs.
      */
     readonly output: undefined;
     /**

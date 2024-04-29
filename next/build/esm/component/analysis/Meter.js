@@ -8,7 +8,8 @@ import { Analyser } from "./Analyser";
  * of an input signal. It can also get the raw value of the input signal.
  * Setting `normalRange` to `true` will covert the output to a range of
  * 0-1. See an example using a graphical display
- * [here](https://tonejs.github.io/examples/meter). See also {@link DCMeter}.
+ * [here](https://tonejs.github.io/examples/meter).
+ * @see {@link DCMeter}.
  *
  * @example
  * const meter = new Tone.Meter();
@@ -44,7 +45,7 @@ export class Meter extends MeterBase {
         });
     }
     /**
-     * Use [[getValue]] instead. For the previous getValue behavior, use DCMeter.
+     * Use {@link getValue} instead. For the previous getValue behavior, use DCMeter.
      * @deprecated
      */
     getLevel() {
@@ -53,9 +54,9 @@ export class Meter extends MeterBase {
     }
     /**
      * Get the current value of the incoming signal.
-     * Output is in decibels when [[normalRange]] is `false`.
-     * If [[channels]] = 1, then the output is a single number
-     * representing the value of the input signal. When [[channels]] > 1,
+     * Output is in decibels when {@link normalRange} is `false`.
+     * If {@link channels} = 1, then the output is a single number
+     * representing the value of the input signal. When {@link channels} > 1,
      * then each channel is returned as a value in a number array.
      */
     getValue() {

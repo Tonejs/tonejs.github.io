@@ -4,7 +4,7 @@ import { Compressor } from "./Compressor";
 import { readOnly } from "../../core/util/Interface";
 /**
  * Limiter will limit the loudness of an incoming signal.
- * Under the hood it's composed of a [[Compressor]] with a fast attack
+ * Under the hood it's composed of a {@link Compressor} with a fast attack
  * and release and max compression ratio.
  *
  * @example

@@ -5,7 +5,7 @@ import { Signal } from "../signal/Signal";
 import { optionsFromArguments } from "../core/util/Defaults";
 import { readOnly } from "../core/util/Interface";
 /**
- * Tremolo modulates the amplitude of an incoming signal using an [[LFO]].
+ * Tremolo modulates the amplitude of an incoming signal using an {@link LFO}.
  * The effect is a stereo effect where the modulation phase is inverted in each channel.
  *
  * @example

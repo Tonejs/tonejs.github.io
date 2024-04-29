@@ -1,7 +1,7 @@
 import { AnyAudioContext } from "./context/AudioContext";
 import { BaseContext } from "./context/BaseContext";
 /**
- * Returns the default system-wide [[Context]]
+ * Returns the default system-wide {@link Context}
  * @category Core
  */
 export declare function getContext(): BaseContext;

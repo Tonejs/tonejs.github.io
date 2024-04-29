@@ -5,6 +5,7 @@ import { ToneWithContext } from "./ToneWithContext";
 import { assert, warn } from "../util/Debug";
 /**
  * ToneAudioNode is the base class for classes which process audio.
+ * @category Core
  */
 export class ToneAudioNode extends ToneWithContext {
     constructor() {
@@ -169,7 +170,7 @@ export class ToneAudioNode extends ToneWithContext {
     }
     /**
      * Connect the output to the context's destination node.
-     * See [[toDestination]]
+     * @see {@link toDestination}
      * @deprecated
      */
     toMaster() {

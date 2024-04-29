@@ -2,7 +2,7 @@ import { Signal, SignalOptions } from "./Signal";
 import { NormalRange, Time, TransportTime, UnitMap, UnitName } from "../core/type/Units";
 import { OutputNode } from "../core/context/ToneAudioNode";
 /**
- * Adds the ability to synchronize the signal to the [[TransportClass]]
+ * Adds the ability to synchronize the signal to the {@link TransportClass}
  * @category Signal
  */
 export declare class SyncedSignal<TypeName extends UnitName = "number"> extends Signal<TypeName> {

@@ -64,7 +64,7 @@ export class PluckSynth extends Instrument {
         return this;
     }
     /**
-     * Ramp down the [[resonance]] to 0 over the duration of the release time.
+     * Ramp down the {@link resonance} to 0 over the duration of the release time.
      */
     triggerRelease(time) {
         this._lfcf.resonance.linearRampTo(0, this.release, time);

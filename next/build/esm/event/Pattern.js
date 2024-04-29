@@ -61,7 +61,7 @@ export class Pattern extends Loop {
         return this._index;
     }
     /**
-     * The pattern type. See Tone.CtrlPattern for the full list of patterns.
+     * The pattern type.
      */
     get pattern() {
         return this._type;

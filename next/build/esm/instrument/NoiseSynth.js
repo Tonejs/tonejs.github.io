@@ -6,7 +6,7 @@ import { ToneAudioNode, } from "../core/context/ToneAudioNode";
 import { Envelope } from "../component/envelope/Envelope";
 import { Source } from "../source/Source";
 /**
- * Tone.NoiseSynth is composed of [[Noise]] through an [[AmplitudeEnvelope]].
+ * Tone.NoiseSynth is composed of {@link Noise} through an {@link AmplitudeEnvelope}.
  * ```
  * +-------+   +-------------------+
  * | Noise +>--> AmplitudeEnvelope +>--> Output

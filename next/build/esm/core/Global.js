@@ -14,7 +14,7 @@ const dummyContext = new DummyContext();
  */
 let globalContext = dummyContext;
 /**
- * Returns the default system-wide [[Context]]
+ * Returns the default system-wide {@link Context}
  * @category Core
  */
 export function getContext() {

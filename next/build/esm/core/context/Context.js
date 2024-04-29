@@ -227,7 +227,7 @@ export class Context extends BaseContext {
     }
     /**
      * Create an audio worklet node from a name and options. The module
-     * must first be loaded using [[addAudioWorkletModule]].
+     * must first be loaded using {@link addAudioWorkletModule}.
      */
     createAudioWorkletNode(name, options) {
         return createAudioWorkletNode(this.rawContext, name, options);
@@ -283,7 +283,7 @@ export class Context extends BaseContext {
      * The amount of time into the future events are scheduled. Giving Web Audio
      * a short amount of time into the future to schedule events can reduce clicks and
      * improve performance. This value can be set to 0 to get the lowest latency.
-     * Adjusting this value also affects the [[updateInterval]].
+     * Adjusting this value also affects the {@link updateInterval}.
      */
     get lookAhead() {
         return this._lookAhead;
@@ -318,7 +318,7 @@ export class Context extends BaseContext {
         return this._context;
     }
     /**
-     * The current audio context time plus a short [[lookAhead]].
+     * The current audio context time plus a short {@link lookAhead}.
      * @example
      * setInterval(() => {
      * 	console.log("now", Tone.now());
@@ -328,18 +328,19 @@ export class Context extends BaseContext {
         return this._context.currentTime + this._lookAhead;
     }
     /**
-     * The current audio context time without the [[lookAhead]].
-     * In most cases it is better to use [[now]] instead of [[immediate]] since
-     * with [[now]] the [[lookAhead]] is applied equally to _all_ components including internal components,
-     * to making sure that everything is scheduled in sync. Mixing [[now]] and [[immediate]]
-     * can cause some timing issues. If no lookAhead is desired, you can set the [[lookAhead]] to `0`.
+     * The current audio context time without the {@link lookAhead}.
+     * In most cases it is better to use {@link now} instead of {@link immediate} since
+     * with {@link now} the {@link lookAhead} is applied equally to _all_ components including internal components,
+     * to making sure that everything is scheduled in sync. Mixing {@link now} and {@link immediate}
+     * can cause some timing issues. If no lookAhead is desired, you can set the {@link lookAhead} to `0`.
      */
     immediate() {
         return this._context.currentTime;
     }
     /**
      * Starts the audio context from a suspended state. This is required
-     * to initially start the AudioContext. See [[start]]
+     * to initially start the AudioContext.
+     * @see {@link start}
      */
     resume() {
         if (isAudioContext(this._context)) {
@@ -447,7 +448,7 @@ export class Context extends BaseContext {
         return this;
     }
     /**
-     * Clear the function scheduled by [[setInterval]]
+     * Clear the function scheduled by {@link setInterval}
      */
     clearInterval(id) {
         return this.clearTimeout(id);

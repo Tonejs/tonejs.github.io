@@ -26,7 +26,7 @@ export class Waveform extends MeterBase {
     }
     /**
      * The size of analysis. This must be a power of two in the range 16 to 16384.
-     * Determines the size of the array returned by [[getValue]].
+     * Determines the size of the array returned by {@link getValue}.
      */
     get size() {
         return this._analyser.size;

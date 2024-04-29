@@ -25,4 +25,5 @@ export { optionsFromArguments, defaultArg } from "./util/Defaults";
 import * as Unit from "./type/Units";
 export { Unit };
 import * as debug from "./util/Debug";
+/** @internal */
 export { debug };

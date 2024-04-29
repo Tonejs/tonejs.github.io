@@ -3,7 +3,7 @@ import { optionsFromArguments } from "../core/util/Defaults";
 import { TransportTimeClass } from "../core/type/TransportTime";
 import { ToneConstantSource } from "./ToneConstantSource";
 /**
- * Adds the ability to synchronize the signal to the [[TransportClass]]
+ * Adds the ability to synchronize the signal to the {@link TransportClass}
  * @category Signal
  */
 export class SyncedSignal extends Signal {

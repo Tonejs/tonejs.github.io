@@ -7,7 +7,7 @@ import { noOp, readOnly } from "../../core/util/Interface";
 import { Source } from "../Source";
 import { Player } from "./Player";
 /**
- * Players combines multiple [[Player]] objects.
+ * Players combines multiple {@link Player} objects.
  * @category Source
  */
 export class Players extends ToneAudioNode {

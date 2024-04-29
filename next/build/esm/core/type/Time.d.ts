@@ -52,7 +52,7 @@ export declare class TimeClass<Type extends Seconds | Ticks = Seconds, Unit exte
 }
 /**
  * Create a TimeClass from a time string or number. The time is computed against the
- * global Tone.Context. To use a specific context, use [[TimeClass]]
+ * global Tone.Context. To use a specific context, use {@link TimeClass}
  * @param value A value which represents time
  * @param units The value's units if they can't be inferred by the value.
  * @category Unit

@@ -1,7 +1,8 @@
 import { optionsFromArguments } from "../../core/util/Defaults";
 import { MeterBase } from "./MeterBase";
 /**
- * DCMeter gets the raw value of the input signal at the current time. See also {@link Meter}.
+ * DCMeter gets the raw value of the input signal at the current time.
+ * @see {@link Meter}.
  *
  * @example
  * const meter = new Tone.DCMeter();

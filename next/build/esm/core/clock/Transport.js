@@ -580,7 +580,7 @@ export class TransportClass extends ToneWithContext {
     }
     /**
      * Unsyncs a previously synced signal from the transport's control.
-     * See Transport.syncSignal.
+     * @see {@link syncSignal}.
      */
     unsyncSignal(signal) {
         for (let i = this._syncedSignals.length - 1; i >= 0; i--) {

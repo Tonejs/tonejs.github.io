@@ -17,7 +17,7 @@ export interface PlayersOptions extends SourceOptions {
     fadeOut: Time;
 }
 /**
- * Players combines multiple [[Player]] objects.
+ * Players combines multiple {@link Player} objects.
  * @category Source
  */
 export declare class Players extends ToneAudioNode<PlayersOptions> {

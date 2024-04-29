@@ -73,7 +73,7 @@ export declare class LFO extends ToneAudioNode<LFOOptions> {
      */
     private _units;
     /**
-     * If the input value is converted using the [[units]]
+     * If the input value is converted using the {@link units}
      */
     convert: boolean;
     /**
@@ -127,12 +127,14 @@ export declare class LFO extends ToneAudioNode<LFOOptions> {
     get max(): number;
     set max(max: number);
     /**
-     * The type of the oscillator: See [[Oscillator.type]]
+     * The type of the oscillator.
+     * @see {@link Oscillator.type}
      */
     get type(): ToneOscillatorType;
     set type(type: ToneOscillatorType);
     /**
-     * The oscillator's partials array: See [[Oscillator.partials]]
+     * The oscillator's partials array.
+     * @see {@link Oscillator.partials}
      */
     get partials(): number[];
     set partials(partials: number[]);

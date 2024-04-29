@@ -38,7 +38,7 @@ export declare abstract class Instrument<Options extends InstrumentOptions> exte
     static getDefaults(): InstrumentOptions;
     /**
      * Sync the instrument to the Transport. All subsequent calls of
-     * [[triggerAttack]] and [[triggerRelease]] will be scheduled along the transport.
+     * {@link triggerAttack} and {@link triggerRelease} will be scheduled along the transport.
      * @example
      * const fmSynth = new Tone.FMSynth().toDestination();
      * fmSynth.volume.value = -6;

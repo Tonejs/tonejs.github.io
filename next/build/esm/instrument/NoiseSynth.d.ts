@@ -10,7 +10,7 @@ export interface NoiseSynthOptions extends InstrumentOptions {
     noise: Omit<NoiseOptions, keyof ToneAudioNodeOptions>;
 }
 /**
- * Tone.NoiseSynth is composed of [[Noise]] through an [[AmplitudeEnvelope]].
+ * Tone.NoiseSynth is composed of {@link Noise} through an {@link AmplitudeEnvelope}.
  * ```
  * +-------+   +-------------------+
  * | Noise +>--> AmplitudeEnvelope +>--> Output

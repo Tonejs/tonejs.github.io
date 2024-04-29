@@ -260,7 +260,8 @@ export class Source extends ToneAudioNode {
         return this;
     }
     /**
-     * Unsync the source to the Transport. See Source.sync
+     * Unsync the source to the Transport.
+     * @see {@link sync}
      */
     unsync() {
         if (this._synced) {

@@ -316,7 +316,7 @@ export declare class TransportClass extends ToneWithContext<TransportOptions> im
     syncSignal(signal: Signal<any>, ratio?: number): this;
     /**
      * Unsyncs a previously synced signal from the transport's control.
-     * See Transport.syncSignal.
+     * @see {@link syncSignal}.
      */
     unsyncSignal(signal: Signal<any>): this;
     /**

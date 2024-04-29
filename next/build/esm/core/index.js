@@ -29,5 +29,6 @@ import * as Unit from "./type/Units";
 export { Unit };
 // export the debug stuff as Debug
 import * as debug from "./util/Debug";
+/** @internal */
 export { debug };
 //# sourceMappingURL=index.js.map

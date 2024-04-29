@@ -135,7 +135,7 @@ export class MetalSynth extends Monophonic {
     }
     /**
      * The modulationIndex of the oscillators which make up the source.
-     * see [[FMOscillator.modulationIndex]]
+     * see {@link FMOscillator.modulationIndex}
      * @min 1
      * @max 100
      */

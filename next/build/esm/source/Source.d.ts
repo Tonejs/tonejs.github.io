@@ -144,7 +144,8 @@ export declare abstract class Source<Options extends SourceOptions> extends Tone
      */
     sync(): this;
     /**
-     * Unsync the source to the Transport. See Source.sync
+     * Unsync the source to the Transport.
+     * @see {@link sync}
      */
     unsync(): this;
     /**

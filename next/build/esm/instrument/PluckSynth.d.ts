@@ -50,7 +50,7 @@ export declare class PluckSynth extends Instrument<PluckSynthOptions> {
     set dampening(fq: Frequency);
     triggerAttack(note: Frequency, time?: Time): this;
     /**
-     * Ramp down the [[resonance]] to 0 over the duration of the release time.
+     * Ramp down the {@link resonance} to 0 over the duration of the release time.
      */
     triggerRelease(time?: Time): this;
     dispose(): this;

@@ -121,7 +121,7 @@ export class Oscillator extends Source {
     }
     /**
      * Unsync the oscillator's frequency from the Transport.
-     * See Oscillator.syncFrequency
+     * @see {@link syncFrequency}
      */
     unsyncFrequency() {
         this.context.transport.unsyncSignal(this.frequency);
