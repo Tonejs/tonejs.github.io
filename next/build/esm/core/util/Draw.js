@@ -19,7 +19,7 @@ import { onContextClose, onContextInit } from "../context/ContextInitialization"
  * Tone.Transport.start();
  * @category Core
  */
-export class Draw extends ToneWithContext {
+export class DrawClass extends ToneWithContext {
     constructor() {
         super(...arguments);
         this.name = "Draw";
@@ -102,7 +102,7 @@ export class Draw extends ToneWithContext {
 // 	INITIALIZATION
 //-------------------------------------
 onContextInit(context => {
-    context.draw = new Draw({ context });
+    context.draw = new DrawClass({ context });
 });
 onContextClose(context => {
     context.draw.dispose();

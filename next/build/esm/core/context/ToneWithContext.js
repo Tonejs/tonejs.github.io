@@ -47,8 +47,6 @@ export class ToneWithContext extends Tone {
     }
     /**
      * The duration in seconds of one sample.
-     * @example
-     * console.log(Tone.Transport.sampleTime);
      */
     get sampleTime() {
         return 1 / this.context.sampleRate;
@@ -63,7 +61,7 @@ export class ToneWithContext extends Tone {
     }
     /**
      * Convert the incoming time to seconds.
-     * This is calculated against the current [[Transport]] bpm
+     * This is calculated against the current [[TransportClass]] bpm
      * @example
      * const gain = new Tone.Gain();
      * setInterval(() => console.log(gain.toSeconds("4n")), 100);

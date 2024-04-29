@@ -1,12 +1,12 @@
 import { Seconds, Ticks } from "../type/Units";
-declare type Transport = import("../clock/Transport").Transport;
+declare type Transport = import("../clock/Transport").TransportClass;
 export interface TransportEventOptions {
     callback: (time: number) => void;
     once: boolean;
     time: Ticks;
 }
 /**
- * TransportEvent is an internal class used by [[Transport]]
+ * TransportEvent is an internal class used by [[TransportClass]]
  * to schedule events. Do no invoke this class directly, it is
  * handled from within Tone.Transport.
  */

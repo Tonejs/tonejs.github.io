@@ -1,7 +1,7 @@
 import { BaseContext } from "../context/BaseContext";
 import { Seconds, Ticks } from "../type/Units";
 import { TransportEvent, TransportEventOptions } from "./TransportEvent";
-declare type Transport = import("../clock/Transport").Transport;
+declare type Transport = import("../clock/Transport").TransportClass;
 interface TransportRepeatEventOptions extends TransportEventOptions {
     interval: Ticks;
     duration: Ticks;

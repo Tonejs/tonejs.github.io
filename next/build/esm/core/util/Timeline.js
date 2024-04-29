@@ -7,6 +7,7 @@ import { EQ, GT, GTE, LT } from "./Math";
  * along a timeline. All events must have a "time" property.
  * Internally, events are stored in time order for fast
  * retrieval.
+ * @internal
  */
 export class Timeline extends Tone {
     constructor() {

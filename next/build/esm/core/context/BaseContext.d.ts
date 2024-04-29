@@ -1,10 +1,10 @@
 import { Seconds } from "../type/Units";
 import { Emitter } from "../util/Emitter";
 import { AnyAudioContext } from "./AudioContext";
-declare type Draw = import("../util/Draw").Draw;
-declare type Destination = import("./Destination").Destination;
-declare type Transport = import("../clock/Transport").Transport;
-declare type Listener = import("./Listener").Listener;
+declare type Draw = import("../util/Draw").DrawClass;
+declare type Destination = import("./Destination").DestinationClass;
+declare type Transport = import("../clock/Transport").TransportClass;
+declare type Listener = import("./Listener").ListenerClass;
 export declare type ExcludedFromBaseAudioContext = "onstatechange" | "addEventListener" | "removeEventListener" | "listener" | "dispatchEvent" | "audioWorklet" | "destination" | "createScriptProcessor";
 export declare type BaseAudioContextSubset = Omit<BaseAudioContext, ExcludedFromBaseAudioContext>;
 export declare type ContextLatencyHint = AudioContextLatencyCategory;

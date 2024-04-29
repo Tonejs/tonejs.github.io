@@ -7,7 +7,7 @@ import { onContextClose, onContextInit } from "./ContextInitialization";
  * to place sounds in 3D and Listener allows you to navigate the 3D sound environment from
  * a first-person perspective. There is only one listener per audio context.
  */
-export class Listener extends ToneAudioNode {
+export class ListenerClass extends ToneAudioNode {
     constructor() {
         super(...arguments);
         this.name = "Listener";
@@ -79,7 +79,7 @@ export class Listener extends ToneAudioNode {
 // 	INITIALIZATION
 //-------------------------------------
 onContextInit(context => {
-    context.listener = new Listener({ context });
+    context.listener = new ListenerClass({ context });
 });
 onContextClose(context => {
     context.listener.dispose();

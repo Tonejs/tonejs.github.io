@@ -19,6 +19,7 @@ export interface TimelineEvent {
  * along a timeline. All events must have a "time" property.
  * Internally, events are stored in time order for fast
  * retrieval.
+ * @internal
  */
 export declare class Timeline<GenericEvent extends TimelineEvent> extends Tone {
     readonly name: string;

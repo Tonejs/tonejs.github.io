@@ -30,17 +30,17 @@ import { TransportRepeatEvent } from "./TransportRepeatEvent";
  * @example
  * const osc = new Tone.Oscillator().toDestination();
  * // repeated event every 8th note
- * Tone.Transport.scheduleRepeat((time) => {
+ * Tone.getTransport().scheduleRepeat((time) => {
  * 	// use the callback time to schedule events
  * 	osc.start(time).stop(time + 0.1);
  * }, "8n");
  * // transport must be started before it starts invoking events
- * Tone.Transport.start();
+ * Tone.getTransport().start();
  * @category Core
  */
-export class Transport extends ToneWithContext {
+export class TransportClass extends ToneWithContext {
     constructor() {
-        super(optionsFromArguments(Transport.getDefaults(), arguments));
+        super(optionsFromArguments(TransportClass.getDefaults(), arguments));
         this.name = "Transport";
         //-------------------------------------
         // 	LOOPING
@@ -80,7 +80,7 @@ export class Transport extends ToneWithContext {
          * The swing amount
          */
         this._swingAmount = 0;
-        const options = optionsFromArguments(Transport.getDefaults(), arguments);
+        const options = optionsFromArguments(TransportClass.getDefaults(), arguments);
         // CLOCK/TEMPO
         this._ppq = options.ppq;
         this._clock = new Clock({
@@ -152,7 +152,7 @@ export class Transport extends ToneWithContext {
      * @return The id of the event which can be used for canceling the event.
      * @example
      * // schedule an event on the 16th measure
-     * Tone.Transport.schedule((time) => {
+     * Tone.getTransport().schedule((time) => {
      * 	// invoked on measure 16
      * 	console.log("measure 16!");
      * }, "16:0:0");
@@ -176,7 +176,7 @@ export class Transport extends ToneWithContext {
      * @example
      * const osc = new Tone.Oscillator().toDestination().start();
      * // a callback invoked every eighth note after the first measure
-     * Tone.Transport.scheduleRepeat((time) => {
+     * Tone.getTransport().scheduleRepeat((time) => {
      * 	osc.start(time).stop(time + 0.1);
      * }, "8n", "1m");
      */
@@ -273,7 +273,7 @@ export class Transport extends ToneWithContext {
      * @param  offset The timeline offset to start the transport.
      * @example
      * // start the transport in one second starting at beginning of the 5th measure.
-     * Tone.Transport.start("+1", "4:0:0");
+     * Tone.getTransport().start("+1", "4:0:0");
      */
     start(time, offset) {
         // start the context
@@ -290,7 +290,7 @@ export class Transport extends ToneWithContext {
      * Stop the transport and all sources synced to the transport.
      * @param time The time when the transport should stop.
      * @example
-     * Tone.Transport.stop();
+     * Tone.getTransport().stop();
      */
     stop(time) {
         this._clock.stop(time);
@@ -326,11 +326,11 @@ export class Transport extends ToneWithContext {
      * For example 4/4 would be just 4 and 6/8 would be 3.
      * @example
      * // common time
-     * Tone.Transport.timeSignature = 4;
+     * Tone.getTransport().timeSignature = 4;
      * // 7/8
-     * Tone.Transport.timeSignature = [7, 8];
+     * Tone.getTransport().timeSignature = [7, 8];
      * // this will be reduced to a single number
-     * Tone.Transport.timeSignature; // returns 3.5
+     * Tone.getTransport().timeSignature; // returns 3.5
      */
     get timeSignature() {
         return this._timeSignature;
@@ -372,8 +372,8 @@ export class Transport extends ToneWithContext {
      * Set the loop start and stop at the same time.
      * @example
      * // loop over the first measure
-     * Tone.Transport.setLoopPoints(0, "1m");
-     * Tone.Transport.loop = true;
+     * Tone.getTransport().setLoopPoints(0, "1m");
+     * Tone.getTransport().loop = true;
      */
     setLoopPoints(startPosition, endPosition) {
         this.loopStart = startPosition;
@@ -506,8 +506,8 @@ export class Transport extends ToneWithContext {
      * @return  The context time of the next subdivision.
      * @example
      * // the transport must be started, otherwise returns 0
-     * Tone.Transport.start();
-     * Tone.Transport.nextSubdivision("4n");
+     * Tone.getTransport().start();
+     * Tone.getTransport().nextSubdivision("4n");
      */
     nextSubdivision(subdivision) {
         subdivision = this.toTicks(subdivision);
@@ -605,12 +605,12 @@ export class Transport extends ToneWithContext {
         return this;
     }
 }
-Emitter.mixin(Transport);
+Emitter.mixin(TransportClass);
 //-------------------------------------
 // 	INITIALIZATION
 //-------------------------------------
 onContextInit((context) => {
-    context.transport = new Transport({ context });
+    context.transport = new TransportClass({ context });
 });
 onContextClose((context) => {
     context.transport.dispose();

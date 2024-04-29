@@ -12,7 +12,7 @@ export function generateWaveform(instance, length) {
             frequency: 2 / duration,
             // zero out the detune
             detune: 0,
-            context
+            context,
         })).toDestination();
         clone.start(0);
         const buffer = yield context.render();
