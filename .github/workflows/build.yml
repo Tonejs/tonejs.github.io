@@ -29,15 +29,8 @@ jobs:
         run: npm run build
       - name: Get examples
         run: npm run examples
-      - name: Check if there are changes
-        id: changes
-        uses: UnicornGlobal/has-changes-action@v1.0.12
-      - name: Push changes
-        if: steps.changes.outputs.changed == 1
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .
-          git commit -m "updated docs and examples"
-          git push
+      - name: Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Pushing latest docs
       
