@@ -32,7 +32,7 @@ export class LFO extends ToneAudioNode {
          */
         this._units = "number";
         /**
-         * If the input value is converted using the [[units]]
+         * If the input value is converted using the {@link units}
          */
         this.convert = true;
         /**
@@ -156,7 +156,8 @@ export class LFO extends ToneAudioNode {
         this._scaler.max = max;
     }
     /**
-     * The type of the oscillator: See [[Oscillator.type]]
+     * The type of the oscillator.
+     * @see {@link Oscillator.type}
      */
     get type() {
         return this._oscillator.type;
@@ -166,7 +167,8 @@ export class LFO extends ToneAudioNode {
         this._setStoppedValue();
     }
     /**
-     * The oscillator's partials array: See [[Oscillator.partials]]
+     * The oscillator's partials array.
+     * @see {@link Oscillator.partials}
      */
     get partials() {
         return this._oscillator.partials;

@@ -4,7 +4,7 @@ import { optionsFromArguments } from "../core/util/Defaults";
 import { Noise } from "../source/Noise";
 import { Instrument } from "./Instrument";
 /**
- * Karplus-String string synthesis.
+ * Karplus-Strong string synthesis.
  * @example
  * const plucky = new Tone.PluckSynth().toDestination();
  * plucky.triggerAttack("C4", "+0.5");
@@ -64,7 +64,7 @@ export class PluckSynth extends Instrument {
         return this;
     }
     /**
-     * Ramp down the [[resonance]] to 0 over the duration of the release time.
+     * Ramp down the {@link resonance} to 0 over the duration of the release time.
      */
     triggerRelease(time) {
         this._lfcf.resonance.linearRampTo(0, this.release, time);

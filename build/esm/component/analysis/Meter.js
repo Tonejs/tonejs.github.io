@@ -6,6 +6,10 @@ import { Analyser } from "./Analyser";
 /**
  * Meter gets the [RMS](https://en.wikipedia.org/wiki/Root_mean_square)
  * of an input signal. It can also get the raw value of the input signal.
+ * Setting `normalRange` to `true` will covert the output to a range of
+ * 0-1. See an example using a graphical display
+ * [here](https://tonejs.github.io/examples/meter).
+ * @see {@link DCMeter}.
  *
  * @example
  * const meter = new Tone.Meter();
@@ -21,29 +25,27 @@ export class Meter extends MeterBase {
     constructor() {
         super(optionsFromArguments(Meter.getDefaults(), arguments, ["smoothing"]));
         this.name = "Meter";
-        /**
-         * The previous frame's value
-         */
-        this._rms = 0;
         const options = optionsFromArguments(Meter.getDefaults(), arguments, ["smoothing"]);
         this.input = this.output = this._analyser = new Analyser({
             context: this.context,
             size: 256,
             type: "waveform",
-            channels: options.channels,
+            channels: options.channelCount,
         });
         this.smoothing = options.smoothing,
             this.normalRange = options.normalRange;
+        this._rms = new Array(options.channelCount);
+        this._rms.fill(0);
     }
     static getDefaults() {
         return Object.assign(MeterBase.getDefaults(), {
             smoothing: 0.8,
             normalRange: false,
-            channels: 1,
+            channelCount: 1,
         });
     }
     /**
-     * Use [[getValue]] instead. For the previous getValue behavior, use DCMeter.
+     * Use {@link getValue} instead. For the previous getValue behavior, use DCMeter.
      * @deprecated
      */
     getLevel() {
@@ -52,21 +54,21 @@ export class Meter extends MeterBase {
     }
     /**
      * Get the current value of the incoming signal.
-     * Output is in decibels when [[normalRange]] is `false`.
-     * If [[channels]] = 1, then the output is a single number
-     * representing the value of the input signal. When [[channels]] > 1,
+     * Output is in decibels when {@link normalRange} is `false`.
+     * If {@link channels} = 1, then the output is a single number
+     * representing the value of the input signal. When {@link channels} > 1,
      * then each channel is returned as a value in a number array.
      */
     getValue() {
         const aValues = this._analyser.getValue();
         const channelValues = this.channels === 1 ? [aValues] : aValues;
-        const vals = channelValues.map(values => {
+        const vals = channelValues.map((values, index) => {
             const totalSquared = values.reduce((total, current) => total + current * current, 0);
             const rms = Math.sqrt(totalSquared / values.length);
             // the rms can only fall at the rate of the smoothing
             // but can jump up instantly
-            this._rms = Math.max(rms, this._rms * this.smoothing);
-            return this.normalRange ? this._rms : gainToDb(this._rms);
+            this._rms[index] = Math.max(rms, this._rms[index] * this.smoothing);
+            return this.normalRange ? this._rms[index] : gainToDb(this._rms[index]);
         });
         if (this.channels === 1) {
             return vals[0];

@@ -19,7 +19,7 @@ export function initializeContext(ctx) {
     notifyNewContext.forEach(cb => cb(ctx));
 }
 /**
- * Array of callbacks to invoke when a new context is created
+ * Array of callbacks to invoke when a new context is closed
  */
 const notifyCloseContext = [];
 /**
@@ -29,7 +29,7 @@ export function onContextClose(cb) {
     notifyCloseContext.push(cb);
 }
 export function closeContext(ctx) {
-    // add any additional modules
+    // remove any additional modules
     notifyCloseContext.forEach(cb => cb(ctx));
 }
 //# sourceMappingURL=ContextInitialization.js.map

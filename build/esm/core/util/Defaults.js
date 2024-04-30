@@ -38,6 +38,7 @@ export function deepEquals(arrayA, arrayB) {
 }
 /**
  * Convert an args array into an object.
+ * @internal
  */
 export function optionsFromArguments(defaults, argsArray, keys = [], objKey) {
     const opts = {};
@@ -76,6 +77,7 @@ export function getDefaultsFromInstance(instance) {
 /**
  * Returns the fallback if the given object is undefined.
  * Take an array of arguments and return a formatted options object.
+ * @internal
  */
 export function defaultArg(given, fallback) {
     if (isUndef(given)) {

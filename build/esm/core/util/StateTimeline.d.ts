@@ -8,8 +8,9 @@ export interface StateTimelineEvent extends TimelineEvent {
 /**
  * A Timeline State. Provides the methods: `setStateAtTime("state", time)` and `getValueAtTime(time)`
  * @param initial The initial state of the StateTimeline.  Defaults to `undefined`
+ * @internal
  */
-export declare class StateTimeline<AdditionalOptions extends {} = {}> extends Timeline<StateTimelineEvent & AdditionalOptions> {
+export declare class StateTimeline<AdditionalOptions extends Record<string, any> = Record<string, any>> extends Timeline<StateTimelineEvent & AdditionalOptions> {
     readonly name: string;
     /**
      * The initial state

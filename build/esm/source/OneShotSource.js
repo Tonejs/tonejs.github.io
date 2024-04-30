@@ -110,7 +110,7 @@ export class OneShotSource extends ToneAudioNode {
         const fadeOutTime = this.toSeconds(this._fadeOut);
         // schedule the stop callback
         this._stopTime = this.toSeconds(time) + fadeOutTime;
-        this._stopTime = Math.max(this._stopTime, this.context.currentTime);
+        this._stopTime = Math.max(this._stopTime, this.now());
         if (fadeOutTime > 0) {
             // start the fade out curve at the given time
             if (this._curve === "linear") {
@@ -176,7 +176,8 @@ export class OneShotSource extends ToneAudioNode {
     }
     dispose() {
         super.dispose();
-        this._gainNode.disconnect();
+        this._gainNode.dispose();
+        this.onended = noOp;
         return this;
     }
 }

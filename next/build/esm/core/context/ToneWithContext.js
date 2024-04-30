@@ -4,8 +4,8 @@ import { FrequencyClass } from "../type/Frequency";
 import { TimeClass } from "../type/Time";
 import { TransportTimeClass } from "../type/TransportTime";
 import { assertUsedScheduleTime } from "../util/Debug";
-import { getDefaultsFromInstance, optionsFromArguments } from "../util/Defaults";
-import { isArray, isBoolean, isDefined, isNumber, isString, isUndef } from "../util/TypeCheck";
+import { getDefaultsFromInstance, optionsFromArguments, } from "../util/Defaults";
+import { isArray, isBoolean, isDefined, isNumber, isString, isUndef, } from "../util/TypeCheck";
 /**
  * The Base class for all nodes that have an AudioContext.
  */
@@ -99,7 +99,7 @@ export class ToneWithContext extends Tone {
     _getPartialProperties(props) {
         const options = this.get();
         // remove attributes from the prop that are not in the partial
-        Object.keys(options).forEach(name => {
+        Object.keys(options).forEach((name) => {
             if (isUndef(props[name])) {
                 delete options[name];
             }
@@ -114,17 +114,22 @@ export class ToneWithContext extends Tone {
      */
     get() {
         const defaults = getDefaultsFromInstance(this);
-        Object.keys(defaults).forEach(attribute => {
+        Object.keys(defaults).forEach((attribute) => {
             if (Reflect.has(this, attribute)) {
                 const member = this[attribute];
-                if (isDefined(member) && isDefined(member.value) && isDefined(member.setValueAtTime)) {
+                if (isDefined(member) &&
+                    isDefined(member.value) &&
+                    isDefined(member.setValueAtTime)) {
                     defaults[attribute] = member.value;
                 }
                 else if (member instanceof ToneWithContext) {
                     defaults[attribute] = member._getPartialProperties(defaults[attribute]);
                     // otherwise make sure it's a serializable type
                 }
-                else if (isArray(member) || isNumber(member) || isString(member) || isBoolean(member)) {
+                else if (isArray(member) ||
+                    isNumber(member) ||
+                    isString(member) ||
+                    isBoolean(member)) {
                     defaults[attribute] = member;
                 }
                 else {
@@ -148,9 +153,11 @@ export class ToneWithContext extends Tone {
      * player.autostart = true;
      */
     set(props) {
-        Object.keys(props).forEach(attribute => {
+        Object.keys(props).forEach((attribute) => {
             if (Reflect.has(this, attribute) && isDefined(this[attribute])) {
-                if (this[attribute] && isDefined(this[attribute].value) && isDefined(this[attribute].setValueAtTime)) {
+                if (this[attribute] &&
+                    isDefined(this[attribute].value) &&
+                    isDefined(this[attribute].setValueAtTime)) {
                     // small optimization
                     if (this[attribute].value !== props[attribute]) {
                         this[attribute].value = props[attribute];

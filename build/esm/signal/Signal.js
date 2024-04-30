@@ -149,7 +149,7 @@ export class Signal extends ToneAudioNode {
         return this._param.minValue;
     }
     /**
-     * See [[Param.apply]].
+     * @see {@link Param.apply}.
      */
     apply(param) {
         this._param.apply(param);

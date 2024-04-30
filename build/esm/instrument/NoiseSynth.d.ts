@@ -10,7 +10,7 @@ export interface NoiseSynthOptions extends InstrumentOptions {
     noise: Omit<NoiseOptions, keyof ToneAudioNodeOptions>;
 }
 /**
- * Tone.NoiseSynth is composed of [[Noise]] through an [[AmplitudeEnvelope]].
+ * Tone.NoiseSynth is composed of {@link Noise} through an {@link AmplitudeEnvelope}.
  * ```
  * +-------+   +-------------------+
  * | Noise +>--> AmplitudeEnvelope +>--> Output
@@ -46,6 +46,16 @@ export declare class NoiseSynth extends Instrument<NoiseSynthOptions> {
      */
     triggerRelease(time?: Time): this;
     sync(): this;
+    /**
+     * Trigger the attack and then the release after the duration.
+     * @param duration The amount of time to hold the note for
+     * @param time The time the note should start
+     * @param velocity The volume of the note (0-1)
+     * @example
+     * const noiseSynth = new Tone.NoiseSynth().toDestination();
+     * // hold the note for 0.5 seconds
+     * noiseSynth.triggerAttackRelease(0.5);
+     */
     triggerAttackRelease(duration: Time, time?: Time, velocity?: NormalRange): this;
     dispose(): this;
 }

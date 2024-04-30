@@ -23,6 +23,10 @@ export declare class Pattern<ValueType> extends Loop<PatternOptions<ValueType>> 
      */
     private _pattern;
     /**
+     * The current index
+     */
+    private _index?;
+    /**
      * The current value
      */
     private _value?;
@@ -60,7 +64,11 @@ export declare class Pattern<ValueType> extends Loop<PatternOptions<ValueType>> 
      */
     get value(): ValueType | undefined;
     /**
-     * The pattern type. See Tone.CtrlPattern for the full list of patterns.
+     * The current index of the pattern.
+     */
+    get index(): number | undefined;
+    /**
+     * The pattern type.
      */
     get pattern(): PatternName;
     set pattern(pattern: PatternName);

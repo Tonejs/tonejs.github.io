@@ -4,7 +4,7 @@ import { Effect } from "./Effect";
 /**
  * A simple distortion effect using Tone.WaveShaper.
  * Algorithm from [this stackoverflow answer](http://stackoverflow.com/a/22313408).
- *
+ * Read more about distortion on [Wikipedia] (https://en.wikipedia.org/wiki/Distortion_(music)).
  * @example
  * const dist = new Tone.Distortion(0.8).toDestination();
  * const fm = new Tone.FMSynth().connect(dist);

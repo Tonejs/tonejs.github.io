@@ -2,11 +2,12 @@ import { MidiClass } from "../core/type/Midi";
 import { deepMerge, omitFromObject, optionsFromArguments } from "../core/util/Defaults";
 import { isArray, isNumber } from "../core/util/TypeCheck";
 import { Instrument } from "./Instrument";
+import { Monophonic } from "./Monophonic";
 import { Synth } from "./Synth";
 import { assert, warn } from "../core/util/Debug";
 /**
  * PolySynth handles voice creation and allocation for any
- * instruments passed in as the second paramter. PolySynth is
+ * instruments passed in as the second parameter. PolySynth is
  * not a synthesizer by itself, it merely manages voices of
  * one of the other types of synths, allowing any of the
  * monophonic synthesizers to be polyphonic.
@@ -43,6 +44,10 @@ export class PolySynth extends Instrument {
          * A moving average of the number of active voices
          */
         this._averageActiveVoices = 0;
+        /**
+         * The release which is scheduled to the timeline.
+         */
+        this._syncedRelease = (time) => this.releaseAll(time);
         const options = optionsFromArguments(PolySynth.getDefaults(), arguments, ["voice", "options"]);
         // check against the old API (pre 14.3.0)
         assert(!isNumber(options.voice), "DEPRECATED: The polyphony count is no longer the first argument.");
@@ -97,6 +102,7 @@ export class PolySynth extends Instrument {
                 context: this.context,
                 onsilence: this._makeVoiceAvailable.bind(this),
             }));
+            assert(voice instanceof Monophonic, "Voice must extend Monophonic class");
             voice.connect(this.output);
             this._voices.push(voice);
             return voice;
@@ -171,7 +177,9 @@ export class PolySynth extends Instrument {
         else {
             // schedule it to start in the future
             this.context.setTimeout(() => {
-                this._scheduleEvent(type, notes, time, velocity);
+                if (!this.disposed) {
+                    this._scheduleEvent(type, notes, time, velocity);
+                }
             }, time - this.now());
         }
     }
@@ -198,7 +206,6 @@ export class PolySynth extends Instrument {
      * a note (or array of notes) needs to be passed in as the first argument.
      * @param  notes The notes to play. Accepts a single Frequency or an array of frequencies.
      * @param  time  When the release will be triggered.
-     * @example
      * @example
      * const poly = new Tone.PolySynth(Tone.AMSynth).toDestination();
      * poly.triggerAttack(["Ab3", "C4", "F5"]);
@@ -249,6 +256,10 @@ export class PolySynth extends Instrument {
         if (this._syncState()) {
             this._syncMethod("triggerAttack", 1);
             this._syncMethod("triggerRelease", 1);
+            // make sure that the sound doesn't play after its been stopped
+            this.context.transport.on("stop", this._syncedRelease);
+            this.context.transport.on("pause", this._syncedRelease);
+            this.context.transport.on("loopEnd", this._syncedRelease);
         }
         return this;
     }

@@ -1,10 +1,10 @@
 import { BaseContext } from "./BaseContext";
 import { Seconds } from "../type/Units";
 import { AnyAudioContext } from "./AudioContext";
-declare type Draw = import("../util/Draw").Draw;
-declare type Destination = import("./Destination").Destination;
-declare type Transport = import("../clock/Transport").Transport;
-declare type Listener = import("./Listener").Listener;
+declare type Draw = import("../util/Draw").DrawClass;
+declare type Destination = import("./Destination").DestinationClass;
+declare type Transport = import("../clock/Transport").TransportClass;
+declare type Listener = import("./Listener").ListenerClass;
 export declare class DummyContext extends BaseContext {
     createAnalyser(): AnalyserNode;
     createOscillator(): OscillatorNode;
@@ -29,7 +29,7 @@ export declare class DummyContext extends BaseContext {
     decodeAudioData(_audioData: ArrayBuffer): Promise<AudioBuffer>;
     createAudioWorkletNode(_name: string, _options?: Partial<AudioWorkletNodeOptions>): AudioWorkletNode;
     get rawContext(): AnyAudioContext;
-    addAudioWorkletModule(_url: string, _name: string): Promise<void>;
+    addAudioWorkletModule(_url: string): Promise<void>;
     lookAhead: number;
     latencyHint: number;
     resume(): Promise<void>;

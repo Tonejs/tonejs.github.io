@@ -26,7 +26,8 @@ export class Loop extends ToneWithContext {
             loop: true,
             loopEnd: options.interval,
             playbackRate: options.playbackRate,
-            probability: options.probability
+            probability: options.probability,
+            humanize: options.humanize,
         });
         this.callback = options.callback;
         // set the iterations

@@ -98,6 +98,10 @@ export class ToneAudioBuffers extends Tone {
      */
     add(name, url, callback = noOp, onerror = noOp) {
         if (isString(url)) {
+            // don't include the baseUrl if the url is a base64 encoded sound
+            if (this.baseUrl && url.trim().substring(0, 11).toLowerCase() === "data:audio/") {
+                this.baseUrl = "";
+            }
             this._buffers.set(name.toString(), new ToneAudioBuffer(this.baseUrl + url, callback, onerror));
         }
         else {

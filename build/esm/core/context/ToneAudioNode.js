@@ -5,14 +5,11 @@ import { ToneWithContext } from "./ToneWithContext";
 import { assert, warn } from "../util/Debug";
 /**
  * ToneAudioNode is the base class for classes which process audio.
+ * @category Core
  */
 export class ToneAudioNode extends ToneWithContext {
     constructor() {
         super(...arguments);
-        /**
-         * The name of the class
-         */
-        this.name = "ToneAudioNode";
         /**
          * List all of the node that must be set to match the ChannelProperties
          */
@@ -173,7 +170,7 @@ export class ToneAudioNode extends ToneWithContext {
     }
     /**
      * Connect the output to the context's destination node.
-     * See [[toDestination]]
+     * @see {@link toDestination}
      * @deprecated
      */
     toMaster() {
@@ -321,6 +318,22 @@ export function disconnect(srcNode, dstNode, outputNumber = 0, inputNumber = 0) 
     }
     else {
         srcNode.disconnect();
+    }
+}
+/**
+ * Connect the output of one or more source nodes to a single destination node
+ * @param nodes One or more source nodes followed by one destination node
+ * @example
+ * const player = new Tone.Player("https://tonejs.github.io/audio/drum-samples/conga-rhythm.mp3");
+ * const player1 = new Tone.Player("https://tonejs.github.io/audio/drum-samples/conga-rhythm.mp3");
+ * const filter = new Tone.Filter("G5").toDestination();
+ * // connect nodes to a common destination
+ * Tone.fanIn(player, player1, filter);
+ */
+export function fanIn(...nodes) {
+    const dstNode = nodes.pop();
+    if (isDefined(dstNode)) {
+        nodes.forEach(node => connect(node, dstNode));
     }
 }
 //# sourceMappingURL=ToneAudioNode.js.map

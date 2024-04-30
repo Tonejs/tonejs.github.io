@@ -7,7 +7,7 @@ import { OmniOscillator } from "../source/oscillator/OmniOscillator";
 import { Source } from "../source/Source";
 import { Monophonic } from "./Monophonic";
 /**
- * Synth is composed simply of a [[OmniOscillator]] routed through an [[AmplitudeEnvelope]].
+ * Synth is composed simply of a {@link OmniOscillator} routed through an {@link AmplitudeEnvelope}.
  * ```
  * +----------------+   +-------------------+
  * | OmniOscillator +>--> AmplitudeEnvelope +>--> Output

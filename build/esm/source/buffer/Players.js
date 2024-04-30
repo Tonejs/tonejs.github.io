@@ -7,7 +7,7 @@ import { noOp, readOnly } from "../../core/util/Interface";
 import { Source } from "../Source";
 import { Player } from "./Player";
 /**
- * Players combines multiple [[Player]] objects.
+ * Players combines multiple {@link Player} objects.
  * @category Source
  */
 export class Players extends ToneAudioNode {
@@ -130,6 +130,12 @@ export class Players extends ToneAudioNode {
      * @param  name A unique name to give the player
      * @param  url  Either the url of the bufer or a buffer which will be added with the given name.
      * @param callback  The callback to invoke when the url is loaded.
+     * @example
+     * const players = new Tone.Players();
+     * players.add("gong", "https://tonejs.github.io/audio/berklee/gong_1.mp3", () => {
+     * 	console.log("gong loaded");
+     * 	players.player("gong").start();
+     * });
      */
     add(name, url, callback) {
         assert(!this._buffers.has(name), "A buffer with that name already exists on this object");

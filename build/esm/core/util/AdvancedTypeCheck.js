@@ -1,4 +1,4 @@
-import { isAnyAudioContext, isAnyAudioNode, isAnyAudioParam, isAnyOfflineAudioContext, } from "standardized-audio-context";
+import { AudioBuffer, isAnyAudioContext, isAnyAudioNode, isAnyAudioParam, isAnyOfflineAudioContext } from "standardized-audio-context";
 /**
  * Test if the given value is an instanceof AudioParam
  */

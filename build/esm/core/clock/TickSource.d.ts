@@ -24,6 +24,14 @@ export declare class TickSource<TypeName extends "bpm" | "hertz"> extends ToneWi
      */
     private _tickOffset;
     /**
+     * Memoized values of getTicksAtTime at events with state other than "started"
+     */
+    private _ticksAtTime;
+    /**
+     * Memoized values of getSecondsAtTime at events with state other than "started"
+     */
+    private _secondsAtTime;
+    /**
      * @param frequency The initial frequency that the signal ticks at
      */
     constructor(frequency?: number);

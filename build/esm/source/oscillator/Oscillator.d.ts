@@ -82,7 +82,7 @@ export declare class Oscillator extends Source<ToneOscillatorOptions> implements
     syncFrequency(): this;
     /**
      * Unsync the oscillator's frequency from the Transport.
-     * See Oscillator.syncFrequency
+     * @see {@link syncFrequency}
      */
     unsyncFrequency(): this;
     /**

@@ -107,7 +107,7 @@ export class TimeClass extends TimeBaseClass {
     toTicks() {
         const quarterTime = this._beatsToUnits(1);
         const quarters = this.valueOf() / quarterTime;
-        return Math.round(quarters * this._getPPQ());
+        return quarters * this._getPPQ();
     }
     /**
      * Return the time in seconds.
@@ -127,7 +127,7 @@ export class TimeClass extends TimeBaseClass {
 }
 /**
  * Create a TimeClass from a time string or number. The time is computed against the
- * global Tone.Context. To use a specific context, use [[TimeClass]]
+ * global Tone.Context. To use a specific context, use {@link TimeClass}
  * @param value A value which represents time
  * @param units The value's units if they can't be inferred by the value.
  * @category Unit

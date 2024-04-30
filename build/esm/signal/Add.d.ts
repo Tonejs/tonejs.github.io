@@ -31,7 +31,7 @@ export declare class Add extends Signal {
      */
     readonly addend: Param<"number">;
     /**
-     * @param value If no value is provided, will sum the input and [[addend]].
+     * @param value If no value is provided, will sum the input and {@link addend}.
      */
     constructor(value?: number);
     constructor(options?: Partial<SignalOptions<"number">>);

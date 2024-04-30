@@ -14,7 +14,7 @@ const dummyContext = new DummyContext();
  */
 let globalContext = dummyContext;
 /**
- * Returns the default system-wide [[Context]]
+ * Returns the default system-wide {@link Context}
  * @category Core
  */
 export function getContext() {
@@ -25,9 +25,14 @@ export function getContext() {
 }
 /**
  * Set the default audio context
+ * @param context
+ * @param disposeOld Pass `true` if you don't need the old context to dispose it.
  * @category Core
  */
-export function setContext(context) {
+export function setContext(context, disposeOld = false) {
+    if (disposeOld) {
+        globalContext.dispose();
+    }
     if (isAudioContext(context)) {
         globalContext = new Context(context);
     }

@@ -16,7 +16,7 @@ import { assert } from "../core/util/Debug";
  * were not explicitly included which can save loading time.
  *
  * For sample or buffer playback where repitching is not necessary,
- * use [[Player]].
+ * use {@link Player}.
  * @example
  * const sampler = new Tone.Sampler({
  * 	urls: {

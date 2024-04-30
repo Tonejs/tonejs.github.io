@@ -35,7 +35,7 @@ export declare class Multiply<TypeName extends "number" | "positive" = "number">
      */
     input: InputNode;
     /**
-     * The product of the input and [[factor]]
+     * The product of the input and {@link factor}
      */
     output: OutputNode;
     /**

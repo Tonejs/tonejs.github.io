@@ -220,8 +220,8 @@ export declare class Envelope extends ToneAudioNode<EnvelopeOptions> {
      * 	env.triggerAttack();
      * }, 1, 1);
      */
-    get decayCurve(): BasicEnvelopeCurve;
-    set decayCurve(curve: BasicEnvelopeCurve);
+    get decayCurve(): EnvelopeCurve;
+    set decayCurve(curve: EnvelopeCurve);
     /**
      * Trigger the attack/decay portion of the ADSR envelope.
      * @param  time When the attack should start.

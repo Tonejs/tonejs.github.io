@@ -3,6 +3,7 @@ import { assertRange } from "./Debug";
 /**
  * A Timeline State. Provides the methods: `setStateAtTime("state", time)` and `getValueAtTime(time)`
  * @param initial The initial state of the StateTimeline.  Defaults to `undefined`
+ * @internal
  */
 export class StateTimeline extends Timeline {
     constructor(initial = "stopped") {

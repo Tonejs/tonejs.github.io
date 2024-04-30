@@ -6,8 +6,8 @@ import { optionsFromArguments } from "../../core/util/Defaults";
 import { dbToGain, gainToDb } from "../../core/type/Conversions";
 /**
  * Gate only passes a signal through when the incoming
- * signal exceeds a specified threshold. It uses [[Follower]] to follow the ampltiude
- * of the incoming signal and compares it to the [[threshold]] value using [[GreaterThan]].
+ * signal exceeds a specified threshold. It uses {@link Follower} to follow the ampltiude
+ * of the incoming signal and compares it to the {@link threshold} value using {@link GreaterThan}.
  *
  * @example
  * const gate = new Tone.Gate(-30, 0.2).toDestination();
@@ -52,7 +52,8 @@ export class Gate extends ToneAudioNode {
         this._gt.value = dbToGain(thresh);
     }
     /**
-     * The attack/decay speed of the gate. See [[Follower.smoothing]]
+     * The attack/decay speed of the gate.
+     * @see {@link Follower.smoothing}
      */
     get smoothing() {
         return this._follower.smoothing;

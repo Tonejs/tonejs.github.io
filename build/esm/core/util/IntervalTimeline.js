@@ -8,6 +8,7 @@ import { assert } from "./Debug";
  * for querying an intersection point with the timeline
  * events. Internally uses an [Interval Tree](https://en.wikipedia.org/wiki/Interval_tree)
  * to represent the data.
+ * @internal
  */
 export class IntervalTimeline extends Tone {
     constructor() {

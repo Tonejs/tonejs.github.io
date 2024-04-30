@@ -4,7 +4,7 @@ import { FeedbackCombFilter } from "./FeedbackCombFilter";
 import { OnePoleFilter } from "./OnePoleFilter";
 /**
  * A lowpass feedback comb filter. It is similar to
- * [[FeedbackCombFilter]], but includes a lowpass filter.
+ * {@link FeedbackCombFilter}, but includes a lowpass filter.
  * @category Component
  */
 export class LowpassCombFilter extends ToneAudioNode {

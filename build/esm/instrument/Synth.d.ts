@@ -12,7 +12,7 @@ export interface SynthOptions extends MonophonicOptions {
     envelope: Omit<EnvelopeOptions, keyof ToneAudioNodeOptions>;
 }
 /**
- * Synth is composed simply of a [[OmniOscillator]] routed through an [[AmplitudeEnvelope]].
+ * Synth is composed simply of a {@link OmniOscillator} routed through an {@link AmplitudeEnvelope}.
  * ```
  * +----------------+   +-------------------+
  * | OmniOscillator +>--> AmplitudeEnvelope +>--> Output

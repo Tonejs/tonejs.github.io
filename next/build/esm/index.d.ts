@@ -5,6 +5,10 @@ import { ToneAudioBuffer } from "./core/context/ToneAudioBuffer";
 export { start } from "./core/Global";
 import { Seconds } from "./core/type/Units";
 export { supported } from "./core/context/AudioContext";
+import type { TransportClass } from "./core/clock/Transport";
+import type { DestinationClass } from "./core/context/Destination";
+import type { DrawClass } from "./core/util/Draw";
+import type { ListenerClass } from "./core/context/Listener";
 /**
  * The current audio context time of the global {@link BaseContext}.
  * @see {@link Context.now}
@@ -23,55 +27,55 @@ export declare function immediate(): Seconds;
  * @category Core
  * @deprecated Use {@link getTransport} instead
  */
-export declare const Transport: import("./core/clock/Transport").TransportClass;
+export declare const Transport: TransportClass;
 /**
  * The Transport object belonging to the global Tone.js Context.
  * @see {@link TransportClass}
  * @category Core
  */
-export declare function getTransport(): import("./core/clock/Transport").TransportClass;
+export declare function getTransport(): TransportClass;
 /**
  * The Destination (output) belonging to the global Tone.js Context.
  * @see {@link DestinationClass}
  * @category Core
  * @deprecated Use {@link getDestination} instead
  */
-export declare const Destination: import("./core/context/Destination").DestinationClass;
+export declare const Destination: DestinationClass;
 /**
  * @deprecated Use {@link getDestination} instead
  */
-export declare const Master: import("./core/context/Destination").DestinationClass;
+export declare const Master: DestinationClass;
 /**
  * The Destination (output) belonging to the global Tone.js Context.
  * @see {@link DestinationClass}
  * @category Core
  */
-export declare function getDestination(): import("./core/context/Destination").DestinationClass;
+export declare function getDestination(): DestinationClass;
 /**
  * The {@link ListenerClass} belonging to the global Tone.js Context.
  * @category Core
  * @deprecated Use {@link getListener} instead
  */
-export declare const Listener: import("./core/context/Listener").ListenerClass;
+export declare const Listener: ListenerClass;
 /**
  * The {@link ListenerClass} belonging to the global Tone.js Context.
  * @category Core
  */
-export declare function getListener(): import("./core/context/Listener").ListenerClass;
+export declare function getListener(): ListenerClass;
 /**
  * Draw is used to synchronize the draw frame with the Transport's callbacks.
  * @see {@link DrawClass}
  * @category Core
  * @deprecated Use {@link getDraw} instead
  */
-export declare const Draw: import("./core/util/Draw").DrawClass;
+export declare const Draw: DrawClass;
 /**
  * Get the singleton attached to the global context.
  * Draw is used to synchronize the draw frame with the Transport's callbacks.
  * @see {@link DrawClass}
  * @category Core
  */
-export declare function getDraw(): import("./core/util/Draw").DrawClass;
+export declare function getDraw(): DrawClass;
 /**
  * A reference to the global context
  * @see {@link Context}

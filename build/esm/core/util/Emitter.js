@@ -58,12 +58,12 @@ export class Emitter extends Tone {
             if (isUndef(this._events)) {
                 this._events = {};
             }
-            if (this._events.hasOwnProperty(event)) {
+            if (this._events.hasOwnProperty(eventName)) {
                 if (isUndef(callback)) {
-                    this._events[event] = [];
+                    this._events[eventName] = [];
                 }
                 else {
-                    const eventList = this._events[event];
+                    const eventList = this._events[eventName];
                     for (let i = eventList.length - 1; i >= 0; i--) {
                         if (eventList[i] === callback) {
                             eventList.splice(i, 1);

@@ -1,7 +1,7 @@
 import { getContext } from "../Global";
 import { TimeClass } from "./Time";
 /**
- * TransportTime is a the time along the Transport's
+ * TransportTime is a time along the Transport's
  * timeline. It is similar to Tone.Time, but instead of evaluating
  * against the AudioContext's clock, it is evaluated against
  * the Transport's position. See [TransportTime wiki](https://github.com/Tonejs/Tone.js/wiki/TransportTime).
@@ -20,8 +20,8 @@ export class TransportTimeClass extends TimeClass {
     }
 }
 /**
- * TransportTime is a the time along the Transport's
- * timeline. It is similar to [[Time]], but instead of evaluating
+ * TransportTime is a time along the Transport's
+ * timeline. It is similar to Tone.Time, but instead of evaluating
  * against the AudioContext's clock, it is evaluated against
  * the Transport's position. See [TransportTime wiki](https://github.com/Tonejs/Tone.js/wiki/TransportTime).
  * @category Unit

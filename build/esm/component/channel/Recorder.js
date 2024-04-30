@@ -97,7 +97,7 @@ export class Recorder extends ToneAudioNode {
     }
     /**
      * Stop the recorder. Returns a promise with the recorded content until this point
-     * encoded as [[mimeType]]
+     * encoded as {@link mimeType}
      */
     stop() {
         return __awaiter(this, void 0, void 0, function* () {

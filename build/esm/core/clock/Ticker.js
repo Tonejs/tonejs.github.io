@@ -3,10 +3,11 @@
  * a Web Worker, or if that isn't supported, falls back to setTimeout.
  */
 export class Ticker {
-    constructor(callback, type, updateInterval) {
+    constructor(callback, type, updateInterval, contextSampleRate) {
         this._callback = callback;
         this._type = type;
-        this._updateInterval = updateInterval;
+        this._minimumUpdateInterval = Math.max(128 / (contextSampleRate || 44100), .001);
+        this.updateInterval = updateInterval;
         // create the clock source for the first time
         this._createClock();
     }
@@ -70,7 +71,6 @@ export class Ticker {
     _disposeClock() {
         if (this._timeout) {
             clearTimeout(this._timeout);
-            this._timeout = 0;
         }
         if (this._worker) {
             this._worker.terminate();
@@ -84,9 +84,10 @@ export class Ticker {
         return this._updateInterval;
     }
     set updateInterval(interval) {
-        this._updateInterval = Math.max(interval, 128 / 44100);
+        var _a;
+        this._updateInterval = Math.max(interval, this._minimumUpdateInterval);
         if (this._type === "worker") {
-            this._worker.postMessage(Math.max(interval * 1000, 1));
+            (_a = this._worker) === null || _a === void 0 ? void 0 : _a.postMessage(this._updateInterval * 1000);
         }
     }
     /**

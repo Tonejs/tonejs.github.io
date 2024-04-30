@@ -87,7 +87,7 @@ export declare class OmniOscillator<OscType extends AnyOscillator> extends Sourc
     /**
      * The value is an empty array when the type is not "custom".
      * This is not available on "pwm" and "pulse" oscillator types.
-     * See [[Oscillator.partials]]
+     * @see {@link Oscillator.partials}
      */
     get partials(): number[];
     set partials(partials: number[]);
@@ -110,7 +110,8 @@ export declare class OmniOscillator<OscType extends AnyOscillator> extends Sourc
     set sourceType(sType: OmniOscSourceType);
     private _getOscType;
     /**
-     * The base type of the oscillator. See [[Oscillator.baseType]]
+     * The base type of the oscillator.
+     * @see {@link Oscillator.baseType}
      * @example
      * const omniOsc = new Tone.OmniOscillator(440, "fmsquare4");
      * console.log(omniOsc.sourceType, omniOsc.baseType, omniOsc.partialCount);
@@ -119,40 +120,40 @@ export declare class OmniOscillator<OscType extends AnyOscillator> extends Sourc
     set baseType(baseType: OscillatorType | "pwm" | "pulse");
     /**
      * The width of the oscillator when sourceType === "pulse".
-     * See [[PWMOscillator.width]]
+     * @see {@link PWMOscillator}
      */
     get width(): IsPulseOscillator<OscType, Signal<"audioRange">>;
     /**
      * The number of detuned oscillators when sourceType === "fat".
-     * See [[FatOscillator.count]]
+     * @see {@link FatOscillator.count}
      */
     get count(): IsFatOscillator<OscType, number>;
     set count(count: IsFatOscillator<OscType, number>);
     /**
      * The detune spread between the oscillators when sourceType === "fat".
-     * See [[FatOscillator.count]]
+     * @see {@link FatOscillator.count}
      */
     get spread(): IsFatOscillator<OscType, Cents>;
     set spread(spread: IsFatOscillator<OscType, Cents>);
     /**
      * The type of the modulator oscillator. Only if the oscillator is set to "am" or "fm" types.
-     * See [[AMOscillator]] or [[FMOscillator]]
+     * @see {@link AMOscillator} or {@link FMOscillator}
      */
     get modulationType(): IsAmOrFmOscillator<OscType, ToneOscillatorType>;
     set modulationType(mType: IsAmOrFmOscillator<OscType, ToneOscillatorType>);
     /**
      * The modulation index when the sourceType === "fm"
-     * See [[FMOscillator]].
+     * @see {@link FMOscillator}.
      */
     get modulationIndex(): IsFMOscillator<OscType, Signal<"positive">>;
     /**
      * Harmonicity is the frequency ratio between the carrier and the modulator oscillators.
-     * See [[AMOscillator]] or [[FMOscillator]]
+     * @see {@link AMOscillator} or {@link FMOscillator}
      */
     get harmonicity(): IsAmOrFmOscillator<OscType, Signal<"positive">>;
     /**
      * The modulationFrequency Signal of the oscillator when sourceType === "pwm"
-     * see [[PWMOscillator]]
+     * see {@link PWMOscillator}
      * @min 0.1
      * @max 5
      */

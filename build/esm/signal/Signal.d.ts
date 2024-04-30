@@ -75,7 +75,7 @@ export declare class Signal<TypeName extends UnitName = "number"> extends ToneAu
     get maxValue(): number;
     get minValue(): number;
     /**
-     * See [[Param.apply]].
+     * @see {@link Param.apply}.
      */
     apply(param: Param | AudioParam): this;
 }

@@ -6,7 +6,7 @@ import { readOnly } from "../../core/util/Interface";
 /**
  * Wrapper around the native fire-and-forget OscillatorNode.
  * Adds the ability to reschedule the stop method.
- * ***[[Oscillator]] is better for most use-cases***
+ * ***{@link Oscillator} is better for most use-cases***
  * @category Source
  */
 export class ToneOscillatorNode extends OneShotSource {

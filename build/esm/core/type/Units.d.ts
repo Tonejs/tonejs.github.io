@@ -41,7 +41,7 @@ export declare type Positive = number;
  * e.g. "4n" is a quarter note, "4t" is a quarter note triplet, and "4n." is a dotted quarter note.
  * @category Unit
  */
-export declare type Subdivision = "1m" | "1n" | "1n." | "2n" | "2n." | "2t" | "4n" | "4n." | "4t" | "8n" | "8n." | "8t" | "16n" | "16n." | "16t" | "32n" | "32n." | "32t" | "64n" | "64n." | "64t" | "128n" | "128n." | "128t" | "256n" | "256n." | "256t" | "0";
+export declare type Subdivision = "1m" | "1n" | "1n." | `${2 | 4 | 8 | 16 | 32 | 64 | 128 | 256}${"n" | "n." | "t"}` | "0";
 /**
  * A time object has a subdivision as the keys and a number as the values.
  * @example
@@ -115,7 +115,7 @@ export declare type Radians = number;
  * Bars:Beats:Sixteenths.
  * @category Unit
  */
-export declare type BarsBeatsSixteenths = string;
+export declare type BarsBeatsSixteenths = `${number}:${number}:${number}`;
 /**
  * Sampling is the reduction of a continuous signal to a discrete signal.
  * Audio is typically sampled 44100 times per second.

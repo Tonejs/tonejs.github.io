@@ -25,7 +25,7 @@ export declare class Waveform extends MeterBase<WaveformOptions> {
     getValue(): Float32Array;
     /**
      * The size of analysis. This must be a power of two in the range 16 to 16384.
-     * Determines the size of the array returned by [[getValue]].
+     * Determines the size of the array returned by {@link getValue}.
      */
     get size(): PowerOfTwo;
     set size(size: PowerOfTwo);

@@ -87,8 +87,6 @@ export class ToneEvent extends ToneWithContext {
                         duration = Math.min(duration, nextEvent.time - startTick);
                     }
                     if (duration !== Infinity) {
-                        // schedule a stop since it's finite duration
-                        this._state.setStateAtTime("stopped", startTick + duration + 1, { id: -1 });
                         duration = new TicksClass(this.context, duration);
                     }
                     const interval = new TicksClass(this.context, this._getLoopDuration());
@@ -164,11 +162,11 @@ export class ToneEvent extends ToneWithContext {
         if (this._state.getValueAtTime(ticks) === "started") {
             this._state.setStateAtTime("stopped", ticks, { id: -1 });
             const previousEvent = this._state.getBefore(ticks);
-            let reschedulTime = ticks;
+            let rescheduleTime = ticks;
             if (previousEvent !== null) {
-                reschedulTime = previousEvent.time;
+                rescheduleTime = previousEvent.time;
             }
-            this._rescheduleEvents(reschedulTime);
+            this._rescheduleEvents(rescheduleTime);
         }
         return this;
     }
@@ -210,7 +208,7 @@ export class ToneEvent extends ToneWithContext {
      * Get the duration of the loop.
      */
     _getLoopDuration() {
-        return Math.round((this._loopEnd - this._loopStart) / this._playbackRate);
+        return (this._loopEnd - this._loopStart) / this._playbackRate;
     }
     /**
      * If the note should loop or not
@@ -230,7 +228,7 @@ export class ToneEvent extends ToneWithContext {
         this._rescheduleEvents();
     }
     /**
-     * The playback rate of the note. Defaults to 1.
+     * The playback rate of the event. Defaults to 1.
      * @example
      * const note = new Tone.ToneEvent();
      * note.loop = true;
