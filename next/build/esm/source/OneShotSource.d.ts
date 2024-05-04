@@ -1,9 +1,9 @@
-import { Gain } from "../core/context/Gain";
-import { ToneAudioNode, ToneAudioNodeOptions } from "../core/context/ToneAudioNode";
-import { GainFactor, Seconds, Time } from "../core/type/Units";
-import { BasicPlaybackState } from "../core/util/StateTimeline";
-export declare type OneShotSourceCurve = "linear" | "exponential";
-declare type onEndedCallback = (source: OneShotSource<any>) => void;
+import { Gain } from "../core/context/Gain.js";
+import { ToneAudioNode, ToneAudioNodeOptions } from "../core/context/ToneAudioNode.js";
+import { GainFactor, Seconds, Time } from "../core/type/Units.js";
+import { BasicPlaybackState } from "../core/util/StateTimeline.js";
+export type OneShotSourceCurve = "linear" | "exponential";
+type onEndedCallback = (source: OneShotSource<any>) => void;
 export interface OneShotSourceOptions extends ToneAudioNodeOptions {
     onended: onEndedCallback;
     fadeIn: Time;

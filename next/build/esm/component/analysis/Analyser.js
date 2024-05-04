@@ -1,8 +1,8 @@
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { Split } from "../channel/Split";
-import { Gain } from "../../core/context/Gain";
-import { assert, assertRange } from "../../core/util/Debug";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { Split } from "../channel/Split.js";
+import { Gain } from "../../core/context/Gain.js";
+import { assert, assertRange } from "../../core/util/Debug.js";
 /**
  * Wrapper around the native Web Audio's [AnalyserNode](http://webaudio.github.io/web-audio-api/#idl-def-AnalyserNode).
  * Extracts FFT or Waveform data from the incoming signal.
@@ -10,7 +10,10 @@ import { assert, assertRange } from "../../core/util/Debug";
  */
 export class Analyser extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Analyser.getDefaults(), arguments, ["type", "size"]));
+        super(optionsFromArguments(Analyser.getDefaults(), arguments, [
+            "type",
+            "size",
+        ]));
         this.name = "Analyser";
         /**
          * The analyser node.
@@ -21,7 +24,10 @@ export class Analyser extends ToneAudioNode {
          */
         this._buffers = [];
         const options = optionsFromArguments(Analyser.getDefaults(), arguments, ["type", "size"]);
-        this.input = this.output = this._gain = new Gain({ context: this.context });
+        this.input =
+            this.output =
+                this._gain =
+                    new Gain({ context: this.context });
         this._split = new Split({
             context: this.context,
             channels: options.channels,
@@ -105,14 +111,14 @@ export class Analyser extends ToneAudioNode {
         return this._analysers[0].smoothingTimeConstant;
     }
     set smoothing(val) {
-        this._analysers.forEach(a => a.smoothingTimeConstant = val);
+        this._analysers.forEach((a) => (a.smoothingTimeConstant = val));
     }
     /**
      * Clean up.
      */
     dispose() {
         super.dispose();
-        this._analysers.forEach(a => a.disconnect());
+        this._analysers.forEach((a) => a.disconnect());
         this._split.dispose();
         this._gain.dispose();
         return this;

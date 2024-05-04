@@ -1,6 +1,6 @@
-import { RecursivePartial } from "../core/util/Interface";
-import { ModulationSynth, ModulationSynthOptions } from "./ModulationSynth";
-export declare type AMSynthOptions = ModulationSynthOptions;
+import { RecursivePartial } from "../core/util/Interface.js";
+import { ModulationSynth, ModulationSynthOptions } from "./ModulationSynth.js";
+export type AMSynthOptions = ModulationSynthOptions;
 /**
  * AMSynth uses the output of one Tone.Synth to modulate the
  * amplitude of another Tone.Synth. The harmonicity (the ratio between

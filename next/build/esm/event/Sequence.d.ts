@@ -1,6 +1,6 @@
-import { NormalRange, Positive, Seconds, Ticks, Time, TransportTime } from "../core/type/Units";
-import { ToneEvent, ToneEventCallback, ToneEventOptions } from "./ToneEvent";
-declare type SequenceEventDescription<T> = Array<T | SequenceEventDescription<T>>;
+import { NormalRange, Positive, Seconds, Ticks, Time, TransportTime } from "../core/type/Units.js";
+import { ToneEvent, ToneEventCallback, ToneEventOptions } from "./ToneEvent.js";
+type SequenceEventDescription<T> = Array<T | SequenceEventDescription<T>>;
 interface SequenceOptions<T> extends Omit<ToneEventOptions<T>, "value"> {
     loopStart: number;
     loopEnd: number;

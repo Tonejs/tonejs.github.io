@@ -1,7 +1,7 @@
-import { BaseContext } from "../context/BaseContext";
-import { Seconds, Ticks } from "../type/Units";
-import { TransportEvent, TransportEventOptions } from "./TransportEvent";
-declare type Transport = import("../clock/Transport").TransportClass;
+import { BaseContext } from "../context/BaseContext.js";
+import { Seconds, Ticks } from "../type/Units.js";
+import { TransportEvent, TransportEventOptions } from "./TransportEvent.js";
+import type { TransportClass as Transport } from "./Transport.js";
 interface TransportRepeatEventOptions extends TransportEventOptions {
     interval: Ticks;
     duration: Ticks;

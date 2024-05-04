@@ -1,21 +1,21 @@
-import { TimeClass } from "../../core/type/Time";
-import { TimelineValue } from "../../core/util/TimelineValue";
-import { Pow } from "../../signal/Pow";
-import { onContextClose, onContextInit, } from "../context/ContextInitialization";
-import { Gain } from "../context/Gain";
-import { ToneWithContext, } from "../context/ToneWithContext";
-import { TicksClass } from "../type/Ticks";
-import { TransportTimeClass } from "../type/TransportTime";
-import { enterScheduledCallback } from "../util/Debug";
-import { optionsFromArguments } from "../util/Defaults";
-import { Emitter } from "../util/Emitter";
-import { readOnly, writable } from "../util/Interface";
-import { IntervalTimeline } from "../util/IntervalTimeline";
-import { Timeline } from "../util/Timeline";
-import { isArray, isDefined } from "../util/TypeCheck";
-import { Clock } from "./Clock";
-import { TransportEvent } from "./TransportEvent";
-import { TransportRepeatEvent } from "./TransportRepeatEvent";
+import { TimeClass } from "../../core/type/Time.js";
+import { TimelineValue } from "../../core/util/TimelineValue.js";
+import { Pow } from "../../signal/Pow.js";
+import { onContextClose, onContextInit, } from "../context/ContextInitialization.js";
+import { Gain } from "../context/Gain.js";
+import { ToneWithContext, } from "../context/ToneWithContext.js";
+import { TicksClass } from "../type/Ticks.js";
+import { TransportTimeClass } from "../type/TransportTime.js";
+import { enterScheduledCallback } from "../util/Debug.js";
+import { optionsFromArguments } from "../util/Defaults.js";
+import { Emitter } from "../util/Emitter.js";
+import { readOnly, writable } from "../util/Interface.js";
+import { IntervalTimeline } from "../util/IntervalTimeline.js";
+import { Timeline } from "../util/Timeline.js";
+import { isArray, isDefined } from "../util/TypeCheck.js";
+import { Clock } from "./Clock.js";
+import { TransportEvent } from "./TransportEvent.js";
+import { TransportRepeatEvent } from "./TransportRepeatEvent.js";
 /**
  * Transport for timing musical events.
  * Supports tempo curves and time changes. Unlike browser-based timing (setInterval, requestAnimationFrame)

@@ -1,9 +1,9 @@
-import { version } from "../version";
-import { hasAudioContext, theWindow } from "./context/AudioContext";
-import { Context } from "./context/Context";
-import { DummyContext } from "./context/DummyContext";
-import { OfflineContext } from "./context/OfflineContext";
-import { isAudioContext, isOfflineAudioContext } from "./util/AdvancedTypeCheck";
+import { version } from "../version.js";
+import { hasAudioContext, theWindow, } from "./context/AudioContext.js";
+import { Context } from "./context/Context.js";
+import { DummyContext } from "./context/DummyContext.js";
+import { OfflineContext } from "./context/OfflineContext.js";
+import { isAudioContext, isOfflineAudioContext, } from "./util/AdvancedTypeCheck.js";
 /**
  * This dummy context is used to avoid throwing immediate errors when importing in Node.js
  */

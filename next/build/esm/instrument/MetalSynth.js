@@ -1,14 +1,14 @@
-import { Envelope } from "../component/envelope/Envelope";
-import { Filter } from "../component/filter/Filter";
-import { Gain } from "../core/context/Gain";
-import { ToneAudioNode, } from "../core/context/ToneAudioNode";
-import { deepMerge, omitFromObject, optionsFromArguments, } from "../core/util/Defaults";
-import { noOp } from "../core/util/Interface";
-import { Multiply } from "../signal/Multiply";
-import { Scale } from "../signal/Scale";
-import { Signal } from "../signal/Signal";
-import { FMOscillator } from "../source/oscillator/FMOscillator";
-import { Monophonic } from "./Monophonic";
+import { Envelope } from "../component/envelope/Envelope.js";
+import { Filter } from "../component/filter/Filter.js";
+import { Gain } from "../core/context/Gain.js";
+import { ToneAudioNode, } from "../core/context/ToneAudioNode.js";
+import { deepMerge, omitFromObject, optionsFromArguments, } from "../core/util/Defaults.js";
+import { noOp } from "../core/util/Interface.js";
+import { Multiply } from "../signal/Multiply.js";
+import { Scale } from "../signal/Scale.js";
+import { Signal } from "../signal/Signal.js";
+import { FMOscillator } from "../source/oscillator/FMOscillator.js";
+import { Monophonic } from "./Monophonic.js";
 /**
  * Inharmonic ratio of frequencies based on the Roland TR-808
  * Taken from https://ccrma.stanford.edu/papers/tr-808-cymbal-physically-informed-circuit-bendable-digital-model

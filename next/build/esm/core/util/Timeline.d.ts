@@ -1,6 +1,6 @@
-import { Tone } from "../Tone";
-import { Seconds } from "../type/Units";
-declare type TimelineSearchParam = "ticks" | "time";
+import { Tone } from "../Tone.js";
+import { Seconds } from "../type/Units.js";
+type TimelineSearchParam = "ticks" | "time";
 /**
  * The options object for Timeline
  */

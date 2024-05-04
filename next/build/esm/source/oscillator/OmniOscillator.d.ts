@@ -1,38 +1,38 @@
-import { Cents, Degrees, Frequency, Seconds, Time } from "../../core/type/Units";
-import { Signal } from "../../signal/Signal";
-import { Source } from "../Source";
-import { AMOscillator } from "./AMOscillator";
-import { FatOscillator } from "./FatOscillator";
-import { FMOscillator } from "./FMOscillator";
-import { Oscillator } from "./Oscillator";
-import { OmniOscillatorOptions, OmniOscillatorType, ToneOscillatorInterface, ToneOscillatorType } from "./OscillatorInterface";
-import { PulseOscillator } from "./PulseOscillator";
-import { PWMOscillator } from "./PWMOscillator";
-export { OmniOscillatorOptions } from "./OscillatorInterface";
+import { Cents, Degrees, Frequency, Seconds, Time } from "../../core/type/Units.js";
+import { Signal } from "../../signal/Signal.js";
+import { Source } from "../Source.js";
+import { AMOscillator } from "./AMOscillator.js";
+import { FatOscillator } from "./FatOscillator.js";
+import { FMOscillator } from "./FMOscillator.js";
+import { Oscillator } from "./Oscillator.js";
+import { OmniOscillatorOptions, OmniOscillatorType, ToneOscillatorInterface, ToneOscillatorType } from "./OscillatorInterface.js";
+import { PulseOscillator } from "./PulseOscillator.js";
+import { PWMOscillator } from "./PWMOscillator.js";
+export { OmniOscillatorOptions } from "./OscillatorInterface.js";
 /**
  * All of the oscillator types that OmniOscillator can take on
  */
-declare type AnyOscillator = Oscillator | PWMOscillator | PulseOscillator | FatOscillator | AMOscillator | FMOscillator;
+type AnyOscillator = Oscillator | PWMOscillator | PulseOscillator | FatOscillator | AMOscillator | FMOscillator;
 /**
  * All of the Oscillator constructor types mapped to their name.
  */
 interface OmniOscillatorSource {
-    "fm": FMOscillator;
-    "am": AMOscillator;
-    "pwm": PWMOscillator;
-    "pulse": PulseOscillator;
-    "oscillator": Oscillator;
-    "fat": FatOscillator;
+    fm: FMOscillator;
+    am: AMOscillator;
+    pwm: PWMOscillator;
+    pulse: PulseOscillator;
+    oscillator: Oscillator;
+    fat: FatOscillator;
 }
 /**
  * The available oscillator types.
  */
-export declare type OmniOscSourceType = keyof OmniOscillatorSource;
-declare type IsAmOrFmOscillator<Osc, Ret> = Osc extends AMOscillator ? Ret : Osc extends FMOscillator ? Ret : undefined;
-declare type IsFatOscillator<Osc, Ret> = Osc extends FatOscillator ? Ret : undefined;
-declare type IsPWMOscillator<Osc, Ret> = Osc extends PWMOscillator ? Ret : undefined;
-declare type IsPulseOscillator<Osc, Ret> = Osc extends PulseOscillator ? Ret : undefined;
-declare type IsFMOscillator<Osc, Ret> = Osc extends FMOscillator ? Ret : undefined;
+export type OmniOscSourceType = keyof OmniOscillatorSource;
+type IsAmOrFmOscillator<Osc, Ret> = Osc extends AMOscillator ? Ret : Osc extends FMOscillator ? Ret : undefined;
+type IsFatOscillator<Osc, Ret> = Osc extends FatOscillator ? Ret : undefined;
+type IsPWMOscillator<Osc, Ret> = Osc extends PWMOscillator ? Ret : undefined;
+type IsPulseOscillator<Osc, Ret> = Osc extends PulseOscillator ? Ret : undefined;
+type IsFMOscillator<Osc, Ret> = Osc extends FMOscillator ? Ret : undefined;
 /**
  * OmniOscillator aggregates all of the oscillator types into one.
  * @example

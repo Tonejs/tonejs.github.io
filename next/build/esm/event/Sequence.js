@@ -1,8 +1,8 @@
-import { TicksClass } from "../core/type/Ticks";
-import { omitFromObject, optionsFromArguments } from "../core/util/Defaults";
-import { isArray, isString } from "../core/util/TypeCheck";
-import { Part } from "./Part";
-import { ToneEvent } from "./ToneEvent";
+import { TicksClass } from "../core/type/Ticks.js";
+import { omitFromObject, optionsFromArguments } from "../core/util/Defaults.js";
+import { isArray, isString } from "../core/util/TypeCheck.js";
+import { Part } from "./Part.js";
+import { ToneEvent } from "./ToneEvent.js";
 /**
  * A sequence is an alternate notation of a part. Instead
  * of passing in an array of [time, event] pairs, pass
@@ -21,7 +21,11 @@ import { ToneEvent } from "./ToneEvent";
  */
 export class Sequence extends ToneEvent {
     constructor() {
-        super(optionsFromArguments(Sequence.getDefaults(), arguments, ["callback", "events", "subdivision"]));
+        super(optionsFromArguments(Sequence.getDefaults(), arguments, [
+            "callback",
+            "events",
+            "subdivision",
+        ]));
         this.name = "Sequence";
         /**
          * The object responsible for scheduling all of the events
@@ -146,7 +150,7 @@ export class Sequence extends ToneEvent {
      */
     _rescheduleSequence(sequence, subdivision, startOffset) {
         sequence.forEach((value, index) => {
-            const eventOffset = index * (subdivision) + startOffset;
+            const eventOffset = index * subdivision + startOffset;
             if (isArray(value)) {
                 this._rescheduleSequence(value, subdivision / value.length, eventOffset);
             }
@@ -162,7 +166,7 @@ export class Sequence extends ToneEvent {
      * @return The time of that index
      */
     _indexTime(index) {
-        return new TicksClass(this.context, index * (this._subdivision) + this.startOffset).toSeconds();
+        return new TicksClass(this.context, index * this._subdivision + this.startOffset).toSeconds();
     }
     /**
      * Clear all of the events

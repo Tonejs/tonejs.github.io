@@ -1,6 +1,6 @@
-import { ToneAudioNode } from "./ToneAudioNode";
-import { Param } from "./Param";
-import { onContextClose, onContextInit } from "./ContextInitialization";
+import { ToneAudioNode } from "./ToneAudioNode.js";
+import { Param } from "./Param.js";
+import { onContextClose, onContextInit } from "./ContextInitialization.js";
 /**
  * Tone.Listener is a thin wrapper around the AudioListener. Listener combined
  * with {@link Panner3D} makes up the Web Audio API's 3D panning system. Panner3D allows you
@@ -78,10 +78,10 @@ export class ListenerClass extends ToneAudioNode {
 //-------------------------------------
 // 	INITIALIZATION
 //-------------------------------------
-onContextInit(context => {
+onContextInit((context) => {
     context.listener = new ListenerClass({ context });
 });
-onContextClose(context => {
+onContextClose((context) => {
     context.listener.dispose();
 });
 //# sourceMappingURL=Listener.js.map

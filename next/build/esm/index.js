@@ -1,10 +1,10 @@
-export { getContext, setContext } from "./core/Global";
-export * from "./classes";
-export * from "./version";
-import { getContext } from "./core/Global";
-import { ToneAudioBuffer } from "./core/context/ToneAudioBuffer";
-export { start } from "./core/Global";
-export { supported } from "./core/context/AudioContext";
+export { getContext, setContext } from "./core/Global.js";
+export * from "./classes.js";
+export * from "./version.js";
+import { getContext } from "./core/Global.js";
+import { ToneAudioBuffer } from "./core/context/ToneAudioBuffer.js";
+export { start } from "./core/Global.js";
+export { supported } from "./core/context/AudioContext.js";
 /**
  * The current audio context time of the global {@link BaseContext}.
  * @see {@link Context.now}
@@ -99,8 +99,8 @@ export function loaded() {
     return ToneAudioBuffer.loaded();
 }
 // this fills in name changes from 13.x to 14.x
-import { ToneAudioBuffers } from "./core/context/ToneAudioBuffers";
-import { ToneBufferSource } from "./source/buffer/ToneBufferSource";
+import { ToneAudioBuffers } from "./core/context/ToneAudioBuffers.js";
+import { ToneBufferSource } from "./source/buffer/ToneBufferSource.js";
 /** @deprecated Use {@link ToneAudioBuffer} */
 export const Buffer = ToneAudioBuffer;
 /** @deprecated Use {@link ToneAudioBuffers} */

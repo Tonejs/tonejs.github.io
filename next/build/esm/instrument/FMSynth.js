@@ -1,6 +1,6 @@
-import { optionsFromArguments } from "../core/util/Defaults";
-import { Multiply } from "../signal/Multiply";
-import { ModulationSynth } from "./ModulationSynth";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { Multiply } from "../signal/Multiply.js";
+import { ModulationSynth } from "./ModulationSynth.js";
 /**
  * FMSynth is composed of two Tone.Synths where one Tone.Synth modulates
  * the frequency of a second Tone.Synth. A lot of spectral content

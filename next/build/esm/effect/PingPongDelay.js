@@ -1,8 +1,8 @@
-import { StereoXFeedbackEffect } from "./StereoXFeedbackEffect";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { Delay } from "../core/context/Delay";
-import { Signal } from "../signal/Signal";
-import { readOnly } from "../core/util/Interface";
+import { StereoXFeedbackEffect, } from "./StereoXFeedbackEffect.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { Delay } from "../core/context/Delay.js";
+import { Signal } from "../signal/Signal.js";
+import { readOnly } from "../core/util/Interface.js";
 /**
  * PingPongDelay is a feedback delay effect where the echo is heard
  * first in one channel and next in the opposite channel. In a stereo
@@ -19,7 +19,10 @@ import { readOnly } from "../core/util/Interface";
  */
 export class PingPongDelay extends StereoXFeedbackEffect {
     constructor() {
-        super(optionsFromArguments(PingPongDelay.getDefaults(), arguments, ["delayTime", "feedback"]));
+        super(optionsFromArguments(PingPongDelay.getDefaults(), arguments, [
+            "delayTime",
+            "feedback",
+        ]));
         this.name = "PingPongDelay";
         const options = optionsFromArguments(PingPongDelay.getDefaults(), arguments, ["delayTime", "feedback"]);
         this._leftDelay = new Delay({
@@ -28,11 +31,11 @@ export class PingPongDelay extends StereoXFeedbackEffect {
         });
         this._rightDelay = new Delay({
             context: this.context,
-            maxDelay: options.maxDelay
+            maxDelay: options.maxDelay,
         });
         this._rightPreDelay = new Delay({
             context: this.context,
-            maxDelay: options.maxDelay
+            maxDelay: options.maxDelay,
         });
         this.delayTime = new Signal({
             context: this.context,
@@ -51,7 +54,7 @@ export class PingPongDelay extends StereoXFeedbackEffect {
     static getDefaults() {
         return Object.assign(StereoXFeedbackEffect.getDefaults(), {
             delayTime: 0.25,
-            maxDelay: 1
+            maxDelay: 1,
         });
     }
     dispose() {

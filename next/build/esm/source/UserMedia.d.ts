@@ -1,6 +1,6 @@
-import { OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../core/context/ToneAudioNode";
-import { Decibels } from "../core/type/Units";
-import { Param } from "../core/context/Param";
+import { OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../core/context/ToneAudioNode.js";
+import { Decibels } from "../core/type/Units.js";
+import { Param } from "../core/context/Param.js";
 export interface UserMediaOptions extends ToneAudioNodeOptions {
     volume: Decibels;
     mute: boolean;

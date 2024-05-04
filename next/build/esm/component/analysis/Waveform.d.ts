@@ -1,5 +1,5 @@
-import { PowerOfTwo } from "../../core/type/Units";
-import { MeterBase, MeterBaseOptions } from "./MeterBase";
+import { PowerOfTwo } from "../../core/type/Units.js";
+import { MeterBase, MeterBaseOptions } from "./MeterBase.js";
 export interface WaveformOptions extends MeterBaseOptions {
     /**
      * The size of the Waveform. Value must be a power of two in the range 16 to 16384.

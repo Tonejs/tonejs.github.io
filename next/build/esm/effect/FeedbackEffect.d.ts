@@ -1,6 +1,6 @@
-import { Param } from "../core/context/Param";
-import { NormalRange } from "../core/type/Units";
-import { Effect, EffectOptions } from "./Effect";
+import { Param } from "../core/context/Param.js";
+import { NormalRange } from "../core/type/Units.js";
+import { Effect, EffectOptions } from "./Effect.js";
 export interface FeedbackEffectOptions extends EffectOptions {
     /**
      * The feedback from the output back to the input

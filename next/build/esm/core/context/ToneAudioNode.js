@@ -1,8 +1,8 @@
-import { isAudioNode, isAudioParam } from "../util/AdvancedTypeCheck";
-import { isDefined } from "../util/TypeCheck";
-import { Param } from "./Param";
-import { ToneWithContext } from "./ToneWithContext";
-import { assert, warn } from "../util/Debug";
+import { isAudioNode, isAudioParam } from "../util/AdvancedTypeCheck.js";
+import { isDefined } from "../util/TypeCheck.js";
+import { Param } from "./Param.js";
+import { ToneWithContext } from "./ToneWithContext.js";
+import { assert, warn } from "../util/Debug.js";
 /**
  * ToneAudioNode is the base class for classes which process audio.
  * @category Core
@@ -56,7 +56,8 @@ export class ToneAudioNode extends ToneWithContext {
      * Used to decide which nodes to get/set properties on
      */
     _isAudioNode(node) {
-        return isDefined(node) && (node instanceof ToneAudioNode || isAudioNode(node));
+        return (isDefined(node) &&
+            (node instanceof ToneAudioNode || isAudioNode(node)));
     }
     /**
      * Get all of the audio nodes (either internal or input/output) which together
@@ -81,7 +82,7 @@ export class ToneAudioNode extends ToneWithContext {
      */
     _setChannelProperties(options) {
         const nodeList = this._getInternalNodes();
-        nodeList.forEach(node => {
+        nodeList.forEach((node) => {
             node.channelCount = options.channelCount;
             node.channelCountMode = options.channelCountMode;
             node.channelInterpretation = options.channelInterpretation;
@@ -209,7 +210,7 @@ export class ToneAudioNode extends ToneWithContext {
      * player.fan(pitchShift, filter);
      */
     fan(...nodes) {
-        nodes.forEach(node => this.connect(node));
+        nodes.forEach((node) => this.connect(node));
         return this;
     }
     /**
@@ -272,7 +273,7 @@ export function connect(srcNode, dstNode, outputNumber = 0, inputNumber = 0) {
     }
     assert(srcNode.numberOfOutputs > 0, "Cannot connect from node with no outputs");
     // resolve the input of the dstNode
-    while ((dstNode instanceof ToneAudioNode || dstNode instanceof Param)) {
+    while (dstNode instanceof ToneAudioNode || dstNode instanceof Param) {
         if (isDefined(dstNode.input)) {
             dstNode = dstNode.input;
         }
@@ -305,7 +306,7 @@ export function disconnect(srcNode, dstNode, outputNumber = 0, inputNumber = 0) 
         }
     }
     // resolve the src node
-    while (!(isAudioNode(srcNode))) {
+    while (!isAudioNode(srcNode)) {
         if (isDefined(srcNode.output)) {
             srcNode = srcNode.output;
         }
@@ -333,7 +334,7 @@ export function disconnect(srcNode, dstNode, outputNumber = 0, inputNumber = 0) 
 export function fanIn(...nodes) {
     const dstNode = nodes.pop();
     if (isDefined(dstNode)) {
-        nodes.forEach(node => connect(node, dstNode));
+        nodes.forEach((node) => connect(node, dstNode));
     }
 }
 //# sourceMappingURL=ToneAudioNode.js.map

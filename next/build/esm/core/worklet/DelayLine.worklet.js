@@ -1,4 +1,4 @@
-import { addToWorklet } from "./WorkletGlobalScope";
+import { addToWorklet } from "./WorkletGlobalScope.js";
 const delayLine = /* javascript */ `
 	/**
 	 * A multichannel buffer for use within an AudioWorkletProcessor as a delay line

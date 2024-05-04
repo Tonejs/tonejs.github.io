@@ -1,11 +1,11 @@
-import { TickerClockSource } from "../clock/Ticker";
-import { Seconds } from "../type/Units";
-import { AnyAudioContext } from "./AudioContext";
-import { BaseContext, ContextLatencyHint } from "./BaseContext";
-declare type Transport = import("../clock/Transport").TransportClass;
-declare type Destination = import("./Destination").DestinationClass;
-declare type Listener = import("./Listener").ListenerClass;
-declare type Draw = import("../util/Draw").DrawClass;
+import { TickerClockSource } from "../clock/Ticker.js";
+import { Seconds } from "../type/Units.js";
+import { AnyAudioContext } from "./AudioContext.js";
+import { BaseContext, ContextLatencyHint } from "./BaseContext.js";
+import type { DrawClass as Draw } from "../util/Draw.js";
+import type { DestinationClass as Destination } from "./Destination.js";
+import type { TransportClass as Transport } from "../clock/Transport.js";
+import type { ListenerClass as Listener } from "./Listener.js";
 export interface ContextOptions {
     clockSource: TickerClockSource;
     latencyHint: ContextLatencyHint;
@@ -260,4 +260,3 @@ export declare class Context extends BaseContext {
      */
     setInterval(fn: (...args: any[]) => void, interval: Seconds): number;
 }
-export {};

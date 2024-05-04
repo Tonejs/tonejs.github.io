@@ -1,22 +1,22 @@
-import { Frequency, NormalRange, Time } from "../core/type/Units";
-import { RecursivePartial } from "../core/util/Interface";
-import { Instrument, InstrumentOptions } from "./Instrument";
-import { MembraneSynth, MembraneSynthOptions } from "./MembraneSynth";
-import { FMSynth, FMSynthOptions } from "./FMSynth";
-import { AMSynth, AMSynthOptions } from "./AMSynth";
-import { MonoSynth, MonoSynthOptions } from "./MonoSynth";
-import { MetalSynth, MetalSynthOptions } from "./MetalSynth";
-import { Monophonic } from "./Monophonic";
-import { Synth, SynthOptions } from "./Synth";
-declare type VoiceConstructor<V> = {
+import { Frequency, NormalRange, Time } from "../core/type/Units.js";
+import { RecursivePartial } from "../core/util/Interface.js";
+import { Instrument, InstrumentOptions } from "./Instrument.js";
+import { MembraneSynth, MembraneSynthOptions } from "./MembraneSynth.js";
+import { FMSynth, FMSynthOptions } from "./FMSynth.js";
+import { AMSynth, AMSynthOptions } from "./AMSynth.js";
+import { MonoSynth, MonoSynthOptions } from "./MonoSynth.js";
+import { MetalSynth, MetalSynthOptions } from "./MetalSynth.js";
+import { Monophonic } from "./Monophonic.js";
+import { Synth, SynthOptions } from "./Synth.js";
+type VoiceConstructor<V> = {
     getDefaults: () => VoiceOptions<V>;
 } & (new (...args: any[]) => V);
-declare type OmitMonophonicOptions<T> = Omit<T, "context" | "onsilence">;
-declare type VoiceOptions<T> = T extends MembraneSynth ? MembraneSynthOptions : T extends MetalSynth ? MetalSynthOptions : T extends FMSynth ? FMSynthOptions : T extends MonoSynth ? MonoSynthOptions : T extends AMSynth ? AMSynthOptions : T extends Synth ? SynthOptions : T extends Monophonic<infer U> ? U : never;
+type OmitMonophonicOptions<T> = Omit<T, "context" | "onsilence">;
+type VoiceOptions<T> = T extends MembraneSynth ? MembraneSynthOptions : T extends MetalSynth ? MetalSynthOptions : T extends FMSynth ? FMSynthOptions : T extends MonoSynth ? MonoSynthOptions : T extends AMSynth ? AMSynthOptions : T extends Synth ? SynthOptions : T extends Monophonic<infer U> ? U : never;
 /**
  * The settable synth options. excludes monophonic options.
  */
-declare type PartialVoiceOptions<T> = RecursivePartial<OmitMonophonicOptions<VoiceOptions<T>>>;
+type PartialVoiceOptions<T> = RecursivePartial<OmitMonophonicOptions<VoiceOptions<T>>>;
 export interface PolySynthOptions<Voice> extends InstrumentOptions {
     maxPolyphony: number;
     voice: VoiceConstructor<Voice>;

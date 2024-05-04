@@ -1,11 +1,11 @@
-import { Param } from "./Param";
-import { ToneWithContext, ToneWithContextOptions } from "./ToneWithContext";
-export declare type InputNode = ToneAudioNode | AudioNode | Param<any> | AudioParam;
-export declare type OutputNode = ToneAudioNode | AudioNode;
+import { Param } from "./Param.js";
+import { ToneWithContext, ToneWithContextOptions } from "./ToneWithContext.js";
+export type InputNode = ToneAudioNode | AudioNode | Param<any> | AudioParam;
+export type OutputNode = ToneAudioNode | AudioNode;
 /**
  * The possible options for this node
  */
-export declare type ToneAudioNodeOptions = ToneWithContextOptions;
+export type ToneAudioNodeOptions = ToneWithContextOptions;
 /**
  * ToneAudioNode is the base class for classes which process audio.
  * @category Core

@@ -1,5 +1,5 @@
 import { __awaiter } from "tslib";
-import { BaseContext } from "./BaseContext";
+import { BaseContext } from "./BaseContext.js";
 export class DummyContext extends BaseContext {
     constructor() {
         super(...arguments);

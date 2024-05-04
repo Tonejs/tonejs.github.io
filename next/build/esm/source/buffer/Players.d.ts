@@ -1,11 +1,11 @@
-import { Param } from "../../core/context/Param";
-import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer";
-import { ToneAudioBuffersUrlMap } from "../../core/context/ToneAudioBuffers";
-import { OutputNode, ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { Decibels, Time } from "../../core/type/Units";
-import { BasicPlaybackState } from "../../core/util/StateTimeline";
-import { SourceOptions } from "../Source";
-import { Player } from "./Player";
+import { Param } from "../../core/context/Param.js";
+import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer.js";
+import { ToneAudioBuffersUrlMap } from "../../core/context/ToneAudioBuffers.js";
+import { OutputNode, ToneAudioNode } from "../../core/context/ToneAudioNode.js";
+import { Decibels, Time } from "../../core/type/Units.js";
+import { BasicPlaybackState } from "../../core/util/StateTimeline.js";
+import { SourceOptions } from "../Source.js";
+import { Player } from "./Player.js";
 export interface PlayersOptions extends SourceOptions {
     urls: ToneAudioBuffersUrlMap;
     volume: Decibels;

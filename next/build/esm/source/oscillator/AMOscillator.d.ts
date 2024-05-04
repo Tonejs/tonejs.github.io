@@ -1,8 +1,8 @@
-import { Degrees, Frequency, Seconds } from "../../core/type/Units";
-import { Signal } from "../../signal/Signal";
-import { Source } from "../Source";
-import { AMConstructorOptions, AMOscillatorOptions, ToneOscillatorInterface, ToneOscillatorType } from "./OscillatorInterface";
-export { AMOscillatorOptions } from "./OscillatorInterface";
+import { Degrees, Frequency, Seconds } from "../../core/type/Units.js";
+import { Signal } from "../../signal/Signal.js";
+import { Source } from "../Source.js";
+import { AMConstructorOptions, AMOscillatorOptions, ToneOscillatorInterface, ToneOscillatorType } from "./OscillatorInterface.js";
+export { AMOscillatorOptions } from "./OscillatorInterface.js";
 /**
  * An amplitude modulated oscillator node. It is implemented with
  * two oscillators, one which modulators the other's amplitude

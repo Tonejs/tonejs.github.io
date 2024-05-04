@@ -1,5 +1,5 @@
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { MeterBase } from "./MeterBase";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { MeterBase } from "./MeterBase.js";
 /**
  * Get the current waveform data of the connected audio source.
  * @category Component

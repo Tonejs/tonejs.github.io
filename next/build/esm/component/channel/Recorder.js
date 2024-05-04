@@ -1,9 +1,9 @@
 import { __awaiter } from "tslib";
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { Gain } from "../../core/context/Gain";
-import { assert } from "../../core/util/Debug";
-import { theWindow } from "../../core/context/AudioContext";
-import { optionsFromArguments } from "../../core/util/Defaults";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { Gain } from "../../core/context/Gain.js";
+import { assert } from "../../core/util/Debug.js";
+import { theWindow } from "../../core/context/AudioContext.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
 /**
  * A wrapper around the MediaRecorder API. Unlike the rest of Tone.js, this module does not offer
  * any sample-accurate scheduling because it is not a feature of the MediaRecorder API.
@@ -37,13 +37,13 @@ export class Recorder extends ToneAudioNode {
         this.name = "Recorder";
         const options = optionsFromArguments(Recorder.getDefaults(), arguments);
         this.input = new Gain({
-            context: this.context
+            context: this.context,
         });
         assert(Recorder.supported, "Media Recorder API is not available");
         this._stream = this.context.createMediaStreamDestination();
         this.input.connect(this._stream);
         this._recorder = new MediaRecorder(this._stream.stream, {
-            mimeType: options.mimeType
+            mimeType: options.mimeType,
         });
     }
     static getDefaults() {
@@ -84,7 +84,7 @@ export class Recorder extends ToneAudioNode {
     start() {
         return __awaiter(this, void 0, void 0, function* () {
             assert(this.state !== "started", "Recorder is already started");
-            const startPromise = new Promise(done => {
+            const startPromise = new Promise((done) => {
                 const handleStart = () => {
                     this._recorder.removeEventListener("start", handleStart, false);
                     done();
@@ -102,7 +102,7 @@ export class Recorder extends ToneAudioNode {
     stop() {
         return __awaiter(this, void 0, void 0, function* () {
             assert(this.state !== "stopped", "Recorder is not started");
-            const dataPromise = new Promise(done => {
+            const dataPromise = new Promise((done) => {
                 const handleData = (e) => {
                     this._recorder.removeEventListener("dataavailable", handleData, false);
                     done(e.data);

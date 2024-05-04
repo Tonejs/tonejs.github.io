@@ -1,5 +1,5 @@
-import { AnyAudioContext } from "./context/AudioContext";
-import { BaseContext } from "./context/BaseContext";
+import { AnyAudioContext } from "./context/AudioContext.js";
+import { BaseContext } from "./context/BaseContext.js";
 /**
  * Returns the default system-wide {@link Context}
  * @category Core

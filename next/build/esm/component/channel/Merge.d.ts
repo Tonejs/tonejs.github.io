@@ -1,5 +1,5 @@
-import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
-import { Positive } from "../../core/type/Units";
+import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
+import { Positive } from "../../core/type/Units.js";
 interface MergeOptions extends ToneAudioNodeOptions {
     channels: Positive;
 }

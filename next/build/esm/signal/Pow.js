@@ -1,6 +1,6 @@
-import { WaveShaper } from "./WaveShaper";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { SignalOperator } from "./SignalOperator";
+import { WaveShaper } from "./WaveShaper.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { SignalOperator } from "./SignalOperator.js";
 /**
  * Pow applies an exponent to the incoming signal. The incoming signal must be AudioRange [-1, 1]
  *
@@ -14,12 +14,17 @@ export class Pow extends SignalOperator {
     constructor() {
         super(Object.assign(optionsFromArguments(Pow.getDefaults(), arguments, ["value"])));
         this.name = "Pow";
-        const options = optionsFromArguments(Pow.getDefaults(), arguments, ["value"]);
-        this._exponentScaler = this.input = this.output = new WaveShaper({
-            context: this.context,
-            mapping: this._expFunc(options.value),
-            length: 8192,
-        });
+        const options = optionsFromArguments(Pow.getDefaults(), arguments, [
+            "value",
+        ]);
+        this._exponentScaler =
+            this.input =
+                this.output =
+                    new WaveShaper({
+                        context: this.context,
+                        mapping: this._expFunc(options.value),
+                        length: 8192,
+                    });
         this._exponent = options.value;
     }
     static getDefaults() {

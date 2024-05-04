@@ -1,5 +1,5 @@
-import { MeterBase, MeterBaseOptions } from "./MeterBase";
-export declare type DCMeterOptions = MeterBaseOptions;
+import { MeterBase, MeterBaseOptions } from "./MeterBase.js";
+export type DCMeterOptions = MeterBaseOptions;
 /**
  * DCMeter gets the raw value of the input signal at the current time.
  * @see {@link Meter}.

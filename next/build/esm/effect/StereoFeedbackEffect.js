@@ -1,9 +1,9 @@
-import { StereoEffect } from "./StereoEffect";
-import { Signal } from "../signal/Signal";
-import { Gain } from "../core/context/Gain";
-import { readOnly } from "../core/util/Interface";
-import { Split } from "../component/channel/Split";
-import { Merge } from "../component/channel/Merge";
+import { StereoEffect } from "./StereoEffect.js";
+import { Signal } from "../signal/Signal.js";
+import { Gain } from "../core/context/Gain.js";
+import { readOnly } from "../core/util/Interface.js";
+import { Split } from "../component/channel/Split.js";
+import { Merge } from "../component/channel/Merge.js";
 /**
  * Base class for stereo feedback effects where the effectReturn is fed back into the same channel.
  */
@@ -13,7 +13,7 @@ export class StereoFeedbackEffect extends StereoEffect {
         this.feedback = new Signal({
             context: this.context,
             value: options.feedback,
-            units: "normalRange"
+            units: "normalRange",
         });
         this._feedbackL = new Gain({ context: this.context });
         this._feedbackR = new Gain({ context: this.context });

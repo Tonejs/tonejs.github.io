@@ -1,4 +1,4 @@
-import { Tone } from "../Tone";
+import { Tone } from "../Tone.js";
 /**
  * An IntervalTimeline event must have a time and duration
  */
@@ -7,7 +7,7 @@ export interface IntervalTimelineEvent {
     duration: number;
     [propName: string]: any;
 }
-declare type IteratorCallback = (event: IntervalTimelineEvent) => void;
+type IteratorCallback = (event: IntervalTimelineEvent) => void;
 /**
  * Similar to Tone.Timeline, but all events represent
  * intervals with both "time" and "duration" times. The

@@ -1,13 +1,13 @@
 import { __awaiter } from "tslib";
-import { Ticker } from "../clock/Ticker";
-import { isAudioContext } from "../util/AdvancedTypeCheck";
-import { optionsFromArguments } from "../util/Defaults";
-import { Timeline } from "../util/Timeline";
-import { isDefined } from "../util/TypeCheck";
-import { createAudioContext, createAudioWorkletNode, } from "./AudioContext";
-import { closeContext, initializeContext } from "./ContextInitialization";
-import { BaseContext } from "./BaseContext";
-import { assert } from "../util/Debug";
+import { Ticker } from "../clock/Ticker.js";
+import { isAudioContext } from "../util/AdvancedTypeCheck.js";
+import { optionsFromArguments } from "../util/Defaults.js";
+import { Timeline } from "../util/Timeline.js";
+import { isDefined } from "../util/TypeCheck.js";
+import { createAudioContext, createAudioWorkletNode, } from "./AudioContext.js";
+import { closeContext, initializeContext } from "./ContextInitialization.js";
+import { BaseContext } from "./BaseContext.js";
+import { assert } from "../util/Debug.js";
 /**
  * Wrapper around the native AudioContext.
  * @category Core
@@ -69,7 +69,9 @@ export class Context extends BaseContext {
             this.emit("statechange", this.state);
         };
         // if no custom updateInterval provided, updateInterval will be derived by lookAhead setter
-        this[((_b = arguments[0]) === null || _b === void 0 ? void 0 : _b.hasOwnProperty("updateInterval")) ? "_lookAhead" : "lookAhead"] = options.lookAhead;
+        this[((_b = arguments[0]) === null || _b === void 0 ? void 0 : _b.hasOwnProperty("updateInterval"))
+            ? "_lookAhead"
+            : "lookAhead"] = options.lookAhead;
     }
     static getDefaults() {
         return {
@@ -291,7 +293,7 @@ export class Context extends BaseContext {
     set lookAhead(time) {
         this._lookAhead = time;
         // if lookAhead is 0, default to .01 updateInterval
-        this.updateInterval = time ? (time / 2) : .01;
+        this.updateInterval = time ? time / 2 : 0.01;
     }
     /**
      * The type of playback, which affects tradeoffs between audio
@@ -356,7 +358,9 @@ export class Context extends BaseContext {
      */
     close() {
         return __awaiter(this, void 0, void 0, function* () {
-            if (isAudioContext(this._context) && (this.state !== "closed") && !this._closeStarted) {
+            if (isAudioContext(this._context) &&
+                this.state !== "closed" &&
+                !this._closeStarted) {
                 this._closeStarted = true;
                 yield this._context.close();
             }

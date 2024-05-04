@@ -1,6 +1,6 @@
-import { Param } from "../../core/context/Param";
-import { Cents, Frequency, Seconds, Time } from "../../core/type/Units";
-import { OneShotSource, OneShotSourceOptions } from "../OneShotSource";
+import { Param } from "../../core/context/Param.js";
+import { Cents, Frequency, Seconds, Time } from "../../core/type/Units.js";
+import { OneShotSource, OneShotSourceOptions } from "../OneShotSource.js";
 export interface ToneOscillatorNodeOptions extends OneShotSourceOptions {
     frequency: Frequency;
     detune: Cents;

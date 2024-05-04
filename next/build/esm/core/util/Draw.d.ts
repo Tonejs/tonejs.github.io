@@ -1,5 +1,5 @@
-import { ToneWithContext, ToneWithContextOptions } from "../context/ToneWithContext";
-import { Seconds, Time } from "../type/Units";
+import { ToneWithContext, ToneWithContextOptions } from "../context/ToneWithContext.js";
+import { Seconds, Time } from "../type/Units.js";
 /**
  * Draw is useful for synchronizing visuals and audio events.
  * Callbacks from Tone.Transport or any of the Tone.Event classes

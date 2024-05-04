@@ -1,9 +1,9 @@
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { Split } from "./Split";
-import { Add } from "../../signal/Add";
-import { Multiply } from "../../signal/Multiply";
-import { Subtract } from "../../signal/Subtract";
-import { optionsFromArguments } from "../../core/util/Defaults";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { Split } from "./Split.js";
+import { Add } from "../../signal/Add.js";
+import { Multiply } from "../../signal/Multiply.js";
+import { Subtract } from "../../signal/Subtract.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
 /**
  * Mid/Side processing separates the the 'mid' signal (which comes out of both the left and the right channel)
  * and the 'side' (which only comes out of the the side channels).
@@ -19,7 +19,7 @@ export class MidSideSplit extends ToneAudioNode {
         this.name = "MidSideSplit";
         this._split = this.input = new Split({
             channels: 2,
-            context: this.context
+            context: this.context,
         });
         this._midAdd = new Add({ context: this.context });
         this.mid = new Multiply({

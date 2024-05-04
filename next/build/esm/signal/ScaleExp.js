@@ -1,6 +1,6 @@
-import { Scale } from "./Scale";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { Pow } from "./Pow";
+import { Scale } from "./Scale.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { Pow } from "./Pow.js";
 /**
  * Performs an exponential scaling on an input signal.
  * Scales a NormalRange value [0,1] exponentially
@@ -12,7 +12,11 @@ import { Pow } from "./Pow";
  */
 export class ScaleExp extends Scale {
     constructor() {
-        super(Object.assign(optionsFromArguments(ScaleExp.getDefaults(), arguments, ["min", "max", "exponent"])));
+        super(Object.assign(optionsFromArguments(ScaleExp.getDefaults(), arguments, [
+            "min",
+            "max",
+            "exponent",
+        ])));
         this.name = "ScaleExp";
         const options = optionsFromArguments(ScaleExp.getDefaults(), arguments, ["min", "max", "exponent"]);
         this.input = this._exp = new Pow({

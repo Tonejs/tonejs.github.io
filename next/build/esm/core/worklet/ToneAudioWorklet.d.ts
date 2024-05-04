@@ -1,5 +1,5 @@
-import { ToneAudioNode, ToneAudioNodeOptions } from "../context/ToneAudioNode";
-export declare type ToneAudioWorkletOptions = ToneAudioNodeOptions;
+import { ToneAudioNode, ToneAudioNodeOptions } from "../context/ToneAudioNode.js";
+export type ToneAudioWorkletOptions = ToneAudioNodeOptions;
 export declare abstract class ToneAudioWorklet<Options extends ToneAudioWorkletOptions> extends ToneAudioNode<Options> {
     readonly name: string;
     /**

@@ -1,6 +1,6 @@
-import { TimeBaseUnit, TimeValue } from "./TimeBase";
-import { TransportTimeClass } from "./TransportTime";
-import { Seconds, Ticks } from "./Units";
+import { TimeBaseUnit, TimeValue } from "./TimeBase.js";
+import { TransportTimeClass } from "./TransportTime.js";
+import { Seconds, Ticks } from "./Units.js";
 /**
  * Ticks is a primitive type for encoding Time values.
  * Ticks can be constructed with or without the `new` keyword. Ticks can be passed

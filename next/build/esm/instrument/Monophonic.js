@@ -1,9 +1,9 @@
 import { __decorate } from "tslib";
-import { FrequencyClass } from "../core/type/Frequency";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { noOp } from "../core/util/Interface";
-import { Instrument } from "../instrument/Instrument";
-import { timeRange } from "../core/util/Decorator";
+import { FrequencyClass } from "../core/type/Frequency.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { noOp } from "../core/util/Interface.js";
+import { Instrument } from "../instrument/Instrument.js";
+import { timeRange } from "../core/util/Decorator.js";
 /**
  * Abstract base class for other monophonic instruments to extend.
  */

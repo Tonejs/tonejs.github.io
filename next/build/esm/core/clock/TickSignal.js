@@ -1,6 +1,6 @@
-import { Signal } from "../../signal/Signal";
-import { optionsFromArguments } from "../util/Defaults";
-import { TickParam } from "./TickParam";
+import { Signal } from "../../signal/Signal.js";
+import { optionsFromArguments } from "../util/Defaults.js";
+import { TickParam } from "./TickParam.js";
 /**
  * TickSignal extends Tone.Signal, but adds the capability
  * to calculate the number of elapsed ticks. exponential and target curves

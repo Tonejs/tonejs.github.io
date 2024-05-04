@@ -1,7 +1,7 @@
-import { Param } from "../context/Param";
-import { optionsFromArguments } from "../util/Defaults";
-import { Timeline } from "../util/Timeline";
-import { isUndef } from "../util/TypeCheck";
+import { Param } from "../context/Param.js";
+import { optionsFromArguments } from "../util/Defaults.js";
+import { Timeline } from "../util/Timeline.js";
+import { isUndef } from "../util/TypeCheck.js";
 /**
  * A Param class just for computing ticks. Similar to the {@link Param} class,
  * but offers conversion to BPM values as well as ability to compute tick
@@ -81,7 +81,7 @@ export class TickParam extends Param {
         const prevEvent = this._events.get(time);
         // approx 10 segments per second
         const segments = Math.round(Math.max((time - prevEvent.time) * 10, 1));
-        const segmentDur = ((time - prevEvent.time) / segments);
+        const segmentDur = (time - prevEvent.time) / segments;
         for (let i = 0; i <= segments; i++) {
             const segTime = segmentDur * i + prevEvent.time;
             const rampVal = this._exponentialInterpolate(prevEvent.time, prevEvent.value, time, computedVal, segTime);
@@ -112,7 +112,9 @@ export class TickParam extends Param {
         let val1 = this._fromType(this.getValueAtTime(time));
         // if it's right on the line, take the previous value
         const onTheLineEvent = this._events.get(time);
-        if (onTheLineEvent && onTheLineEvent.time === time && onTheLineEvent.type === "setValueAtTime") {
+        if (onTheLineEvent &&
+            onTheLineEvent.time === time &&
+            onTheLineEvent.type === "setValueAtTime") {
             val1 = this._fromType(this.getValueAtTime(time - this.sampleTime));
         }
         return 0.5 * (time - event.time) * (val0 + val1) + event.ticks;
@@ -149,7 +151,8 @@ export class TickParam extends Param {
         if (before && before.ticks === tick) {
             return before.time;
         }
-        else if (before && after &&
+        else if (before &&
+            after &&
             after.type === "linearRampToValueAtTime" &&
             before.value !== after.value) {
             const val0 = this._fromType(this.getValueAtTime(before.time));
@@ -213,7 +216,7 @@ export class TickParam extends Param {
      */
     _toType(val) {
         if (this.units === "bpm" && this.multiplier) {
-            return (val / this.multiplier) * 60;
+            return ((val / this.multiplier) * 60);
         }
         else {
             return super._toType(val);

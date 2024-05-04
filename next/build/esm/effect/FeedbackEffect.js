@@ -1,6 +1,6 @@
-import { Gain } from "../core/context/Gain";
-import { readOnly } from "../core/util/Interface";
-import { Effect } from "./Effect";
+import { Gain } from "../core/context/Gain.js";
+import { readOnly } from "../core/util/Interface.js";
+import { Effect } from "./Effect.js";
 /**
  * FeedbackEffect provides a loop between an audio source and its own output.
  * This is a base-class for feedback effects.

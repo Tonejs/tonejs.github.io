@@ -1,9 +1,9 @@
-import { Gain } from "../../core/context/Gain";
-import { connect, ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { readOnly } from "../../core/util/Interface";
-import { GainToAudio } from "../../signal/GainToAudio";
-import { Signal } from "../../signal/Signal";
+import { Gain } from "../../core/context/Gain.js";
+import { connect, ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { readOnly } from "../../core/util/Interface.js";
+import { GainToAudio } from "../../signal/GainToAudio.js";
+import { Signal } from "../../signal/Signal.js";
 /**
  * Tone.Crossfade provides equal power fading between two inputs.
  * More on crossfading technique [here](https://en.wikipedia.org/wiki/Fade_(audio_engineering)#Crossfading).
@@ -32,7 +32,9 @@ import { Signal } from "../../signal/Signal";
  */
 export class CrossFade extends ToneAudioNode {
     constructor() {
-        super(Object.assign(optionsFromArguments(CrossFade.getDefaults(), arguments, ["fade"])));
+        super(Object.assign(optionsFromArguments(CrossFade.getDefaults(), arguments, [
+            "fade",
+        ])));
         this.name = "CrossFade";
         /**
          * The crossfading is done by a StereoPannerNode

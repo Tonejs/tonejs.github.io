@@ -1,7 +1,7 @@
-import { Gain } from "../core/context/Gain";
-import { ToneAudioNode, } from "../core/context/ToneAudioNode";
-import { noOp } from "../core/util/Interface";
-import { assert } from "../core/util/Debug";
+import { Gain } from "../core/context/Gain.js";
+import { ToneAudioNode, } from "../core/context/ToneAudioNode.js";
+import { noOp } from "../core/util/Interface.js";
+import { assert } from "../core/util/Debug.js";
 /**
  * Base class for fire-and-forget nodes
  */

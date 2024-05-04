@@ -1,5 +1,5 @@
-import { Tone } from "../Tone";
-import { Samples, Seconds } from "../type/Units";
+import { Tone } from "../Tone.js";
+import { Samples, Seconds } from "../type/Units.js";
 interface ToneAudioBufferOptions {
     url?: string | AudioBuffer | ToneAudioBuffer;
     reverse: boolean;

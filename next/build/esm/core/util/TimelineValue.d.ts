@@ -1,5 +1,5 @@
-import { Tone } from "../Tone";
-import { Seconds } from "../type/Units";
+import { Tone } from "../Tone.js";
+import { Seconds } from "../type/Units.js";
 /**
  * Represents a single value which is gettable and settable in a timed way
  */

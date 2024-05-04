@@ -1,8 +1,8 @@
-import { Volume } from "../../component/channel/Volume";
-import { Decibels } from "../type/Units";
-import { Gain } from "./Gain";
-import { Param } from "./Param";
-import { ToneAudioNode, ToneAudioNodeOptions } from "./ToneAudioNode";
+import { Volume } from "../../component/channel/Volume.js";
+import { Decibels } from "../type/Units.js";
+import { Gain } from "./Gain.js";
+import { Param } from "./Param.js";
+import { ToneAudioNode, ToneAudioNodeOptions } from "./ToneAudioNode.js";
 interface DestinationOptions extends ToneAudioNodeOptions {
     volume: Decibels;
     mute: boolean;

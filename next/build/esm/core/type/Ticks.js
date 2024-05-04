@@ -1,5 +1,5 @@
-import { getContext } from "../Global";
-import { TransportTimeClass } from "./TransportTime";
+import { getContext } from "../Global.js";
+import { TransportTimeClass } from "./TransportTime.js";
 /**
  * Ticks is a primitive type for encoding Time values.
  * Ticks can be constructed with or without the `new` keyword. Ticks can be passed
@@ -30,7 +30,7 @@ export class TicksClass extends TransportTimeClass {
      * Returns the value of a second in the current units
      */
     _secondsToUnits(seconds) {
-        return Math.floor(seconds / (60 / this._getBpm()) * this._getPPQ());
+        return Math.floor((seconds / (60 / this._getBpm())) * this._getPPQ());
     }
     /**
      * Returns the value of a tick in the current time units

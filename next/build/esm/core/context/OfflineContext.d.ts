@@ -1,6 +1,6 @@
-import { Context } from "../context/Context";
-import { Seconds } from "../type/Units";
-import { ToneAudioBuffer } from "./ToneAudioBuffer";
+import { Context } from "../context/Context.js";
+import { Seconds } from "../type/Units.js";
+import { ToneAudioBuffer } from "./ToneAudioBuffer.js";
 /**
  * Wrapper around the OfflineAudioContext
  * @category Core

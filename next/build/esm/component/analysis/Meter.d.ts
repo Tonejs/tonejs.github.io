@@ -1,5 +1,5 @@
-import { NormalRange } from "../../core/type/Units";
-import { MeterBase, MeterBaseOptions } from "./MeterBase";
+import { NormalRange } from "../../core/type/Units.js";
+import { MeterBase, MeterBaseOptions } from "./MeterBase.js";
 export interface MeterOptions extends MeterBaseOptions {
     smoothing: NormalRange;
     normalRange: boolean;

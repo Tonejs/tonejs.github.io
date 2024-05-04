@@ -1,5 +1,5 @@
-import { Tone } from "../Tone";
-import { ToneAudioBuffer } from "./ToneAudioBuffer";
+import { Tone } from "../Tone.js";
+import { ToneAudioBuffer } from "./ToneAudioBuffer.js";
 export interface ToneAudioBuffersUrlMap {
     [name: string]: string | AudioBuffer | ToneAudioBuffer;
     [name: number]: string | AudioBuffer | ToneAudioBuffer;

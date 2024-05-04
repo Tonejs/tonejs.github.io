@@ -1,4 +1,4 @@
-import { noOp } from "../util/Interface";
+import { noOp } from "../util/Interface.js";
 /**
  * TransportEvent is an internal class used by {@link TransportClass}
  * to schedule events. Do no invoke this class directly, it is

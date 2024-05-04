@@ -1,5 +1,5 @@
-import { Tone } from "../Tone";
-import { isDefined, isObject, isString, isUndef } from "../util/TypeCheck";
+import { Tone } from "../Tone.js";
+import { isDefined, isObject, isString, isUndef } from "../util/TypeCheck.js";
 /**
  * TimeBase is a flexible encoding of time which can be evaluated to and from a string.
  */
@@ -49,10 +49,12 @@ export class TimeBaseClass extends Tone {
                     const numericValue = parseInt(value, 10);
                     const scalar = dot === "." ? 1.5 : 1;
                     if (numericValue === 1) {
-                        return this._beatsToUnits(this._getTimeSignature()) * scalar;
+                        return (this._beatsToUnits(this._getTimeSignature()) *
+                            scalar);
                     }
                     else {
-                        return this._beatsToUnits(4 / numericValue) * scalar;
+                        return (this._beatsToUnits(4 / numericValue) *
+                            scalar);
                     }
                 },
                 regexp: /^(\d+)n(\.?)$/i,
@@ -71,7 +73,8 @@ export class TimeBaseClass extends Tone {
             },
             samples: {
                 method: (value) => {
-                    return parseInt(value, 10) / this.context.sampleRate;
+                    return (parseInt(value, 10) /
+                        this.context.sampleRate);
                 },
                 regexp: /^(\d+)samples$/,
             },
@@ -126,8 +129,10 @@ export class TimeBaseClass extends Tone {
             for (const typeName in this._val) {
                 if (isDefined(this._val[typeName])) {
                     const quantity = this._val[typeName];
+                    const time = 
                     // @ts-ignore
-                    const time = (new this.constructor(this.context, typeName)).valueOf() * quantity;
+                    new this.constructor(this.context, typeName).valueOf() *
+                        quantity;
                     total += time;
                 }
             }
@@ -157,13 +162,13 @@ export class TimeBaseClass extends Tone {
      * Returns the value of a frequency in the current units
      */
     _frequencyToUnits(freq) {
-        return 1 / freq;
+        return (1 / freq);
     }
     /**
      * Return the value of the beats in the current units
      */
     _beatsToUnits(beats) {
-        return (60 / this._getBpm()) * beats;
+        return ((60 / this._getBpm()) * beats);
     }
     /**
      * Returns the value of a second in the current units
@@ -175,7 +180,7 @@ export class TimeBaseClass extends Tone {
      * Returns the value of a tick in the current time units
      */
     _ticksToUnits(ticks) {
-        return (ticks * (this._beatsToUnits(1)) / this._getPPQ());
+        return ((ticks * this._beatsToUnits(1)) / this._getPPQ());
     }
     /**
      * With no arguments, return 'now'

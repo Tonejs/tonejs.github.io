@@ -1,5 +1,5 @@
-import { Timeline } from "./Timeline";
-import { Tone } from "../Tone";
+import { Timeline } from "./Timeline.js";
+import { Tone } from "../Tone.js";
 /**
  * Represents a single value which is gettable and settable in a timed way
  */
@@ -13,7 +13,9 @@ export class TimelineValue extends Tone {
         /**
          * The timeline which stores the values
          */
-        this._timeline = new Timeline({ memory: 10 });
+        this._timeline = new Timeline({
+            memory: 10,
+        });
         this._initialValue = initialValue;
     }
     /**
@@ -21,7 +23,8 @@ export class TimelineValue extends Tone {
      */
     set(value, time) {
         this._timeline.add({
-            value, time
+            value,
+            time,
         });
         return this;
     }

@@ -1,12 +1,12 @@
 import { __awaiter } from "tslib";
-import { Gain } from "../../core/context/Gain";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { readOnly } from "../../core/util/Interface";
-import { Multiply } from "../../signal/Multiply";
-import { Signal } from "../../signal/Signal";
-import { Source } from "../Source";
-import { Oscillator } from "./Oscillator";
-import { generateWaveform } from "./OscillatorInterface";
+import { Gain } from "../../core/context/Gain.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { readOnly } from "../../core/util/Interface.js";
+import { Multiply } from "../../signal/Multiply.js";
+import { Signal } from "../../signal/Signal.js";
+import { Source } from "../Source.js";
+import { Oscillator } from "./Oscillator.js";
+import { generateWaveform, } from "./OscillatorInterface.js";
 /**
  * FMOscillator implements a frequency modulation synthesis
  * ```
@@ -35,7 +35,11 @@ import { generateWaveform } from "./OscillatorInterface";
  */
 export class FMOscillator extends Source {
     constructor() {
-        super(optionsFromArguments(FMOscillator.getDefaults(), arguments, ["frequency", "type", "modulationType"]));
+        super(optionsFromArguments(FMOscillator.getDefaults(), arguments, [
+            "frequency",
+            "type",
+            "modulationType",
+        ]));
         this.name = "FMOscillator";
         /**
          * the node where the modulation happens
@@ -82,7 +86,12 @@ export class FMOscillator extends Source {
         this._modulationNode.connect(this._carrier.frequency);
         this._carrier.connect(this.output);
         this.detune.connect(this._modulator.detune);
-        readOnly(this, ["modulationIndex", "frequency", "detune", "harmonicity"]);
+        readOnly(this, [
+            "modulationIndex",
+            "frequency",
+            "detune",
+            "harmonicity",
+        ]);
     }
     static getDefaults() {
         return Object.assign(Oscillator.getDefaults(), {
@@ -150,8 +159,8 @@ export class FMOscillator extends Source {
     set partials(partials) {
         this._carrier.partials = partials;
     }
-    asArray(length = 1024) {
-        return __awaiter(this, void 0, void 0, function* () {
+    asArray() {
+        return __awaiter(this, arguments, void 0, function* (length = 1024) {
             return generateWaveform(this, length);
         });
     }

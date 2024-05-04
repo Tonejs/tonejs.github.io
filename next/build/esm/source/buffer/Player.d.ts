@@ -1,6 +1,6 @@
-import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer";
-import { Positive, Seconds, Time } from "../../core/type/Units";
-import { Source, SourceOptions } from "../Source";
+import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer.js";
+import { Positive, Seconds, Time } from "../../core/type/Units.js";
+import { Source, SourceOptions } from "../Source.js";
 export interface PlayerOptions extends SourceOptions {
     onload: () => void;
     onerror: (error: Error) => void;

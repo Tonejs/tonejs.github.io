@@ -1,5 +1,5 @@
-import { assert } from "../core/util/Debug";
-import { clamp } from "../core/util/Math";
+import { assert } from "../core/util/Debug.js";
+import { clamp } from "../core/util/Math.js";
 /**
  * Start at the first value and go up to the last
  */
@@ -62,7 +62,7 @@ function* jumpUp(numValues) {
         index = clamp(index, 0, numValues - 1);
         yield index;
         stepIndex++;
-        index += (stepIndex % 2 ? 2 : -1);
+        index += stepIndex % 2 ? 2 : -1;
     }
 }
 /**
@@ -75,7 +75,7 @@ function* jumpDown(numValues) {
         index = clamp(index, 0, numValues - 1);
         yield index;
         stepIndex++;
-        index += (stepIndex % 2 ? -2 : 1);
+        index += stepIndex % 2 ? -2 : 1;
     }
 }
 /**
@@ -116,7 +116,8 @@ function* randomWalk(numValues) {
         else if (index === numValues - 1) {
             index--; // at top, so force downward step
         }
-        else if (Math.random() < 0.5) { // else choose random downward or upward step
+        else if (Math.random() < 0.5) {
+            // else choose random downward or upward step
             index--;
         }
         else {

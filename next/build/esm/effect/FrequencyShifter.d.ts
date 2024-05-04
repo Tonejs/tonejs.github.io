@@ -1,6 +1,6 @@
-import { Frequency } from "../core/type/Units";
-import { Effect, EffectOptions } from "../effect/Effect";
-import { Signal } from "../signal/Signal";
+import { Frequency } from "../core/type/Units.js";
+import { Effect, EffectOptions } from "../effect/Effect.js";
+import { Signal } from "../signal/Signal.js";
 interface FrequencyShifterOptions extends EffectOptions {
     frequency: Frequency;
 }

@@ -1,6 +1,6 @@
-import { Effect } from "../effect/Effect";
-import { LFO } from "../source/oscillator/LFO";
-import { readOnly } from "../core/util/Interface";
+import { Effect } from "../effect/Effect.js";
+import { LFO } from "../source/oscillator/LFO.js";
+import { readOnly } from "../core/util/Interface.js";
 /**
  * Base class for LFO-based effects.
  */

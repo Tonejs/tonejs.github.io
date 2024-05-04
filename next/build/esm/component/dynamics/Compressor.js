@@ -1,7 +1,7 @@
-import { Param } from "../../core/context/Param";
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { readOnly } from "../../core/util/Interface";
+import { Param } from "../../core/context/Param.js";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { readOnly } from "../../core/util/Interface.js";
 /**
  * Compressor is a thin wrapper around the Web Audio
  * [DynamicsCompressorNode](http://webaudio.github.io/web-audio-api/#the-dynamicscompressornode-interface).
@@ -14,7 +14,10 @@ import { readOnly } from "../../core/util/Interface";
  */
 export class Compressor extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Compressor.getDefaults(), arguments, ["threshold", "ratio"]));
+        super(optionsFromArguments(Compressor.getDefaults(), arguments, [
+            "threshold",
+            "ratio",
+        ]));
         this.name = "Compressor";
         /**
          * the compressor node

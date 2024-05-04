@@ -1,6 +1,6 @@
-import { getContext } from "../Global";
-import { ftom, mtof } from "./Conversions";
-import { FrequencyClass } from "./Frequency";
+import { getContext } from "../Global.js";
+import { ftom, mtof } from "./Conversions.js";
+import { FrequencyClass } from "./Frequency.js";
 /**
  * Midi is a primitive type for encoding Time values.
  * Midi can be constructed with or without the `new` keyword. Midi can be passed

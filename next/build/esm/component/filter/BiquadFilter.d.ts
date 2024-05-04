@@ -1,6 +1,6 @@
-import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
-import { Cents, Frequency, GainFactor } from "../../core/type/Units";
-import { Param } from "../../core/context/Param";
+import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
+import { Cents, Frequency, GainFactor } from "../../core/type/Units.js";
+import { Param } from "../../core/context/Param.js";
 export interface BiquadFilterOptions extends ToneAudioNodeOptions {
     frequency: Frequency;
     detune: Cents;
