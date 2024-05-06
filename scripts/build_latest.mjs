@@ -25,9 +25,6 @@ async function generateDocs(branch, npmTag) {
     main: resolve(__dirname, "../node_modules/tone/build/esm/index.d.ts"),
     out: resolve(DOCS_DIR, version, "assets/tone.d.ts"),
   });
-  if (existsSync(resolve(DOCS_DIR, version))) {
-    return;
-  }
   await fs.ensureDir(resolve(DOCS_DIR, version));
   await within(async () => {
     cd(tmp.path);
