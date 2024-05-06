@@ -15,13 +15,11 @@ import { readOnly } from "../../core/util/Interface.js";
  */
 export class Limiter extends ToneAudioNode {
     constructor() {
-        super(Object.assign(optionsFromArguments(Limiter.getDefaults(), arguments, [
-            "threshold",
-        ])));
-        this.name = "Limiter";
         const options = optionsFromArguments(Limiter.getDefaults(), arguments, [
             "threshold",
         ]);
+        super(options);
+        this.name = "Limiter";
         this._compressor =
             this.input =
                 this.output =

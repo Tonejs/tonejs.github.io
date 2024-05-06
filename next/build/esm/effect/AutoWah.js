@@ -23,17 +23,13 @@ import { readOnly } from "../core/util/Interface.js";
  */
 export class AutoWah extends Effect {
     constructor() {
-        super(optionsFromArguments(AutoWah.getDefaults(), arguments, [
-            "baseFrequency",
-            "octaves",
-            "sensitivity",
-        ]));
-        this.name = "AutoWah";
         const options = optionsFromArguments(AutoWah.getDefaults(), arguments, [
             "baseFrequency",
             "octaves",
             "sensitivity",
         ]);
+        super(options);
+        this.name = "AutoWah";
         this._follower = new Follower({
             context: this.context,
             smoothing: options.follower,

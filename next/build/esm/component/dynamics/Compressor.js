@@ -14,10 +14,8 @@ import { readOnly } from "../../core/util/Interface.js";
  */
 export class Compressor extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Compressor.getDefaults(), arguments, [
-            "threshold",
-            "ratio",
-        ]));
+        const options = optionsFromArguments(Compressor.getDefaults(), arguments, ["threshold", "ratio"]);
+        super(options);
         this.name = "Compressor";
         /**
          * the compressor node
@@ -25,7 +23,6 @@ export class Compressor extends ToneAudioNode {
         this._compressor = this.context.createDynamicsCompressor();
         this.input = this._compressor;
         this.output = this._compressor;
-        const options = optionsFromArguments(Compressor.getDefaults(), arguments, ["threshold", "ratio"]);
         this.threshold = new Param({
             minValue: this._compressor.threshold.minValue,
             maxValue: this._compressor.threshold.maxValue,

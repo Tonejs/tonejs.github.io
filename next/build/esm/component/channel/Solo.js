@@ -15,11 +15,11 @@ import { optionsFromArguments } from "../../core/util/Defaults.js";
  */
 export class Solo extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Solo.getDefaults(), arguments, ["solo"]));
-        this.name = "Solo";
         const options = optionsFromArguments(Solo.getDefaults(), arguments, [
             "solo",
         ]);
+        super(options);
+        this.name = "Solo";
         this.input = this.output = new Gain({
             context: this.context,
         });

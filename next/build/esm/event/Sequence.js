@@ -21,11 +21,8 @@ import { ToneEvent } from "./ToneEvent.js";
  */
 export class Sequence extends ToneEvent {
     constructor() {
-        super(optionsFromArguments(Sequence.getDefaults(), arguments, [
-            "callback",
-            "events",
-            "subdivision",
-        ]));
+        const options = optionsFromArguments(Sequence.getDefaults(), arguments, ["callback", "events", "subdivision"]);
+        super(options);
         this.name = "Sequence";
         /**
          * The object responsible for scheduling all of the events
@@ -42,7 +39,6 @@ export class Sequence extends ToneEvent {
          * The proxied array
          */
         this._eventsArray = [];
-        const options = optionsFromArguments(Sequence.getDefaults(), arguments, ["callback", "events", "subdivision"]);
         this._subdivision = this.toTicks(options.subdivision);
         this.events = options.events;
         // set all of the values

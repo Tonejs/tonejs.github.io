@@ -19,10 +19,8 @@ import { PulseOscillator } from "./PulseOscillator.js";
  */
 export class PWMOscillator extends Source {
     constructor() {
-        super(optionsFromArguments(PWMOscillator.getDefaults(), arguments, [
-            "frequency",
-            "modulationFrequency",
-        ]));
+        const options = optionsFromArguments(PWMOscillator.getDefaults(), arguments, ["frequency", "modulationFrequency"]);
+        super(options);
         this.name = "PWMOscillator";
         this.sourceType = "pwm";
         /**
@@ -33,7 +31,6 @@ export class PWMOscillator extends Source {
             context: this.context,
             value: 2,
         });
-        const options = optionsFromArguments(PWMOscillator.getDefaults(), arguments, ["frequency", "modulationFrequency"]);
         this._pulse = new PulseOscillator({
             context: this.context,
             frequency: options.modulationFrequency,

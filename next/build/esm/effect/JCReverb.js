@@ -37,9 +37,8 @@ const allpassFilterFreqs = [347, 113, 37];
  */
 export class JCReverb extends StereoEffect {
     constructor() {
-        super(optionsFromArguments(JCReverb.getDefaults(), arguments, [
-            "roomSize",
-        ]));
+        const options = optionsFromArguments(JCReverb.getDefaults(), arguments, ["roomSize"]);
+        super(options);
         this.name = "JCReverb";
         /**
          * a series of allpass filters
@@ -49,7 +48,6 @@ export class JCReverb extends StereoEffect {
          * parallel feedback comb filters
          */
         this._feedbackCombFilters = [];
-        const options = optionsFromArguments(JCReverb.getDefaults(), arguments, ["roomSize"]);
         this.roomSize = new Signal({
             context: this.context,
             value: options.roomSize,

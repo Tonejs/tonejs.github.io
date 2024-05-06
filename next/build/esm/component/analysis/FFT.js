@@ -10,11 +10,11 @@ import { assert } from "../../core/util/Debug.js";
  */
 export class FFT extends MeterBase {
     constructor() {
-        super(optionsFromArguments(FFT.getDefaults(), arguments, ["size"]));
-        this.name = "FFT";
         const options = optionsFromArguments(FFT.getDefaults(), arguments, [
             "size",
         ]);
+        super(options);
+        this.name = "FFT";
         this.normalRange = options.normalRange;
         this._analyser.type = "fft";
         this.size = options.size;

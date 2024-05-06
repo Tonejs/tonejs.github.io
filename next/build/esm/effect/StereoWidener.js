@@ -17,11 +17,9 @@ import { connect } from "../core/context/ToneAudioNode.js";
  */
 export class StereoWidener extends MidSideEffect {
     constructor() {
-        super(optionsFromArguments(StereoWidener.getDefaults(), arguments, [
-            "width",
-        ]));
-        this.name = "StereoWidener";
         const options = optionsFromArguments(StereoWidener.getDefaults(), arguments, ["width"]);
+        super(options);
+        this.name = "StereoWidener";
         this.width = new Signal({
             context: this.context,
             value: options.width,

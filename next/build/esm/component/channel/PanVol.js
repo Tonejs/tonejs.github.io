@@ -13,15 +13,12 @@ import { Volume } from "./Volume.js";
  */
 export class PanVol extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(PanVol.getDefaults(), arguments, [
-            "pan",
-            "volume",
-        ]));
-        this.name = "PanVol";
         const options = optionsFromArguments(PanVol.getDefaults(), arguments, [
             "pan",
             "volume",
         ]);
+        super(options);
+        this.name = "PanVol";
         this._panner = this.input = new Panner({
             context: this.context,
             pan: options.pan,

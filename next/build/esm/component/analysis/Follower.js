@@ -14,11 +14,9 @@ import { Abs } from "../../signal/Abs.js";
  */
 export class Follower extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Follower.getDefaults(), arguments, [
-            "smoothing",
-        ]));
-        this.name = "Follower";
         const options = optionsFromArguments(Follower.getDefaults(), arguments, ["smoothing"]);
+        super(options);
+        this.name = "Follower";
         this._abs = this.input = new Abs({ context: this.context });
         this._lowpass = this.output = new OnePoleFilter({
             context: this.context,

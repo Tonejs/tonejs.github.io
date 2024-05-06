@@ -19,12 +19,9 @@ import { readOnly } from "../core/util/Interface.js";
  */
 export class PingPongDelay extends StereoXFeedbackEffect {
     constructor() {
-        super(optionsFromArguments(PingPongDelay.getDefaults(), arguments, [
-            "delayTime",
-            "feedback",
-        ]));
-        this.name = "PingPongDelay";
         const options = optionsFromArguments(PingPongDelay.getDefaults(), arguments, ["delayTime", "feedback"]);
+        super(options);
+        this.name = "PingPongDelay";
         this._leftDelay = new Delay({
             context: this.context,
             maxDelay: options.maxDelay,

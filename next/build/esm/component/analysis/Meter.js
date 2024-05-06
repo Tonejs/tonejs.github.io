@@ -23,11 +23,11 @@ import { Analyser } from "./Analyser.js";
  */
 export class Meter extends MeterBase {
     constructor() {
-        super(optionsFromArguments(Meter.getDefaults(), arguments, ["smoothing"]));
-        this.name = "Meter";
         const options = optionsFromArguments(Meter.getDefaults(), arguments, [
             "smoothing",
         ]);
+        super(options);
+        this.name = "Meter";
         this.input =
             this.output =
                 this._analyser =

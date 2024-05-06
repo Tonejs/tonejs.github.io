@@ -16,9 +16,9 @@ import { deepMerge, omitFromObject, optionsFromArguments, } from "../core/util/D
  */
 export class DuoSynth extends Monophonic {
     constructor() {
-        super(optionsFromArguments(DuoSynth.getDefaults(), arguments));
-        this.name = "DuoSynth";
         const options = optionsFromArguments(DuoSynth.getDefaults(), arguments);
+        super(options);
+        this.name = "DuoSynth";
         this.voice0 = new MonoSynth(Object.assign(options.voice0, {
             context: this.context,
             onsilence: () => this.onsilence(this),

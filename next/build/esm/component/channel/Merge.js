@@ -13,11 +13,11 @@ import { optionsFromArguments } from "../../core/util/Defaults.js";
  */
 export class Merge extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Merge.getDefaults(), arguments, ["channels"]));
-        this.name = "Merge";
         const options = optionsFromArguments(Merge.getDefaults(), arguments, [
             "channels",
         ]);
+        super(options);
+        this.name = "Merge";
         this._merger =
             this.output =
                 this.input =

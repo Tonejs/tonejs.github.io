@@ -29,12 +29,9 @@ const OmniOscillatorSourceMap = {
  */
 export class OmniOscillator extends Source {
     constructor() {
-        super(optionsFromArguments(OmniOscillator.getDefaults(), arguments, [
-            "frequency",
-            "type",
-        ]));
-        this.name = "OmniOscillator";
         const options = optionsFromArguments(OmniOscillator.getDefaults(), arguments, ["frequency", "type"]);
+        super(options);
+        this.name = "OmniOscillator";
         this.frequency = new Signal({
             context: this.context,
             units: "frequency",

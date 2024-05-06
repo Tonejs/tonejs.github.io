@@ -17,16 +17,13 @@ import { noOp } from "../../core/util/Interface.js";
  */
 export class Convolver extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Convolver.getDefaults(), arguments, [
-            "url",
-            "onload",
-        ]));
+        const options = optionsFromArguments(Convolver.getDefaults(), arguments, ["url", "onload"]);
+        super(options);
         this.name = "Convolver";
         /**
          * The native ConvolverNode
          */
         this._convolver = this.context.createConvolver();
-        const options = optionsFromArguments(Convolver.getDefaults(), arguments, ["url", "onload"]);
         this._buffer = new ToneAudioBuffer(options.url, (buffer) => {
             this.buffer = buffer;
             options.onload();

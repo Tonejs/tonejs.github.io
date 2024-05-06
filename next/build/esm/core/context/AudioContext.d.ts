@@ -16,6 +16,8 @@ export type AnyAudioContext = AudioContext | OfflineAudioContext;
 interface ToneWindow extends Window {
     TONE_SILENCE_LOGGING?: boolean;
     TONE_DEBUG_CLASS?: string;
+    BaseAudioContext: any;
+    AudioWorkletNode: any;
 }
 /**
  * A reference to the window object

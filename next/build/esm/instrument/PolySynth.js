@@ -22,10 +22,8 @@ import { assert, warn } from "../core/util/Debug.js";
  */
 export class PolySynth extends Instrument {
     constructor() {
-        super(optionsFromArguments(PolySynth.getDefaults(), arguments, [
-            "voice",
-            "options",
-        ]));
+        const options = optionsFromArguments(PolySynth.getDefaults(), arguments, ["voice", "options"]);
+        super(options);
         this.name = "PolySynth";
         /**
          * The voices which are not currently in use
@@ -51,7 +49,6 @@ export class PolySynth extends Instrument {
          * The release which is scheduled to the timeline.
          */
         this._syncedRelease = (time) => this.releaseAll(time);
-        const options = optionsFromArguments(PolySynth.getDefaults(), arguments, ["voice", "options"]);
         // check against the old API (pre 14.3.0)
         assert(!isNumber(options.voice), "DEPRECATED: The polyphony count is no longer the first argument.");
         const defaults = options.voice.getDefaults();

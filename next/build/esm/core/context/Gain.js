@@ -17,10 +17,11 @@ import { ToneAudioNode } from "./ToneAudioNode.js";
  */
 export class Gain extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Gain.getDefaults(), arguments, [
+        const options = optionsFromArguments(Gain.getDefaults(), arguments, [
             "gain",
             "units",
-        ]));
+        ]);
+        super(options);
         this.name = "Gain";
         /**
          * The wrapped GainNode.
@@ -29,10 +30,6 @@ export class Gain extends ToneAudioNode {
         // input = output
         this.input = this._gainNode;
         this.output = this._gainNode;
-        const options = optionsFromArguments(Gain.getDefaults(), arguments, [
-            "gain",
-            "units",
-        ]);
         this.gain = new Param({
             context: this.context,
             convert: options.convert,

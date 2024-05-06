@@ -12,11 +12,11 @@ import { SignalOperator } from "./SignalOperator.js";
  */
 export class Pow extends SignalOperator {
     constructor() {
-        super(Object.assign(optionsFromArguments(Pow.getDefaults(), arguments, ["value"])));
-        this.name = "Pow";
         const options = optionsFromArguments(Pow.getDefaults(), arguments, [
             "value",
         ]);
+        super(options);
+        this.name = "Pow";
         this._exponentScaler =
             this.input =
                 this.output =

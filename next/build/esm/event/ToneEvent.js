@@ -25,10 +25,8 @@ import { isBoolean, isNumber } from "../core/util/TypeCheck.js";
  */
 export class ToneEvent extends ToneWithContext {
     constructor() {
-        super(optionsFromArguments(ToneEvent.getDefaults(), arguments, [
-            "callback",
-            "value",
-        ]));
+        const options = optionsFromArguments(ToneEvent.getDefaults(), arguments, ["callback", "value"]);
+        super(options);
         this.name = "ToneEvent";
         /**
          * Tracks the scheduled events
@@ -38,7 +36,6 @@ export class ToneEvent extends ToneWithContext {
          * A delay time from when the event is scheduled to start
          */
         this._startOffset = 0;
-        const options = optionsFromArguments(ToneEvent.getDefaults(), arguments, ["callback", "value"]);
         this._loop = options.loop;
         this.callback = options.callback;
         this.value = options.value;

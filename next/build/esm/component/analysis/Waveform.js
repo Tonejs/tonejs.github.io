@@ -6,9 +6,9 @@ import { MeterBase } from "./MeterBase.js";
  */
 export class Waveform extends MeterBase {
     constructor() {
-        super(optionsFromArguments(Waveform.getDefaults(), arguments, ["size"]));
-        this.name = "Waveform";
         const options = optionsFromArguments(Waveform.getDefaults(), arguments, ["size"]);
+        super(options);
+        this.name = "Waveform";
         this._analyser.type = "waveform";
         this.size = options.size;
     }

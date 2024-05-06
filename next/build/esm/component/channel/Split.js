@@ -10,11 +10,11 @@ import { optionsFromArguments } from "../../core/util/Defaults.js";
  */
 export class Split extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Split.getDefaults(), arguments, ["channels"]));
-        this.name = "Split";
         const options = optionsFromArguments(Split.getDefaults(), arguments, [
             "channels",
         ]);
+        super(options);
+        this.name = "Split";
         this._splitter =
             this.input =
                 this.output =

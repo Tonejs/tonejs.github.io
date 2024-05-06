@@ -27,9 +27,9 @@ import { ToneAudioNode, } from "../core/context/ToneAudioNode.js";
  */
 export class MonoSynth extends Monophonic {
     constructor() {
-        super(optionsFromArguments(MonoSynth.getDefaults(), arguments));
-        this.name = "MonoSynth";
         const options = optionsFromArguments(MonoSynth.getDefaults(), arguments);
+        super(options);
+        this.name = "MonoSynth";
         this.oscillator = new OmniOscillator(Object.assign(options.oscillator, {
             context: this.context,
             detune: options.detune,

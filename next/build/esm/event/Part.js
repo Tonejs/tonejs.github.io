@@ -29,10 +29,11 @@ import { ToneEvent } from "./ToneEvent.js";
  */
 export class Part extends ToneEvent {
     constructor() {
-        super(optionsFromArguments(Part.getDefaults(), arguments, [
+        const options = optionsFromArguments(Part.getDefaults(), arguments, [
             "callback",
             "events",
-        ]));
+        ]);
+        super(options);
         this.name = "Part";
         /**
          * Tracks the scheduled events
@@ -42,10 +43,6 @@ export class Part extends ToneEvent {
          * The events that belong to this part
          */
         this._events = new Set();
-        const options = optionsFromArguments(Part.getDefaults(), arguments, [
-            "callback",
-            "events",
-        ]);
         // make sure things are assigned in the right order
         this._state.increasing = true;
         // add the events

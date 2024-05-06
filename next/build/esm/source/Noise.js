@@ -25,15 +25,15 @@ import { ToneBufferSource } from "./buffer/ToneBufferSource.js";
  */
 export class Noise extends Source {
     constructor() {
-        super(optionsFromArguments(Noise.getDefaults(), arguments, ["type"]));
+        const options = optionsFromArguments(Noise.getDefaults(), arguments, [
+            "type",
+        ]);
+        super(options);
         this.name = "Noise";
         /**
          * Private reference to the source
          */
         this._source = null;
-        const options = optionsFromArguments(Noise.getDefaults(), arguments, [
-            "type",
-        ]);
         this._playbackRate = options.playbackRate;
         this.type = options.type;
         this._fadeIn = options.fadeIn;

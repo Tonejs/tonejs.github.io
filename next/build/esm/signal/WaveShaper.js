@@ -16,10 +16,8 @@ import { SignalOperator } from "./SignalOperator.js";
  */
 export class WaveShaper extends SignalOperator {
     constructor() {
-        super(Object.assign(optionsFromArguments(WaveShaper.getDefaults(), arguments, [
-            "mapping",
-            "length",
-        ])));
+        const options = optionsFromArguments(WaveShaper.getDefaults(), arguments, ["mapping", "length"]);
+        super(options);
         this.name = "WaveShaper";
         /**
          * the waveshaper node
@@ -33,7 +31,6 @@ export class WaveShaper extends SignalOperator {
          * The output from the waveshaper node
          */
         this.output = this._shaper;
-        const options = optionsFromArguments(WaveShaper.getDefaults(), arguments, ["mapping", "length"]);
         if (isArray(options.mapping) ||
             options.mapping instanceof Float32Array) {
             this.curve = Float32Array.from(options.mapping);

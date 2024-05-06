@@ -32,13 +32,13 @@ import { assert } from "../core/util/Debug.js";
  */
 export class Sampler extends Instrument {
     constructor() {
-        super(optionsFromArguments(Sampler.getDefaults(), arguments, ["urls", "onload", "baseUrl"], "urls"));
+        const options = optionsFromArguments(Sampler.getDefaults(), arguments, ["urls", "onload", "baseUrl"], "urls");
+        super(options);
         this.name = "Sampler";
         /**
          * The object of all currently playing BufferSources
          */
         this._activeSources = new Map();
-        const options = optionsFromArguments(Sampler.getDefaults(), arguments, ["urls", "onload", "baseUrl"], "urls");
         const urlMap = {};
         Object.keys(options.urls).forEach((note) => {
             const noteNumber = parseInt(note, 10);

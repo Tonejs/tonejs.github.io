@@ -22,10 +22,11 @@ import { assertContextRunning } from "../util/Debug.js";
  */
 export class Clock extends ToneWithContext {
     constructor() {
-        super(optionsFromArguments(Clock.getDefaults(), arguments, [
+        const options = optionsFromArguments(Clock.getDefaults(), arguments, [
             "callback",
             "frequency",
-        ]));
+        ]);
+        super(options);
         this.name = "Clock";
         /**
          * The callback function to invoke at the scheduled tick.
@@ -44,10 +45,6 @@ export class Clock extends ToneWithContext {
          * This is necessary to remove the event in the end.
          */
         this._boundLoop = this._loop.bind(this);
-        const options = optionsFromArguments(Clock.getDefaults(), arguments, [
-            "callback",
-            "frequency",
-        ]);
         this.callback = options.callback;
         this._tickSource = new TickSource({
             context: this.context,

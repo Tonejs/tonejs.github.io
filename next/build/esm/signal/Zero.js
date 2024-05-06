@@ -10,7 +10,7 @@ import { SignalOperator } from "./SignalOperator.js";
  */
 export class Zero extends SignalOperator {
     constructor() {
-        super(Object.assign(optionsFromArguments(Zero.getDefaults(), arguments)));
+        super(optionsFromArguments(Zero.getDefaults(), arguments));
         this.name = "Zero";
         /**
          * The gain node which connects the constant source to the output

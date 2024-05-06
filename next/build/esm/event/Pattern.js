@@ -13,17 +13,13 @@ import { noOp } from "../core/util/Interface.js";
  */
 export class Pattern extends Loop {
     constructor() {
-        super(optionsFromArguments(Pattern.getDefaults(), arguments, [
-            "callback",
-            "values",
-            "pattern",
-        ]));
-        this.name = "Pattern";
         const options = optionsFromArguments(Pattern.getDefaults(), arguments, [
             "callback",
             "values",
             "pattern",
         ]);
+        super(options);
+        this.name = "Pattern";
         this.callback = options.callback;
         this._values = options.values;
         this._pattern = PatternGenerator(options.values.length, options.pattern);

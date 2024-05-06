@@ -15,9 +15,9 @@ import { Instrument } from "./Instrument.js";
  */
 export class PluckSynth extends Instrument {
     constructor() {
-        super(optionsFromArguments(PluckSynth.getDefaults(), arguments));
-        this.name = "PluckSynth";
         const options = optionsFromArguments(PluckSynth.getDefaults(), arguments);
+        super(options);
+        this.name = "PluckSynth";
         this._noise = new Noise({
             context: this.context,
             type: "pink",

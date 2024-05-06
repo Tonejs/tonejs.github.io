@@ -14,11 +14,9 @@ import { LFOEffect } from "./LFOEffect.js";
  */
 export class AutoPanner extends LFOEffect {
     constructor() {
-        super(optionsFromArguments(AutoPanner.getDefaults(), arguments, [
-            "frequency",
-        ]));
-        this.name = "AutoPanner";
         const options = optionsFromArguments(AutoPanner.getDefaults(), arguments, ["frequency"]);
+        super(options);
+        this.name = "AutoPanner";
         this._panner = new Panner({
             context: this.context,
             channelCount: options.channelCount,

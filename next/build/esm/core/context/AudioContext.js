@@ -26,9 +26,10 @@ export const hasAudioContext = theWindow &&
     (theWindow.hasOwnProperty("AudioContext") ||
         theWindow.hasOwnProperty("webkitAudioContext"));
 export function createAudioWorkletNode(context, name, options) {
-    assert(isDefined(stdAudioWorkletNode), "This node only works in a secure context (https or localhost)");
-    // @ts-ignore
-    return new stdAudioWorkletNode(context, name, options);
+    assert(isDefined(stdAudioWorkletNode), "AudioWorkletNode only works in a secure context (https or localhost)");
+    return new (context instanceof (theWindow === null || theWindow === void 0 ? void 0 : theWindow.BaseAudioContext)
+        ? theWindow === null || theWindow === void 0 ? void 0 : theWindow.AudioWorkletNode
+        : stdAudioWorkletNode)(context, name, options);
 }
 /**
  * This promise resolves to a boolean which indicates if the

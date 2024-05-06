@@ -14,9 +14,9 @@ import { omitFromObject, optionsFromArguments } from "../core/util/Defaults.js";
  */
 export class ModulationSynth extends Monophonic {
     constructor() {
-        super(optionsFromArguments(ModulationSynth.getDefaults(), arguments));
-        this.name = "ModulationSynth";
         const options = optionsFromArguments(ModulationSynth.getDefaults(), arguments);
+        super(options);
+        this.name = "ModulationSynth";
         this._carrier = new Synth({
             context: this.context,
             oscillator: options.oscillator,

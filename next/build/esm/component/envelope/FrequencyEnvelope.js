@@ -20,14 +20,9 @@ import { assertRange } from "../../core/util/Debug.js";
  */
 export class FrequencyEnvelope extends Envelope {
     constructor() {
-        super(optionsFromArguments(FrequencyEnvelope.getDefaults(), arguments, [
-            "attack",
-            "decay",
-            "sustain",
-            "release",
-        ]));
-        this.name = "FrequencyEnvelope";
         const options = optionsFromArguments(FrequencyEnvelope.getDefaults(), arguments, ["attack", "decay", "sustain", "release"]);
+        super(options);
+        this.name = "FrequencyEnvelope";
         this._octaves = options.octaves;
         this._baseFrequency = this.toFrequency(options.baseFrequency);
         this._exponent = this.input = new Pow({

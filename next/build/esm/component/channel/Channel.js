@@ -14,15 +14,12 @@ import { Gain } from "../../core/context/Gain.js";
  */
 export class Channel extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Channel.getDefaults(), arguments, [
-            "volume",
-            "pan",
-        ]));
-        this.name = "Channel";
         const options = optionsFromArguments(Channel.getDefaults(), arguments, [
             "volume",
             "pan",
         ]);
+        super(options);
+        this.name = "Channel";
         this._solo = this.input = new Solo({
             solo: options.solo,
             context: this.context,

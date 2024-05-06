@@ -13,10 +13,8 @@ import { EQ, GTE, LT } from "../../core/util/Math.js";
  */
 export class ToneBufferSource extends OneShotSource {
     constructor() {
-        super(optionsFromArguments(ToneBufferSource.getDefaults(), arguments, [
-            "url",
-            "onload",
-        ]));
+        const options = optionsFromArguments(ToneBufferSource.getDefaults(), arguments, ["url", "onload"]);
+        super(options);
         this.name = "ToneBufferSource";
         /**
          * The oscillator
@@ -28,7 +26,6 @@ export class ToneBufferSource extends OneShotSource {
          */
         this._sourceStarted = false;
         this._sourceStopped = false;
-        const options = optionsFromArguments(ToneBufferSource.getDefaults(), arguments, ["url", "onload"]);
         connect(this._source, this._gainNode);
         this._source.onended = () => this._stopSource();
         /**

@@ -26,9 +26,9 @@ import { isDefined, isNumber } from "../core/util/TypeCheck.js";
  */
 export class UserMedia extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(UserMedia.getDefaults(), arguments, ["volume"]));
-        this.name = "UserMedia";
         const options = optionsFromArguments(UserMedia.getDefaults(), arguments, ["volume"]);
+        super(options);
+        this.name = "UserMedia";
         this._volume = this.output = new Volume({
             context: this.context,
             volume: options.volume,

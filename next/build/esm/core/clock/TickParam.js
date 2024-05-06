@@ -9,7 +9,8 @@ import { isUndef } from "../util/TypeCheck.js";
  */
 export class TickParam extends Param {
     constructor() {
-        super(optionsFromArguments(TickParam.getDefaults(), arguments, ["value"]));
+        const options = optionsFromArguments(TickParam.getDefaults(), arguments, ["value"]);
+        super(options);
         this.name = "TickParam";
         /**
          * The timeline which tracks all of the automations.
@@ -19,7 +20,6 @@ export class TickParam extends Param {
          * The internal holder for the multiplier value
          */
         this._multiplier = 1;
-        const options = optionsFromArguments(TickParam.getDefaults(), arguments, ["value"]);
         // set the multiplier
         this._multiplier = options.multiplier;
         // clear the ticks from the beginning

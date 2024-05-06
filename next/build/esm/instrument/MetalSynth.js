@@ -22,7 +22,8 @@ const inharmRatios = [1.0, 1.483, 1.932, 2.546, 2.63, 3.897];
  */
 export class MetalSynth extends Monophonic {
     constructor() {
-        super(optionsFromArguments(MetalSynth.getDefaults(), arguments));
+        const options = optionsFromArguments(MetalSynth.getDefaults(), arguments);
+        super(options);
         this.name = "MetalSynth";
         /**
          * The array of FMOscillators
@@ -32,7 +33,6 @@ export class MetalSynth extends Monophonic {
          * The frequency multipliers
          */
         this._freqMultipliers = [];
-        const options = optionsFromArguments(MetalSynth.getDefaults(), arguments);
         this.detune = new Signal({
             context: this.context,
             units: "cents",

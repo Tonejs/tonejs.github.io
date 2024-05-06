@@ -18,12 +18,9 @@ import { FeedbackEffect } from "./FeedbackEffect.js";
  */
 export class FeedbackDelay extends FeedbackEffect {
     constructor() {
-        super(optionsFromArguments(FeedbackDelay.getDefaults(), arguments, [
-            "delayTime",
-            "feedback",
-        ]));
-        this.name = "FeedbackDelay";
         const options = optionsFromArguments(FeedbackDelay.getDefaults(), arguments, ["delayTime", "feedback"]);
+        super(options);
+        this.name = "FeedbackDelay";
         this._delayNode = new Delay({
             context: this.context,
             delayTime: options.delayTime,

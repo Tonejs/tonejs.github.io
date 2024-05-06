@@ -19,9 +19,9 @@ import { Source } from "../source/Source.js";
  */
 export class NoiseSynth extends Instrument {
     constructor() {
-        super(optionsFromArguments(NoiseSynth.getDefaults(), arguments));
-        this.name = "NoiseSynth";
         const options = optionsFromArguments(NoiseSynth.getDefaults(), arguments);
+        super(options);
+        this.name = "NoiseSynth";
         this.noise = new Noise(Object.assign({
             context: this.context,
         }, options.noise));

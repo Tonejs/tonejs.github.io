@@ -35,11 +35,8 @@ import { generateWaveform, } from "./OscillatorInterface.js";
  */
 export class FMOscillator extends Source {
     constructor() {
-        super(optionsFromArguments(FMOscillator.getDefaults(), arguments, [
-            "frequency",
-            "type",
-            "modulationType",
-        ]));
+        const options = optionsFromArguments(FMOscillator.getDefaults(), arguments, ["frequency", "type", "modulationType"]);
+        super(options);
         this.name = "FMOscillator";
         /**
          * the node where the modulation happens
@@ -48,7 +45,6 @@ export class FMOscillator extends Source {
             context: this.context,
             gain: 0,
         });
-        const options = optionsFromArguments(FMOscillator.getDefaults(), arguments, ["frequency", "type", "modulationType"]);
         this._carrier = new Oscillator({
             context: this.context,
             detune: options.detune,

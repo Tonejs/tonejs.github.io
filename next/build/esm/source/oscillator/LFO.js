@@ -21,11 +21,12 @@ import { Oscillator } from "./Oscillator.js";
  */
 export class LFO extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(LFO.getDefaults(), arguments, [
+        const options = optionsFromArguments(LFO.getDefaults(), arguments, [
             "frequency",
             "min",
             "max",
-        ]));
+        ]);
+        super(options);
         this.name = "LFO";
         /**
          * The value that the LFO outputs when it's stopped
@@ -50,11 +51,6 @@ export class LFO extends ToneAudioNode {
         this._is = Param.prototype._is;
         // @ts-ignore
         this._clampValue = Param.prototype._clampValue;
-        const options = optionsFromArguments(LFO.getDefaults(), arguments, [
-            "frequency",
-            "min",
-            "max",
-        ]);
         this._oscillator = new Oscillator(options);
         this.frequency = this._oscillator.frequency;
         this._amplitudeGain = new Gain({

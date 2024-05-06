@@ -12,9 +12,9 @@ import { TickParam } from "./TickParam.js";
  */
 export class TickSignal extends Signal {
     constructor() {
-        super(optionsFromArguments(TickSignal.getDefaults(), arguments, ["value"]));
-        this.name = "TickSignal";
         const options = optionsFromArguments(TickSignal.getDefaults(), arguments, ["value"]);
+        super(options);
+        this.name = "TickSignal";
         this.input = this._param = new TickParam({
             context: this.context,
             convert: options.convert,

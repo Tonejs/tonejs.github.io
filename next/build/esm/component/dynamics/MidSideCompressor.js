@@ -12,9 +12,9 @@ import { readOnly } from "../../core/util/Interface.js";
  */
 export class MidSideCompressor extends ToneAudioNode {
     constructor() {
-        super(Object.assign(optionsFromArguments(MidSideCompressor.getDefaults(), arguments)));
-        this.name = "MidSideCompressor";
         const options = optionsFromArguments(MidSideCompressor.getDefaults(), arguments);
+        super(options);
+        this.name = "MidSideCompressor";
         this._midSideSplit = this.input = new MidSideSplit({
             context: this.context,
         });

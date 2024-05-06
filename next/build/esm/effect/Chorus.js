@@ -18,17 +18,13 @@ import { readOnly } from "../core/util/Interface.js";
  */
 export class Chorus extends StereoFeedbackEffect {
     constructor() {
-        super(optionsFromArguments(Chorus.getDefaults(), arguments, [
-            "frequency",
-            "delayTime",
-            "depth",
-        ]));
-        this.name = "Chorus";
         const options = optionsFromArguments(Chorus.getDefaults(), arguments, [
             "frequency",
             "delayTime",
             "depth",
         ]);
+        super(options);
+        this.name = "Chorus";
         this._depth = options.depth;
         this._delayTime = options.delayTime / 1000;
         this._lfoL = new LFO({

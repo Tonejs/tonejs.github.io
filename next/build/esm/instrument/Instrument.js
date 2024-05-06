@@ -7,7 +7,8 @@ import { readOnly } from "../core/util/Interface.js";
  */
 export class Instrument extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Instrument.getDefaults(), arguments));
+        const options = optionsFromArguments(Instrument.getDefaults(), arguments);
+        super(options);
         /**
          * Keep track of all events scheduled to the transport
          * when the instrument is 'synced'
@@ -23,7 +24,6 @@ export class Instrument extends ToneAudioNode {
          * The release which is scheduled to the timeline.
          */
         this._syncedRelease = (time) => this._original_triggerRelease(time);
-        const options = optionsFromArguments(Instrument.getDefaults(), arguments);
         this._volume = this.output = new Volume({
             context: this.context,
             volume: options.volume,

@@ -12,11 +12,11 @@ import { readOnly } from "../../core/util/Interface.js";
  */
 export class Volume extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Volume.getDefaults(), arguments, ["volume"]));
-        this.name = "Volume";
         const options = optionsFromArguments(Volume.getDefaults(), arguments, [
             "volume",
         ]);
+        super(options);
+        this.name = "Volume";
         this.input = this.output = new Gain({
             context: this.context,
             gain: options.volume,

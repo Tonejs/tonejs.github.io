@@ -10,10 +10,8 @@ import { assert, assertRange } from "../../core/util/Debug.js";
  */
 export class Analyser extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Analyser.getDefaults(), arguments, [
-            "type",
-            "size",
-        ]));
+        const options = optionsFromArguments(Analyser.getDefaults(), arguments, ["type", "size"]);
+        super(options);
         this.name = "Analyser";
         /**
          * The analyser node.
@@ -23,7 +21,6 @@ export class Analyser extends ToneAudioNode {
          * The buffer that the FFT data is written to
          */
         this._buffers = [];
-        const options = optionsFromArguments(Analyser.getDefaults(), arguments, ["type", "size"]);
         this.input =
             this.output =
                 this._gain =

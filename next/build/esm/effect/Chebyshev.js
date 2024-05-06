@@ -18,9 +18,9 @@ import { assert } from "../core/util/Debug.js";
  */
 export class Chebyshev extends Effect {
     constructor() {
-        super(optionsFromArguments(Chebyshev.getDefaults(), arguments, ["order"]));
-        this.name = "Chebyshev";
         const options = optionsFromArguments(Chebyshev.getDefaults(), arguments, ["order"]);
+        super(options);
+        this.name = "Chebyshev";
         this._shaper = new WaveShaper({
             context: this.context,
             length: 4096,

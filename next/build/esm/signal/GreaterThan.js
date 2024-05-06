@@ -16,12 +16,10 @@ import { readOnly } from "../core/util/Interface.js";
  */
 export class GreaterThan extends Signal {
     constructor() {
-        super(Object.assign(optionsFromArguments(GreaterThan.getDefaults(), arguments, [
-            "value",
-        ])));
+        const options = optionsFromArguments(GreaterThan.getDefaults(), arguments, ["value"]);
+        super(options);
         this.name = "GreaterThan";
         this.override = false;
-        const options = optionsFromArguments(GreaterThan.getDefaults(), arguments, ["value"]);
         this._subtract = this.input = new Subtract({
             context: this.context,
             value: options.value,

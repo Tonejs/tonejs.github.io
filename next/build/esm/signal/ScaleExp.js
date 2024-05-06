@@ -12,13 +12,9 @@ import { Pow } from "./Pow.js";
  */
 export class ScaleExp extends Scale {
     constructor() {
-        super(Object.assign(optionsFromArguments(ScaleExp.getDefaults(), arguments, [
-            "min",
-            "max",
-            "exponent",
-        ])));
-        this.name = "ScaleExp";
         const options = optionsFromArguments(ScaleExp.getDefaults(), arguments, ["min", "max", "exponent"]);
+        super(options);
+        this.name = "ScaleExp";
         this.input = this._exp = new Pow({
             context: this.context,
             value: options.exponent,

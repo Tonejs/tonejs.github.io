@@ -21,7 +21,10 @@ import { assertRange } from "../core/util/Debug.js";
  */
 export class Reverb extends Effect {
     constructor() {
-        super(optionsFromArguments(Reverb.getDefaults(), arguments, ["decay"]));
+        const options = optionsFromArguments(Reverb.getDefaults(), arguments, [
+            "decay",
+        ]);
+        super(options);
         this.name = "Reverb";
         /**
          * Convolver node
@@ -33,9 +36,6 @@ export class Reverb extends Effect {
          * before the IR is generated with the latest values.
          */
         this.ready = Promise.resolve();
-        const options = optionsFromArguments(Reverb.getDefaults(), arguments, [
-            "decay",
-        ]);
         this._decay = options.decay;
         this._preDelay = options.preDelay;
         this.generate();

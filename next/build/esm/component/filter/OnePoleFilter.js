@@ -13,12 +13,9 @@ import { Gain } from "../../core/context/Gain.js";
  */
 export class OnePoleFilter extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(OnePoleFilter.getDefaults(), arguments, [
-            "frequency",
-            "type",
-        ]));
-        this.name = "OnePoleFilter";
         const options = optionsFromArguments(OnePoleFilter.getDefaults(), arguments, ["frequency", "type"]);
+        super(options);
+        this.name = "OnePoleFilter";
         this._frequency = options.frequency;
         this._type = options.type;
         this.input = new Gain({ context: this.context });

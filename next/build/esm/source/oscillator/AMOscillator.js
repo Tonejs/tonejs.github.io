@@ -28,11 +28,8 @@ import { generateWaveform, } from "./OscillatorInterface.js";
  */
 export class AMOscillator extends Source {
     constructor() {
-        super(optionsFromArguments(AMOscillator.getDefaults(), arguments, [
-            "frequency",
-            "type",
-            "modulationType",
-        ]));
+        const options = optionsFromArguments(AMOscillator.getDefaults(), arguments, ["frequency", "type", "modulationType"]);
+        super(options);
         this.name = "AMOscillator";
         /**
          * convert the -1,1 output to 0,1
@@ -44,7 +41,6 @@ export class AMOscillator extends Source {
         this._modulationNode = new Gain({
             context: this.context,
         });
-        const options = optionsFromArguments(AMOscillator.getDefaults(), arguments, ["frequency", "type", "modulationType"]);
         this._carrier = new Oscillator({
             context: this.context,
             detune: options.detune,

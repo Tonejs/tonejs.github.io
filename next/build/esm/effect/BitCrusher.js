@@ -19,9 +19,9 @@ import { workletName } from "./BitCrusher.worklet.js";
  */
 export class BitCrusher extends Effect {
     constructor() {
-        super(optionsFromArguments(BitCrusher.getDefaults(), arguments, ["bits"]));
-        this.name = "BitCrusher";
         const options = optionsFromArguments(BitCrusher.getDefaults(), arguments, ["bits"]);
+        super(options);
+        this.name = "BitCrusher";
         this._bitCrusherWorklet = new BitCrusherWorklet({
             context: this.context,
             bits: options.bits,
@@ -46,9 +46,9 @@ export class BitCrusher extends Effect {
  */
 class BitCrusherWorklet extends ToneAudioWorklet {
     constructor() {
-        super(optionsFromArguments(BitCrusherWorklet.getDefaults(), arguments));
-        this.name = "BitCrusherWorklet";
         const options = optionsFromArguments(BitCrusherWorklet.getDefaults(), arguments);
+        super(options);
+        this.name = "BitCrusherWorklet";
         this.input = new Gain({ context: this.context });
         this.output = new Gain({ context: this.context });
         this.bits = new Param({

@@ -44,10 +44,8 @@ import { generateWaveform, } from "./OscillatorInterface.js";
  */
 export class PulseOscillator extends Source {
     constructor() {
-        super(optionsFromArguments(PulseOscillator.getDefaults(), arguments, [
-            "frequency",
-            "width",
-        ]));
+        const options = optionsFromArguments(PulseOscillator.getDefaults(), arguments, ["frequency", "width"]);
+        super(options);
         this.name = "PulseOscillator";
         /**
          * gate the width amount
@@ -63,7 +61,6 @@ export class PulseOscillator extends Source {
             context: this.context,
             mapping: (val) => (val <= 0 ? -1 : 1),
         });
-        const options = optionsFromArguments(PulseOscillator.getDefaults(), arguments, ["frequency", "width"]);
         this.width = new Signal({
             context: this.context,
             units: "audioRange",

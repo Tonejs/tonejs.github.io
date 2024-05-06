@@ -20,17 +20,13 @@ import { readOnly } from "../core/util/Interface.js";
  */
 export class Phaser extends StereoEffect {
     constructor() {
-        super(optionsFromArguments(Phaser.getDefaults(), arguments, [
-            "frequency",
-            "octaves",
-            "baseFrequency",
-        ]));
-        this.name = "Phaser";
         const options = optionsFromArguments(Phaser.getDefaults(), arguments, [
             "frequency",
             "octaves",
             "baseFrequency",
         ]);
+        super(options);
+        this.name = "Phaser";
         this._lfoL = new LFO({
             context: this.context,
             frequency: options.frequency,

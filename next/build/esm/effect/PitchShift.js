@@ -16,9 +16,9 @@ import { intervalToFrequencyRatio } from "../core/type/Conversions.js";
  */
 export class PitchShift extends FeedbackEffect {
     constructor() {
-        super(optionsFromArguments(PitchShift.getDefaults(), arguments, ["pitch"]));
-        this.name = "PitchShift";
         const options = optionsFromArguments(PitchShift.getDefaults(), arguments, ["pitch"]);
+        super(options);
+        this.name = "PitchShift";
         this._frequency = new Signal({ context: this.context });
         this._delayA = new Delay({
             maxDelay: 1,

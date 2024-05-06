@@ -14,17 +14,13 @@ import { assertRange } from "../../core/util/Debug.js";
  */
 export class FatOscillator extends Source {
     constructor() {
-        super(optionsFromArguments(FatOscillator.getDefaults(), arguments, [
-            "frequency",
-            "type",
-            "spread",
-        ]));
+        const options = optionsFromArguments(FatOscillator.getDefaults(), arguments, ["frequency", "type", "spread"]);
+        super(options);
         this.name = "FatOscillator";
         /**
          * The array of oscillators
          */
         this._oscillators = [];
-        const options = optionsFromArguments(FatOscillator.getDefaults(), arguments, ["frequency", "type", "spread"]);
         this.frequency = new Signal({
             context: this.context,
             units: "frequency",

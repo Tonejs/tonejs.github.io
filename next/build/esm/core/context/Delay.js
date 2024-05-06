@@ -16,15 +16,12 @@ import { ToneAudioNode } from "./ToneAudioNode.js";
  */
 export class Delay extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Delay.getDefaults(), arguments, [
-            "delayTime",
-            "maxDelay",
-        ]));
-        this.name = "Delay";
         const options = optionsFromArguments(Delay.getDefaults(), arguments, [
             "delayTime",
             "maxDelay",
         ]);
+        super(options);
+        this.name = "Delay";
         const maxDelayInSeconds = this.toSeconds(options.maxDelay);
         this._maxDelay = Math.max(maxDelayInSeconds, this.toSeconds(options.delayTime));
         this._delayNode =

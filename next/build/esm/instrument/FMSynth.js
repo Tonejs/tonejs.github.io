@@ -15,9 +15,9 @@ import { ModulationSynth } from "./ModulationSynth.js";
  */
 export class FMSynth extends ModulationSynth {
     constructor() {
-        super(optionsFromArguments(FMSynth.getDefaults(), arguments));
-        this.name = "FMSynth";
         const options = optionsFromArguments(FMSynth.getDefaults(), arguments);
+        super(options);
+        this.name = "FMSynth";
         this.modulationIndex = new Multiply({
             context: this.context,
             value: options.modulationIndex,

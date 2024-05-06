@@ -15,22 +15,18 @@ import { assert, assertRange } from "../util/Debug.js";
  */
 export class Param extends ToneWithContext {
     constructor() {
-        super(optionsFromArguments(Param.getDefaults(), arguments, [
+        const options = optionsFromArguments(Param.getDefaults(), arguments, [
             "param",
             "units",
             "convert",
-        ]));
+        ]);
+        super(options);
         this.name = "Param";
         this.overridden = false;
         /**
          * The minimum output value
          */
         this._minOutput = 1e-7;
-        const options = optionsFromArguments(Param.getDefaults(), arguments, [
-            "param",
-            "units",
-            "convert",
-        ]);
         assert(isDefined(options.param) &&
             (isAudioParam(options.param) || options.param instanceof Param), "param must be an AudioParam");
         while (!isAudioParam(options.param)) {

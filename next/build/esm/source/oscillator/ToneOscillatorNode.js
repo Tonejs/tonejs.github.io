@@ -11,17 +11,14 @@ import { readOnly } from "../../core/util/Interface.js";
  */
 export class ToneOscillatorNode extends OneShotSource {
     constructor() {
-        super(optionsFromArguments(ToneOscillatorNode.getDefaults(), arguments, [
-            "frequency",
-            "type",
-        ]));
+        const options = optionsFromArguments(ToneOscillatorNode.getDefaults(), arguments, ["frequency", "type"]);
+        super(options);
         this.name = "ToneOscillatorNode";
         /**
          * The oscillator
          */
         this._oscillator = this.context.createOscillator();
         this._internalChannels = [this._oscillator];
-        const options = optionsFromArguments(ToneOscillatorNode.getDefaults(), arguments, ["frequency", "type"]);
         connect(this._oscillator, this._gainNode);
         this.type = options.type;
         this.frequency = new Param({

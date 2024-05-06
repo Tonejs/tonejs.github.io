@@ -24,10 +24,8 @@ import { Filter } from "../filter/Filter.js";
  */
 export class MultibandSplit extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(MultibandSplit.getDefaults(), arguments, [
-            "lowFrequency",
-            "highFrequency",
-        ]));
+        const options = optionsFromArguments(MultibandSplit.getDefaults(), arguments, ["lowFrequency", "highFrequency"]);
+        super(options);
         this.name = "MultibandSplit";
         /**
          * the input
@@ -70,7 +68,6 @@ export class MultibandSplit extends ToneAudioNode {
             type: "highpass",
         });
         this._internalChannels = [this.low, this.mid, this.high];
-        const options = optionsFromArguments(MultibandSplit.getDefaults(), arguments, ["lowFrequency", "highFrequency"]);
         this.lowFrequency = new Signal({
             context: this.context,
             units: "frequency",

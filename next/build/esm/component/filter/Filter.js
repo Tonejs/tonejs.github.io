@@ -19,20 +19,16 @@ import { BiquadFilter } from "./BiquadFilter.js";
  */
 export class Filter extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Filter.getDefaults(), arguments, [
-            "frequency",
-            "type",
-            "rolloff",
-        ]));
-        this.name = "Filter";
-        this.input = new Gain({ context: this.context });
-        this.output = new Gain({ context: this.context });
-        this._filters = [];
         const options = optionsFromArguments(Filter.getDefaults(), arguments, [
             "frequency",
             "type",
             "rolloff",
         ]);
+        super(options);
+        this.name = "Filter";
+        this.input = new Gain({ context: this.context });
+        this.output = new Gain({ context: this.context });
+        this._filters = [];
         this._filters = [];
         this.Q = new Signal({
             context: this.context,

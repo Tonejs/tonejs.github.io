@@ -20,9 +20,9 @@ import { Gain } from "../../core/context/Gain.js";
  */
 export class MultibandCompressor extends ToneAudioNode {
     constructor() {
-        super(Object.assign(optionsFromArguments(MultibandCompressor.getDefaults(), arguments)));
-        this.name = "MultibandCompressor";
         const options = optionsFromArguments(MultibandCompressor.getDefaults(), arguments);
+        super(options);
+        this.name = "MultibandCompressor";
         this._splitter = this.input = new MultibandSplit({
             context: this.context,
             lowFrequency: options.lowFrequency,

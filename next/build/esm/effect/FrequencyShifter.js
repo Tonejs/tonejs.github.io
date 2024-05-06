@@ -27,11 +27,9 @@ import { ToneOscillatorNode } from "../source/oscillator/ToneOscillatorNode.js";
  */
 export class FrequencyShifter extends Effect {
     constructor() {
-        super(optionsFromArguments(FrequencyShifter.getDefaults(), arguments, [
-            "frequency",
-        ]));
-        this.name = "FrequencyShifter";
         const options = optionsFromArguments(FrequencyShifter.getDefaults(), arguments, ["frequency"]);
+        super(options);
+        this.name = "FrequencyShifter";
         this.frequency = new Signal({
             context: this.context,
             units: "frequency",

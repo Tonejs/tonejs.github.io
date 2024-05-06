@@ -22,15 +22,13 @@ import { Signal } from "./Signal.js";
  */
 export class Multiply extends Signal {
     constructor() {
-        super(Object.assign(optionsFromArguments(Multiply.getDefaults(), arguments, [
-            "value",
-        ])));
+        const options = optionsFromArguments(Multiply.getDefaults(), arguments, ["value"]);
+        super(options);
         this.name = "Multiply";
         /**
          * Indicates if the value should be overridden on connection
          */
         this.override = false;
-        const options = optionsFromArguments(Multiply.getDefaults(), arguments, ["value"]);
         this._mult =
             this.input =
                 this.output =

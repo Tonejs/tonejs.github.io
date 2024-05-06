@@ -20,13 +20,13 @@ import { range, timeRange } from "../core/util/Decorator.js";
  */
 export class MembraneSynth extends Synth {
     constructor() {
-        super(optionsFromArguments(MembraneSynth.getDefaults(), arguments));
+        const options = optionsFromArguments(MembraneSynth.getDefaults(), arguments);
+        super(options);
         this.name = "MembraneSynth";
         /**
          * Portamento is ignored in this synth. use pitch decay instead.
          */
         this.portamento = 0;
-        const options = optionsFromArguments(MembraneSynth.getDefaults(), arguments);
         this.pitchDecay = options.pitchDecay;
         this.octaves = options.octaves;
         readOnly(this, ["oscillator", "envelope"]);

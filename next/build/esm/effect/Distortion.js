@@ -13,11 +13,9 @@ import { Effect } from "./Effect.js";
  */
 export class Distortion extends Effect {
     constructor() {
-        super(optionsFromArguments(Distortion.getDefaults(), arguments, [
-            "distortion",
-        ]));
-        this.name = "Distortion";
         const options = optionsFromArguments(Distortion.getDefaults(), arguments, ["distortion"]);
+        super(options);
+        this.name = "Distortion";
         this._shaper = new WaveShaper({
             context: this.context,
             length: 4096,

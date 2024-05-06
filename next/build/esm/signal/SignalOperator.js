@@ -6,9 +6,9 @@ import { connectSignal } from "./Signal.js";
  */
 export class SignalOperator extends ToneAudioNode {
     constructor() {
-        super(Object.assign(optionsFromArguments(SignalOperator.getDefaults(), arguments, [
+        super(optionsFromArguments(SignalOperator.getDefaults(), arguments, [
             "context",
-        ])));
+        ]));
     }
     connect(destination, outputNum = 0, inputNum = 0) {
         connectSignal(this, destination, outputNum, inputNum);

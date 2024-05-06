@@ -24,9 +24,7 @@ import { Signal } from "../signal/Signal.js";
  */
 export class Subtract extends Signal {
     constructor() {
-        super(Object.assign(optionsFromArguments(Subtract.getDefaults(), arguments, [
-            "value",
-        ])));
+        super(optionsFromArguments(Subtract.getDefaults(), arguments, ["value"]));
         this.override = false;
         this.name = "Subtract";
         /**

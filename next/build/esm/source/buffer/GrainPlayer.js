@@ -15,10 +15,8 @@ import { assertRange } from "../../core/util/Debug.js";
  */
 export class GrainPlayer extends Source {
     constructor() {
-        super(optionsFromArguments(GrainPlayer.getDefaults(), arguments, [
-            "url",
-            "onload",
-        ]));
+        const options = optionsFromArguments(GrainPlayer.getDefaults(), arguments, ["url", "onload"]);
+        super(options);
         this.name = "GrainPlayer";
         /**
          * Internal loopStart value
@@ -32,7 +30,6 @@ export class GrainPlayer extends Source {
          * All of the currently playing BufferSources
          */
         this._activeSources = [];
-        const options = optionsFromArguments(GrainPlayer.getDefaults(), arguments, ["url", "onload"]);
         this.buffer = new ToneAudioBuffer({
             onload: options.onload,
             onerror: options.onerror,

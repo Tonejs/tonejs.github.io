@@ -9,12 +9,9 @@ import { assert } from "../../core/util/Debug.js";
  */
 export class BiquadFilter extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(BiquadFilter.getDefaults(), arguments, [
-            "frequency",
-            "type",
-        ]));
-        this.name = "BiquadFilter";
         const options = optionsFromArguments(BiquadFilter.getDefaults(), arguments, ["frequency", "type"]);
+        super(options);
+        this.name = "BiquadFilter";
         this._filter = this.context.createBiquadFilter();
         this.input = this.output = this._filter;
         this.Q = new Param({

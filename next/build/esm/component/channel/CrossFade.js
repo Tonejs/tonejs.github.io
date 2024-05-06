@@ -32,9 +32,8 @@ import { Signal } from "../../signal/Signal.js";
  */
 export class CrossFade extends ToneAudioNode {
     constructor() {
-        super(Object.assign(optionsFromArguments(CrossFade.getDefaults(), arguments, [
-            "fade",
-        ])));
+        const options = optionsFromArguments(CrossFade.getDefaults(), arguments, ["fade"]);
+        super(options);
         this.name = "CrossFade";
         /**
          * The crossfading is done by a StereoPannerNode
@@ -68,7 +67,6 @@ export class CrossFade extends ToneAudioNode {
          */
         this.output = new Gain({ context: this.context });
         this._internalChannels = [this.a, this.b];
-        const options = optionsFromArguments(CrossFade.getDefaults(), arguments, ["fade"]);
         this.fade = new Signal({
             context: this.context,
             units: "normalRange",

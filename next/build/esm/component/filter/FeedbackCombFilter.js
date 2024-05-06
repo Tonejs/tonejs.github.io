@@ -16,12 +16,9 @@ import { workletName } from "./FeedbackCombFilter.worklet.js";
  */
 export class FeedbackCombFilter extends ToneAudioWorklet {
     constructor() {
-        super(optionsFromArguments(FeedbackCombFilter.getDefaults(), arguments, [
-            "delayTime",
-            "resonance",
-        ]));
-        this.name = "FeedbackCombFilter";
         const options = optionsFromArguments(FeedbackCombFilter.getDefaults(), arguments, ["delayTime", "resonance"]);
+        super(options);
+        this.name = "FeedbackCombFilter";
         this.input = new Gain({ context: this.context });
         this.output = new Gain({ context: this.context });
         this.delayTime = new Param({

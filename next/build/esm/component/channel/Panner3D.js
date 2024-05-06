@@ -8,13 +8,9 @@ import "../../core/context/Listener.js";
  */
 export class Panner3D extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Panner3D.getDefaults(), arguments, [
-            "positionX",
-            "positionY",
-            "positionZ",
-        ]));
-        this.name = "Panner3D";
         const options = optionsFromArguments(Panner3D.getDefaults(), arguments, ["positionX", "positionY", "positionZ"]);
+        super(options);
+        this.name = "Panner3D";
         this._panner = this.input = this.output = this.context.createPanner();
         // set some values
         this.panningModel = options.panningModel;

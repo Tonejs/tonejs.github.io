@@ -20,7 +20,8 @@ import { connectSeries, ToneAudioNode, } from "./ToneAudioNode.js";
  */
 export class DestinationClass extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(DestinationClass.getDefaults(), arguments));
+        const options = optionsFromArguments(DestinationClass.getDefaults(), arguments);
+        super(options);
         this.name = "Destination";
         this.input = new Volume({ context: this.context });
         this.output = new Gain({ context: this.context });
@@ -33,7 +34,6 @@ export class DestinationClass extends ToneAudioNode {
          * Tone.getDestination().volume.rampTo(-Infinity, 10);
          */
         this.volume = this.input.volume;
-        const options = optionsFromArguments(DestinationClass.getDefaults(), arguments);
         connectSeries(this.input, this.output, this.context.rawContext.destination);
         this.mute = options.mute;
         this._internalChannels = [

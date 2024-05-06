@@ -10,15 +10,12 @@ import { readOnly } from "../core/util/Interface.js";
  */
 export class Vibrato extends Effect {
     constructor() {
-        super(optionsFromArguments(Vibrato.getDefaults(), arguments, [
-            "frequency",
-            "depth",
-        ]));
-        this.name = "Vibrato";
         const options = optionsFromArguments(Vibrato.getDefaults(), arguments, [
             "frequency",
             "depth",
         ]);
+        super(options);
+        this.name = "Vibrato";
         this._delayNode = new Delay({
             context: this.context,
             delayTime: 0,

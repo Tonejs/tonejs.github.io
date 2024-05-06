@@ -17,19 +17,16 @@ import { timeRange } from "../../core/util/Decorator.js";
  */
 export class Player extends Source {
     constructor() {
-        super(optionsFromArguments(Player.getDefaults(), arguments, [
+        const options = optionsFromArguments(Player.getDefaults(), arguments, [
             "url",
             "onload",
-        ]));
+        ]);
+        super(options);
         this.name = "Player";
         /**
          * All of the active buffer source nodes
          */
         this._activeSources = new Set();
-        const options = optionsFromArguments(Player.getDefaults(), arguments, [
-            "url",
-            "onload",
-        ]);
         this._buffer = new ToneAudioBuffer({
             onload: this._onload.bind(this, options.onload),
             onerror: options.onerror,

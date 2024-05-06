@@ -9,8 +9,8 @@ import { timeRange } from "../core/util/Decorator.js";
  */
 export class Monophonic extends Instrument {
     constructor() {
-        super(optionsFromArguments(Monophonic.getDefaults(), arguments));
         const options = optionsFromArguments(Monophonic.getDefaults(), arguments);
+        super(options);
         this.portamento = options.portamento;
         this.onsilence = options.onsilence;
     }

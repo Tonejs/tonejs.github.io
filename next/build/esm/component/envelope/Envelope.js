@@ -35,12 +35,8 @@ import { range, timeRange } from "../../core/util/Decorator.js";
  */
 export class Envelope extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Envelope.getDefaults(), arguments, [
-            "attack",
-            "decay",
-            "sustain",
-            "release",
-        ]));
+        const options = optionsFromArguments(Envelope.getDefaults(), arguments, ["attack", "decay", "sustain", "release"]);
+        super(options);
         this.name = "Envelope";
         /**
          * the signal which is output.
@@ -57,7 +53,6 @@ export class Envelope extends ToneAudioNode {
          * Envelope has no input
          */
         this.input = undefined;
-        const options = optionsFromArguments(Envelope.getDefaults(), arguments, ["attack", "decay", "sustain", "release"]);
         this.attack = options.attack;
         this.decay = options.decay;
         this.sustain = options.sustain;

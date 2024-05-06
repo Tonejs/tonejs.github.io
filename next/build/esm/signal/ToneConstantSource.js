@@ -9,15 +9,13 @@ import { OneShotSource, } from "../source/OneShotSource.js";
  */
 export class ToneConstantSource extends OneShotSource {
     constructor() {
-        super(optionsFromArguments(ToneConstantSource.getDefaults(), arguments, [
-            "offset",
-        ]));
+        const options = optionsFromArguments(ToneConstantSource.getDefaults(), arguments, ["offset"]);
+        super(options);
         this.name = "ToneConstantSource";
         /**
          * The signal generator
          */
         this._source = this.context.createConstantSource();
-        const options = optionsFromArguments(ToneConstantSource.getDefaults(), arguments, ["offset"]);
         connect(this._source, this._gainNode);
         this.offset = new Param({
             context: this.context,

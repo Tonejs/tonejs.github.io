@@ -14,7 +14,7 @@ import { optionsFromArguments } from "../core/util/Defaults.js";
  */
 export class GreaterThanZero extends SignalOperator {
     constructor() {
-        super(Object.assign(optionsFromArguments(GreaterThanZero.getDefaults(), arguments)));
+        super(optionsFromArguments(GreaterThanZero.getDefaults(), arguments));
         this.name = "GreaterThanZero";
         this._thresh = this.output = new WaveShaper({
             context: this.context,

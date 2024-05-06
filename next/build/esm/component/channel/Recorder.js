@@ -33,9 +33,9 @@ import { optionsFromArguments } from "../../core/util/Defaults.js";
  */
 export class Recorder extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Recorder.getDefaults(), arguments));
-        this.name = "Recorder";
         const options = optionsFromArguments(Recorder.getDefaults(), arguments);
+        super(options);
+        this.name = "Recorder";
         this.input = new Gain({
             context: this.context,
         });

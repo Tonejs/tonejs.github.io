@@ -17,15 +17,12 @@ import { noOp } from "../core/util/Interface.js";
  */
 export class Loop extends ToneWithContext {
     constructor() {
-        super(optionsFromArguments(Loop.getDefaults(), arguments, [
-            "callback",
-            "interval",
-        ]));
-        this.name = "Loop";
         const options = optionsFromArguments(Loop.getDefaults(), arguments, [
             "callback",
             "interval",
         ]);
+        super(options);
+        this.name = "Loop";
         this._event = new ToneEvent({
             context: this.context,
             callback: this._tick.bind(this),

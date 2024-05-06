@@ -15,15 +15,12 @@ import { SignalOperator } from "./SignalOperator.js";
  */
 export class Scale extends SignalOperator {
     constructor() {
-        super(Object.assign(optionsFromArguments(Scale.getDefaults(), arguments, [
-            "min",
-            "max",
-        ])));
-        this.name = "Scale";
         const options = optionsFromArguments(Scale.getDefaults(), arguments, [
             "min",
             "max",
         ]);
+        super(options);
+        this.name = "Scale";
         this._mult = this.input = new Multiply({
             context: this.context,
             value: options.max - options.min,

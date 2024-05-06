@@ -18,15 +18,12 @@ import { readOnly } from "../core/util/Interface.js";
  */
 export class Tremolo extends StereoEffect {
     constructor() {
-        super(optionsFromArguments(Tremolo.getDefaults(), arguments, [
-            "frequency",
-            "depth",
-        ]));
-        this.name = "Tremolo";
         const options = optionsFromArguments(Tremolo.getDefaults(), arguments, [
             "frequency",
             "depth",
         ]);
+        super(options);
+        this.name = "Tremolo";
         this._lfoL = new LFO({
             context: this.context,
             type: options.type,

@@ -18,15 +18,12 @@ import { dbToGain, gainToDb } from "../../core/type/Conversions.js";
  */
 export class Gate extends ToneAudioNode {
     constructor() {
-        super(Object.assign(optionsFromArguments(Gate.getDefaults(), arguments, [
-            "threshold",
-            "smoothing",
-        ])));
-        this.name = "Gate";
         const options = optionsFromArguments(Gate.getDefaults(), arguments, [
             "threshold",
             "smoothing",
         ]);
+        super(options);
+        this.name = "Gate";
         this._follower = new Follower({
             context: this.context,
             smoothing: options.smoothing,

@@ -25,19 +25,16 @@ import { ToneConstantSource } from "./ToneConstantSource.js";
  */
 export class Signal extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Signal.getDefaults(), arguments, [
+        const options = optionsFromArguments(Signal.getDefaults(), arguments, [
             "value",
             "units",
-        ]));
+        ]);
+        super(options);
         this.name = "Signal";
         /**
          * Indicates if the value should be overridden on connection.
          */
         this.override = true;
-        const options = optionsFromArguments(Signal.getDefaults(), arguments, [
-            "value",
-            "units",
-        ]);
         this.output = this._constantSource = new ToneConstantSource({
             context: this.context,
             convert: options.convert,

@@ -34,10 +34,8 @@ const allpassFilterFrequencies = [225, 556, 441, 341];
  */
 export class Freeverb extends StereoEffect {
     constructor() {
-        super(optionsFromArguments(Freeverb.getDefaults(), arguments, [
-            "roomSize",
-            "dampening",
-        ]));
+        const options = optionsFromArguments(Freeverb.getDefaults(), arguments, ["roomSize", "dampening"]);
+        super(options);
         this.name = "Freeverb";
         /**
          * the comb filters
@@ -51,7 +49,6 @@ export class Freeverb extends StereoEffect {
          * the allpass filters on the right
          */
         this._allpassFiltersR = [];
-        const options = optionsFromArguments(Freeverb.getDefaults(), arguments, ["roomSize", "dampening"]);
         this.roomSize = new Signal({
             context: this.context,
             value: options.roomSize,

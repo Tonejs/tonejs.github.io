@@ -20,7 +20,7 @@ import { Signal } from "./Signal.js";
  */
 export class Add extends Signal {
     constructor() {
-        super(Object.assign(optionsFromArguments(Add.getDefaults(), arguments, ["value"])));
+        super(optionsFromArguments(Add.getDefaults(), arguments, ["value"]));
         this.override = false;
         this.name = "Add";
         /**

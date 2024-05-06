@@ -12,7 +12,8 @@ import { Player } from "./Player.js";
  */
 export class Players extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Players.getDefaults(), arguments, ["urls", "onload"], "urls"));
+        const options = optionsFromArguments(Players.getDefaults(), arguments, ["urls", "onload"], "urls");
+        super(options);
         this.name = "Players";
         /**
          * Players has no input.
@@ -22,7 +23,6 @@ export class Players extends ToneAudioNode {
          * The container of all of the players
          */
         this._players = new Map();
-        const options = optionsFromArguments(Players.getDefaults(), arguments, ["urls", "onload"], "urls");
         /**
          * The output volume node
          */

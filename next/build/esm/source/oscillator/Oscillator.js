@@ -20,16 +20,13 @@ import { clamp } from "../../core/util/Math.js";
  */
 export class Oscillator extends Source {
     constructor() {
-        super(optionsFromArguments(Oscillator.getDefaults(), arguments, [
-            "frequency",
-            "type",
-        ]));
+        const options = optionsFromArguments(Oscillator.getDefaults(), arguments, ["frequency", "type"]);
+        super(options);
         this.name = "Oscillator";
         /**
          * the main oscillator
          */
         this._oscillator = null;
-        const options = optionsFromArguments(Oscillator.getDefaults(), arguments, ["frequency", "type"]);
         this.frequency = new Signal({
             context: this.context,
             units: "frequency",

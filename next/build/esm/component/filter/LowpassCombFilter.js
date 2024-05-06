@@ -9,13 +9,9 @@ import { OnePoleFilter } from "./OnePoleFilter.js";
  */
 export class LowpassCombFilter extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(LowpassCombFilter.getDefaults(), arguments, [
-            "delayTime",
-            "resonance",
-            "dampening",
-        ]));
-        this.name = "LowpassCombFilter";
         const options = optionsFromArguments(LowpassCombFilter.getDefaults(), arguments, ["delayTime", "resonance", "dampening"]);
+        super(options);
+        this.name = "LowpassCombFilter";
         this._combFilter = this.output = new FeedbackCombFilter({
             context: this.context,
             delayTime: options.delayTime,

@@ -9,22 +9,18 @@ import { MultibandSplit } from "../channel/MultibandSplit.js";
  */
 export class EQ3 extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(EQ3.getDefaults(), arguments, [
+        const options = optionsFromArguments(EQ3.getDefaults(), arguments, [
             "low",
             "mid",
             "high",
-        ]));
+        ]);
+        super(options);
         this.name = "EQ3";
         /**
          * the output
          */
         this.output = new Gain({ context: this.context });
         this._internalChannels = [];
-        const options = optionsFromArguments(EQ3.getDefaults(), arguments, [
-            "low",
-            "mid",
-            "high",
-        ]);
         this.input = this._multibandSplit = new MultibandSplit({
             context: this.context,
             highFrequency: options.highFrequency,

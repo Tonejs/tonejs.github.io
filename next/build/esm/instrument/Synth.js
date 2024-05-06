@@ -20,9 +20,9 @@ import { Monophonic } from "./Monophonic.js";
  */
 export class Synth extends Monophonic {
     constructor() {
-        super(optionsFromArguments(Synth.getDefaults(), arguments));
-        this.name = "Synth";
         const options = optionsFromArguments(Synth.getDefaults(), arguments);
+        super(options);
+        this.name = "Synth";
         this.oscillator = new OmniOscillator(Object.assign({
             context: this.context,
             detune: options.detune,

@@ -11,9 +11,8 @@ import { EQ } from "../util/Math.js";
  */
 export class TickSource extends ToneWithContext {
     constructor() {
-        super(optionsFromArguments(TickSource.getDefaults(), arguments, [
-            "frequency",
-        ]));
+        const options = optionsFromArguments(TickSource.getDefaults(), arguments, ["frequency"]);
+        super(options);
         this.name = "TickSource";
         /**
          * The state timeline
@@ -31,7 +30,6 @@ export class TickSource extends ToneWithContext {
          * Memoized values of getSecondsAtTime at events with state other than "started"
          */
         this._secondsAtTime = new Timeline();
-        const options = optionsFromArguments(TickSource.getDefaults(), arguments, ["frequency"]);
         this.frequency = new TickSignal({
             context: this.context,
             units: options.units,

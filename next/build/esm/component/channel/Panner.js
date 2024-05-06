@@ -15,7 +15,10 @@ import { readOnly } from "../../core/util/Interface.js";
  */
 export class Panner extends ToneAudioNode {
     constructor() {
-        super(Object.assign(optionsFromArguments(Panner.getDefaults(), arguments, ["pan"])));
+        const options = optionsFromArguments(Panner.getDefaults(), arguments, [
+            "pan",
+        ]);
+        super(options);
         this.name = "Panner";
         /**
          * the panner node
@@ -23,9 +26,6 @@ export class Panner extends ToneAudioNode {
         this._panner = this.context.createStereoPanner();
         this.input = this._panner;
         this.output = this._panner;
-        const options = optionsFromArguments(Panner.getDefaults(), arguments, [
-            "pan",
-        ]);
         this.pan = new Param({
             context: this.context,
             param: this._panner.pan,

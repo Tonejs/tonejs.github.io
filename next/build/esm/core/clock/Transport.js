@@ -40,7 +40,8 @@ import { TransportRepeatEvent } from "./TransportRepeatEvent.js";
  */
 export class TransportClass extends ToneWithContext {
     constructor() {
-        super(optionsFromArguments(TransportClass.getDefaults(), arguments));
+        const options = optionsFromArguments(TransportClass.getDefaults(), arguments);
+        super(options);
         this.name = "Transport";
         //-------------------------------------
         // 	LOOPING
@@ -80,7 +81,6 @@ export class TransportClass extends ToneWithContext {
          * The swing amount
          */
         this._swingAmount = 0;
-        const options = optionsFromArguments(TransportClass.getDefaults(), arguments);
         // CLOCK/TEMPO
         this._ppq = options.ppq;
         this._clock = new Clock({

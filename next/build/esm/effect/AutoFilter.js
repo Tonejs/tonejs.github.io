@@ -15,13 +15,9 @@ import { LFOEffect } from "./LFOEffect.js";
  */
 export class AutoFilter extends LFOEffect {
     constructor() {
-        super(optionsFromArguments(AutoFilter.getDefaults(), arguments, [
-            "frequency",
-            "baseFrequency",
-            "octaves",
-        ]));
-        this.name = "AutoFilter";
         const options = optionsFromArguments(AutoFilter.getDefaults(), arguments, ["frequency", "baseFrequency", "octaves"]);
+        super(options);
+        this.name = "AutoFilter";
         this.filter = new Filter(Object.assign(options.filter, {
             context: this.context,
         }));

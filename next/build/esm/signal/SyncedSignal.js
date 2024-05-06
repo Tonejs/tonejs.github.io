@@ -8,19 +8,16 @@ import { ToneConstantSource } from "./ToneConstantSource.js";
  */
 export class SyncedSignal extends Signal {
     constructor() {
-        super(optionsFromArguments(Signal.getDefaults(), arguments, [
+        const options = optionsFromArguments(Signal.getDefaults(), arguments, [
             "value",
             "units",
-        ]));
+        ]);
+        super(options);
         this.name = "SyncedSignal";
         /**
          * Don't override when something is connected to the input
          */
         this.override = false;
-        const options = optionsFromArguments(Signal.getDefaults(), arguments, [
-            "value",
-            "units",
-        ]);
         this._lastVal = options.value;
         this._synced = this.context.transport.scheduleRepeat(this._onTick.bind(this), "1i");
         this._syncedCallback = this._anchorValue.bind(this);
