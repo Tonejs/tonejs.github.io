@@ -1,10 +1,10 @@
 import { __awaiter } from "tslib";
-import { getContext } from "../Global";
-import { Tone } from "../Tone";
-import { optionsFromArguments } from "../util/Defaults";
-import { noOp } from "../util/Interface";
-import { isArray, isNumber, isString } from "../util/TypeCheck";
-import { assert } from "../util/Debug";
+import { getContext } from "../Global.js";
+import { Tone } from "../Tone.js";
+import { optionsFromArguments } from "../util/Defaults.js";
+import { noOp } from "../util/Interface.js";
+import { isArray, isNumber, isString } from "../util/TypeCheck.js";
+import { assert } from "../util/Debug.js";
 /**
  * AudioBuffer loading and storage. ToneAudioBuffer is used internally by all
  * classes that make requests for audio files such as Tone.Player,

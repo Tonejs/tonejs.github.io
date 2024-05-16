@@ -1,5 +1,5 @@
-import { Time } from "../../core/type/Units";
-import { InputNode, OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
+import { Time } from "../../core/type/Units.js";
+import { InputNode, OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
 export interface FollowerOptions extends ToneAudioNodeOptions {
     smoothing: Time;
 }

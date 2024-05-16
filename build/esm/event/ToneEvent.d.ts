@@ -1,9 +1,9 @@
-import "../core/clock/Transport";
-import { ToneWithContext, ToneWithContextOptions } from "../core/context/ToneWithContext";
-import { TransportTimeClass } from "../core/type/TransportTime";
-import { NormalRange, Positive, Seconds, Ticks, Time, TransportTime } from "../core/type/Units";
-import { BasicPlaybackState, StateTimeline } from "../core/util/StateTimeline";
-export declare type ToneEventCallback<T> = (time: Seconds, value: T) => void;
+import "../core/clock/Transport.js";
+import { ToneWithContext, ToneWithContextOptions } from "../core/context/ToneWithContext.js";
+import { TransportTimeClass } from "../core/type/TransportTime.js";
+import { NormalRange, Positive, Seconds, Ticks, Time, TransportTime } from "../core/type/Units.js";
+import { BasicPlaybackState, StateTimeline } from "../core/util/StateTimeline.js";
+export type ToneEventCallback<T> = (time: Seconds, value: T) => void;
 export interface ToneEventOptions<T> extends ToneWithContextOptions {
     callback: ToneEventCallback<T>;
     loop: boolean | number;

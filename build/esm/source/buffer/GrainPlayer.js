@@ -1,11 +1,11 @@
-import { Source } from "../Source";
-import { noOp } from "../../core/util/Interface";
-import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer";
-import { defaultArg, optionsFromArguments } from "../../core/util/Defaults";
-import { Clock } from "../../core/clock/Clock";
-import { ToneBufferSource } from "./ToneBufferSource";
-import { intervalToFrequencyRatio } from "../../core/type/Conversions";
-import { assertRange } from "../../core/util/Debug";
+import { Source } from "../Source.js";
+import { noOp } from "../../core/util/Interface.js";
+import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer.js";
+import { defaultArg, optionsFromArguments } from "../../core/util/Defaults.js";
+import { Clock } from "../../core/clock/Clock.js";
+import { ToneBufferSource } from "./ToneBufferSource.js";
+import { intervalToFrequencyRatio } from "../../core/type/Conversions.js";
+import { assertRange } from "../../core/util/Debug.js";
 /**
  * GrainPlayer implements [granular synthesis](https://en.wikipedia.org/wiki/Granular_synthesis).
  * Granular Synthesis enables you to adjust pitch and playback rate independently. The grainSize is the
@@ -15,7 +15,8 @@ import { assertRange } from "../../core/util/Debug";
  */
 export class GrainPlayer extends Source {
     constructor() {
-        super(optionsFromArguments(GrainPlayer.getDefaults(), arguments, ["url", "onload"]));
+        const options = optionsFromArguments(GrainPlayer.getDefaults(), arguments, ["url", "onload"]);
+        super(options);
         this.name = "GrainPlayer";
         /**
          * Internal loopStart value
@@ -29,7 +30,6 @@ export class GrainPlayer extends Source {
          * All of the currently playing BufferSources
          */
         this._activeSources = [];
-        const options = optionsFromArguments(GrainPlayer.getDefaults(), arguments, ["url", "onload"]);
         this.buffer = new ToneAudioBuffer({
             onload: options.onload,
             onerror: options.onerror,
@@ -39,7 +39,7 @@ export class GrainPlayer extends Source {
         this._clock = new Clock({
             context: this.context,
             callback: this._tick.bind(this),
-            frequency: 1 / options.grainSize
+            frequency: 1 / options.grainSize,
         });
         this._playbackRate = options.playbackRate;
         this._grainSize = options.grainSize;
@@ -66,7 +66,7 @@ export class GrainPlayer extends Source {
             loop: false,
             loopStart: 0,
             loopEnd: 0,
-            reverse: false
+            reverse: false,
         });
     }
     /**
@@ -138,7 +138,7 @@ export class GrainPlayer extends Source {
             loopStart: this._loopStart,
             loopEnd: this._loopEnd,
             // compute the playbackRate based on the detune
-            playbackRate: intervalToFrequencyRatio(this.detune / 100)
+            playbackRate: intervalToFrequencyRatio(this.detune / 100),
         }).connect(this.output);
         source.start(time, this._grainSize * ticks);
         source.stop(time + this._grainSize / this.playbackRate);

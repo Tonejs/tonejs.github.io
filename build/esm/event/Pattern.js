@@ -1,7 +1,7 @@
-import { Loop } from "./Loop";
-import { PatternGenerator } from "./PatternGenerator";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { noOp } from "../core/util/Interface";
+import { Loop } from "./Loop.js";
+import { PatternGenerator } from "./PatternGenerator.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { noOp } from "../core/util/Interface.js";
 /**
  * Pattern arpeggiates between the given notes
  * in a number of patterns.
@@ -13,9 +13,13 @@ import { noOp } from "../core/util/Interface";
  */
 export class Pattern extends Loop {
     constructor() {
-        super(optionsFromArguments(Pattern.getDefaults(), arguments, ["callback", "values", "pattern"]));
+        const options = optionsFromArguments(Pattern.getDefaults(), arguments, [
+            "callback",
+            "values",
+            "pattern",
+        ]);
+        super(options);
         this.name = "Pattern";
-        const options = optionsFromArguments(Pattern.getDefaults(), arguments, ["callback", "values", "pattern"]);
         this.callback = options.callback;
         this._values = options.values;
         this._pattern = PatternGenerator(options.values.length, options.pattern);

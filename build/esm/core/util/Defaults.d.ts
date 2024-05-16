@@ -1,9 +1,4 @@
-declare type BaseToneOptions = import("../Tone").BaseToneOptions;
-/**
- * Recursively merge an object
- * @param target the object to merge into
- * @param sources the source objects to merge
- */
+import type { BaseToneOptions } from "../Tone.js";
 export declare function deepMerge<T>(target: T): T;
 export declare function deepMerge<T, U>(target: T, source1: U): T & U;
 export declare function deepMerge<T, U, V>(target: T, source1: U, source2: V): T & U & V;
@@ -31,4 +26,3 @@ export declare function defaultArg<T>(given: T, fallback: T): T;
  * Remove all of the properties belonging to omit from obj.
  */
 export declare function omitFromObject<T extends object, O extends string[]>(obj: T, omit: O): Omit<T, keyof O>;
-export {};

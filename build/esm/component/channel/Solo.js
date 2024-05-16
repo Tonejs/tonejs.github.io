@@ -1,6 +1,6 @@
-import { Gain } from "../../core/context/Gain";
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
+import { Gain } from "../../core/context/Gain.js";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
 /**
  * Solo lets you isolate a specific audio stream. When an instance is set to `solo=true`,
  * it will mute all other instances of Solo.
@@ -15,9 +15,11 @@ import { optionsFromArguments } from "../../core/util/Defaults";
  */
 export class Solo extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Solo.getDefaults(), arguments, ["solo"]));
+        const options = optionsFromArguments(Solo.getDefaults(), arguments, [
+            "solo",
+        ]);
+        super(options);
         this.name = "Solo";
-        const options = optionsFromArguments(Solo.getDefaults(), arguments, ["solo"]);
         this.input = this.output = new Gain({
             context: this.context,
         });
@@ -48,7 +50,7 @@ export class Solo extends ToneAudioNode {
         else {
             this._removeSolo();
         }
-        Solo._allSolos.get(this.context).forEach(instance => instance._updateSolo());
+        Solo._allSolos.get(this.context).forEach((instance) => instance._updateSolo());
     }
     /**
      * If the current instance is muted, i.e. another instance is soloed
@@ -77,16 +79,18 @@ export class Solo extends ToneAudioNode {
      * Is this on the soloed array
      */
     _isSoloed() {
-        return Solo._soloed.has(this.context) && Solo._soloed.get(this.context).has(this);
+        return (Solo._soloed.has(this.context) &&
+            Solo._soloed.get(this.context).has(this));
     }
     /**
      * Returns true if no one is soloed
      */
     _noSolos() {
         // either does not have any soloed added
-        return !Solo._soloed.has(this.context) ||
+        return (!Solo._soloed.has(this.context) ||
             // or has a solo set but doesn't include any items
-            (Solo._soloed.has(this.context) && Solo._soloed.get(this.context).size === 0);
+            (Solo._soloed.has(this.context) &&
+                Solo._soloed.get(this.context).size === 0));
     }
     /**
      * Solo the current instance and unsolo all other instances.

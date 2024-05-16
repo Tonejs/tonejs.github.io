@@ -1,13 +1,13 @@
-import { Gain } from "../../core/context/Gain";
-import { Param } from "../../core/context/Param";
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { readOnly } from "../../core/util/Interface";
-import { AudioToGain } from "../../signal/AudioToGain";
-import { Scale } from "../../signal/Scale";
-import { connectSignal, Signal } from "../../signal/Signal";
-import { Zero } from "../../signal/Zero";
-import { Oscillator } from "./Oscillator";
+import { Gain } from "../../core/context/Gain.js";
+import { Param } from "../../core/context/Param.js";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { readOnly } from "../../core/util/Interface.js";
+import { AudioToGain } from "../../signal/AudioToGain.js";
+import { Scale } from "../../signal/Scale.js";
+import { connectSignal, Signal } from "../../signal/Signal.js";
+import { Zero } from "../../signal/Zero.js";
+import { Oscillator } from "./Oscillator.js";
 /**
  * LFO stands for low frequency oscillator. LFO produces an output signal
  * which can be attached to an AudioParam or Tone.Signal
@@ -21,7 +21,12 @@ import { Oscillator } from "./Oscillator";
  */
 export class LFO extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(LFO.getDefaults(), arguments, ["frequency", "min", "max"]));
+        const options = optionsFromArguments(LFO.getDefaults(), arguments, [
+            "frequency",
+            "min",
+            "max",
+        ]);
+        super(options);
         this.name = "LFO";
         /**
          * The value that the LFO outputs when it's stopped
@@ -46,7 +51,6 @@ export class LFO extends ToneAudioNode {
         this._is = Param.prototype._is;
         // @ts-ignore
         this._clampValue = Param.prototype._clampValue;
-        const options = optionsFromArguments(LFO.getDefaults(), arguments, ["frequency", "min", "max"]);
         this._oscillator = new Oscillator(options);
         this.frequency = this._oscillator.frequency;
         this._amplitudeGain = new Gain({

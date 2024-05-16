@@ -1,5 +1,5 @@
-import { Timeline } from "./Timeline";
-import { assertRange } from "./Debug";
+import { Timeline } from "./Timeline.js";
+import { assertRange } from "./Debug.js";
 /**
  * A Timeline State. Provides the methods: `setStateAtTime("state", time)` and `getValueAtTime(time)`
  * @param initial The initial state of the StateTimeline.  Defaults to `undefined`

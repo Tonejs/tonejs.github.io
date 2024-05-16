@@ -1,11 +1,11 @@
-import { Gain } from "../../core/context/Gain";
-import { connectSeries, ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { readOnly, writable } from "../../core/util/Interface";
-import { isNumber } from "../../core/util/TypeCheck";
-import { Signal } from "../../signal/Signal";
-import { assert } from "../../core/util/Debug";
-import { BiquadFilter } from "./BiquadFilter";
+import { Gain } from "../../core/context/Gain.js";
+import { connectSeries, ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { readOnly, writable } from "../../core/util/Interface.js";
+import { isNumber } from "../../core/util/TypeCheck.js";
+import { Signal } from "../../signal/Signal.js";
+import { assert } from "../../core/util/Debug.js";
+import { BiquadFilter } from "./BiquadFilter.js";
 /**
  * Tone.Filter is a filter which allows for all of the same native methods
  * as the [BiquadFilterNode](http://webaudio.github.io/web-audio-api/#the-biquadfilternode-interface).
@@ -19,12 +19,16 @@ import { BiquadFilter } from "./BiquadFilter";
  */
 export class Filter extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Filter.getDefaults(), arguments, ["frequency", "type", "rolloff"]));
+        const options = optionsFromArguments(Filter.getDefaults(), arguments, [
+            "frequency",
+            "type",
+            "rolloff",
+        ]);
+        super(options);
         this.name = "Filter";
         this.input = new Gain({ context: this.context });
         this.output = new Gain({ context: this.context });
         this._filters = [];
-        const options = optionsFromArguments(Filter.getDefaults(), arguments, ["frequency", "type", "rolloff"]);
         this._filters = [];
         this.Q = new Signal({
             context: this.context,
@@ -69,11 +73,19 @@ export class Filter extends ToneAudioNode {
         return this._type;
     }
     set type(type) {
-        const types = ["lowpass", "highpass", "bandpass",
-            "lowshelf", "highshelf", "notch", "allpass", "peaking"];
+        const types = [
+            "lowpass",
+            "highpass",
+            "bandpass",
+            "lowshelf",
+            "highshelf",
+            "notch",
+            "allpass",
+            "peaking",
+        ];
         assert(types.indexOf(type) !== -1, `Invalid filter type: ${type}`);
         this._type = type;
-        this._filters.forEach(filter => filter.type = type);
+        this._filters.forEach((filter) => (filter.type = type));
     }
     /**
      * The rolloff of the filter which is the drop in db
@@ -84,7 +96,9 @@ export class Filter extends ToneAudioNode {
         return this._rolloff;
     }
     set rolloff(rolloff) {
-        const rolloffNum = isNumber(rolloff) ? rolloff : parseInt(rolloff, 10);
+        const rolloffNum = isNumber(rolloff)
+            ? rolloff
+            : parseInt(rolloff, 10);
         const possibilities = [-12, -24, -48, -96];
         let cascadingCount = possibilities.indexOf(rolloffNum);
         // check the rolloff is valid
@@ -92,7 +106,7 @@ export class Filter extends ToneAudioNode {
         cascadingCount += 1;
         this._rolloff = rolloffNum;
         this.input.disconnect();
-        this._filters.forEach(filter => filter.disconnect());
+        this._filters.forEach((filter) => filter.disconnect());
         this._filters = new Array(cascadingCount);
         for (let count = 0; count < cascadingCount; count++) {
             const filter = new BiquadFilter({
@@ -126,7 +140,7 @@ export class Filter extends ToneAudioNode {
         const totalResponse = new Float32Array(len).map(() => 1);
         this._filters.forEach(() => {
             const response = filterClone.getFrequencyResponse(len);
-            response.forEach((val, i) => totalResponse[i] *= val);
+            response.forEach((val, i) => (totalResponse[i] *= val));
         });
         filterClone.dispose();
         return totalResponse;
@@ -136,7 +150,7 @@ export class Filter extends ToneAudioNode {
      */
     dispose() {
         super.dispose();
-        this._filters.forEach(filter => {
+        this._filters.forEach((filter) => {
             filter.dispose();
         });
         writable(this, ["detune", "frequency", "gain", "Q"]);

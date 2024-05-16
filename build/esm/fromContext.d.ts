@@ -1,15 +1,15 @@
-import * as Classes from "./classes";
-import { TransportClass } from "./core/clock/Transport";
-import { Context } from "./core/context/Context";
-import { ListenerClass } from "./core/context/Listener";
-import { DestinationClass } from "./core/context/Destination";
-import { DrawClass } from "./core/util/Draw";
-declare type ClassesWithoutSingletons = Omit<typeof Classes, "Transport" | "Destination" | "Draw">;
+import * as Classes from "./classes.js";
+import { TransportClass } from "./core/clock/Transport.js";
+import { Context } from "./core/context/Context.js";
+import { ListenerClass } from "./core/context/Listener.js";
+import { DestinationClass } from "./core/context/Destination.js";
+import { DrawClass } from "./core/util/Draw.js";
+type ClassesWithoutSingletons = Omit<typeof Classes, "Transport" | "Destination" | "Draw">;
 /**
  * The exported Tone object. Contains all of the classes that default
  * to the same context and contains a singleton Transport and Destination node.
  */
-declare type ToneObject = {
+type ToneObject = {
     Transport: TransportClass;
     Destination: DestinationClass;
     Listener: ListenerClass;

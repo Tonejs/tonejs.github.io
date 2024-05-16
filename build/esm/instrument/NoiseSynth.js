@@ -1,10 +1,10 @@
-import { AmplitudeEnvelope } from "../component/envelope/AmplitudeEnvelope";
-import { omitFromObject, optionsFromArguments } from "../core/util/Defaults";
-import { Noise } from "../source/Noise";
-import { Instrument } from "./Instrument";
-import { ToneAudioNode, } from "../core/context/ToneAudioNode";
-import { Envelope } from "../component/envelope/Envelope";
-import { Source } from "../source/Source";
+import { AmplitudeEnvelope } from "../component/envelope/AmplitudeEnvelope.js";
+import { omitFromObject, optionsFromArguments } from "../core/util/Defaults.js";
+import { Noise } from "../source/Noise.js";
+import { Instrument } from "./Instrument.js";
+import { ToneAudioNode, } from "../core/context/ToneAudioNode.js";
+import { Envelope } from "../component/envelope/Envelope.js";
+import { Source } from "../source/Source.js";
 /**
  * Tone.NoiseSynth is composed of {@link Noise} through an {@link AmplitudeEnvelope}.
  * ```
@@ -19,9 +19,9 @@ import { Source } from "../source/Source";
  */
 export class NoiseSynth extends Instrument {
     constructor() {
-        super(optionsFromArguments(NoiseSynth.getDefaults(), arguments));
-        this.name = "NoiseSynth";
         const options = optionsFromArguments(NoiseSynth.getDefaults(), arguments);
+        super(options);
+        this.name = "NoiseSynth";
         this.noise = new Noise(Object.assign({
             context: this.context,
         }, options.noise));

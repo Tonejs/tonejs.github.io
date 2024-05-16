@@ -1,8 +1,8 @@
-export * from "./core/index";
-export * from "./source/index";
-export * from "./signal/index";
-export * from "./instrument/index";
-export * from "./event/index";
-export * from "./effect/index";
-export * from "./component/index";
+export * from "./core/index.js";
+export * from "./source/index.js";
+export * from "./signal/index.js";
+export * from "./instrument/index.js";
+export * from "./event/index.js";
+export * from "./effect/index.js";
+export * from "./component/index.js";
 //# sourceMappingURL=classes.js.map

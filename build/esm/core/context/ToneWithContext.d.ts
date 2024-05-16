@@ -1,8 +1,8 @@
-import { Tone } from "../Tone";
-import { TimeClass } from "../type/Time";
-import { Frequency, Hertz, Seconds, Ticks, Time } from "../type/Units";
-import { RecursivePartial } from "../util/Interface";
-import { BaseContext } from "./BaseContext";
+import { Tone } from "../Tone.js";
+import { TimeClass } from "../type/Time.js";
+import { Frequency, Hertz, Seconds, Ticks, Time } from "../type/Units.js";
+import { RecursivePartial } from "../util/Interface.js";
+import { BaseContext } from "./BaseContext.js";
 /**
  * A unit which process audio
  */

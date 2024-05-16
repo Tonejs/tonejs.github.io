@@ -1,5 +1,5 @@
-import { Frequency, NormalRange, Time } from "../../core/type/Units";
-import { Envelope, EnvelopeOptions } from "./Envelope";
+import { Frequency, NormalRange, Time } from "../../core/type/Units.js";
+import { Envelope, EnvelopeOptions } from "./Envelope.js";
 export interface FrequencyEnvelopeOptions extends EnvelopeOptions {
     baseFrequency: Frequency;
     octaves: number;

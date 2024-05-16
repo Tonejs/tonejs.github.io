@@ -1,7 +1,7 @@
-import { SignalOperator } from "./SignalOperator";
-import { Multiply } from "./Multiply";
-import { WaveShaper } from "./WaveShaper";
-import { optionsFromArguments } from "../core/util/Defaults";
+import { SignalOperator } from "./SignalOperator.js";
+import { Multiply } from "./Multiply.js";
+import { WaveShaper } from "./WaveShaper.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
 /**
  * GreaterThanZero outputs 1 when the input is strictly greater than zero
  * @example
@@ -14,7 +14,7 @@ import { optionsFromArguments } from "../core/util/Defaults";
  */
 export class GreaterThanZero extends SignalOperator {
     constructor() {
-        super(Object.assign(optionsFromArguments(GreaterThanZero.getDefaults(), arguments)));
+        super(optionsFromArguments(GreaterThanZero.getDefaults(), arguments));
         this.name = "GreaterThanZero";
         this._thresh = this.output = new WaveShaper({
             context: this.context,
@@ -30,7 +30,7 @@ export class GreaterThanZero extends SignalOperator {
         });
         this._scale = this.input = new Multiply({
             context: this.context,
-            value: 10000
+            value: 10000,
         });
         // connections
         this._scale.connect(this._thresh);

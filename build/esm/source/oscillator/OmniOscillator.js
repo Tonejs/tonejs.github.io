@@ -1,16 +1,16 @@
 import { __awaiter } from "tslib";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { readOnly } from "../../core/util/Interface";
-import { isNumber, isString } from "../../core/util/TypeCheck";
-import { Signal } from "../../signal/Signal";
-import { Source } from "../Source";
-import { AMOscillator } from "./AMOscillator";
-import { FatOscillator } from "./FatOscillator";
-import { FMOscillator } from "./FMOscillator";
-import { Oscillator } from "./Oscillator";
-import { generateWaveform } from "./OscillatorInterface";
-import { PulseOscillator } from "./PulseOscillator";
-import { PWMOscillator } from "./PWMOscillator";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { readOnly } from "../../core/util/Interface.js";
+import { isNumber, isString } from "../../core/util/TypeCheck.js";
+import { Signal } from "../../signal/Signal.js";
+import { Source } from "../Source.js";
+import { AMOscillator } from "./AMOscillator.js";
+import { FatOscillator } from "./FatOscillator.js";
+import { FMOscillator } from "./FMOscillator.js";
+import { Oscillator } from "./Oscillator.js";
+import { generateWaveform, } from "./OscillatorInterface.js";
+import { PulseOscillator } from "./PulseOscillator.js";
+import { PWMOscillator } from "./PWMOscillator.js";
 const OmniOscillatorSourceMap = {
     am: AMOscillator,
     fat: FatOscillator,
@@ -29,9 +29,9 @@ const OmniOscillatorSourceMap = {
  */
 export class OmniOscillator extends Source {
     constructor() {
-        super(optionsFromArguments(OmniOscillator.getDefaults(), arguments, ["frequency", "type"]));
-        this.name = "OmniOscillator";
         const options = optionsFromArguments(OmniOscillator.getDefaults(), arguments, ["frequency", "type"]);
+        super(options);
+        this.name = "OmniOscillator";
         this.frequency = new Signal({
             context: this.context,
             units: "frequency",
@@ -80,10 +80,10 @@ export class OmniOscillator extends Source {
      */
     get type() {
         let prefix = "";
-        if (["am", "fm", "fat"].some(p => this._sourceType === p)) {
+        if (["am", "fm", "fat"].some((p) => this._sourceType === p)) {
             prefix = this._sourceType;
         }
-        return prefix + this._oscillator.type;
+        return (prefix + this._oscillator.type);
     }
     set type(type) {
         if (type.substr(0, 2) === "fm") {
@@ -123,7 +123,8 @@ export class OmniOscillator extends Source {
         return this._oscillator.partials;
     }
     set partials(partials) {
-        if (!this._getOscType(this._oscillator, "pulse") && !this._getOscType(this._oscillator, "pwm")) {
+        if (!this._getOscType(this._oscillator, "pulse") &&
+            !this._getOscType(this._oscillator, "pwm")) {
             this._oscillator.partials = partials;
         }
     }
@@ -131,7 +132,8 @@ export class OmniOscillator extends Source {
         return this._oscillator.partialCount;
     }
     set partialCount(partialCount) {
-        if (!this._getOscType(this._oscillator, "pulse") && !this._getOscType(this._oscillator, "pwm")) {
+        if (!this._getOscType(this._oscillator, "pulse") &&
+            !this._getOscType(this._oscillator, "pwm")) {
             this._oscillator.partialCount = partialCount;
         }
     }
@@ -189,18 +191,19 @@ export class OmniOscillator extends Source {
     set sourceType(sType) {
         // the basetype defaults to sine
         let baseType = "sine";
-        if (this._oscillator.type !== "pwm" && this._oscillator.type !== "pulse") {
+        if (this._oscillator.type !== "pwm" &&
+            this._oscillator.type !== "pulse") {
             baseType = this._oscillator.type;
         }
         // set the type
         if (sType === "fm") {
-            this.type = "fm" + baseType;
+            this.type = ("fm" + baseType);
         }
         else if (sType === "am") {
-            this.type = "am" + baseType;
+            this.type = ("am" + baseType);
         }
         else if (sType === "fat") {
-            this.type = "fat" + baseType;
+            this.type = ("fat" + baseType);
         }
         else if (sType === "oscillator") {
             this.type = baseType;
@@ -228,7 +231,8 @@ export class OmniOscillator extends Source {
     set baseType(baseType) {
         if (!this._getOscType(this._oscillator, "pulse") &&
             !this._getOscType(this._oscillator, "pwm") &&
-            baseType !== "pulse" && baseType !== "pwm") {
+            baseType !== "pulse" &&
+            baseType !== "pwm") {
             this._oscillator.baseType = baseType;
         }
     }
@@ -283,7 +287,8 @@ export class OmniOscillator extends Source {
      * @see {@link AMOscillator} or {@link FMOscillator}
      */
     get modulationType() {
-        if (this._getOscType(this._oscillator, "fm") || this._getOscType(this._oscillator, "am")) {
+        if (this._getOscType(this._oscillator, "fm") ||
+            this._getOscType(this._oscillator, "am")) {
             return this._oscillator.modulationType;
         }
         else {
@@ -291,7 +296,9 @@ export class OmniOscillator extends Source {
         }
     }
     set modulationType(mType) {
-        if ((this._getOscType(this._oscillator, "fm") || this._getOscType(this._oscillator, "am")) && isString(mType)) {
+        if ((this._getOscType(this._oscillator, "fm") ||
+            this._getOscType(this._oscillator, "am")) &&
+            isString(mType)) {
             this._oscillator.modulationType = mType;
         }
     }
@@ -312,7 +319,8 @@ export class OmniOscillator extends Source {
      * @see {@link AMOscillator} or {@link FMOscillator}
      */
     get harmonicity() {
-        if (this._getOscType(this._oscillator, "fm") || this._getOscType(this._oscillator, "am")) {
+        if (this._getOscType(this._oscillator, "fm") ||
+            this._getOscType(this._oscillator, "am")) {
             return this._oscillator.harmonicity;
         }
         else {
@@ -333,8 +341,8 @@ export class OmniOscillator extends Source {
             return undefined;
         }
     }
-    asArray(length = 1024) {
-        return __awaiter(this, void 0, void 0, function* () {
+    asArray() {
+        return __awaiter(this, arguments, void 0, function* (length = 1024) {
             return generateWaveform(this, length);
         });
     }

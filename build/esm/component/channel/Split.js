@@ -1,5 +1,5 @@
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
 /**
  * Split splits an incoming signal into the number of given channels.
  *
@@ -10,10 +10,15 @@ import { optionsFromArguments } from "../../core/util/Defaults";
  */
 export class Split extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Split.getDefaults(), arguments, ["channels"]));
+        const options = optionsFromArguments(Split.getDefaults(), arguments, [
+            "channels",
+        ]);
+        super(options);
         this.name = "Split";
-        const options = optionsFromArguments(Split.getDefaults(), arguments, ["channels"]);
-        this._splitter = this.input = this.output = this.context.createChannelSplitter(options.channels);
+        this._splitter =
+            this.input =
+                this.output =
+                    this.context.createChannelSplitter(options.channels);
         this._internalChannels = [this._splitter];
     }
     static getDefaults() {

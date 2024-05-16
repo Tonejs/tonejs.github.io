@@ -1,11 +1,11 @@
 import { __awaiter } from "tslib";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { noOp, readOnly } from "../../core/util/Interface";
-import { Signal } from "../../signal/Signal";
-import { Source } from "../Source";
-import { Oscillator } from "./Oscillator";
-import { generateWaveform } from "./OscillatorInterface";
-import { assertRange } from "../../core/util/Debug";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { noOp, readOnly } from "../../core/util/Interface.js";
+import { Signal } from "../../signal/Signal.js";
+import { Source } from "../Source.js";
+import { Oscillator } from "./Oscillator.js";
+import { generateWaveform, } from "./OscillatorInterface.js";
+import { assertRange } from "../../core/util/Debug.js";
 /**
  * FatOscillator is an array of oscillators with detune spread between the oscillators
  * @example
@@ -14,13 +14,13 @@ import { assertRange } from "../../core/util/Debug";
  */
 export class FatOscillator extends Source {
     constructor() {
-        super(optionsFromArguments(FatOscillator.getDefaults(), arguments, ["frequency", "type", "spread"]));
+        const options = optionsFromArguments(FatOscillator.getDefaults(), arguments, ["frequency", "type", "spread"]);
+        super(options);
         this.name = "FatOscillator";
         /**
          * The array of oscillators
          */
         this._oscillators = [];
-        const options = optionsFromArguments(FatOscillator.getDefaults(), arguments, ["frequency", "type", "spread"]);
         this.frequency = new Signal({
             context: this.context,
             units: "frequency",
@@ -52,17 +52,17 @@ export class FatOscillator extends Source {
      */
     _start(time) {
         time = this.toSeconds(time);
-        this._forEach(osc => osc.start(time));
+        this._forEach((osc) => osc.start(time));
     }
     /**
      * stop the oscillator
      */
     _stop(time) {
         time = this.toSeconds(time);
-        this._forEach(osc => osc.stop(time));
+        this._forEach((osc) => osc.stop(time));
     }
     _restart(time) {
-        this._forEach(osc => osc.restart(time));
+        this._forEach((osc) => osc.restart(time));
     }
     /**
      * Iterate over all of the oscillators
@@ -80,7 +80,7 @@ export class FatOscillator extends Source {
     }
     set type(type) {
         this._type = type;
-        this._forEach(osc => osc.type = type);
+        this._forEach((osc) => (osc.type = type));
     }
     /**
      * The detune spread between the oscillators. If "count" is
@@ -99,7 +99,7 @@ export class FatOscillator extends Source {
         if (this._oscillators.length > 1) {
             const start = -spread / 2;
             const step = spread / (this._oscillators.length - 1);
-            this._forEach((osc, i) => osc.detune.value = start + step * i);
+            this._forEach((osc, i) => (osc.detune.value = start + step * i));
         }
     }
     /**
@@ -116,7 +116,7 @@ export class FatOscillator extends Source {
         assertRange(count, 1);
         if (this._oscillators.length !== count) {
             // dispose the previous oscillators
-            this._forEach(osc => osc.dispose());
+            this._forEach((osc) => osc.dispose());
             this._oscillators = [];
             for (let i = 0; i < count; i++) {
                 const osc = new Oscillator({
@@ -139,7 +139,7 @@ export class FatOscillator extends Source {
             // set the spread
             this.spread = this._spread;
             if (this.state === "started") {
-                this._forEach(osc => osc.start());
+                this._forEach((osc) => osc.start());
             }
         }
     }
@@ -148,13 +148,13 @@ export class FatOscillator extends Source {
     }
     set phase(phase) {
         this._phase = phase;
-        this._forEach((osc, i) => osc.phase = this._phase + (i / this.count) * 360);
+        this._forEach((osc, i) => (osc.phase = this._phase + (i / this.count) * 360));
     }
     get baseType() {
         return this._oscillators[0].baseType;
     }
     set baseType(baseType) {
-        this._forEach(osc => osc.baseType = baseType);
+        this._forEach((osc) => (osc.baseType = baseType));
         this._type = this._oscillators[0].type;
     }
     get partials() {
@@ -165,7 +165,7 @@ export class FatOscillator extends Source {
         this._partialCount = this._partials.length;
         if (partials.length) {
             this._type = "custom";
-            this._forEach(osc => osc.partials = partials);
+            this._forEach((osc) => (osc.partials = partials));
         }
     }
     get partialCount() {
@@ -173,11 +173,11 @@ export class FatOscillator extends Source {
     }
     set partialCount(partialCount) {
         this._partialCount = partialCount;
-        this._forEach(osc => osc.partialCount = partialCount);
+        this._forEach((osc) => (osc.partialCount = partialCount));
         this._type = this._oscillators[0].type;
     }
-    asArray(length = 1024) {
-        return __awaiter(this, void 0, void 0, function* () {
+    asArray() {
+        return __awaiter(this, arguments, void 0, function* (length = 1024) {
             return generateWaveform(this, length);
         });
     }
@@ -188,7 +188,7 @@ export class FatOscillator extends Source {
         super.dispose();
         this.frequency.dispose();
         this.detune.dispose();
-        this._forEach(osc => osc.dispose());
+        this._forEach((osc) => osc.dispose());
         return this;
     }
 }

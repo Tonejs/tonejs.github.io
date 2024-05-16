@@ -1,10 +1,10 @@
 import { __awaiter } from "tslib";
-import { connect, ToneAudioNode } from "../core/context/ToneAudioNode";
-import { Volume } from "../component/channel/Volume";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { assert } from "../core/util/Debug";
-import { readOnly } from "../core/util/Interface";
-import { isDefined, isNumber } from "../core/util/TypeCheck";
+import { connect, ToneAudioNode, } from "../core/context/ToneAudioNode.js";
+import { Volume } from "../component/channel/Volume.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { assert } from "../core/util/Debug.js";
+import { readOnly } from "../core/util/Interface.js";
+import { isDefined, isNumber } from "../core/util/TypeCheck.js";
 /**
  * UserMedia uses MediaDevices.getUserMedia to open up and external microphone or audio input.
  * Check [MediaDevices API Support](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia)
@@ -26,9 +26,9 @@ import { isDefined, isNumber } from "../core/util/TypeCheck";
  */
 export class UserMedia extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(UserMedia.getDefaults(), arguments, ["volume"]));
-        this.name = "UserMedia";
         const options = optionsFromArguments(UserMedia.getDefaults(), arguments, ["volume"]);
+        super(options);
+        this.name = "UserMedia";
         this._volume = this.output = new Volume({
             context: this.context,
             volume: options.volume,
@@ -40,7 +40,7 @@ export class UserMedia extends ToneAudioNode {
     static getDefaults() {
         return Object.assign(ToneAudioNode.getDefaults(), {
             mute: false,
-            volume: 0
+            volume: 0,
         });
     }
     /**
@@ -64,7 +64,7 @@ export class UserMedia extends ToneAudioNode {
             }
             else {
                 this._device = devices.find((device) => {
-                    return device.label === labelOrId || device.deviceId === labelOrId;
+                    return (device.label === labelOrId || device.deviceId === labelOrId);
                 });
                 // didn't find a matching device
                 if (!this._device && devices.length > 0) {
@@ -79,7 +79,7 @@ export class UserMedia extends ToneAudioNode {
                     sampleRate: this.context.sampleRate,
                     noiseSuppression: false,
                     mozNoiseSuppression: false,
-                }
+                },
             };
             if (this._device) {
                 // @ts-ignore
@@ -126,7 +126,7 @@ export class UserMedia extends ToneAudioNode {
     static enumerateDevices() {
         return __awaiter(this, void 0, void 0, function* () {
             const allDevices = yield navigator.mediaDevices.enumerateDevices();
-            return allDevices.filter(device => {
+            return allDevices.filter((device) => {
                 return device.kind === "audioinput";
             });
         });
@@ -207,8 +207,8 @@ export class UserMedia extends ToneAudioNode {
      * If getUserMedia is supported by the browser.
      */
     static get supported() {
-        return isDefined(navigator.mediaDevices) &&
-            isDefined(navigator.mediaDevices.getUserMedia);
+        return (isDefined(navigator.mediaDevices) &&
+            isDefined(navigator.mediaDevices.getUserMedia));
     }
 }
 //# sourceMappingURL=UserMedia.js.map

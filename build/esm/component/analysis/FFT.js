@@ -1,8 +1,8 @@
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { dbToGain } from "../../core/type/Conversions";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { MeterBase } from "./MeterBase";
-import { assert } from "../../core/util/Debug";
+import { ToneAudioNode } from "../../core/context/ToneAudioNode.js";
+import { dbToGain } from "../../core/type/Conversions.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { MeterBase } from "./MeterBase.js";
+import { assert } from "../../core/util/Debug.js";
 /**
  * Get the current frequency data of the connected audio source using a fast Fourier transform.
  * Read more about FFT algorithms on [Wikipedia] (https://en.wikipedia.org/wiki/Fast_Fourier_transform).
@@ -10,9 +10,11 @@ import { assert } from "../../core/util/Debug";
  */
 export class FFT extends MeterBase {
     constructor() {
-        super(optionsFromArguments(FFT.getDefaults(), arguments, ["size"]));
+        const options = optionsFromArguments(FFT.getDefaults(), arguments, [
+            "size",
+        ]);
+        super(options);
         this.name = "FFT";
-        const options = optionsFromArguments(FFT.getDefaults(), arguments, ["size"]);
         this.normalRange = options.normalRange;
         this._analyser.type = "fft";
         this.size = options.size;
@@ -30,7 +32,7 @@ export class FFT extends MeterBase {
      */
     getValue() {
         const values = this._analyser.getValue();
-        return values.map(v => this.normalRange ? dbToGain(v) : v);
+        return values.map((v) => (this.normalRange ? dbToGain(v) : v));
     }
     /**
      * The size of analysis. This must be a power of two in the range 16 to 16384.
@@ -60,7 +62,7 @@ export class FFT extends MeterBase {
      */
     getFrequencyOfIndex(index) {
         assert(0 <= index && index < this.size, `index must be greater than or equal to 0 and less than ${this.size}`);
-        return index * this.context.sampleRate / (this.size * 2);
+        return (index * this.context.sampleRate) / (this.size * 2);
     }
 }
 //# sourceMappingURL=FFT.js.map

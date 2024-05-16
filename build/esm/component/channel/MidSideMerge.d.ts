@@ -1,6 +1,6 @@
-import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
-import { Merge } from "./Merge";
-export declare type MidSideMergeOptions = ToneAudioNodeOptions;
+import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
+import { Merge } from "./Merge.js";
+export type MidSideMergeOptions = ToneAudioNodeOptions;
 /**
  * MidSideMerge merges the mid and side signal after they've been separated by {@link MidSideSplit}
  * ```

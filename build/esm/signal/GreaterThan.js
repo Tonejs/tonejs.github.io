@@ -1,8 +1,8 @@
-import { optionsFromArguments } from "../core/util/Defaults";
-import { Subtract } from "./Subtract";
-import { Signal } from "./Signal";
-import { GreaterThanZero } from "./GreaterThanZero";
-import { readOnly } from "../core/util/Interface";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { Subtract } from "./Subtract.js";
+import { Signal } from "./Signal.js";
+import { GreaterThanZero } from "./GreaterThanZero.js";
+import { readOnly } from "../core/util/Interface.js";
 /**
  * Output 1 if the signal is greater than the value, otherwise outputs 0.
  * can compare two signals or a signal and a number.
@@ -16,15 +16,17 @@ import { readOnly } from "../core/util/Interface";
  */
 export class GreaterThan extends Signal {
     constructor() {
-        super(Object.assign(optionsFromArguments(GreaterThan.getDefaults(), arguments, ["value"])));
+        const options = optionsFromArguments(GreaterThan.getDefaults(), arguments, ["value"]);
+        super(options);
         this.name = "GreaterThan";
         this.override = false;
-        const options = optionsFromArguments(GreaterThan.getDefaults(), arguments, ["value"]);
         this._subtract = this.input = new Subtract({
             context: this.context,
-            value: options.value
+            value: options.value,
         });
-        this._gtz = this.output = new GreaterThanZero({ context: this.context });
+        this._gtz = this.output = new GreaterThanZero({
+            context: this.context,
+        });
         this.comparator = this._param = this._subtract.subtrahend;
         readOnly(this, "comparator");
         // connect

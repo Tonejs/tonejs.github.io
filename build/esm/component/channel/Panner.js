@@ -1,7 +1,7 @@
-import { Param } from "../../core/context/Param";
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { readOnly } from "../../core/util/Interface";
+import { Param } from "../../core/context/Param.js";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { readOnly } from "../../core/util/Interface.js";
 /**
  * Panner is an equal power Left/Right Panner. It is a wrapper around the StereoPannerNode.
  * @example
@@ -15,7 +15,10 @@ import { readOnly } from "../../core/util/Interface";
  */
 export class Panner extends ToneAudioNode {
     constructor() {
-        super(Object.assign(optionsFromArguments(Panner.getDefaults(), arguments, ["pan"])));
+        const options = optionsFromArguments(Panner.getDefaults(), arguments, [
+            "pan",
+        ]);
+        super(options);
         this.name = "Panner";
         /**
          * the panner node
@@ -23,7 +26,6 @@ export class Panner extends ToneAudioNode {
         this._panner = this.context.createStereoPanner();
         this.input = this._panner;
         this.output = this._panner;
-        const options = optionsFromArguments(Panner.getDefaults(), arguments, ["pan"]);
         this.pan = new Param({
             context: this.context,
             param: this._panner.pan,

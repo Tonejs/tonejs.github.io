@@ -1,7 +1,7 @@
-import { Positive } from "../core/type/Units";
-import { RecursivePartial } from "../core/util/Interface";
-import { Multiply } from "../signal/Multiply";
-import { ModulationSynth, ModulationSynthOptions } from "./ModulationSynth";
+import { Positive } from "../core/type/Units.js";
+import { RecursivePartial } from "../core/util/Interface.js";
+import { Multiply } from "../signal/Multiply.js";
+import { ModulationSynth, ModulationSynthOptions } from "./ModulationSynth.js";
 export interface FMSynthOptions extends ModulationSynthOptions {
     modulationIndex: Positive;
 }

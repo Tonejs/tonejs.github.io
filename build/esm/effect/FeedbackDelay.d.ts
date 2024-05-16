@@ -1,6 +1,6 @@
-import { Param } from "../core/context/Param";
-import { NormalRange, Time } from "../core/type/Units";
-import { FeedbackEffect, FeedbackEffectOptions } from "./FeedbackEffect";
+import { Param } from "../core/context/Param.js";
+import { NormalRange, Time } from "../core/type/Units.js";
+import { FeedbackEffect, FeedbackEffectOptions } from "./FeedbackEffect.js";
 interface FeedbackDelayOptions extends FeedbackEffectOptions {
     delayTime: Time;
     maxDelay: Time;

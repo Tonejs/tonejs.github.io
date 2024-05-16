@@ -1,6 +1,6 @@
-import { Param } from "../context/Param";
-import { UnitMap, UnitName } from "../type/Units";
-import { ToneAudioNode, ToneAudioNodeOptions } from "./ToneAudioNode";
+import { Param } from "../context/Param.js";
+import { UnitMap, UnitName } from "../type/Units.js";
+import { ToneAudioNode, ToneAudioNodeOptions } from "./ToneAudioNode.js";
 interface GainOptions<TypeName extends UnitName> extends ToneAudioNodeOptions {
     gain: UnitMap[TypeName];
     units: TypeName;

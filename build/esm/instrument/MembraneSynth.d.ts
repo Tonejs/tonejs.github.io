@@ -1,7 +1,7 @@
-import { FrequencyClass } from "../core/type/Frequency";
-import { Frequency, Positive, Time } from "../core/type/Units";
-import { RecursivePartial } from "../core/util/Interface";
-import { Synth, SynthOptions } from "./Synth";
+import { FrequencyClass } from "../core/type/Frequency.js";
+import { Frequency, Positive, Time } from "../core/type/Units.js";
+import { RecursivePartial } from "../core/util/Interface.js";
+import { Synth, SynthOptions } from "./Synth.js";
 export interface MembraneSynthOptions extends SynthOptions {
     pitchDecay: Time;
     octaves: Positive;

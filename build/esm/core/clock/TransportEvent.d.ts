@@ -1,5 +1,5 @@
-import { Seconds, Ticks } from "../type/Units";
-declare type Transport = import("../clock/Transport").TransportClass;
+import { Seconds, Ticks } from "../type/Units.js";
+import type { TransportClass as Transport } from "./Transport.js";
 export interface TransportEventOptions {
     callback: (time: number) => void;
     once: boolean;
@@ -59,4 +59,3 @@ export declare class TransportEvent {
      */
     dispose(): this;
 }
-export {};

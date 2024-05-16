@@ -1,12 +1,12 @@
 import { __awaiter } from "tslib";
-import { Gain } from "../../core/context/Gain";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { readOnly } from "../../core/util/Interface";
-import { AudioToGain } from "../../signal/AudioToGain";
-import { Multiply } from "../../signal/Multiply";
-import { Source } from "../Source";
-import { Oscillator } from "./Oscillator";
-import { generateWaveform } from "./OscillatorInterface";
+import { Gain } from "../../core/context/Gain.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { readOnly } from "../../core/util/Interface.js";
+import { AudioToGain } from "../../signal/AudioToGain.js";
+import { Multiply } from "../../signal/Multiply.js";
+import { Source } from "../Source.js";
+import { Oscillator } from "./Oscillator.js";
+import { generateWaveform, } from "./OscillatorInterface.js";
 /**
  * An amplitude modulated oscillator node. It is implemented with
  * two oscillators, one which modulators the other's amplitude
@@ -28,7 +28,8 @@ import { generateWaveform } from "./OscillatorInterface";
  */
 export class AMOscillator extends Source {
     constructor() {
-        super(optionsFromArguments(AMOscillator.getDefaults(), arguments, ["frequency", "type", "modulationType"]));
+        const options = optionsFromArguments(AMOscillator.getDefaults(), arguments, ["frequency", "type", "modulationType"]);
+        super(options);
         this.name = "AMOscillator";
         /**
          * convert the -1,1 output to 0,1
@@ -40,7 +41,6 @@ export class AMOscillator extends Source {
         this._modulationNode = new Gain({
             context: this.context,
         });
-        const options = optionsFromArguments(AMOscillator.getDefaults(), arguments, ["frequency", "type", "modulationType"]);
         this._carrier = new Oscillator({
             context: this.context,
             detune: options.detune,
@@ -49,8 +49,8 @@ export class AMOscillator extends Source {
             phase: options.phase,
             type: options.type,
         });
-        this.frequency = this._carrier.frequency,
-            this.detune = this._carrier.detune;
+        (this.frequency = this._carrier.frequency),
+            (this.detune = this._carrier.detune);
         this._modulator = new Oscillator({
             context: this.context,
             phase: options.phase,
@@ -134,8 +134,8 @@ export class AMOscillator extends Source {
     set partials(partials) {
         this._carrier.partials = partials;
     }
-    asArray(length = 1024) {
-        return __awaiter(this, void 0, void 0, function* () {
+    asArray() {
+        return __awaiter(this, arguments, void 0, function* (length = 1024) {
             return generateWaveform(this, length);
         });
     }

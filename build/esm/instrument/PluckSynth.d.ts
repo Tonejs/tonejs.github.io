@@ -1,6 +1,6 @@
-import { Frequency, NormalRange, Time } from "../core/type/Units";
-import { RecursivePartial } from "../core/util/Interface";
-import { Instrument, InstrumentOptions } from "./Instrument";
+import { Frequency, NormalRange, Time } from "../core/type/Units.js";
+import { RecursivePartial } from "../core/util/Interface.js";
+import { Instrument, InstrumentOptions } from "./Instrument.js";
 export interface PluckSynthOptions extends InstrumentOptions {
     attackNoise: number;
     dampening: Frequency;

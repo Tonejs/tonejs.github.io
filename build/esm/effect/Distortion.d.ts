@@ -1,4 +1,4 @@
-import { Effect, EffectOptions } from "./Effect";
+import { Effect, EffectOptions } from "./Effect.js";
 export interface DistortionOptions extends EffectOptions {
     distortion: number;
     oversample: OverSampleType;

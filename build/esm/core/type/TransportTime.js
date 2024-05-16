@@ -1,5 +1,5 @@
-import { getContext } from "../Global";
-import { TimeClass } from "./Time";
+import { getContext } from "../Global.js";
+import { TimeClass } from "./Time.js";
 /**
  * TransportTime is a time along the Transport's
  * timeline. It is similar to Tone.Time, but instead of evaluating

@@ -1,6 +1,6 @@
-import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
-import { Split } from "./Split";
-export declare type MidSideSplitOptions = ToneAudioNodeOptions;
+import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
+import { Split } from "./Split.js";
+export type MidSideSplitOptions = ToneAudioNodeOptions;
 /**
  * Mid/Side processing separates the the 'mid' signal (which comes out of both the left and the right channel)
  * and the 'side' (which only comes out of the the side channels).

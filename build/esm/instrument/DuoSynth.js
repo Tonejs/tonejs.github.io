@@ -1,11 +1,11 @@
-import { Monophonic } from "./Monophonic";
-import { MonoSynth } from "./MonoSynth";
-import { Signal } from "../signal/Signal";
-import { readOnly } from "../core/util/Interface";
-import { LFO } from "../source/oscillator/LFO";
-import { Gain, } from "../core/context/Gain";
-import { Multiply } from "../signal/Multiply";
-import { deepMerge, omitFromObject, optionsFromArguments } from "../core/util/Defaults";
+import { Monophonic } from "./Monophonic.js";
+import { MonoSynth } from "./MonoSynth.js";
+import { Signal } from "../signal/Signal.js";
+import { readOnly } from "../core/util/Interface.js";
+import { LFO } from "../source/oscillator/LFO.js";
+import { Gain } from "../core/context/Gain.js";
+import { Multiply } from "../signal/Multiply.js";
+import { deepMerge, omitFromObject, optionsFromArguments, } from "../core/util/Defaults.js";
 /**
  * DuoSynth is a monophonic synth composed of two {@link MonoSynth}s run in parallel with control over the
  * frequency ratio between the two voices and vibrato effect.
@@ -16,12 +16,12 @@ import { deepMerge, omitFromObject, optionsFromArguments } from "../core/util/De
  */
 export class DuoSynth extends Monophonic {
     constructor() {
-        super(optionsFromArguments(DuoSynth.getDefaults(), arguments));
-        this.name = "DuoSynth";
         const options = optionsFromArguments(DuoSynth.getDefaults(), arguments);
+        super(options);
+        this.name = "DuoSynth";
         this.voice0 = new MonoSynth(Object.assign(options.voice0, {
             context: this.context,
-            onsilence: () => this.onsilence(this)
+            onsilence: () => this.onsilence(this),
         }));
         this.voice1 = new MonoSynth(Object.assign(options.voice1, {
             context: this.context,
@@ -35,7 +35,7 @@ export class DuoSynth extends Monophonic {
             frequency: options.vibratoRate,
             context: this.context,
             min: -50,
-            max: 50
+            max: 50,
         });
         // start the vibrato immediately
         this._vibrato.start();
@@ -43,18 +43,18 @@ export class DuoSynth extends Monophonic {
         this._vibratoGain = new Gain({
             context: this.context,
             units: "normalRange",
-            gain: options.vibratoAmount
+            gain: options.vibratoAmount,
         });
         this.vibratoAmount = this._vibratoGain.gain;
         this.frequency = new Signal({
             context: this.context,
             units: "frequency",
-            value: 440
+            value: 440,
         });
         this.detune = new Signal({
             context: this.context,
             units: "cents",
-            value: options.detune
+            value: options.detune,
         });
         // control the two voices frequency
         this.frequency.connect(this.voice0.frequency);
@@ -64,11 +64,18 @@ export class DuoSynth extends Monophonic {
         this.detune.fan(this.voice0.detune, this.voice1.detune);
         this.voice0.connect(this.output);
         this.voice1.connect(this.output);
-        readOnly(this, ["voice0", "voice1", "frequency", "vibratoAmount", "vibratoRate"]);
+        readOnly(this, [
+            "voice0",
+            "voice1",
+            "frequency",
+            "vibratoAmount",
+            "vibratoRate",
+        ]);
     }
     getLevelAtTime(time) {
         time = this.toSeconds(time);
-        return this.voice0.envelope.getValueAtTime(time) + this.voice1.envelope.getValueAtTime(time);
+        return (this.voice0.envelope.getValueAtTime(time) +
+            this.voice1.envelope.getValueAtTime(time));
     }
     static getDefaults() {
         return deepMerge(Monophonic.getDefaults(), {
@@ -80,28 +87,28 @@ export class DuoSynth extends Monophonic {
                     attack: 0.01,
                     decay: 0.0,
                     sustain: 1,
-                    release: 0.5
+                    release: 0.5,
                 },
                 envelope: {
                     attack: 0.01,
                     decay: 0.0,
                     sustain: 1,
-                    release: 0.5
-                }
+                    release: 0.5,
+                },
             }),
             voice1: deepMerge(omitFromObject(MonoSynth.getDefaults(), Object.keys(Monophonic.getDefaults())), {
                 filterEnvelope: {
                     attack: 0.01,
                     decay: 0.0,
                     sustain: 1,
-                    release: 0.5
+                    release: 0.5,
                 },
                 envelope: {
                     attack: 0.01,
                     decay: 0.0,
                     sustain: 1,
-                    release: 0.5
-                }
+                    release: 0.5,
+                },
             }),
         });
     }

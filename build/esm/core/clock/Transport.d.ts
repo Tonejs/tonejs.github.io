@@ -1,11 +1,11 @@
-import { TimeClass } from "../../core/type/Time";
-import { PlaybackState } from "../../core/util/StateTimeline";
-import { Signal } from "../../signal/Signal";
-import { ToneWithContext, ToneWithContextOptions } from "../context/ToneWithContext";
-import { TransportTimeClass } from "../type/TransportTime";
-import { BarsBeatsSixteenths, BPM, NormalRange, Seconds, Subdivision, Ticks, Time, TimeSignature, TransportTime } from "../type/Units";
-import { Emitter } from "../util/Emitter";
-import { TickParam } from "./TickParam";
+import { TimeClass } from "../../core/type/Time.js";
+import { PlaybackState } from "../../core/util/StateTimeline.js";
+import { Signal } from "../../signal/Signal.js";
+import { ToneWithContext, ToneWithContextOptions } from "../context/ToneWithContext.js";
+import { TransportTimeClass } from "../type/TransportTime.js";
+import { BarsBeatsSixteenths, BPM, NormalRange, Seconds, Subdivision, Ticks, Time, TimeSignature, TransportTime } from "../type/Units.js";
+import { Emitter } from "../util/Emitter.js";
+import { TickParam } from "./TickParam.js";
 interface TransportOptions extends ToneWithContextOptions {
     bpm: BPM;
     swing: NormalRange;
@@ -15,8 +15,8 @@ interface TransportOptions extends ToneWithContextOptions {
     loopEnd: Time;
     ppq: number;
 }
-declare type TransportEventNames = "start" | "stop" | "pause" | "loop" | "loopEnd" | "loopStart" | "ticks";
-declare type TransportCallback = (time: Seconds) => void;
+type TransportEventNames = "start" | "stop" | "pause" | "loop" | "loopEnd" | "loopStart" | "ticks";
+type TransportCallback = (time: Seconds) => void;
 /**
  * Transport for timing musical events.
  * Supports tempo curves and time changes. Unlike browser-based timing (setInterval, requestAnimationFrame)

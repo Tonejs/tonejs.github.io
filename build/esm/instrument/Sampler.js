@@ -1,14 +1,14 @@
 import { __decorate } from "tslib";
-import { ToneAudioBuffers } from "../core/context/ToneAudioBuffers";
-import { ftomf, intervalToFrequencyRatio } from "../core/type/Conversions";
-import { FrequencyClass } from "../core/type/Frequency";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { noOp } from "../core/util/Interface";
-import { isArray, isNote, isNumber } from "../core/util/TypeCheck";
-import { Instrument } from "../instrument/Instrument";
-import { ToneBufferSource } from "../source/buffer/ToneBufferSource";
-import { timeRange } from "../core/util/Decorator";
-import { assert } from "../core/util/Debug";
+import { ToneAudioBuffers } from "../core/context/ToneAudioBuffers.js";
+import { ftomf, intervalToFrequencyRatio } from "../core/type/Conversions.js";
+import { FrequencyClass } from "../core/type/Frequency.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { noOp } from "../core/util/Interface.js";
+import { isArray, isNote, isNumber } from "../core/util/TypeCheck.js";
+import { Instrument } from "../instrument/Instrument.js";
+import { ToneBufferSource, } from "../source/buffer/ToneBufferSource.js";
+import { timeRange } from "../core/util/Decorator.js";
+import { assert } from "../core/util/Debug.js";
 /**
  * Pass in an object which maps the note's pitch or midi value to the url,
  * then you can trigger the attack and release of that note like other instruments.
@@ -32,18 +32,17 @@ import { assert } from "../core/util/Debug";
  */
 export class Sampler extends Instrument {
     constructor() {
-        super(optionsFromArguments(Sampler.getDefaults(), arguments, ["urls", "onload", "baseUrl"], "urls"));
+        const options = optionsFromArguments(Sampler.getDefaults(), arguments, ["urls", "onload", "baseUrl"], "urls");
+        super(options);
         this.name = "Sampler";
         /**
          * The object of all currently playing BufferSources
          */
         this._activeSources = new Map();
-        const options = optionsFromArguments(Sampler.getDefaults(), arguments, ["urls", "onload", "baseUrl"], "urls");
         const urlMap = {};
         Object.keys(options.urls).forEach((note) => {
             const noteNumber = parseInt(note, 10);
-            assert(isNote(note)
-                || (isNumber(noteNumber) && isFinite(noteNumber)), `url key is neither a note or midi pitch: ${note}`);
+            assert(isNote(note) || (isNumber(noteNumber) && isFinite(noteNumber)), `url key is neither a note or midi pitch: ${note}`);
             if (isNote(note)) {
                 // convert the note name to MIDI
                 const mid = new FrequencyClass(this.context, note).toMidi();
@@ -109,7 +108,7 @@ export class Sampler extends Instrument {
         if (!Array.isArray(notes)) {
             notes = [notes];
         }
-        notes.forEach(note => {
+        notes.forEach((note) => {
             const midiFloat = ftomf(new FrequencyClass(this.context, note).toFrequency());
             const midi = Math.round(midiFloat);
             const remainder = midiFloat - midi;
@@ -155,13 +154,14 @@ export class Sampler extends Instrument {
         if (!Array.isArray(notes)) {
             notes = [notes];
         }
-        notes.forEach(note => {
+        notes.forEach((note) => {
             const midi = new FrequencyClass(this.context, note).toMidi();
             // find the note
-            if (this._activeSources.has(midi) && this._activeSources.get(midi).length) {
+            if (this._activeSources.has(midi) &&
+                this._activeSources.get(midi).length) {
                 const sources = this._activeSources.get(midi);
                 time = this.toSeconds(time);
-                sources.forEach(source => {
+                sources.forEach((source) => {
                     source.stop(time);
                 });
                 this._activeSources.set(midi, []);
@@ -175,7 +175,7 @@ export class Sampler extends Instrument {
      */
     releaseAll(time) {
         const computedTime = this.toSeconds(time);
-        this._activeSources.forEach(sources => {
+        this._activeSources.forEach((sources) => {
             while (sources.length) {
                 const source = sources.shift();
                 source.stop(computedTime);
@@ -243,8 +243,8 @@ export class Sampler extends Instrument {
     dispose() {
         super.dispose();
         this._buffers.dispose();
-        this._activeSources.forEach(sources => {
-            sources.forEach(source => source.dispose());
+        this._activeSources.forEach((sources) => {
+            sources.forEach((source) => source.dispose());
         });
         this._activeSources.clear();
         return this;

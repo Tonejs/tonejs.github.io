@@ -1,6 +1,6 @@
-import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
-import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer";
-import { Gain } from "../../core/context/Gain";
+import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
+import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer.js";
+import { Gain } from "../../core/context/Gain.js";
 export interface ConvolverOptions extends ToneAudioNodeOptions {
     onload: () => void;
     normalize: boolean;

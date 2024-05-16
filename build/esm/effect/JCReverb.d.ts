@@ -1,6 +1,6 @@
-import { NormalRange } from "../core/type/Units";
-import { StereoEffect, StereoEffectOptions } from "./StereoEffect";
-import { Signal } from "../signal/Signal";
+import { NormalRange } from "../core/type/Units.js";
+import { StereoEffect, StereoEffectOptions } from "./StereoEffect.js";
+import { Signal } from "../signal/Signal.js";
 export interface JCReverbOptions extends StereoEffectOptions {
     roomSize: NormalRange;
 }

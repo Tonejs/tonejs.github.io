@@ -1,6 +1,6 @@
-import { Seconds, Ticks } from "../type/Units";
-import { TimeClass } from "./Time";
-import { TimeBaseUnit, TimeValue } from "./TimeBase";
+import { Seconds, Ticks } from "../type/Units.js";
+import { TimeClass } from "./Time.js";
+import { TimeBaseUnit, TimeValue } from "./TimeBase.js";
 /**
  * TransportTime is a time along the Transport's
  * timeline. It is similar to Tone.Time, but instead of evaluating

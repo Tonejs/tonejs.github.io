@@ -1,12 +1,12 @@
 import { __awaiter } from "tslib";
-import { Merge } from "../component/channel/Merge";
-import { Gain } from "../core/context/Gain";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { Noise } from "../source/Noise";
-import { Effect } from "./Effect";
-import { OfflineContext } from "../core/context/OfflineContext";
-import { noOp } from "../core/util/Interface";
-import { assertRange } from "../core/util/Debug";
+import { Merge } from "../component/channel/Merge.js";
+import { Gain } from "../core/context/Gain.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { Noise } from "../source/Noise.js";
+import { Effect } from "./Effect.js";
+import { OfflineContext } from "../core/context/OfflineContext.js";
+import { noOp } from "../core/util/Interface.js";
+import { assertRange } from "../core/util/Debug.js";
 /**
  * Simple convolution created with decaying noise.
  * Generates an Impulse Response Buffer
@@ -21,7 +21,10 @@ import { assertRange } from "../core/util/Debug";
  */
 export class Reverb extends Effect {
     constructor() {
-        super(optionsFromArguments(Reverb.getDefaults(), arguments, ["decay"]));
+        const options = optionsFromArguments(Reverb.getDefaults(), arguments, [
+            "decay",
+        ]);
+        super(options);
         this.name = "Reverb";
         /**
          * Convolver node
@@ -33,7 +36,6 @@ export class Reverb extends Effect {
          * before the IR is generated with the latest values.
          */
         this.ready = Promise.resolve();
-        const options = optionsFromArguments(Reverb.getDefaults(), arguments, ["decay"]);
         this._decay = options.decay;
         this._preDelay = options.preDelay;
         this.generate();

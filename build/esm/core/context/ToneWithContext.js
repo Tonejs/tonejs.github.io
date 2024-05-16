@@ -1,11 +1,11 @@
-import { getContext } from "../Global";
-import { Tone } from "../Tone";
-import { FrequencyClass } from "../type/Frequency";
-import { TimeClass } from "../type/Time";
-import { TransportTimeClass } from "../type/TransportTime";
-import { assertUsedScheduleTime } from "../util/Debug";
-import { getDefaultsFromInstance, optionsFromArguments, } from "../util/Defaults";
-import { isArray, isBoolean, isDefined, isNumber, isString, isUndef, } from "../util/TypeCheck";
+import { getContext } from "../Global.js";
+import { Tone } from "../Tone.js";
+import { FrequencyClass } from "../type/Frequency.js";
+import { TimeClass } from "../type/Time.js";
+import { TransportTimeClass } from "../type/TransportTime.js";
+import { assertUsedScheduleTime } from "../util/Debug.js";
+import { getDefaultsFromInstance, optionsFromArguments, } from "../util/Defaults.js";
+import { isArray, isBoolean, isDefined, isNumber, isString, isUndef, } from "../util/TypeCheck.js";
 /**
  * The Base class for all nodes that have an AudioContext.
  */

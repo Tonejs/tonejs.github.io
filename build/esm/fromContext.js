@@ -1,11 +1,11 @@
-import * as Classes from "./classes";
-import { FrequencyClass } from "./core/type/Frequency";
-import { MidiClass } from "./core/type/Midi";
-import { TicksClass } from "./core/type/Ticks";
-import { TimeClass } from "./core/type/Time";
-import { TransportTimeClass } from "./core/type/TransportTime";
-import { isDefined, isFunction } from "./core/util/TypeCheck";
-import { omitFromObject } from "./core/util/Defaults";
+import * as Classes from "./classes.js";
+import { FrequencyClass } from "./core/type/Frequency.js";
+import { MidiClass } from "./core/type/Midi.js";
+import { TicksClass } from "./core/type/Ticks.js";
+import { TimeClass } from "./core/type/Time.js";
+import { TransportTimeClass } from "./core/type/TransportTime.js";
+import { isDefined, isFunction } from "./core/util/TypeCheck.js";
+import { omitFromObject } from "./core/util/Defaults.js";
 /**
  * Bind the TimeBaseClass to the context
  */
@@ -18,7 +18,7 @@ function bindTypeClass(context, type) {
  */
 export function fromContext(context) {
     const classesWithContext = {};
-    Object.keys(omitFromObject(Classes, ["Transport", "Destination", "Draw"])).map(key => {
+    Object.keys(omitFromObject(Classes, ["Transport", "Destination", "Draw"])).map((key) => {
         const cls = Classes[key];
         if (isDefined(cls) && isFunction(cls.getDefaults)) {
             classesWithContext[key] = class ToneFromContextNode extends cls {

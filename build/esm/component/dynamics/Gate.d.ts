@@ -1,5 +1,5 @@
-import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
-import { Decibels, Time } from "../../core/type/Units";
+import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
+import { Decibels, Time } from "../../core/type/Units.js";
 export interface GateOptions extends ToneAudioNodeOptions {
     threshold: Decibels;
     smoothing: Time;

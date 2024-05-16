@@ -1,5 +1,5 @@
-import { Seconds, Time } from "../core/type/Units";
-import { Effect, EffectOptions } from "./Effect";
+import { Seconds, Time } from "../core/type/Units.js";
+import { Effect, EffectOptions } from "./Effect.js";
 interface ReverbOptions extends EffectOptions {
     decay: Seconds;
     preDelay: Seconds;

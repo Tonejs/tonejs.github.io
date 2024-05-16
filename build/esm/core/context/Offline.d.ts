@@ -1,6 +1,8 @@
-import { Seconds } from "../type/Units";
-import { OfflineContext } from "./OfflineContext";
-import { ToneAudioBuffer } from "./ToneAudioBuffer";
+import { Seconds } from "../type/Units.js";
+import { OfflineContext } from "./OfflineContext.js";
+import { ToneAudioBuffer } from "./ToneAudioBuffer.js";
+import "./Destination.js";
+import "./Listener.js";
 /**
  * Generate a buffer by rendering all of the Tone.js code within the callback using the OfflineAudioContext.
  * The OfflineAudioContext is capable of rendering much faster than real time in many cases.

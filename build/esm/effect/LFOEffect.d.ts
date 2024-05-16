@@ -1,9 +1,9 @@
-import { Effect, EffectOptions } from "../effect/Effect";
-import { Frequency, NormalRange, Time } from "../core/type/Units";
-import { LFO } from "../source/oscillator/LFO";
-import { ToneOscillatorType } from "../source/oscillator/OscillatorInterface";
-import { Signal } from "../signal/Signal";
-import { Param } from "../core/context/Param";
+import { Effect, EffectOptions } from "../effect/Effect.js";
+import { Frequency, NormalRange, Time } from "../core/type/Units.js";
+import { LFO } from "../source/oscillator/LFO.js";
+import { ToneOscillatorType } from "../source/oscillator/OscillatorInterface.js";
+import { Signal } from "../signal/Signal.js";
+import { Param } from "../core/context/Param.js";
 export interface LFOEffectOptions extends EffectOptions {
     frequency: Frequency;
     type: ToneOscillatorType;

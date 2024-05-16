@@ -1,9 +1,9 @@
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { Solo } from "./Solo";
-import { PanVol } from "./PanVol";
-import { readOnly } from "../../core/util/Interface";
-import { Gain } from "../../core/context/Gain";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { Solo } from "./Solo.js";
+import { PanVol } from "./PanVol.js";
+import { readOnly } from "../../core/util/Interface.js";
+import { Gain } from "../../core/context/Gain.js";
 /**
  * Channel provides a channel strip interface with volume, pan, solo and mute controls.
  * @see {@link PanVol} and {@link Solo}
@@ -14,9 +14,12 @@ import { Gain } from "../../core/context/Gain";
  */
 export class Channel extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Channel.getDefaults(), arguments, ["volume", "pan"]));
+        const options = optionsFromArguments(Channel.getDefaults(), arguments, [
+            "volume",
+            "pan",
+        ]);
+        super(options);
         this.name = "Channel";
-        const options = optionsFromArguments(Channel.getDefaults(), arguments, ["volume", "pan"]);
         this._solo = this.input = new Solo({
             solo: options.solo,
             context: this.context,
@@ -26,7 +29,7 @@ export class Channel extends ToneAudioNode {
             pan: options.pan,
             volume: options.volume,
             mute: options.mute,
-            channelCount: options.channelCount
+            channelCount: options.channelCount,
         });
         this.pan = this._panVol.pan;
         this.volume = this._panVol.volume;

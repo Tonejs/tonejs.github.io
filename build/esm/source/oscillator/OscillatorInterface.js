@@ -1,5 +1,5 @@
 import { __awaiter } from "tslib";
-import { OfflineContext } from "../../core/context/OfflineContext";
+import { OfflineContext } from "../../core/context/OfflineContext.js";
 /**
  * Render a segment of the oscillator to an offline context and return the results as an array
  */

@@ -1,13 +1,14 @@
-import { Volume } from "../component/channel/Volume";
-import { ToneAudioNode } from "../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { readOnly } from "../core/util/Interface";
+import { Volume } from "../component/channel/Volume.js";
+import { ToneAudioNode, } from "../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { readOnly } from "../core/util/Interface.js";
 /**
  * Base-class for all instruments
  */
 export class Instrument extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Instrument.getDefaults(), arguments));
+        const options = optionsFromArguments(Instrument.getDefaults(), arguments);
+        super(options);
         /**
          * Keep track of all events scheduled to the transport
          * when the instrument is 'synced'
@@ -23,7 +24,6 @@ export class Instrument extends ToneAudioNode {
          * The release which is scheduled to the timeline.
          */
         this._syncedRelease = (time) => this._original_triggerRelease(time);
-        const options = optionsFromArguments(Instrument.getDefaults(), arguments);
         this._volume = this.output = new Volume({
             context: this.context,
             volume: options.volume,
@@ -77,7 +77,7 @@ export class Instrument extends ToneAudioNode {
      * @param  timePosition What position the time argument appears in
      */
     _syncMethod(method, timePosition) {
-        const originalMethod = this["_original_" + method] = this[method];
+        const originalMethod = (this["_original_" + method] = this[method]);
         this[method] = (...args) => {
             const time = args[timePosition];
             const id = this.context.transport.schedule((t) => {
@@ -91,7 +91,7 @@ export class Instrument extends ToneAudioNode {
      * Unsync the instrument from the Transport
      */
     unsync() {
-        this._scheduledEvents.forEach(id => this.context.transport.clear(id));
+        this._scheduledEvents.forEach((id) => this.context.transport.clear(id));
         this._scheduledEvents = [];
         if (this._synced) {
             this._synced = false;

@@ -1,5 +1,5 @@
-import { Effect, EffectOptions } from "./Effect";
-import { Positive } from "../core/type/Units";
+import { Effect, EffectOptions } from "./Effect.js";
+import { Positive } from "../core/type/Units.js";
 export interface ChebyshevOptions extends EffectOptions {
     order: Positive;
     oversample: OverSampleType;

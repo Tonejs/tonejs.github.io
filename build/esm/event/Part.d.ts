@@ -1,8 +1,8 @@
-import { TransportTimeClass } from "../core/type/TransportTime";
-import { NormalRange, Positive, Seconds, Ticks, Time, TransportTime } from "../core/type/Units";
-import { StateTimeline } from "../core/util/StateTimeline";
-import { ToneEvent, ToneEventCallback, ToneEventOptions } from "./ToneEvent";
-declare type CallbackType<T> = T extends {
+import { TransportTimeClass } from "../core/type/TransportTime.js";
+import { NormalRange, Positive, Seconds, Ticks, Time, TransportTime } from "../core/type/Units.js";
+import { StateTimeline } from "../core/util/StateTimeline.js";
+import { ToneEvent, ToneEventCallback, ToneEventOptions } from "./ToneEvent.js";
+type CallbackType<T> = T extends {
     time: Time;
     [key: string]: any;
 } ? T : T extends ArrayLike<any> ? T[1] : T extends Time ? null : never;

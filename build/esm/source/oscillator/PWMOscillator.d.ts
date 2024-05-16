@@ -1,8 +1,8 @@
-import { Degrees, Frequency, Seconds, Time } from "../../core/type/Units";
-import { Signal } from "../../signal/Signal";
-import { Source } from "../Source";
-import { PWMOscillatorOptions, ToneOscillatorInterface } from "./OscillatorInterface";
-export { PWMOscillatorOptions } from "./OscillatorInterface";
+import { Degrees, Frequency, Seconds, Time } from "../../core/type/Units.js";
+import { Signal } from "../../signal/Signal.js";
+import { Source } from "../Source.js";
+import { PWMOscillatorOptions, ToneOscillatorInterface } from "./OscillatorInterface.js";
+export { PWMOscillatorOptions } from "./OscillatorInterface.js";
 /**
  * PWMOscillator modulates the width of a Tone.PulseOscillator
  * at the modulationFrequency. This has the effect of continuously

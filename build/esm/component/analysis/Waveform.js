@@ -1,14 +1,14 @@
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { MeterBase } from "./MeterBase";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { MeterBase } from "./MeterBase.js";
 /**
  * Get the current waveform data of the connected audio source.
  * @category Component
  */
 export class Waveform extends MeterBase {
     constructor() {
-        super(optionsFromArguments(Waveform.getDefaults(), arguments, ["size"]));
-        this.name = "Waveform";
         const options = optionsFromArguments(Waveform.getDefaults(), arguments, ["size"]);
+        super(options);
+        this.name = "Waveform";
         this._analyser.type = "waveform";
         this.size = options.size;
     }

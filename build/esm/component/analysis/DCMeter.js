@@ -1,5 +1,5 @@
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { MeterBase } from "./MeterBase";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { MeterBase } from "./MeterBase.js";
 /**
  * DCMeter gets the raw value of the input signal at the current time.
  * @see {@link Meter}.

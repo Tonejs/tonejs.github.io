@@ -1,4 +1,4 @@
-import { isUndef } from "./TypeCheck";
+import { isUndef } from "./TypeCheck.js";
 /**
  * Assert that the statement is true, otherwise invoke the error.
  * @param statement
@@ -23,7 +23,7 @@ export function assertRange(value, gte, lte = Infinity) {
 export function assertContextRunning(context) {
     // add a warning if the context is not started
     if (!context.isOffline && context.state !== "running") {
-        warn("The AudioContext is \"suspended\". Invoke Tone.start() from a user action to start the audio.");
+        warn('The AudioContext is "suspended". Invoke Tone.start() from a user action to start the audio.');
     }
 }
 /**
@@ -41,7 +41,9 @@ export function enterScheduledCallback(insideCallback) {
  * Make sure that a time was passed into
  */
 export function assertUsedScheduleTime(time) {
-    if (isUndef(time) && isInsideScheduledCallback && !printedScheduledWarning) {
+    if (isUndef(time) &&
+        isInsideScheduledCallback &&
+        !printedScheduledWarning) {
         printedScheduledWarning = true;
         warn("Events scheduled inside of scheduled callbacks should use the passed in scheduling time. See https://github.com/Tonejs/Tone.js/wiki/Accurate-Timing");
     }

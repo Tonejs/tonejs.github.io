@@ -1,14 +1,14 @@
-import { Envelope } from "../component/envelope/Envelope";
-import { Filter } from "../component/filter/Filter";
-import { Gain } from "../core/context/Gain";
-import { ToneAudioNode, } from "../core/context/ToneAudioNode";
-import { deepMerge, omitFromObject, optionsFromArguments, } from "../core/util/Defaults";
-import { noOp } from "../core/util/Interface";
-import { Multiply } from "../signal/Multiply";
-import { Scale } from "../signal/Scale";
-import { Signal } from "../signal/Signal";
-import { FMOscillator } from "../source/oscillator/FMOscillator";
-import { Monophonic } from "./Monophonic";
+import { Envelope } from "../component/envelope/Envelope.js";
+import { Filter } from "../component/filter/Filter.js";
+import { Gain } from "../core/context/Gain.js";
+import { ToneAudioNode, } from "../core/context/ToneAudioNode.js";
+import { deepMerge, omitFromObject, optionsFromArguments, } from "../core/util/Defaults.js";
+import { noOp } from "../core/util/Interface.js";
+import { Multiply } from "../signal/Multiply.js";
+import { Scale } from "../signal/Scale.js";
+import { Signal } from "../signal/Signal.js";
+import { FMOscillator } from "../source/oscillator/FMOscillator.js";
+import { Monophonic } from "./Monophonic.js";
 /**
  * Inharmonic ratio of frequencies based on the Roland TR-808
  * Taken from https://ccrma.stanford.edu/papers/tr-808-cymbal-physically-informed-circuit-bendable-digital-model
@@ -22,7 +22,8 @@ const inharmRatios = [1.0, 1.483, 1.932, 2.546, 2.63, 3.897];
  */
 export class MetalSynth extends Monophonic {
     constructor() {
-        super(optionsFromArguments(MetalSynth.getDefaults(), arguments));
+        const options = optionsFromArguments(MetalSynth.getDefaults(), arguments);
+        super(options);
         this.name = "MetalSynth";
         /**
          * The array of FMOscillators
@@ -32,7 +33,6 @@ export class MetalSynth extends Monophonic {
          * The frequency multipliers
          */
         this._freqMultipliers = [];
-        const options = optionsFromArguments(MetalSynth.getDefaults(), arguments);
         this.detune = new Signal({
             context: this.context,
             units: "cents",

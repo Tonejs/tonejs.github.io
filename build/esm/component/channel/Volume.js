@@ -1,7 +1,7 @@
-import { Gain } from "../../core/context/Gain";
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { readOnly } from "../../core/util/Interface";
+import { Gain } from "../../core/context/Gain.js";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { readOnly } from "../../core/util/Interface.js";
 /**
  * Volume is a simple volume node, useful for creating a volume fader.
  *
@@ -12,9 +12,11 @@ import { readOnly } from "../../core/util/Interface";
  */
 export class Volume extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Volume.getDefaults(), arguments, ["volume"]));
+        const options = optionsFromArguments(Volume.getDefaults(), arguments, [
+            "volume",
+        ]);
+        super(options);
         this.name = "Volume";
-        const options = optionsFromArguments(Volume.getDefaults(), arguments, ["volume"]);
         this.input = this.output = new Gain({
             context: this.context,
             gain: options.volume,

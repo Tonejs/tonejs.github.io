@@ -1,17 +1,18 @@
-import { ToneWithContext } from "../context/ToneWithContext";
-import { optionsFromArguments } from "../util/Defaults";
-import { readOnly } from "../util/Interface";
-import { StateTimeline } from "../util/StateTimeline";
-import { Timeline } from "../util/Timeline";
-import { isDefined } from "../util/TypeCheck";
-import { TickSignal } from "./TickSignal";
-import { EQ } from "../util/Math";
+import { ToneWithContext, } from "../context/ToneWithContext.js";
+import { optionsFromArguments } from "../util/Defaults.js";
+import { readOnly } from "../util/Interface.js";
+import { StateTimeline, } from "../util/StateTimeline.js";
+import { Timeline } from "../util/Timeline.js";
+import { isDefined } from "../util/TypeCheck.js";
+import { TickSignal } from "./TickSignal.js";
+import { EQ } from "../util/Math.js";
 /**
  * Uses [TickSignal](TickSignal) to track elapsed ticks with complex automation curves.
  */
 export class TickSource extends ToneWithContext {
     constructor() {
-        super(optionsFromArguments(TickSource.getDefaults(), arguments, ["frequency"]));
+        const options = optionsFromArguments(TickSource.getDefaults(), arguments, ["frequency"]);
+        super(options);
         this.name = "TickSource";
         /**
          * The state timeline
@@ -29,7 +30,6 @@ export class TickSource extends ToneWithContext {
          * Memoized values of getSecondsAtTime at events with state other than "started"
          */
         this._secondsAtTime = new Timeline();
-        const options = optionsFromArguments(TickSource.getDefaults(), arguments, ["frequency"]);
         this.frequency = new TickSignal({
             context: this.context,
             units: options.units,
@@ -128,14 +128,17 @@ export class TickSource extends ToneWithContext {
         // get previously memoized ticks if available
         const memoizedEvent = this._ticksAtTime.get(computedTime);
         // this event allows forEachBetween to iterate until the current time
-        const tmpEvent = { state: "paused", time: computedTime };
+        const tmpEvent = {
+            state: "paused",
+            time: computedTime,
+        };
         this._state.add(tmpEvent);
         // keep track of the previous offset event
         let lastState = memoizedEvent ? memoizedEvent : stopEvent;
         let elapsedTicks = memoizedEvent ? memoizedEvent.ticks : 0;
         let eventToMemoize = null;
         // iterate through all the events since the last stop
-        this._state.forEachBetween(lastState.time, computedTime + this.sampleTime, e => {
+        this._state.forEachBetween(lastState.time, computedTime + this.sampleTime, (e) => {
             let periodStartTime = lastState.time;
             // if there is an offset event in this period use that
             const offsetEvent = this._tickOffset.get(e.time);
@@ -144,10 +147,16 @@ export class TickSource extends ToneWithContext {
                 periodStartTime = offsetEvent.time;
             }
             if (lastState.state === "started" && e.state !== "started") {
-                elapsedTicks += this.frequency.getTicksAtTime(e.time) - this.frequency.getTicksAtTime(periodStartTime);
+                elapsedTicks +=
+                    this.frequency.getTicksAtTime(e.time) -
+                        this.frequency.getTicksAtTime(periodStartTime);
                 // do not memoize the temporary event
                 if (e.time !== tmpEvent.time) {
-                    eventToMemoize = { state: e.state, time: e.time, ticks: elapsedTicks };
+                    eventToMemoize = {
+                        state: e.state,
+                        time: e.time,
+                        ticks: elapsedTicks,
+                    };
                 }
             }
             lastState = e;
@@ -201,7 +210,7 @@ export class TickSource extends ToneWithContext {
         let elapsedSeconds = memoizedEvent ? memoizedEvent.seconds : 0;
         let eventToMemoize = null;
         // iterate through all the events since the last stop
-        this._state.forEachBetween(lastState.time, time + this.sampleTime, e => {
+        this._state.forEachBetween(lastState.time, time + this.sampleTime, (e) => {
             let periodStartTime = lastState.time;
             // if there is an offset event in this period use that
             const offsetEvent = this._tickOffset.get(e.time);
@@ -213,7 +222,11 @@ export class TickSource extends ToneWithContext {
                 elapsedSeconds += e.time - periodStartTime;
                 // do not memoize the temporary event
                 if (e.time !== tmpEvent.time) {
-                    eventToMemoize = { state: e.state, time: e.time, seconds: elapsedSeconds };
+                    eventToMemoize = {
+                        state: e.state,
+                        time: e.time,
+                        seconds: elapsedSeconds,
+                    };
                 }
             }
             lastState = e;
@@ -277,8 +290,10 @@ export class TickSource extends ToneWithContext {
     forEachTickBetween(startTime, endTime, callback) {
         // only iterate through the sections where it is "started"
         let lastStateEvent = this._state.get(startTime);
-        this._state.forEachBetween(startTime, endTime, event => {
-            if (lastStateEvent && lastStateEvent.state === "started" && event.state !== "started") {
+        this._state.forEachBetween(startTime, endTime, (event) => {
+            if (lastStateEvent &&
+                lastStateEvent.state === "started" &&
+                event.state !== "started") {
                 this.forEachTickBetween(Math.max(lastStateEvent.time, startTime), event.time - this.sampleTime, callback);
             }
             lastStateEvent = event;

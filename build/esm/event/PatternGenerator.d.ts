@@ -1,7 +1,7 @@
 /**
  * The name of the patterns
  */
-export declare type PatternName = "up" | "down" | "upDown" | "downUp" | "alternateUp" | "alternateDown" | "random" | "randomOnce" | "randomWalk";
+export type PatternName = "up" | "down" | "upDown" | "downUp" | "alternateUp" | "alternateDown" | "random" | "randomOnce" | "randomWalk";
 /**
  * PatternGenerator returns a generator which will yield numbers between 0 and numValues
  * according to the passed in pattern that can be used as indexes into an array of size numValues.

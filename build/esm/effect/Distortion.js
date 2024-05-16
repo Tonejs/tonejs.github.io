@@ -1,6 +1,6 @@
-import { optionsFromArguments } from "../core/util/Defaults";
-import { WaveShaper } from "../signal/WaveShaper";
-import { Effect } from "./Effect";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { WaveShaper } from "../signal/WaveShaper.js";
+import { Effect } from "./Effect.js";
 /**
  * A simple distortion effect using Tone.WaveShaper.
  * Algorithm from [this stackoverflow answer](http://stackoverflow.com/a/22313408).
@@ -13,9 +13,9 @@ import { Effect } from "./Effect";
  */
 export class Distortion extends Effect {
     constructor() {
-        super(optionsFromArguments(Distortion.getDefaults(), arguments, ["distortion"]));
-        this.name = "Distortion";
         const options = optionsFromArguments(Distortion.getDefaults(), arguments, ["distortion"]);
+        super(options);
+        this.name = "Distortion";
         this._shaper = new WaveShaper({
             context: this.context,
             length: 4096,
@@ -47,7 +47,7 @@ export class Distortion extends Effect {
                 return 0;
             }
             else {
-                return (3 + k) * x * 20 * deg / (Math.PI + k * Math.abs(x));
+                return ((3 + k) * x * 20 * deg) / (Math.PI + k * Math.abs(x));
             }
         });
     }

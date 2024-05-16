@@ -1,6 +1,6 @@
-import { ToneWithContext } from "../context/ToneWithContext";
-import { Timeline } from "./Timeline";
-import { onContextClose, onContextInit } from "../context/ContextInitialization";
+import { ToneWithContext, } from "../context/ToneWithContext.js";
+import { Timeline } from "./Timeline.js";
+import { onContextClose, onContextInit, } from "../context/ContextInitialization.js";
 /**
  * Draw is useful for synchronizing visuals and audio events.
  * Callbacks from Tone.Transport or any of the Tone.Event classes
@@ -81,7 +81,8 @@ export class DrawClass extends ToneWithContext {
      */
     _drawLoop() {
         const now = this.context.currentTime;
-        while (this._events.length && this._events.peek().time - this.anticipation <= now) {
+        while (this._events.length &&
+            this._events.peek().time - this.anticipation <= now) {
             const event = this._events.shift();
             if (event && now - event.time <= this.expiration) {
                 event.callback();
@@ -101,10 +102,10 @@ export class DrawClass extends ToneWithContext {
 //-------------------------------------
 // 	INITIALIZATION
 //-------------------------------------
-onContextInit(context => {
+onContextInit((context) => {
     context.draw = new DrawClass({ context });
 });
-onContextClose(context => {
+onContextClose((context) => {
     context.draw.dispose();
 });
 //# sourceMappingURL=Draw.js.map

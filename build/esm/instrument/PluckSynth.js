@@ -1,8 +1,8 @@
-import { LowpassCombFilter } from "../component/filter/LowpassCombFilter";
-import { deepMerge } from "../core/util/Defaults";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { Noise } from "../source/Noise";
-import { Instrument } from "./Instrument";
+import { LowpassCombFilter } from "../component/filter/LowpassCombFilter.js";
+import { deepMerge } from "../core/util/Defaults.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { Noise } from "../source/Noise.js";
+import { Instrument } from "./Instrument.js";
 /**
  * Karplus-Strong string synthesis.
  * @example
@@ -15,12 +15,12 @@ import { Instrument } from "./Instrument";
  */
 export class PluckSynth extends Instrument {
     constructor() {
-        super(optionsFromArguments(PluckSynth.getDefaults(), arguments));
-        this.name = "PluckSynth";
         const options = optionsFromArguments(PluckSynth.getDefaults(), arguments);
+        super(options);
+        this.name = "PluckSynth";
         this._noise = new Noise({
             context: this.context,
-            type: "pink"
+            type: "pink",
         });
         this.attackNoise = options.attackNoise;
         this._lfcf = new LowpassCombFilter({

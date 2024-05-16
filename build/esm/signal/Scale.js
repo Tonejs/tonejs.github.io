@@ -1,7 +1,7 @@
-import { optionsFromArguments } from "../core/util/Defaults";
-import { Add } from "./Add";
-import { Multiply } from "./Multiply";
-import { SignalOperator } from "./SignalOperator";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { Add } from "./Add.js";
+import { Multiply } from "./Multiply.js";
+import { SignalOperator } from "./SignalOperator.js";
 /**
  * Performs a linear scaling on an input signal.
  * Scales a NormalRange input to between
@@ -15,9 +15,12 @@ import { SignalOperator } from "./SignalOperator";
  */
 export class Scale extends SignalOperator {
     constructor() {
-        super(Object.assign(optionsFromArguments(Scale.getDefaults(), arguments, ["min", "max"])));
+        const options = optionsFromArguments(Scale.getDefaults(), arguments, [
+            "min",
+            "max",
+        ]);
+        super(options);
         this.name = "Scale";
-        const options = optionsFromArguments(Scale.getDefaults(), arguments, ["min", "max"]);
         this._mult = this.input = new Multiply({
             context: this.context,
             value: options.max - options.min,

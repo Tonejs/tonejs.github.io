@@ -1,11 +1,11 @@
 import { __awaiter } from "tslib";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { readOnly } from "../../core/util/Interface";
-import { Multiply } from "../../signal/Multiply";
-import { Source } from "../Source";
-import { Oscillator } from "./Oscillator";
-import { generateWaveform } from "./OscillatorInterface";
-import { PulseOscillator } from "./PulseOscillator";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { readOnly } from "../../core/util/Interface.js";
+import { Multiply } from "../../signal/Multiply.js";
+import { Source } from "../Source.js";
+import { Oscillator } from "./Oscillator.js";
+import { generateWaveform, } from "./OscillatorInterface.js";
+import { PulseOscillator } from "./PulseOscillator.js";
 /**
  * PWMOscillator modulates the width of a Tone.PulseOscillator
  * at the modulationFrequency. This has the effect of continuously
@@ -19,7 +19,8 @@ import { PulseOscillator } from "./PulseOscillator";
  */
 export class PWMOscillator extends Source {
     constructor() {
-        super(optionsFromArguments(PWMOscillator.getDefaults(), arguments, ["frequency", "modulationFrequency"]));
+        const options = optionsFromArguments(PWMOscillator.getDefaults(), arguments, ["frequency", "modulationFrequency"]);
+        super(options);
         this.name = "PWMOscillator";
         this.sourceType = "pwm";
         /**
@@ -30,7 +31,6 @@ export class PWMOscillator extends Source {
             context: this.context,
             value: 2,
         });
-        const options = optionsFromArguments(PWMOscillator.getDefaults(), arguments, ["frequency", "modulationFrequency"]);
         this._pulse = new PulseOscillator({
             context: this.context,
             frequency: options.modulationFrequency,
@@ -117,8 +117,8 @@ export class PWMOscillator extends Source {
     set phase(phase) {
         this._modulator.phase = phase;
     }
-    asArray(length = 1024) {
-        return __awaiter(this, void 0, void 0, function* () {
+    asArray() {
+        return __awaiter(this, arguments, void 0, function* (length = 1024) {
             return generateWaveform(this, length);
         });
     }

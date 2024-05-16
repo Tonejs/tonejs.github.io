@@ -1,13 +1,13 @@
-import { AmplitudeEnvelope } from "../component/envelope/AmplitudeEnvelope";
-import { Envelope } from "../component/envelope/Envelope";
-import { Filter } from "../component/filter/Filter";
-import { omitFromObject, optionsFromArguments } from "../core/util/Defaults";
-import { readOnly } from "../core/util/Interface";
-import { Monophonic } from "../instrument/Monophonic";
-import { OmniOscillator } from "../source/oscillator/OmniOscillator";
-import { Source } from "../source/Source";
-import { FrequencyEnvelope } from "../component/envelope/FrequencyEnvelope";
-import { ToneAudioNode } from "../core/context/ToneAudioNode";
+import { AmplitudeEnvelope } from "../component/envelope/AmplitudeEnvelope.js";
+import { Envelope } from "../component/envelope/Envelope.js";
+import { Filter } from "../component/filter/Filter.js";
+import { omitFromObject, optionsFromArguments } from "../core/util/Defaults.js";
+import { readOnly } from "../core/util/Interface.js";
+import { Monophonic } from "../instrument/Monophonic.js";
+import { OmniOscillator } from "../source/oscillator/OmniOscillator.js";
+import { Source } from "../source/Source.js";
+import { FrequencyEnvelope, } from "../component/envelope/FrequencyEnvelope.js";
+import { ToneAudioNode, } from "../core/context/ToneAudioNode.js";
 /**
  * MonoSynth is composed of one `oscillator`, one `filter`, and two `envelopes`.
  * The amplitude of the Oscillator and the cutoff frequency of the
@@ -27,9 +27,9 @@ import { ToneAudioNode } from "../core/context/ToneAudioNode";
  */
 export class MonoSynth extends Monophonic {
     constructor() {
-        super(optionsFromArguments(MonoSynth.getDefaults(), arguments));
-        this.name = "MonoSynth";
         const options = optionsFromArguments(MonoSynth.getDefaults(), arguments);
+        super(options);
+        this.name = "MonoSynth";
         this.oscillator = new OmniOscillator(Object.assign(options.oscillator, {
             context: this.context,
             detune: options.detune,
@@ -44,7 +44,14 @@ export class MonoSynth extends Monophonic {
         this.oscillator.chain(this.filter, this.envelope, this.output);
         // connect the filter envelope
         this.filterEnvelope.connect(this.filter.frequency);
-        readOnly(this, ["oscillator", "frequency", "detune", "filter", "filterEnvelope", "envelope"]);
+        readOnly(this, [
+            "oscillator",
+            "frequency",
+            "detune",
+            "filter",
+            "filterEnvelope",
+            "envelope",
+        ]);
     }
     static getDefaults() {
         return Object.assign(Monophonic.getDefaults(), {

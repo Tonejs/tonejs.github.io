@@ -1,6 +1,6 @@
-import { InputNode, OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
-import { NormalRange, PowerOfTwo } from "../../core/type/Units";
-export declare type AnalyserType = "fft" | "waveform";
+import { InputNode, OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
+import { NormalRange, PowerOfTwo } from "../../core/type/Units.js";
+export type AnalyserType = "fft" | "waveform";
 export interface AnalyserOptions extends ToneAudioNodeOptions {
     size: PowerOfTwo;
     type: AnalyserType;

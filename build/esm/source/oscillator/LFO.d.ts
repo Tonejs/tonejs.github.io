@@ -1,11 +1,11 @@
-import { Param } from "../../core/context/Param";
-import { InputNode, OutputNode, ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { Degrees, Frequency, NormalRange, Time, UnitName } from "../../core/type/Units";
-import { BasicPlaybackState } from "../../core/util/StateTimeline";
-import { Signal } from "../../signal/Signal";
-import { ToneOscillatorType } from "./Oscillator";
-import { ToneOscillatorOptions } from "./OscillatorInterface";
-export declare type LFOOptions = {
+import { Param } from "../../core/context/Param.js";
+import { InputNode, OutputNode, ToneAudioNode } from "../../core/context/ToneAudioNode.js";
+import { Degrees, Frequency, NormalRange, Time, UnitName } from "../../core/type/Units.js";
+import { BasicPlaybackState } from "../../core/util/StateTimeline.js";
+import { Signal } from "../../signal/Signal.js";
+import { ToneOscillatorType } from "./Oscillator.js";
+import { ToneOscillatorOptions } from "./OscillatorInterface.js";
+export type LFOOptions = {
     min: number;
     max: number;
     amplitude: NormalRange;

@@ -1,7 +1,7 @@
-import { AutomationEvent, Param, ParamOptions } from "../context/Param";
-import { Seconds, Ticks, Time, UnitMap, UnitName } from "../type/Units";
-import { Timeline } from "../util/Timeline";
-declare type TickAutomationEvent = AutomationEvent & {
+import { AutomationEvent, Param, ParamOptions } from "../context/Param.js";
+import { Seconds, Ticks, Time, UnitMap, UnitName } from "../type/Units.js";
+import { Timeline } from "../util/Timeline.js";
+type TickAutomationEvent = AutomationEvent & {
     ticks: number;
 };
 interface TickParamOptions<TypeName extends UnitName> extends ParamOptions<TypeName> {

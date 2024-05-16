@@ -1,6 +1,6 @@
-import { getContext } from "../Global";
-import { ftom } from "./Conversions";
-import { TimeBaseClass } from "./TimeBase";
+import { getContext } from "../Global.js";
+import { ftom } from "./Conversions.js";
+import { TimeBaseClass, } from "./TimeBase.js";
 /**
  * TimeClass is a primitive type for encoding and decoding Time values.
  * TimeClass can be passed into the parameter of any method which takes time as an argument.
@@ -19,7 +19,8 @@ export class TimeClass extends TimeBaseClass {
         return Object.assign(super._getExpressions(), {
             now: {
                 method: (capture) => {
-                    return this._now() + new this.constructor(this.context, capture).valueOf();
+                    return (this._now() +
+                        new this.constructor(this.context, capture).valueOf());
                 },
                 regexp: /^\+(.+)/,
             },
@@ -48,7 +49,7 @@ export class TimeClass extends TimeBaseClass {
         const multiple = Math.round(value / subdivision);
         const ideal = multiple * subdivision;
         const diff = ideal - value;
-        return value + diff * percent;
+        return (value + diff * percent);
     }
     //-------------------------------------
     // CONVERSIONS
@@ -66,17 +67,18 @@ export class TimeClass extends TimeBaseClass {
         const testNotations = ["1m"];
         for (let power = 1; power < 9; power++) {
             const subdiv = Math.pow(2, power);
-            testNotations.push(subdiv + "n.");
-            testNotations.push(subdiv + "n");
-            testNotations.push(subdiv + "t");
+            testNotations.push((subdiv + "n."));
+            testNotations.push((subdiv + "n"));
+            testNotations.push((subdiv + "t"));
         }
         testNotations.push("0");
         // find the closets notation representation
         let closest = testNotations[0];
         let closestSeconds = new TimeClass(this.context, testNotations[0]).toSeconds();
-        testNotations.forEach(notation => {
+        testNotations.forEach((notation) => {
             const notationSeconds = new TimeClass(this.context, notation).toSeconds();
-            if (Math.abs(notationSeconds - time) < Math.abs(closestSeconds - time)) {
+            if (Math.abs(notationSeconds - time) <
+                Math.abs(closestSeconds - time)) {
                 closest = notation;
                 closestSeconds = notationSeconds;
             }

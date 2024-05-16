@@ -1,7 +1,9 @@
 import { __awaiter } from "tslib";
-import { getContext, setContext } from "../Global";
-import { OfflineContext } from "./OfflineContext";
-import { ToneAudioBuffer } from "./ToneAudioBuffer";
+import { getContext, setContext } from "../Global.js";
+import { OfflineContext } from "./OfflineContext.js";
+import { ToneAudioBuffer } from "./ToneAudioBuffer.js";
+import "./Destination.js";
+import "./Listener.js";
 /**
  * Generate a buffer by rendering all of the Tone.js code within the callback using the OfflineAudioContext.
  * The OfflineAudioContext is capable of rendering much faster than real time in many cases.
@@ -35,8 +37,8 @@ import { ToneAudioBuffer } from "./ToneAudioBuffer";
  * });
  * @category Core
  */
-export function Offline(callback, duration, channels = 2, sampleRate = getContext().sampleRate) {
-    return __awaiter(this, void 0, void 0, function* () {
+export function Offline(callback_1, duration_1) {
+    return __awaiter(this, arguments, void 0, function* (callback, duration, channels = 2, sampleRate = getContext().sampleRate) {
         // set the OfflineAudioContext based on the current context
         const originalContext = getContext();
         const context = new OfflineContext(channels, duration, sampleRate);

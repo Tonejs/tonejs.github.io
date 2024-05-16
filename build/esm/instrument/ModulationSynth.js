@@ -1,22 +1,22 @@
-import { Signal } from "../signal/Signal";
-import { Multiply } from "../signal/Multiply";
-import { Gain } from "../core/context/Gain";
-import { Envelope } from "../component/envelope/Envelope";
-import { ToneAudioNode } from "../core/context/ToneAudioNode";
-import { Monophonic } from "./Monophonic";
-import { OmniOscillator } from "../source/oscillator/OmniOscillator";
-import { Source } from "../source/Source";
-import { Synth } from "./Synth";
-import { readOnly } from "../core/util/Interface";
-import { omitFromObject, optionsFromArguments } from "../core/util/Defaults";
+import { Signal } from "../signal/Signal.js";
+import { Multiply } from "../signal/Multiply.js";
+import { Gain } from "../core/context/Gain.js";
+import { Envelope } from "../component/envelope/Envelope.js";
+import { ToneAudioNode, } from "../core/context/ToneAudioNode.js";
+import { Monophonic } from "./Monophonic.js";
+import { OmniOscillator } from "../source/oscillator/OmniOscillator.js";
+import { Source } from "../source/Source.js";
+import { Synth } from "./Synth.js";
+import { readOnly } from "../core/util/Interface.js";
+import { omitFromObject, optionsFromArguments } from "../core/util/Defaults.js";
 /**
  * Base class for both AM and FM synths
  */
 export class ModulationSynth extends Monophonic {
     constructor() {
-        super(optionsFromArguments(ModulationSynth.getDefaults(), arguments));
-        this.name = "ModulationSynth";
         const options = optionsFromArguments(ModulationSynth.getDefaults(), arguments);
+        super(options);
+        this.name = "ModulationSynth";
         this._carrier = new Synth({
             context: this.context,
             oscillator: options.oscillator,
@@ -41,7 +41,7 @@ export class ModulationSynth extends Monophonic {
         this.detune = new Signal({
             context: this.context,
             value: options.detune,
-            units: "cents"
+            units: "cents",
         });
         this.harmonicity = new Multiply({
             context: this.context,
@@ -52,7 +52,15 @@ export class ModulationSynth extends Monophonic {
             context: this.context,
             gain: 0,
         });
-        readOnly(this, ["frequency", "harmonicity", "oscillator", "envelope", "modulation", "modulationEnvelope", "detune"]);
+        readOnly(this, [
+            "frequency",
+            "harmonicity",
+            "oscillator",
+            "envelope",
+            "modulation",
+            "modulationEnvelope",
+            "detune",
+        ]);
     }
     static getDefaults() {
         return Object.assign(Monophonic.getDefaults(), {
@@ -60,29 +68,29 @@ export class ModulationSynth extends Monophonic {
             oscillator: Object.assign(omitFromObject(OmniOscillator.getDefaults(), [
                 ...Object.keys(Source.getDefaults()),
                 "frequency",
-                "detune"
+                "detune",
             ]), {
-                type: "sine"
+                type: "sine",
             }),
             envelope: Object.assign(omitFromObject(Envelope.getDefaults(), Object.keys(ToneAudioNode.getDefaults())), {
                 attack: 0.01,
                 decay: 0.01,
                 sustain: 1,
-                release: 0.5
+                release: 0.5,
             }),
             modulation: Object.assign(omitFromObject(OmniOscillator.getDefaults(), [
                 ...Object.keys(Source.getDefaults()),
                 "frequency",
-                "detune"
+                "detune",
             ]), {
-                type: "square"
+                type: "square",
             }),
             modulationEnvelope: Object.assign(omitFromObject(Envelope.getDefaults(), Object.keys(ToneAudioNode.getDefaults())), {
                 attack: 0.5,
                 decay: 0.0,
                 sustain: 1,
-                release: 0.5
-            })
+                release: 0.5,
+            }),
         });
     }
     /**

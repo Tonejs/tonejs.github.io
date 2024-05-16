@@ -1,6 +1,6 @@
-import { NormalRange, Positive, Seconds, Time, TransportTime } from "../core/type/Units";
-import { ToneWithContext, ToneWithContextOptions } from "../core/context/ToneWithContext";
-import { BasicPlaybackState } from "../core/util/StateTimeline";
+import { NormalRange, Positive, Seconds, Time, TransportTime } from "../core/type/Units.js";
+import { ToneWithContext, ToneWithContextOptions } from "../core/context/ToneWithContext.js";
+import { BasicPlaybackState } from "../core/util/StateTimeline.js";
 export interface LoopOptions extends ToneWithContextOptions {
     callback: (time: Seconds) => void;
     interval: Time;

@@ -1,5 +1,5 @@
-import { Hertz, NormalRange, PowerOfTwo } from "../../core/type/Units";
-import { MeterBase, MeterBaseOptions } from "./MeterBase";
+import { Hertz, NormalRange, PowerOfTwo } from "../../core/type/Units.js";
+import { MeterBase, MeterBaseOptions } from "./MeterBase.js";
 export interface FFTOptions extends MeterBaseOptions {
     size: PowerOfTwo;
     smoothing: NormalRange;

@@ -1,6 +1,6 @@
-import { Gain } from "../core/context/Gain";
-import { Param } from "../core/context/Param";
-import { Signal, SignalOptions } from "./Signal";
+import { Gain } from "../core/context/Gain.js";
+import { Param } from "../core/context/Param.js";
+import { Signal, SignalOptions } from "./Signal.js";
 /**
  * Add a signal and a number or two signals. When no value is
  * passed into the constructor, Tone.Add will sum input and `addend`

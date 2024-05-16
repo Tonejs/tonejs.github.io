@@ -1,14 +1,14 @@
-export { getContext, setContext } from "./core/Global";
-export * from "./classes";
-export * from "./version";
-import { ToneAudioBuffer } from "./core/context/ToneAudioBuffer";
-export { start } from "./core/Global";
-import { Seconds } from "./core/type/Units";
-export { supported } from "./core/context/AudioContext";
-import type { TransportClass } from "./core/clock/Transport";
-import type { DestinationClass } from "./core/context/Destination";
-import type { DrawClass } from "./core/util/Draw";
-import type { ListenerClass } from "./core/context/Listener";
+export { getContext, setContext } from "./core/Global.js";
+export * from "./classes.js";
+export * from "./version.js";
+import { ToneAudioBuffer } from "./core/context/ToneAudioBuffer.js";
+export { start } from "./core/Global.js";
+import { Seconds } from "./core/type/Units.js";
+export { supported } from "./core/context/AudioContext.js";
+import type { TransportClass } from "./core/clock/Transport.js";
+import type { DestinationClass } from "./core/context/Destination.js";
+import type { DrawClass } from "./core/util/Draw.js";
+import type { ListenerClass } from "./core/context/Listener.js";
 /**
  * The current audio context time of the global {@link BaseContext}.
  * @see {@link Context.now}
@@ -81,15 +81,15 @@ export declare function getDraw(): DrawClass;
  * @see {@link Context}
  * @deprecated Use {@link getContext} instead
  */
-export declare const context: import("./classes").BaseContext;
+export declare const context: import("./classes.js").BaseContext;
 /**
  * Promise which resolves when all of the loading promises are resolved.
  * Alias for static {@link ToneAudioBuffer.loaded} method.
  * @category Core
  */
 export declare function loaded(): Promise<void>;
-import { ToneAudioBuffers } from "./core/context/ToneAudioBuffers";
-import { ToneBufferSource } from "./source/buffer/ToneBufferSource";
+import { ToneAudioBuffers } from "./core/context/ToneAudioBuffers.js";
+import { ToneBufferSource } from "./source/buffer/ToneBufferSource.js";
 /** @deprecated Use {@link ToneAudioBuffer} */
 export declare const Buffer: typeof ToneAudioBuffer;
 /** @deprecated Use {@link ToneAudioBuffers} */

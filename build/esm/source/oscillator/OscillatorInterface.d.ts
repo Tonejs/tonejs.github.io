@@ -1,7 +1,7 @@
-import { AudioRange, Cents, Degrees, Frequency, Positive } from "../../core/type/Units";
-import { Omit } from "../../core/util/Interface";
-import { Signal } from "../../signal/Signal";
-import { SourceOptions } from "../Source";
+import { AudioRange, Cents, Degrees, Frequency, Positive } from "../../core/type/Units.js";
+import { Omit } from "../../core/util/Interface.js";
+import { Signal } from "../../signal/Signal.js";
+import { SourceOptions } from "../Source.js";
 /**
  * The common interface of all Oscillators
  */
@@ -100,24 +100,24 @@ export declare function generateWaveform(instance: any, length: number): Promise
 /**
  * The supported number of partials
  */
-declare type PartialsRange = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32;
+type PartialsRange = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32;
 /**
  * Oscillators with partials
  */
-declare type SineWithPartials = `sine${PartialsRange}`;
-declare type SquareWithPartials = `square${PartialsRange}`;
-declare type SawtoothWithPartials = `sawtooth${PartialsRange}`;
-declare type TriangleWithPartials = `triangle${PartialsRange}`;
-declare type TypeWithPartials = SineWithPartials | SquareWithPartials | TriangleWithPartials | SawtoothWithPartials;
+type SineWithPartials = `sine${PartialsRange}`;
+type SquareWithPartials = `square${PartialsRange}`;
+type SawtoothWithPartials = `sawtooth${PartialsRange}`;
+type TriangleWithPartials = `triangle${PartialsRange}`;
+type TypeWithPartials = SineWithPartials | SquareWithPartials | TriangleWithPartials | SawtoothWithPartials;
 interface BaseOscillatorOptions extends SourceOptions {
     frequency: Frequency;
     detune: Cents;
     phase: Degrees;
 }
-export declare type NonCustomOscillatorType = Exclude<OscillatorType, "custom">;
-declare type AllNonCustomOscillatorType = NonCustomOscillatorType | TypeWithPartials;
-export declare type ToneOscillatorType = AllNonCustomOscillatorType | "custom";
-export declare type ExtendedToneOscillatorType = ToneOscillatorType | "pwm" | "pulse";
+export type NonCustomOscillatorType = Exclude<OscillatorType, "custom">;
+type AllNonCustomOscillatorType = NonCustomOscillatorType | TypeWithPartials;
+export type ToneOscillatorType = AllNonCustomOscillatorType | "custom";
+export type ExtendedToneOscillatorType = ToneOscillatorType | "pwm" | "pulse";
 /**
  * Oscillator Interfaces
  */
@@ -132,7 +132,7 @@ interface ToneTypeOscillatorOptions extends BaseOscillatorOptions {
 interface TonePartialOscillatorOptions extends BaseOscillatorOptions {
     type: TypeWithPartials;
 }
-export declare type ToneOscillatorConstructorOptions = ToneCustomOscillatorOptions | ToneTypeOscillatorOptions | TonePartialOscillatorOptions;
+export type ToneOscillatorConstructorOptions = ToneCustomOscillatorOptions | ToneTypeOscillatorOptions | TonePartialOscillatorOptions;
 export interface ToneOscillatorOptions extends BaseOscillatorOptions {
     type: ToneOscillatorType;
     partialCount: number;
@@ -157,7 +157,7 @@ interface FMTypeOscillatorOptions extends FMBaseOscillatorOptions {
 interface FMPartialsOscillatorOptions extends FMBaseOscillatorOptions {
     type: TypeWithPartials;
 }
-export declare type FMConstructorOptions = FMTypeOscillatorOptions | FMCustomOscillatorOptions | FMPartialsOscillatorOptions;
+export type FMConstructorOptions = FMTypeOscillatorOptions | FMCustomOscillatorOptions | FMPartialsOscillatorOptions;
 export interface FMOscillatorOptions extends ToneOscillatorOptions {
     harmonicity: Positive;
     modulationIndex: Positive;
@@ -181,7 +181,7 @@ interface AMTypeOscillatorOptions extends AMBaseOscillatorOptions {
 interface AMPartialsOscillatorOptions extends AMBaseOscillatorOptions {
     type: TypeWithPartials;
 }
-export declare type AMConstructorOptions = AMCustomOscillatorOptions | AMTypeOscillatorOptions | AMPartialsOscillatorOptions;
+export type AMConstructorOptions = AMCustomOscillatorOptions | AMTypeOscillatorOptions | AMPartialsOscillatorOptions;
 export interface AMOscillatorOptions extends ToneOscillatorOptions {
     harmonicity: Positive;
     modulationType: AllNonCustomOscillatorType;
@@ -204,7 +204,7 @@ interface FatTypeOscillatorOptions extends FatBaseOscillatorOptions {
 interface FatPartialsOscillatorOptions extends FatBaseOscillatorOptions {
     type: TypeWithPartials;
 }
-export declare type FatConstructorOptions = FatCustomOscillatorOptions | FatTypeOscillatorOptions | FatPartialsOscillatorOptions;
+export type FatConstructorOptions = FatCustomOscillatorOptions | FatTypeOscillatorOptions | FatPartialsOscillatorOptions;
 export interface FatOscillatorOptions extends ToneOscillatorOptions {
     spread: Cents;
     count: Positive;
@@ -229,27 +229,27 @@ export interface PWMOscillatorOptions extends BaseOscillatorOptions {
 /**
  * FM Oscillators with partials
  */
-declare type FMSineWithPartials = `fmsine${PartialsRange}`;
-declare type FMSquareWithPartials = `fmsquare${PartialsRange}`;
-declare type FMSawtoothWithPartials = `fmsawtooth${PartialsRange}`;
-declare type FMTriangleWithPartials = `fmtriangle${PartialsRange}`;
-declare type FMTypeWithPartials = FMSineWithPartials | FMSquareWithPartials | FMSawtoothWithPartials | FMTriangleWithPartials;
+type FMSineWithPartials = `fmsine${PartialsRange}`;
+type FMSquareWithPartials = `fmsquare${PartialsRange}`;
+type FMSawtoothWithPartials = `fmsawtooth${PartialsRange}`;
+type FMTriangleWithPartials = `fmtriangle${PartialsRange}`;
+type FMTypeWithPartials = FMSineWithPartials | FMSquareWithPartials | FMSawtoothWithPartials | FMTriangleWithPartials;
 /**
  * AM Oscillators with partials
  */
-declare type AMSineWithPartials = `amsine${PartialsRange}`;
-declare type AMSquareWithPartials = `amsquare${PartialsRange}`;
-declare type AMSawtoothWithPartials = `amsawtooth${PartialsRange}`;
-declare type AMTriangleWithPartials = `amtriangle${PartialsRange}`;
-declare type AMTypeWithPartials = AMSineWithPartials | AMSquareWithPartials | AMSawtoothWithPartials | AMTriangleWithPartials;
+type AMSineWithPartials = `amsine${PartialsRange}`;
+type AMSquareWithPartials = `amsquare${PartialsRange}`;
+type AMSawtoothWithPartials = `amsawtooth${PartialsRange}`;
+type AMTriangleWithPartials = `amtriangle${PartialsRange}`;
+type AMTypeWithPartials = AMSineWithPartials | AMSquareWithPartials | AMSawtoothWithPartials | AMTriangleWithPartials;
 /**
  * Fat Oscillators with partials
  */
-declare type FatSineWithPartials = `fatsine${PartialsRange}`;
-declare type FatSquareWithPartials = `fatsquare${PartialsRange}`;
-declare type FatSawtoothWithPartials = `fatsawtooth${PartialsRange}`;
-declare type FatTriangleWithPartials = `fattriangle${PartialsRange}`;
-declare type FatTypeWithPartials = FatSineWithPartials | FatSquareWithPartials | FatSawtoothWithPartials | FatTriangleWithPartials;
+type FatSineWithPartials = `fatsine${PartialsRange}`;
+type FatSquareWithPartials = `fatsquare${PartialsRange}`;
+type FatSawtoothWithPartials = `fatsawtooth${PartialsRange}`;
+type FatTriangleWithPartials = `fattriangle${PartialsRange}`;
+type FatTypeWithPartials = FatSineWithPartials | FatSquareWithPartials | FatSawtoothWithPartials | FatTriangleWithPartials;
 /**
  * Omni FM
  */
@@ -292,11 +292,11 @@ interface OmniFatTypeOscillatorOptions extends FatBaseOscillatorOptions {
 interface OmniFatPartialsOscillatorOptions extends FatBaseOscillatorOptions {
     type: FatTypeWithPartials;
 }
-export declare type OmniOscillatorType = "fatsine" | "fatsquare" | "fatsawtooth" | "fattriangle" | "fatcustom" | FatTypeWithPartials | "fmsine" | "fmsquare" | "fmsawtooth" | "fmtriangle" | "fmcustom" | FMTypeWithPartials | "amsine" | "amsquare" | "amsawtooth" | "amtriangle" | "amcustom" | AMTypeWithPartials | TypeWithPartials | OscillatorType | "pulse" | "pwm";
-export declare type OmniOscillatorOptions = PulseOscillatorOptions | PWMOscillatorOptions | OmniFatCustomOscillatorOptions | OmniFatTypeOscillatorOptions | OmniFatPartialsOscillatorOptions | OmniFMCustomOscillatorOptions | OmniFMTypeOscillatorOptions | OmniFMPartialsOscillatorOptions | OmniAMCustomOscillatorOptions | OmniAMTypeOscillatorOptions | OmniAMPartialsOscillatorOptions | ToneOscillatorConstructorOptions;
-declare type OmitSourceOptions<T extends BaseOscillatorOptions> = Omit<T, "frequency" | "detune" | "context">;
+export type OmniOscillatorType = "fatsine" | "fatsquare" | "fatsawtooth" | "fattriangle" | "fatcustom" | FatTypeWithPartials | "fmsine" | "fmsquare" | "fmsawtooth" | "fmtriangle" | "fmcustom" | FMTypeWithPartials | "amsine" | "amsquare" | "amsawtooth" | "amtriangle" | "amcustom" | AMTypeWithPartials | TypeWithPartials | OscillatorType | "pulse" | "pwm";
+export type OmniOscillatorOptions = PulseOscillatorOptions | PWMOscillatorOptions | OmniFatCustomOscillatorOptions | OmniFatTypeOscillatorOptions | OmniFatPartialsOscillatorOptions | OmniFMCustomOscillatorOptions | OmniFMTypeOscillatorOptions | OmniFMPartialsOscillatorOptions | OmniAMCustomOscillatorOptions | OmniAMTypeOscillatorOptions | OmniAMPartialsOscillatorOptions | ToneOscillatorConstructorOptions;
+type OmitSourceOptions<T extends BaseOscillatorOptions> = Omit<T, "frequency" | "detune" | "context">;
 /**
  * The settable options for the omni oscillator inside of the source which excludes certain attributes that are defined by the parent class
  */
-export declare type OmniOscillatorSynthOptions = OmitSourceOptions<PulseOscillatorOptions> | OmitSourceOptions<PWMOscillatorOptions> | OmitSourceOptions<OmniFatCustomOscillatorOptions> | OmitSourceOptions<OmniFatTypeOscillatorOptions> | OmitSourceOptions<OmniFatPartialsOscillatorOptions> | OmitSourceOptions<OmniFMCustomOscillatorOptions> | OmitSourceOptions<OmniFMTypeOscillatorOptions> | OmitSourceOptions<OmniFMPartialsOscillatorOptions> | OmitSourceOptions<OmniAMCustomOscillatorOptions> | OmitSourceOptions<OmniAMTypeOscillatorOptions> | OmitSourceOptions<OmniAMPartialsOscillatorOptions> | OmitSourceOptions<ToneCustomOscillatorOptions> | OmitSourceOptions<ToneTypeOscillatorOptions> | OmitSourceOptions<TonePartialOscillatorOptions>;
+export type OmniOscillatorSynthOptions = OmitSourceOptions<PulseOscillatorOptions> | OmitSourceOptions<PWMOscillatorOptions> | OmitSourceOptions<OmniFatCustomOscillatorOptions> | OmitSourceOptions<OmniFatTypeOscillatorOptions> | OmitSourceOptions<OmniFatPartialsOscillatorOptions> | OmitSourceOptions<OmniFMCustomOscillatorOptions> | OmitSourceOptions<OmniFMTypeOscillatorOptions> | OmitSourceOptions<OmniFMPartialsOscillatorOptions> | OmitSourceOptions<OmniAMCustomOscillatorOptions> | OmitSourceOptions<OmniAMTypeOscillatorOptions> | OmitSourceOptions<OmniAMPartialsOscillatorOptions> | OmitSourceOptions<ToneCustomOscillatorOptions> | OmitSourceOptions<ToneTypeOscillatorOptions> | OmitSourceOptions<TonePartialOscillatorOptions>;
 export {};

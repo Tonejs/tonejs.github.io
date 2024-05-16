@@ -1,4 +1,4 @@
-declare type Context = import("./Context").Context;
+import type { Context } from "./Context.js";
 /**
  * Used internally to setup a new Context
  */
@@ -12,4 +12,3 @@ export declare function initializeContext(ctx: Context): void;
  */
 export declare function onContextClose(cb: (ctx: Context) => void): void;
 export declare function closeContext(ctx: Context): void;
-export {};

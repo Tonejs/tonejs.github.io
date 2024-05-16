@@ -1,5 +1,5 @@
-import { ToneAudioNode, ToneAudioNodeOptions } from "./ToneAudioNode";
-import { Param } from "./Param";
+import { ToneAudioNode, ToneAudioNodeOptions } from "./ToneAudioNode.js";
+import { Param } from "./Param.js";
 export interface ListenerOptions extends ToneAudioNodeOptions {
     positionX: number;
     positionY: number;

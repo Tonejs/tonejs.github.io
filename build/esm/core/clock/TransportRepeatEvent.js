@@ -1,6 +1,6 @@
-import { TicksClass } from "../type/Ticks";
-import { TransportEvent } from "./TransportEvent";
-import { GT, LT } from "../util/Math";
+import { TicksClass } from "../type/Ticks.js";
+import { TransportEvent } from "./TransportEvent.js";
+import { GT, LT } from "../util/Math.js";
 /**
  * TransportRepeatEvent is an internal class used by Tone.Transport
  * to schedule repeat events. This class should not be instantiated directly.
@@ -88,7 +88,10 @@ export class TransportRepeatEvent extends TransportEvent {
         const ticks = this.transport.getTicksAtTime(time);
         if (GT(ticks, this.time)) {
             // the event is not being scheduled from the beginning and should be offset
-            this._nextTick = this.floatTime + Math.ceil((ticks - this.floatTime) / this._interval) * this._interval;
+            this._nextTick =
+                this.floatTime +
+                    Math.ceil((ticks - this.floatTime) / this._interval) *
+                        this._interval;
         }
         this._currentId = this._createEvent();
         this._nextTick += this._interval;

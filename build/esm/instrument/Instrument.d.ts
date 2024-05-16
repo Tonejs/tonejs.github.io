@@ -1,6 +1,6 @@
-import { Param } from "../core/context/Param";
-import { OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../core/context/ToneAudioNode";
-import { Decibels, Frequency, NormalRange, Time } from "../core/type/Units";
+import { Param } from "../core/context/Param.js";
+import { OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../core/context/ToneAudioNode.js";
+import { Decibels, Frequency, NormalRange, Time } from "../core/type/Units.js";
 export interface InstrumentOptions extends ToneAudioNodeOptions {
     volume: Decibels;
 }

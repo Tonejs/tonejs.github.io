@@ -1,8 +1,8 @@
-import { connect } from "../../core/context/ToneAudioNode";
-import { Param } from "../../core/context/Param";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { OneShotSource } from "../OneShotSource";
-import { readOnly } from "../../core/util/Interface";
+import { connect } from "../../core/context/ToneAudioNode.js";
+import { Param } from "../../core/context/Param.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { OneShotSource } from "../OneShotSource.js";
+import { readOnly } from "../../core/util/Interface.js";
 /**
  * Wrapper around the native fire-and-forget OscillatorNode.
  * Adds the ability to reschedule the stop method.
@@ -11,14 +11,14 @@ import { readOnly } from "../../core/util/Interface";
  */
 export class ToneOscillatorNode extends OneShotSource {
     constructor() {
-        super(optionsFromArguments(ToneOscillatorNode.getDefaults(), arguments, ["frequency", "type"]));
+        const options = optionsFromArguments(ToneOscillatorNode.getDefaults(), arguments, ["frequency", "type"]);
+        super(options);
         this.name = "ToneOscillatorNode";
         /**
          * The oscillator
          */
         this._oscillator = this.context.createOscillator();
         this._internalChannels = [this._oscillator];
-        const options = optionsFromArguments(ToneOscillatorNode.getDefaults(), arguments, ["frequency", "type"]);
         connect(this._oscillator, this._gainNode);
         this.type = options.type;
         this.frequency = new Param({

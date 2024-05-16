@@ -1,4 +1,4 @@
-import { assertRange } from "./Debug";
+import { assertRange } from "./Debug.js";
 /**
  * Assert that the number is in the given range.
  */
@@ -14,7 +14,7 @@ export function range(min, max = Infinity) {
             set: function (newValue) {
                 assertRange(newValue, min, max);
                 valueMap.set(this, newValue);
-            }
+            },
         });
     };
 }
@@ -34,7 +34,7 @@ export function timeRange(min, max = Infinity) {
             set: function (newValue) {
                 assertRange(this.toSeconds(newValue), min, max);
                 valueMap.set(this, newValue);
-            }
+            },
         });
     };
 }

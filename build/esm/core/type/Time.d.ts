@@ -1,5 +1,5 @@
-import { TimeBaseClass, TimeBaseUnit, TimeExpression, TimeValue } from "./TimeBase";
-import { BarsBeatsSixteenths, MidiNote, Seconds, Subdivision, Ticks, Time } from "./Units";
+import { TimeBaseClass, TimeBaseUnit, TimeExpression, TimeValue } from "./TimeBase.js";
+import { BarsBeatsSixteenths, MidiNote, Seconds, Subdivision, Ticks, Time } from "./Units.js";
 /**
  * TimeClass is a primitive type for encoding and decoding Time values.
  * TimeClass can be passed into the parameter of any method which takes time as an argument.
