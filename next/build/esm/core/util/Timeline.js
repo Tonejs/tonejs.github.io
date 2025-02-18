@@ -85,12 +85,14 @@ export class Timeline extends Tone {
     /**
      * Return the first event in the timeline without removing it
      * @returns {Object} The first event object
+     * @deprecated
      */
     peek() {
         return this._timeline[0];
     }
     /**
      * Return the first event in the timeline and remove it
+     * @deprecated
      */
     shift() {
         return this._timeline.shift();

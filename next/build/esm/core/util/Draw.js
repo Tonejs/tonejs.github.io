@@ -81,13 +81,12 @@ export class DrawClass extends ToneWithContext {
      */
     _drawLoop() {
         const now = this.context.currentTime;
-        while (this._events.length &&
-            this._events.peek().time - this.anticipation <= now) {
-            const event = this._events.shift();
-            if (event && now - event.time <= this.expiration) {
+        this._events.forEachBefore(now + this.anticipation, (event) => {
+            if (now - event.time <= this.expiration) {
                 event.callback();
             }
-        }
+            this._events.remove(event);
+        });
         if (this._events.length > 0) {
             this._animationFrame = requestAnimationFrame(this._boundDrawLoop);
         }

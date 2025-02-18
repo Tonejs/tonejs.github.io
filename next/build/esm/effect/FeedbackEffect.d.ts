@@ -17,6 +17,8 @@ export interface FeedbackEffectOptions extends EffectOptions {
 /**
  * FeedbackEffect provides a loop between an audio source and its own output.
  * This is a base-class for feedback effects.
+ *
+ * NOTE: Feedback effects require at least one DelayNode to be in the feedback cycle.
  */
 export declare abstract class FeedbackEffect<Options extends FeedbackEffectOptions> extends Effect<Options> {
     readonly name: string;

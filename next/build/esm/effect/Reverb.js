@@ -36,8 +36,12 @@ export class Reverb extends Effect {
          * before the IR is generated with the latest values.
          */
         this.ready = Promise.resolve();
-        this._decay = options.decay;
-        this._preDelay = options.preDelay;
+        const decayTime = this.toSeconds(options.decay);
+        assertRange(decayTime, 0.001);
+        this._decay = decayTime;
+        const preDelayTime = this.toSeconds(options.preDelay);
+        assertRange(preDelayTime, 0);
+        this._preDelay = preDelayTime;
         this.generate();
         this.connectEffect(this._convolver);
     }

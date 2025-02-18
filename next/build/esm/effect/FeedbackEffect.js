@@ -4,6 +4,8 @@ import { Effect } from "./Effect.js";
 /**
  * FeedbackEffect provides a loop between an audio source and its own output.
  * This is a base-class for feedback effects.
+ *
+ * NOTE: Feedback effects require at least one DelayNode to be in the feedback cycle.
  */
 export class FeedbackEffect extends Effect {
     constructor(options) {
