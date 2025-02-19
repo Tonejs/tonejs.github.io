@@ -1,7 +1,7 @@
 import { Frequency } from "../core/type/Units.js";
 import { Effect, EffectOptions } from "../effect/Effect.js";
 import { Signal } from "../signal/Signal.js";
-interface FrequencyShifterOptions extends EffectOptions {
+export interface FrequencyShifterOptions extends EffectOptions {
     frequency: Frequency;
 }
 /**
@@ -65,4 +65,3 @@ export declare class FrequencyShifter extends Effect<FrequencyShifterOptions> {
     static getDefaults(): FrequencyShifterOptions;
     dispose(): this;
 }
-export {};
