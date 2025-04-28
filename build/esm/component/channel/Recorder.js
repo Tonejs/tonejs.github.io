@@ -8,7 +8,7 @@ import { optionsFromArguments } from "../../core/util/Defaults.js";
  * A wrapper around the MediaRecorder API. Unlike the rest of Tone.js, this module does not offer
  * any sample-accurate scheduling because it is not a feature of the MediaRecorder API.
  * This is only natively supported in Chrome and Firefox.
- * For a cross-browser shim, install (audio-recorder-polyfill)[https://www.npmjs.com/package/audio-recorder-polyfill].
+ * For a cross-browser shim, install [audio-recorder-polyfill](https://www.npmjs.com/package/audio-recorder-polyfill).
  * @example
  * const recorder = new Tone.Recorder();
  * const synth = new Tone.Synth().connect(recorder);
@@ -78,7 +78,7 @@ export class Recorder extends ToneAudioNode {
         }
     }
     /**
-     * Start the Recorder. Returns a promise which resolves
+     * Start/Resume the Recorder. Returns a promise which resolves
      * when the recorder has started.
      */
     start() {
@@ -91,7 +91,12 @@ export class Recorder extends ToneAudioNode {
                 };
                 this._recorder.addEventListener("start", handleStart, false);
             });
-            this._recorder.start();
+            if (this.state === "stopped") {
+                this._recorder.start();
+            }
+            else {
+                this._recorder.resume();
+            }
             return yield startPromise;
         });
     }

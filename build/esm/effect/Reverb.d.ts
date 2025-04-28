@@ -1,6 +1,6 @@
 import { Seconds, Time } from "../core/type/Units.js";
 import { Effect, EffectOptions } from "./Effect.js";
-interface ReverbOptions extends EffectOptions {
+export interface ReverbOptions extends EffectOptions {
     decay: Seconds;
     preDelay: Seconds;
 }
@@ -59,4 +59,3 @@ export declare class Reverb extends Effect<ReverbOptions> {
     generate(): Promise<this>;
     dispose(): this;
 }
-export {};

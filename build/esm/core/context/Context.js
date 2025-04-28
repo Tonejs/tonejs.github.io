@@ -412,15 +412,11 @@ export class Context extends BaseContext {
      */
     _timeoutLoop() {
         const now = this.now();
-        let firstEvent = this._timeouts.peek();
-        while (this._timeouts.length && firstEvent && firstEvent.time <= now) {
+        this._timeouts.forEachBefore(now, (event) => {
             // invoke the callback
-            firstEvent.callback();
-            // shift the first event off
-            this._timeouts.shift();
-            // get the next one
-            firstEvent = this._timeouts.peek();
-        }
+            event.callback();
+            this._timeouts.remove(event);
+        });
     }
     /**
      * A setTimeout which is guaranteed by the clock source.

@@ -66,10 +66,12 @@ export declare class Timeline<GenericEvent extends TimelineEvent> extends Tone {
     /**
      * Return the first event in the timeline without removing it
      * @returns {Object} The first event object
+     * @deprecated
      */
     peek(): GenericEvent | undefined;
     /**
      * Return the first event in the timeline and remove it
+     * @deprecated
      */
     shift(): GenericEvent | undefined;
     /**

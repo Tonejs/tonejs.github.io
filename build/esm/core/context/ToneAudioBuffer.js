@@ -300,32 +300,12 @@ export class ToneAudioBuffer extends Tone {
      */
     static load(url) {
         return __awaiter(this, void 0, void 0, function* () {
-            // test if the url contains multiple extensions
-            const matches = url.match(/\[([^\]\[]+\|.+)\]$/);
-            if (matches) {
-                const extensions = matches[1].split("|");
-                let extension = extensions[0];
-                for (const ext of extensions) {
-                    if (ToneAudioBuffer.supportsType(ext)) {
-                        extension = ext;
-                        break;
-                    }
-                }
-                url = url.replace(matches[0], extension);
-            }
             // make sure there is a slash between the baseUrl and the url
             const baseUrl = ToneAudioBuffer.baseUrl === "" ||
                 ToneAudioBuffer.baseUrl.endsWith("/")
                 ? ToneAudioBuffer.baseUrl
                 : ToneAudioBuffer.baseUrl + "/";
-            // encode special characters in file path
-            const location = document.createElement("a");
-            location.href = baseUrl + url;
-            location.pathname = (location.pathname + location.hash)
-                .split("/")
-                .map(encodeURIComponent)
-                .join("/");
-            const response = yield fetch(location.href);
+            const response = yield fetch(baseUrl + url);
             if (!response.ok) {
                 throw new Error(`could not load url: ${url}`);
             }
