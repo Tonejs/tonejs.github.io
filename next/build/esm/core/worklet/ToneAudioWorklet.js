@@ -18,7 +18,12 @@ export class ToneAudioWorklet extends ToneAudioNode {
         this._dummyGain = this.context.createGain();
         this._dummyParam = this._dummyGain.gain;
         // Register the processor
-        this.context.addAudioWorkletModule(blobUrl).then(() => {
+        let workletPromise = ToneAudioWorklet._workletPromises.get(this.context);
+        if (workletPromise === undefined) {
+            workletPromise = this.context.addAudioWorkletModule(blobUrl);
+            ToneAudioWorklet._workletPromises.set(this.context, workletPromise);
+        }
+        workletPromise.then(() => {
             // create the worklet when it's read
             if (!this.disposed) {
                 this._worklet = this.context.createAudioWorkletNode(name, this.workletOptions);
@@ -38,4 +43,5 @@ export class ToneAudioWorklet extends ToneAudioNode {
         return this;
     }
 }
+ToneAudioWorklet._workletPromises = new WeakMap();
 //# sourceMappingURL=ToneAudioWorklet.js.map

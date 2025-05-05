@@ -31,5 +31,6 @@ export declare abstract class ToneAudioWorklet<Options extends ToneAudioWorkletO
      */
     onprocessorerror: (e: string) => void;
     constructor(options: Options);
+    private static _workletPromises;
     dispose(): this;
 }

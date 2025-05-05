@@ -137,9 +137,9 @@ export declare class Context extends BaseContext {
     get destination(): Destination;
     set destination(d: Destination);
     /**
-     * Maps a module name to promise of the addModule method
+     * A set of unsettled promises returned by the addModule method
      */
-    private _workletPromise;
+    private _workletPromises;
     /**
      * Create an audio worklet node from a name and options. The module
      * must first be loaded using {@link addAudioWorkletModule}.

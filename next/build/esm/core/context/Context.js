@@ -45,9 +45,9 @@ export class Context extends BaseContext {
         // AUDIO WORKLET
         //--------------------------------------------
         /**
-         * Maps a module name to promise of the addModule method
+         * A set of unsettled promises returned by the addModule method
          */
-        this._workletPromise = null;
+        this._workletPromises = new Set();
         const options = optionsFromArguments(Context.getDefaults(), arguments, [
             "context",
         ]);
@@ -241,10 +241,10 @@ export class Context extends BaseContext {
     addAudioWorkletModule(url) {
         return __awaiter(this, void 0, void 0, function* () {
             assert(isDefined(this.rawContext.audioWorklet), "AudioWorkletNode is only available in a secure context (https or localhost)");
-            if (!this._workletPromise) {
-                this._workletPromise = this.rawContext.audioWorklet.addModule(url);
-            }
-            yield this._workletPromise;
+            const workletPromise = this.rawContext.audioWorklet.addModule(url);
+            this._workletPromises.add(workletPromise);
+            workletPromise.finally(() => this._workletPromises.delete(workletPromise));
+            return workletPromise;
         });
     }
     /**
@@ -252,7 +252,7 @@ export class Context extends BaseContext {
      */
     workletsAreReady() {
         return __awaiter(this, void 0, void 0, function* () {
-            (yield this._workletPromise) ? this._workletPromise : Promise.resolve();
+            yield Promise.all(this._workletPromises);
         });
     }
     //---------------------------
