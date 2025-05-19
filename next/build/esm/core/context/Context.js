@@ -413,9 +413,12 @@ export class Context extends BaseContext {
     _timeoutLoop() {
         const now = this.now();
         this._timeouts.forEachBefore(now, (event) => {
-            // invoke the callback
-            event.callback();
-            this._timeouts.remove(event);
+            try {
+                event.callback();
+            }
+            finally {
+                this._timeouts.remove(event);
+            }
         });
     }
     /**

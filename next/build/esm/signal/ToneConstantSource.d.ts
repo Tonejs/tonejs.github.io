@@ -18,7 +18,7 @@ export declare class ToneConstantSource<TypeName extends UnitName = "number"> ex
     /**
      * The signal generator
      */
-    private _source;
+    private _source?;
     /**
      * The offset of the signal generator
      */
@@ -29,6 +29,10 @@ export declare class ToneConstantSource<TypeName extends UnitName = "number"> ex
     constructor(offset: UnitMap[TypeName]);
     constructor(options?: Partial<ToneConstantSourceOptions<TypeName>>);
     static getDefaults(): ToneConstantSourceOptions<any>;
+    /**
+     * Once the context is started, kick off source.
+     */
+    private readonly _contextStarted;
     /**
      * Start the source node at the given time
      * @param  time When to start the source
