@@ -6,7 +6,7 @@ import { optionsFromArguments } from "../core/util/Defaults.js";
 import { readOnly } from "../core/util/Interface.js";
 import { connect } from "../core/context/ToneAudioNode.js";
 /**
- * Applies a width factor to the mid/side seperation.
+ * Applies a width factor to the mid/side separation.
  * 0 is all mid and 1 is all side.
  * Algorithm found in [kvraudio forums](http://www.kvraudio.com/forum/viewtopic.php?t=212587).
  * ```

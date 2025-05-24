@@ -74,7 +74,7 @@ export class TickParam extends Param {
         return this;
     }
     exponentialRampToValueAtTime(value, time) {
-        // aproximate it with multiple linear ramps
+        // approximate it with multiple linear ramps
         time = this.toSeconds(time);
         const computedVal = this._fromType(value);
         // start from previously scheduled value

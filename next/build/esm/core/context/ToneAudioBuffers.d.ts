@@ -11,7 +11,7 @@ interface ToneAudioBuffersOptions {
     baseUrl: string;
 }
 /**
- * A data structure for holding multiple buffers in a Map-like datastructure.
+ * A data structure for holding multiple buffers in a Map-like data structure.
  *
  * @example
  * const pianoSamples = new Tone.ToneAudioBuffers({
@@ -79,7 +79,7 @@ export declare class ToneAudioBuffers extends Tone {
     /**
      * Add a buffer by name and url to the Buffers
      * @param  name      A unique name to give the buffer
-     * @param  url  Either the url of the bufer, or a buffer which will be added with the given name.
+     * @param  url  Either the url of the buffer, or a buffer which will be added with the given name.
      * @param  callback  The callback to invoke when the url is loaded.
      * @param  onerror  Invoked if the buffer can't be loaded
      */

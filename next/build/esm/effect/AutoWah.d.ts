@@ -52,7 +52,7 @@ export declare class AutoWah extends Effect<AutoWahOptions> {
      */
     private _bandpass;
     /**
-     * The peaking fitler
+     * The peaking filter
      */
     private _peaking;
     /**

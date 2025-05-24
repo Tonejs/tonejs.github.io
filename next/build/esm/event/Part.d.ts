@@ -143,10 +143,10 @@ export declare class Part<ValueType = any> extends ToneEvent<ValueType> {
     protected _tick(time: Seconds, value?: any): void;
     /**
      * Determine if the event should be currently looping
-     * given the loop boundries of this Part.
+     * given the loop boundaries of this Part.
      * @param  event  The event to test
      */
-    private _testLoopBoundries;
+    private _testLoopBoundaries;
     get probability(): NormalRange;
     set probability(prob: NormalRange);
     get humanize(): boolean | Time;

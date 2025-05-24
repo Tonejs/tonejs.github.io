@@ -298,10 +298,10 @@ export class Part extends ToneEvent {
     }
     /**
      * Determine if the event should be currently looping
-     * given the loop boundries of this Part.
+     * given the loop boundaries of this Part.
      * @param  event  The event to test
      */
-    _testLoopBoundries(event) {
+    _testLoopBoundaries(event) {
         if (this._loop &&
             (event.startOffset < this._loopStart ||
                 event.startOffset >= this._loopEnd)) {
@@ -349,7 +349,7 @@ export class Part extends ToneEvent {
             event.loopStart = this.loopStart;
             event.loopEnd = this.loopEnd;
             event.loop = loop;
-            this._testLoopBoundries(event);
+            this._testLoopBoundaries(event);
         });
     }
     /**
@@ -364,7 +364,7 @@ export class Part extends ToneEvent {
         if (this._loop) {
             this._forEach((event) => {
                 event.loopEnd = loopEnd;
-                this._testLoopBoundries(event);
+                this._testLoopBoundaries(event);
             });
         }
     }
@@ -380,7 +380,7 @@ export class Part extends ToneEvent {
         if (this._loop) {
             this._forEach((event) => {
                 event.loopStart = this.loopStart;
-                this._testLoopBoundries(event);
+                this._testLoopBoundaries(event);
             });
         }
     }

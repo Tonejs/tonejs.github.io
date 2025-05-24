@@ -78,7 +78,7 @@ export class PolySynth extends Instrument {
     }
     /**
      * Invoked when the source is done making sound, so that it can be
-     * readded to the pool of available voices
+     * re-added to the pool of available voices
      */
     _makeVoiceAvailable(voice) {
         this._availableVoices.push(voice);

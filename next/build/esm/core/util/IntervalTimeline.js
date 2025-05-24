@@ -15,7 +15,7 @@ export class IntervalTimeline extends Tone {
         super(...arguments);
         this.name = "IntervalTimeline";
         /**
-         * The root node of the inteval tree
+         * The root node of the interval tree
          */
         this._root = null;
         /**

@@ -97,7 +97,7 @@ export declare class Envelope extends ToneAudioNode<EnvelopeOptions> {
     sustain: NormalRange;
     /**
      * After triggerRelease is called, the envelope's
-     * value will fall to it's miminum value over the
+     * value will fall to its minimum value over the
      * duration of the release time.
      * ```
      *           /\

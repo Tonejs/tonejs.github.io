@@ -19,7 +19,7 @@ export declare class Analyser extends ToneAudioNode<AnalyserOptions> {
     /**
      * The analyser node.
      */
-    private _analysers;
+    private _analyzers;
     /**
      * Input and output are a gain node
      */

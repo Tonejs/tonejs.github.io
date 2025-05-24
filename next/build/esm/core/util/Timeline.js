@@ -278,7 +278,7 @@ export class Timeline extends Tone {
     }
     /**
      * Iterate over everything in the array between the startTime and endTime.
-     * The timerange is inclusive of the startTime, but exclusive of the endTime.
+     * The time range is inclusive of the startTime, but exclusive of the endTime.
      * range = [startTime, endTime).
      * @param  startTime The time to check if items are before
      * @param  endTime The end of the test interval.

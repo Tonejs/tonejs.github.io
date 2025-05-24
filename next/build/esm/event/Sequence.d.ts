@@ -26,7 +26,7 @@ interface SequenceOptions<T> extends Omit<ToneEventOptions<T>, "value"> {
 export declare class Sequence<ValueType = any> extends ToneEvent<ValueType> {
     readonly name: string;
     /**
-     * The subdivison of each note
+     * The subdivision of each note
      */
     private _subdivision;
     /**

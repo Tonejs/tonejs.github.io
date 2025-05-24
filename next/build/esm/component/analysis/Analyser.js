@@ -16,7 +16,7 @@ export class Analyser extends ToneAudioNode {
         /**
          * The analyser node.
          */
-        this._analysers = [];
+        this._analyzers = [];
         /**
          * The buffer that the FFT data is written to
          */
@@ -31,10 +31,10 @@ export class Analyser extends ToneAudioNode {
         });
         this.input.connect(this._split);
         assertRange(options.channels, 1);
-        // create the analysers
+        // create the analyzers
         for (let channel = 0; channel < options.channels; channel++) {
-            this._analysers[channel] = this.context.createAnalyser();
-            this._split.connect(this._analysers[channel], channel, 0);
+            this._analyzers[channel] = this.context.createAnalyser();
+            this._split.connect(this._analyzers[channel], channel, 0);
         }
         // set the values initially
         this.size = options.size;
@@ -56,7 +56,7 @@ export class Analyser extends ToneAudioNode {
      * represents the analysis done on a channel.
      */
     getValue() {
-        this._analysers.forEach((analyser, index) => {
+        this._analyzers.forEach((analyser, index) => {
             const buffer = this._buffers[index];
             if (this._type === "fft") {
                 analyser.getFloatFrequencyData(buffer);
@@ -76,10 +76,10 @@ export class Analyser extends ToneAudioNode {
      * The size of analysis. This must be a power of two in the range 16 to 16384.
      */
     get size() {
-        return this._analysers[0].frequencyBinCount;
+        return this._analyzers[0].frequencyBinCount;
     }
     set size(size) {
-        this._analysers.forEach((analyser, index) => {
+        this._analyzers.forEach((analyser, index) => {
             analyser.fftSize = size * 2;
             this._buffers[index] = new Float32Array(size);
         });
@@ -89,7 +89,7 @@ export class Analyser extends ToneAudioNode {
      * separation is done using {@link Split}
      */
     get channels() {
-        return this._analysers.length;
+        return this._analyzers.length;
     }
     /**
      * The analysis function returned by analyser.getValue(), either "fft" or "waveform".
@@ -105,17 +105,17 @@ export class Analyser extends ToneAudioNode {
      * 0 represents no time averaging with the last analysis frame.
      */
     get smoothing() {
-        return this._analysers[0].smoothingTimeConstant;
+        return this._analyzers[0].smoothingTimeConstant;
     }
     set smoothing(val) {
-        this._analysers.forEach((a) => (a.smoothingTimeConstant = val));
+        this._analyzers.forEach((a) => (a.smoothingTimeConstant = val));
     }
     /**
      * Clean up.
      */
     dispose() {
         super.dispose();
-        this._analysers.forEach((a) => a.disconnect());
+        this._analyzers.forEach((a) => a.disconnect());
         this._split.dispose();
         this._gain.dispose();
         return this;

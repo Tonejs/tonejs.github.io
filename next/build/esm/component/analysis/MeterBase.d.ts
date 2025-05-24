@@ -7,7 +7,7 @@ export type MeterBaseOptions = ToneAudioNodeOptions;
 export declare class MeterBase<Options extends MeterBaseOptions> extends ToneAudioNode<Options> {
     readonly name: string;
     /**
-     * The signal to be analysed
+     * The signal to be analyzed
      */
     input: InputNode;
     /**
