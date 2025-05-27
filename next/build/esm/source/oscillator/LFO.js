@@ -29,7 +29,7 @@ export class LFO extends ToneAudioNode {
         super(options);
         this.name = "LFO";
         /**
-         * The value that the LFO outputs when it's stopped
+         * The value that the LFO outputs when its stopped
          */
         this._stoppedValue = 0;
         /**

@@ -44,7 +44,7 @@ export declare class Envelope extends ToneAudioNode<EnvelopeOptions> {
     readonly name: string;
     /**
      * When triggerAttack is called, the attack time is the amount of
-     * time it takes for the envelope to reach it's maximum value.
+     * time it takes for the envelope to reach its maximum value.
      * ```
      *           /\
      *          /X \
@@ -62,7 +62,7 @@ export declare class Envelope extends ToneAudioNode<EnvelopeOptions> {
     attack: Time;
     /**
      * After the attack portion of the envelope, the value will fall
-     * over the duration of the decay time to it's sustain value.
+     * over the duration of the decay time to its sustain value.
      * ```
      *           /\
      *          / X\
@@ -140,7 +140,7 @@ export declare class Envelope extends ToneAudioNode<EnvelopeOptions> {
     input: InputNode | undefined;
     /**
      * @param attack The amount of time it takes for the envelope to go from
-     *                        0 to it's maximum value.
+     *                        0 to its maximum value.
      * @param decay	The period of time after the attack that it takes for the envelope
      *                      	to fall to the sustain value. Value must be greater than 0.
      * @param sustain	The percent of the maximum value that the envelope rests at until

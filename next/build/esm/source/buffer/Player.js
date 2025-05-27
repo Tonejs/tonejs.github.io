@@ -267,7 +267,7 @@ export class Player extends Source {
         this._buffer.set(buffer);
     }
     /**
-     * If the buffer should loop once it's over.
+     * If the buffer should loop once its over.
      * @example
      * const player = new Tone.Player("https://tonejs.github.io/audio/drum-samples/breakbeat.mp3").toDestination();
      * player.loop = true;

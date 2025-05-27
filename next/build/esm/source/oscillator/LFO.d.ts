@@ -49,7 +49,7 @@ export declare class LFO extends ToneAudioNode<LFOOptions> {
      */
     private _zeros;
     /**
-     * The value that the LFO outputs when it's stopped
+     * The value that the LFO outputs when its stopped
      */
     private _stoppedValue;
     /**

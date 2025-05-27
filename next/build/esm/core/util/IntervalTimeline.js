@@ -435,7 +435,7 @@ class IntervalNode {
         }
     }
     /**
-     * Invoke the callback on this element and both it's branches
+     * Invoke the callback on this element and both its branches
      * @param  {Function}  callback
      */
     traverse(callback) {

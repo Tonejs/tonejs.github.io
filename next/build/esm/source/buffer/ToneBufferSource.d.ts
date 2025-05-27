@@ -86,7 +86,7 @@ export declare class ToneBufferSource extends OneShotSource<ToneBufferSourceOpti
     get buffer(): ToneAudioBuffer;
     set buffer(buffer: ToneAudioBuffer);
     /**
-     * If the buffer should loop once it's over.
+     * If the buffer should loop once its over.
      */
     get loop(): boolean;
     set loop(loop: boolean);

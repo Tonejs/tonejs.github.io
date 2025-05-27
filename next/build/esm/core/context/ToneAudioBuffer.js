@@ -62,7 +62,7 @@ export class ToneAudioBuffer extends Tone {
                 this._buffer = buffer.get();
             }
             else {
-                // otherwise when it's loaded, invoke it's callback
+                // otherwise when its loaded, invoke it's callback
                 buffer.onload = () => {
                     this.set(buffer);
                     this.onload(this);
