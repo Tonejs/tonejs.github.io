@@ -1,9 +1,9 @@
+import { Param } from "../core/context/Param.js";
+import { Frequency, NormalRange, Positive, Seconds, Time } from "../core/type/Units.js";
+import { RecursivePartial } from "../core/util/Interface.js";
+import { Signal } from "../signal/Signal.js";
 import { Monophonic, MonophonicOptions } from "./Monophonic.js";
 import { MonoSynth, MonoSynthOptions } from "./MonoSynth.js";
-import { Signal } from "../signal/Signal.js";
-import { RecursivePartial } from "../core/util/Interface.js";
-import { Frequency, NormalRange, Positive, Seconds, Time } from "../core/type/Units.js";
-import { Param } from "../core/context/Param.js";
 export interface DuoSynthOptions extends MonophonicOptions {
     voice0: Omit<MonoSynthOptions, keyof MonophonicOptions>;
     voice1: Omit<MonoSynthOptions, keyof MonophonicOptions>;

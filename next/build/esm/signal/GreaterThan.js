@@ -1,8 +1,8 @@
 import { optionsFromArguments } from "../core/util/Defaults.js";
-import { Subtract } from "./Subtract.js";
-import { Signal } from "./Signal.js";
-import { GreaterThanZero } from "./GreaterThanZero.js";
 import { readOnly } from "../core/util/Interface.js";
+import { GreaterThanZero } from "./GreaterThanZero.js";
+import { Signal } from "./Signal.js";
+import { Subtract } from "./Subtract.js";
 /**
  * Output 1 if the signal is greater than the value, otherwise outputs 0.
  * can compare two signals or a signal and a number.

@@ -1,9 +1,9 @@
+import { Gain } from "../../core/context/Gain.js";
 import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
-import { Compressor } from "./Compressor.js";
 import { optionsFromArguments } from "../../core/util/Defaults.js";
 import { readOnly } from "../../core/util/Interface.js";
 import { MultibandSplit } from "../channel/MultibandSplit.js";
-import { Gain } from "../../core/context/Gain.js";
+import { Compressor } from "./Compressor.js";
 /**
  * A compressor with separate controls over low/mid/high dynamics.
  * @see {@link Compressor} and {@link MultibandSplit}

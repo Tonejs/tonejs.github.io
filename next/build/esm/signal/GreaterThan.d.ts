@@ -1,6 +1,6 @@
+import { Param } from "../core/context/Param.js";
 import { ToneAudioNode } from "../core/context/ToneAudioNode.js";
 import { Signal, SignalOptions } from "./Signal.js";
-import { Param } from "../core/context/Param.js";
 export type GreaterThanOptions = SignalOptions<"number">;
 /**
  * Output 1 if the signal is greater than the value, otherwise outputs 0.

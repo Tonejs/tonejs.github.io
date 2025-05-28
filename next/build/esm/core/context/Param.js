@@ -1,11 +1,11 @@
 import { dbToGain, gainToDb } from "../type/Conversions.js";
 import { isAudioParam } from "../util/AdvancedTypeCheck.js";
+import { assert, assertRange } from "../util/Debug.js";
 import { optionsFromArguments } from "../util/Defaults.js";
+import { EQ } from "../util/Math.js";
 import { Timeline } from "../util/Timeline.js";
 import { isDefined } from "../util/TypeCheck.js";
 import { ToneWithContext } from "./ToneWithContext.js";
-import { EQ } from "../util/Math.js";
-import { assert, assertRange } from "../util/Debug.js";
 /**
  * Param wraps the native Web Audio's AudioParam to provide
  * additional unit conversion functionality. It also

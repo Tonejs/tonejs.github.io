@@ -1,8 +1,8 @@
-import { StereoEffect } from "./StereoEffect.js";
 import { optionsFromArguments } from "../core/util/Defaults.js";
-import { LFO } from "../source/oscillator/LFO.js";
-import { Signal } from "../signal/Signal.js";
 import { readOnly } from "../core/util/Interface.js";
+import { Signal } from "../signal/Signal.js";
+import { LFO } from "../source/oscillator/LFO.js";
+import { StereoEffect } from "./StereoEffect.js";
 /**
  * Phaser is a phaser effect. Phasers work by changing the phase
  * of different frequency components of an incoming signal. Read more on

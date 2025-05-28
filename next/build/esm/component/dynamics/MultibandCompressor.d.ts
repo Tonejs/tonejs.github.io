@@ -1,8 +1,8 @@
 import { InputNode, ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
-import { Compressor, CompressorOptions } from "./Compressor.js";
-import { RecursivePartial } from "../../core/util/Interface.js";
 import { Frequency } from "../../core/type/Units.js";
+import { RecursivePartial } from "../../core/util/Interface.js";
 import { Signal } from "../../signal/Signal.js";
+import { Compressor, CompressorOptions } from "./Compressor.js";
 export interface MultibandCompressorOptions extends ToneAudioNodeOptions {
     mid: Omit<CompressorOptions, keyof ToneAudioNodeOptions>;
     low: Omit<CompressorOptions, keyof ToneAudioNodeOptions>;

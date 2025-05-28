@@ -1,11 +1,11 @@
 import { __awaiter, __decorate } from "tslib";
+import { OfflineContext } from "../../core/context/OfflineContext.js";
 import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { assert } from "../../core/util/Debug.js";
+import { range, timeRange } from "../../core/util/Decorator.js";
 import { optionsFromArguments } from "../../core/util/Defaults.js";
 import { isArray, isObject, isString } from "../../core/util/TypeCheck.js";
 import { connectSignal, Signal } from "../../signal/Signal.js";
-import { OfflineContext } from "../../core/context/OfflineContext.js";
-import { assert } from "../../core/util/Debug.js";
-import { range, timeRange } from "../../core/util/Decorator.js";
 /**
  * Envelope is an [ADSR](https://en.wikipedia.org/wiki/Synthesizer#ADSR_envelope)
  * envelope generator. Envelope outputs a signal which

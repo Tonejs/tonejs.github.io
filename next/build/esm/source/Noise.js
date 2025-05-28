@@ -1,6 +1,6 @@
 import { ToneAudioBuffer } from "../core/context/ToneAudioBuffer.js";
-import { optionsFromArguments } from "../core/util/Defaults.js";
 import { assert } from "../core/util/Debug.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
 import { Source } from "../source/Source.js";
 import { ToneBufferSource } from "./buffer/ToneBufferSource.js";
 /**

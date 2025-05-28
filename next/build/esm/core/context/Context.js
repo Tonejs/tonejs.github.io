@@ -1,13 +1,13 @@
 import { __awaiter } from "tslib";
 import { Ticker } from "../clock/Ticker.js";
 import { isAudioContext } from "../util/AdvancedTypeCheck.js";
+import { assert } from "../util/Debug.js";
 import { optionsFromArguments } from "../util/Defaults.js";
 import { Timeline } from "../util/Timeline.js";
 import { isDefined } from "../util/TypeCheck.js";
 import { createAudioContext, createAudioWorkletNode, } from "./AudioContext.js";
-import { closeContext, initializeContext } from "./ContextInitialization.js";
 import { BaseContext } from "./BaseContext.js";
-import { assert } from "../util/Debug.js";
+import { closeContext, initializeContext } from "./ContextInitialization.js";
 /**
  * Wrapper around the native AudioContext.
  * @category Core

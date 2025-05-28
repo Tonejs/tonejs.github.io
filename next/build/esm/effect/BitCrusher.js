@@ -1,10 +1,10 @@
-import { ToneAudioWorklet, } from "../core/worklet/ToneAudioWorklet.js";
-import { Effect } from "./Effect.js";
 import { Gain } from "../core/context/Gain.js";
-import { optionsFromArguments } from "../core/util/Defaults.js";
-import { connectSeries } from "../core/context/ToneAudioNode.js";
 import { Param } from "../core/context/Param.js";
+import { connectSeries } from "../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { ToneAudioWorklet, } from "../core/worklet/ToneAudioWorklet.js";
 import { workletName } from "./BitCrusher.worklet.js";
+import { Effect } from "./Effect.js";
 /**
  * BitCrusher down-samples the incoming signal to a different bit depth.
  * Lowering the bit depth of the signal creates distortion. Read more about BitCrushing

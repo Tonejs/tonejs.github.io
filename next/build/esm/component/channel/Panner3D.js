@@ -1,7 +1,7 @@
+import "../../core/context/Listener.js";
 import { Param } from "../../core/context/Param.js";
 import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
 import { optionsFromArguments } from "../../core/util/Defaults.js";
-import "../../core/context/Listener.js";
 /**
  * A spatialized panner node which supports equalpower or HRTF panning.
  * @category Component

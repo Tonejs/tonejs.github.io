@@ -1,9 +1,9 @@
-import { StereoEffect } from "./StereoEffect.js";
-import { LFO } from "../source/oscillator/LFO.js";
 import { Gain } from "../core/context/Gain.js";
-import { Signal } from "../signal/Signal.js";
 import { optionsFromArguments } from "../core/util/Defaults.js";
 import { readOnly } from "../core/util/Interface.js";
+import { Signal } from "../signal/Signal.js";
+import { LFO } from "../source/oscillator/LFO.js";
+import { StereoEffect } from "./StereoEffect.js";
 /**
  * Tremolo modulates the amplitude of an incoming signal using an {@link LFO}.
  * The effect is a stereo effect where the modulation phase is inverted in each channel.

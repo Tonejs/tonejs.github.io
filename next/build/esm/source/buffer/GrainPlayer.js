@@ -1,11 +1,11 @@
-import { Source } from "../Source.js";
-import { noOp } from "../../core/util/Interface.js";
-import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer.js";
-import { defaultArg, optionsFromArguments } from "../../core/util/Defaults.js";
 import { Clock } from "../../core/clock/Clock.js";
-import { ToneBufferSource } from "./ToneBufferSource.js";
+import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer.js";
 import { intervalToFrequencyRatio } from "../../core/type/Conversions.js";
 import { assertRange } from "../../core/util/Debug.js";
+import { defaultArg, optionsFromArguments } from "../../core/util/Defaults.js";
+import { noOp } from "../../core/util/Interface.js";
+import { Source } from "../Source.js";
+import { ToneBufferSource } from "./ToneBufferSource.js";
 /**
  * GrainPlayer implements [granular synthesis](https://en.wikipedia.org/wiki/Granular_synthesis).
  * Granular Synthesis enables you to adjust pitch and playback rate independently. The grainSize is the

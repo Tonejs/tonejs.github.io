@@ -1,6 +1,6 @@
 import { Panner } from "../component/channel/Panner.js";
-import { LFOEffect, LFOEffectOptions } from "./LFOEffect.js";
 import { Frequency } from "../core/type/Units.js";
+import { LFOEffect, LFOEffectOptions } from "./LFOEffect.js";
 export interface AutoPannerOptions extends LFOEffectOptions {
     channelCount: number;
 }

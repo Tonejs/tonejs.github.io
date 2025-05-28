@@ -1,8 +1,8 @@
-import { StereoEffect } from "./StereoEffect.js";
+import { LowpassCombFilter } from "../component/filter/LowpassCombFilter.js";
 import { optionsFromArguments } from "../core/util/Defaults.js";
 import { readOnly } from "../core/util/Interface.js";
 import { Signal } from "../signal/Signal.js";
-import { LowpassCombFilter } from "../component/filter/LowpassCombFilter.js";
+import { StereoEffect } from "./StereoEffect.js";
 /**
  * An array of comb filter delay values from Freeverb implementation
  */

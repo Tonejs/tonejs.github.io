@@ -1,5 +1,5 @@
-import { StereoFeedbackEffect, } from "./StereoFeedbackEffect.js";
 import { readOnly } from "../core/util/Interface.js";
+import { StereoFeedbackEffect, } from "./StereoFeedbackEffect.js";
 /**
  * Just like a {@link StereoFeedbackEffect}, but the feedback is routed from left to right
  * and right to left instead of on the same channel.

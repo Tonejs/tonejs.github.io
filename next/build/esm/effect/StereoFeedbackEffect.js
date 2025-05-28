@@ -1,9 +1,9 @@
-import { StereoEffect } from "./StereoEffect.js";
-import { Signal } from "../signal/Signal.js";
+import { Merge } from "../component/channel/Merge.js";
+import { Split } from "../component/channel/Split.js";
 import { Gain } from "../core/context/Gain.js";
 import { readOnly } from "../core/util/Interface.js";
-import { Split } from "../component/channel/Split.js";
-import { Merge } from "../component/channel/Merge.js";
+import { Signal } from "../signal/Signal.js";
+import { StereoEffect } from "./StereoEffect.js";
 /**
  * Base class for stereo feedback effects where the effectReturn is fed back into the same channel.
  */

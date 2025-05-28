@@ -1,8 +1,8 @@
 import { gainToDb } from "../../core/type/Conversions.js";
-import { optionsFromArguments } from "../../core/util/Defaults.js";
-import { MeterBase } from "./MeterBase.js";
 import { warn } from "../../core/util/Debug.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
 import { Analyser } from "./Analyser.js";
+import { MeterBase } from "./MeterBase.js";
 /**
  * Meter gets the [RMS](https://en.wikipedia.org/wiki/Root_mean_square)
  * of an input signal. It can also get the raw value of the input signal.
@@ -37,8 +37,8 @@ export class Meter extends MeterBase {
                         type: "waveform",
                         channels: options.channelCount,
                     });
-        (this.smoothing = options.smoothing),
-            (this.normalRange = options.normalRange);
+        this.smoothing = options.smoothing;
+        this.normalRange = options.normalRange;
         this._rms = new Array(options.channelCount);
         this._rms.fill(0);
     }

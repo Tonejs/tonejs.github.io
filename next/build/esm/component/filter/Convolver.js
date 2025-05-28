@@ -1,8 +1,8 @@
 import { __awaiter } from "tslib";
-import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
-import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer.js";
-import { optionsFromArguments } from "../../core/util/Defaults.js";
 import { Gain } from "../../core/context/Gain.js";
+import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer.js";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
 import { noOp } from "../../core/util/Interface.js";
 /**
  * Convolver is a wrapper around the Native Web Audio

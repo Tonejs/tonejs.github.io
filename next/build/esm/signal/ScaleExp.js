@@ -1,6 +1,6 @@
-import { Scale } from "./Scale.js";
 import { optionsFromArguments } from "../core/util/Defaults.js";
 import { Pow } from "./Pow.js";
+import { Scale } from "./Scale.js";
 /**
  * Performs an exponential scaling on an input signal.
  * Scales a NormalRange value [0,1] exponentially

@@ -1,5 +1,5 @@
-import { Timeline } from "./Timeline.js";
 import { Tone } from "../Tone.js";
+import { Timeline } from "./Timeline.js";
 /**
  * Represents a single value which is gettable and settable in a timed way
  */

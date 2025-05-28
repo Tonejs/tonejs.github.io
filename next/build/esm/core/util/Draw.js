@@ -1,6 +1,6 @@
+import { onContextClose, onContextInit, } from "../context/ContextInitialization.js";
 import { ToneWithContext, } from "../context/ToneWithContext.js";
 import { Timeline } from "./Timeline.js";
-import { onContextClose, onContextInit, } from "../context/ContextInitialization.js";
 /**
  * Draw is useful for synchronizing visuals and audio events.
  * Callbacks from Tone.Transport or any of the Tone.Event classes

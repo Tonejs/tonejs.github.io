@@ -1,6 +1,6 @@
-import { Signal, SignalOptions } from "./Signal.js";
-import { NormalRange, Time, TransportTime, UnitMap, UnitName } from "../core/type/Units.js";
 import { OutputNode } from "../core/context/ToneAudioNode.js";
+import { NormalRange, Time, TransportTime, UnitMap, UnitName } from "../core/type/Units.js";
+import { Signal, SignalOptions } from "./Signal.js";
 /**
  * Adds the ability to synchronize the signal to the {@link TransportClass}
  * @category Signal

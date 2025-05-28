@@ -1,11 +1,11 @@
-import { Effect } from "./Effect.js";
-import { Filter } from "../component/filter/Filter.js";
 import { Follower } from "../component/analysis/Follower.js";
-import { optionsFromArguments } from "../core/util/Defaults.js";
+import { Filter } from "../component/filter/Filter.js";
 import { Gain } from "../core/context/Gain.js";
 import { dbToGain, gainToDb } from "../core/type/Conversions.js";
-import { ScaleExp } from "../signal/ScaleExp.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
 import { readOnly } from "../core/util/Interface.js";
+import { ScaleExp } from "../signal/ScaleExp.js";
+import { Effect } from "./Effect.js";
 /**
  * AutoWah connects a {@link Follower} to a {@link Filter}.
  * The frequency of the filter, follows the input amplitude curve.

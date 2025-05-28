@@ -1,11 +1,11 @@
 import { ToneWithContext, } from "../context/ToneWithContext.js";
 import { optionsFromArguments } from "../util/Defaults.js";
 import { readOnly } from "../util/Interface.js";
+import { EQ } from "../util/Math.js";
 import { StateTimeline, } from "../util/StateTimeline.js";
 import { Timeline } from "../util/Timeline.js";
 import { isDefined } from "../util/TypeCheck.js";
 import { TickSignal } from "./TickSignal.js";
-import { EQ } from "../util/Math.js";
 /**
  * Uses [TickSignal](TickSignal) to track elapsed ticks with complex automation curves.
  */

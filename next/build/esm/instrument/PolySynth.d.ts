@@ -1,12 +1,12 @@
 import { Frequency, NormalRange, Time } from "../core/type/Units.js";
 import { RecursivePartial } from "../core/util/Interface.js";
+import { AMSynth, AMSynthOptions } from "./AMSynth.js";
+import { FMSynth, FMSynthOptions } from "./FMSynth.js";
 import { Instrument, InstrumentOptions } from "./Instrument.js";
 import { MembraneSynth, MembraneSynthOptions } from "./MembraneSynth.js";
-import { FMSynth, FMSynthOptions } from "./FMSynth.js";
-import { AMSynth, AMSynthOptions } from "./AMSynth.js";
-import { MonoSynth, MonoSynthOptions } from "./MonoSynth.js";
 import { MetalSynth, MetalSynthOptions } from "./MetalSynth.js";
 import { Monophonic } from "./Monophonic.js";
+import { MonoSynth, MonoSynthOptions } from "./MonoSynth.js";
 import { Synth, SynthOptions } from "./Synth.js";
 type VoiceConstructor<V> = {
     getDefaults: () => VoiceOptions<V>;

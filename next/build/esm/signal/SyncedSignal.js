@@ -1,6 +1,6 @@
-import { Signal } from "./Signal.js";
-import { optionsFromArguments } from "../core/util/Defaults.js";
 import { TransportTimeClass } from "../core/type/TransportTime.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { Signal } from "./Signal.js";
 import { ToneConstantSource } from "./ToneConstantSource.js";
 /**
  * Adds the ability to synchronize the signal to the {@link TransportClass}

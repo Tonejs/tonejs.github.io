@@ -1,8 +1,8 @@
 import { __awaiter } from "tslib";
-import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
-import { Gain } from "../../core/context/Gain.js";
-import { assert } from "../../core/util/Debug.js";
 import { theWindow } from "../../core/context/AudioContext.js";
+import { Gain } from "../../core/context/Gain.js";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { assert } from "../../core/util/Debug.js";
 import { optionsFromArguments } from "../../core/util/Defaults.js";
 /**
  * A wrapper around the MediaRecorder API. Unlike the rest of Tone.js, this module does not offer

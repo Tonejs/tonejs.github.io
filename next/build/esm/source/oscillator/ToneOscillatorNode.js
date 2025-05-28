@@ -1,8 +1,8 @@
-import { connect } from "../../core/context/ToneAudioNode.js";
 import { Param } from "../../core/context/Param.js";
+import { connect } from "../../core/context/ToneAudioNode.js";
 import { optionsFromArguments } from "../../core/util/Defaults.js";
-import { OneShotSource } from "../OneShotSource.js";
 import { readOnly } from "../../core/util/Interface.js";
+import { OneShotSource } from "../OneShotSource.js";
 /**
  * Wrapper around the native fire-and-forget OscillatorNode.
  * Adds the ability to reschedule the stop method.

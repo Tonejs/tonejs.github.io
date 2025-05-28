@@ -1,6 +1,6 @@
 import { TicksClass } from "../type/Ticks.js";
-import { TransportEvent } from "./TransportEvent.js";
 import { GT, LT } from "../util/Math.js";
+import { TransportEvent } from "./TransportEvent.js";
 /**
  * TransportRepeatEvent is an internal class used by Tone.Transport
  * to schedule repeat events. This class should not be instantiated directly.

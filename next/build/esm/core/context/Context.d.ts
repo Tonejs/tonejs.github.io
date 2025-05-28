@@ -1,10 +1,10 @@
 import { TickerClockSource } from "../clock/Ticker.js";
+import type { TransportClass as Transport } from "../clock/Transport.js";
 import { Seconds } from "../type/Units.js";
+import type { DrawClass as Draw } from "../util/Draw.js";
 import { AnyAudioContext } from "./AudioContext.js";
 import { BaseContext, ContextLatencyHint } from "./BaseContext.js";
-import type { DrawClass as Draw } from "../util/Draw.js";
 import type { DestinationClass as Destination } from "./Destination.js";
-import type { TransportClass as Transport } from "../clock/Transport.js";
 import type { ListenerClass as Listener } from "./Listener.js";
 export interface ContextOptions {
     clockSource: TickerClockSource;

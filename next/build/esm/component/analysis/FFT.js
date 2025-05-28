@@ -1,8 +1,8 @@
 import { ToneAudioNode } from "../../core/context/ToneAudioNode.js";
 import { dbToGain } from "../../core/type/Conversions.js";
+import { assert } from "../../core/util/Debug.js";
 import { optionsFromArguments } from "../../core/util/Defaults.js";
 import { MeterBase } from "./MeterBase.js";
-import { assert } from "../../core/util/Debug.js";
 /**
  * Get the current frequency data of the connected audio source using a fast Fourier transform.
  * Read more about FFT algorithms on [Wikipedia] (https://en.wikipedia.org/wiki/Fast_Fourier_transform).

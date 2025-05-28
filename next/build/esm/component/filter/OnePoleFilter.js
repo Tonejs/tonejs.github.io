@@ -1,6 +1,6 @@
+import { Gain } from "../../core/context/Gain.js";
 import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
 import { optionsFromArguments } from "../../core/util/Defaults.js";
-import { Gain } from "../../core/context/Gain.js";
 /**
  * A one pole filter with 6db-per-octave rolloff. Either "highpass" or "lowpass".
  * Note that changing the type or frequency may result in a discontinuity which

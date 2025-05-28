@@ -1,12 +1,12 @@
 import { __awaiter, __decorate } from "tslib";
 import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer.js";
+import { assertRange } from "../../core/util/Debug.js";
+import { timeRange } from "../../core/util/Decorator.js";
 import { defaultArg, optionsFromArguments } from "../../core/util/Defaults.js";
 import { noOp } from "../../core/util/Interface.js";
 import { isUndef } from "../../core/util/TypeCheck.js";
 import { Source } from "../Source.js";
 import { ToneBufferSource } from "./ToneBufferSource.js";
-import { assertRange } from "../../core/util/Debug.js";
-import { timeRange } from "../../core/util/Decorator.js";
 /**
  * Player is an audio file player with start, loop, and stop functions.
  * @example

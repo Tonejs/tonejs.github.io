@@ -1,10 +1,10 @@
 import { AmplitudeEnvelope } from "../component/envelope/AmplitudeEnvelope.js";
+import { Envelope } from "../component/envelope/Envelope.js";
+import { ToneAudioNode, } from "../core/context/ToneAudioNode.js";
 import { omitFromObject, optionsFromArguments } from "../core/util/Defaults.js";
 import { Noise } from "../source/Noise.js";
-import { Instrument } from "./Instrument.js";
-import { ToneAudioNode, } from "../core/context/ToneAudioNode.js";
-import { Envelope } from "../component/envelope/Envelope.js";
 import { Source } from "../source/Source.js";
+import { Instrument } from "./Instrument.js";
 /**
  * Tone.NoiseSynth is composed of {@link Noise} through an {@link AmplitudeEnvelope}.
  * ```

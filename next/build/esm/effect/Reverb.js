@@ -1,12 +1,12 @@
 import { __awaiter } from "tslib";
 import { Merge } from "../component/channel/Merge.js";
 import { Gain } from "../core/context/Gain.js";
+import { OfflineContext } from "../core/context/OfflineContext.js";
+import { assertRange } from "../core/util/Debug.js";
 import { optionsFromArguments } from "../core/util/Defaults.js";
+import { noOp } from "../core/util/Interface.js";
 import { Noise } from "../source/Noise.js";
 import { Effect } from "./Effect.js";
-import { OfflineContext } from "../core/context/OfflineContext.js";
-import { noOp } from "../core/util/Interface.js";
-import { assertRange } from "../core/util/Debug.js";
 /**
  * Simple convolution created with decaying noise.
  * Generates an Impulse Response Buffer

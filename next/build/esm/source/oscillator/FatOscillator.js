@@ -1,11 +1,11 @@
 import { __awaiter } from "tslib";
+import { assertRange } from "../../core/util/Debug.js";
 import { optionsFromArguments } from "../../core/util/Defaults.js";
 import { noOp, readOnly } from "../../core/util/Interface.js";
 import { Signal } from "../../signal/Signal.js";
 import { Source } from "../Source.js";
 import { Oscillator } from "./Oscillator.js";
 import { generateWaveform, } from "./OscillatorInterface.js";
-import { assertRange } from "../../core/util/Debug.js";
 /**
  * FatOscillator is an array of oscillators with detune spread between the oscillators
  * @example

@@ -1,8 +1,8 @@
 import { isAudioNode, isAudioParam } from "../util/AdvancedTypeCheck.js";
+import { assert, warn } from "../util/Debug.js";
 import { isDefined } from "../util/TypeCheck.js";
 import { Param } from "./Param.js";
 import { ToneWithContext } from "./ToneWithContext.js";
-import { assert, warn } from "../util/Debug.js";
 /**
  * ToneAudioNode is the base class for classes which process audio.
  * @category Core

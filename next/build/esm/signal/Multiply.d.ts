@@ -1,6 +1,6 @@
 import { Param } from "../core/context/Param.js";
-import { Signal, SignalOptions } from "./Signal.js";
 import { InputNode, OutputNode } from "../core/context/ToneAudioNode.js";
+import { Signal, SignalOptions } from "./Signal.js";
 /**
  * Multiply two incoming signals. Or, if a number is given in the constructor,
  * multiplies the incoming signal by that value.

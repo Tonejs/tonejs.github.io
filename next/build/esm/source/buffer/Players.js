@@ -1,8 +1,8 @@
 import { Volume } from "../../component/channel/Volume.js";
 import { ToneAudioBuffers, } from "../../core/context/ToneAudioBuffers.js";
 import { ToneAudioNode } from "../../core/context/ToneAudioNode.js";
-import { optionsFromArguments } from "../../core/util/Defaults.js";
 import { assert } from "../../core/util/Debug.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
 import { noOp, readOnly } from "../../core/util/Interface.js";
 import { Source } from "../Source.js";
 import { Player } from "./Player.js";

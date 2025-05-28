@@ -1,13 +1,13 @@
-import { Volume } from "../component/channel/Volume.js";
 import "../core/context/Destination.js";
 import "../core/clock/Transport.js";
+import { Volume } from "../component/channel/Volume.js";
 import { ToneAudioNode, } from "../core/context/ToneAudioNode.js";
+import { assert, assertContextRunning } from "../core/util/Debug.js";
 import { defaultArg } from "../core/util/Defaults.js";
 import { noOp, readOnly } from "../core/util/Interface.js";
+import { GT } from "../core/util/Math.js";
 import { StateTimeline, } from "../core/util/StateTimeline.js";
 import { isDefined, isUndef } from "../core/util/TypeCheck.js";
-import { assert, assertContextRunning } from "../core/util/Debug.js";
-import { GT } from "../core/util/Math.js";
 /**
  * Base class for sources.
  * start/stop of this.context.transport.

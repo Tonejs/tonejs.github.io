@@ -2,13 +2,13 @@ import { __decorate } from "tslib";
 import { ToneAudioBuffers } from "../core/context/ToneAudioBuffers.js";
 import { ftomf, intervalToFrequencyRatio } from "../core/type/Conversions.js";
 import { FrequencyClass } from "../core/type/Frequency.js";
+import { assert } from "../core/util/Debug.js";
+import { timeRange } from "../core/util/Decorator.js";
 import { optionsFromArguments } from "../core/util/Defaults.js";
 import { noOp } from "../core/util/Interface.js";
 import { isArray, isNote, isNumber } from "../core/util/TypeCheck.js";
 import { Instrument } from "../instrument/Instrument.js";
 import { ToneBufferSource, } from "../source/buffer/ToneBufferSource.js";
-import { timeRange } from "../core/util/Decorator.js";
-import { assert } from "../core/util/Debug.js";
 /**
  * Pass in an object which maps the note's pitch or midi value to the url,
  * then you can trigger the attack and release of that note like other instruments.

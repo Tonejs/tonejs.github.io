@@ -1,9 +1,9 @@
 import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
-import { Split } from "./Split.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
 import { Add } from "../../signal/Add.js";
 import { Multiply } from "../../signal/Multiply.js";
 import { Subtract } from "../../signal/Subtract.js";
-import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { Split } from "./Split.js";
 /**
  * Mid/Side processing separates the the 'mid' signal (which comes out of both the left and the right channel)
  * and the 'side' (which only comes out of the the side channels).

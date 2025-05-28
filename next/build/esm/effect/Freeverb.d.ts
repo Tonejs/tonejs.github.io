@@ -1,6 +1,6 @@
-import { StereoEffect, StereoEffectOptions } from "./StereoEffect.js";
 import { Frequency, NormalRange } from "../core/type/Units.js";
 import { Signal } from "../signal/Signal.js";
+import { StereoEffect, StereoEffectOptions } from "./StereoEffect.js";
 export interface FreeverbOptions extends StereoEffectOptions {
     dampening: Frequency;
     roomSize: NormalRange;

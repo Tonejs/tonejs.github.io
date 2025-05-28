@@ -1,5 +1,5 @@
-import { Effect, EffectOptions } from "./Effect.js";
 import { OutputNode, ToneAudioNode } from "../core/context/ToneAudioNode.js";
+import { Effect, EffectOptions } from "./Effect.js";
 export type MidSideEffectOptions = EffectOptions;
 /**
  * Mid/Side processing separates the the 'mid' signal

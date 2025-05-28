@@ -1,9 +1,9 @@
-import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
-import { GreaterThan } from "../../signal/GreaterThan.js";
 import { Gain } from "../../core/context/Gain.js";
-import { Follower } from "../analysis/Follower.js";
-import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
 import { dbToGain, gainToDb } from "../../core/type/Conversions.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { GreaterThan } from "../../signal/GreaterThan.js";
+import { Follower } from "../analysis/Follower.js";
 /**
  * Gate only passes a signal through when the incoming
  * signal exceeds a specified threshold. It uses {@link Follower} to follow the ampltiude

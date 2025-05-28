@@ -1,9 +1,9 @@
 import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
-import { Compressor } from "./Compressor.js";
 import { optionsFromArguments } from "../../core/util/Defaults.js";
-import { MidSideSplit } from "../channel/MidSideSplit.js";
-import { MidSideMerge } from "../channel/MidSideMerge.js";
 import { readOnly } from "../../core/util/Interface.js";
+import { MidSideMerge } from "../channel/MidSideMerge.js";
+import { MidSideSplit } from "../channel/MidSideSplit.js";
+import { Compressor } from "./Compressor.js";
 /**
  * MidSideCompressor applies two different compressors to the {@link mid}
  * and {@link side} signal components of the input.

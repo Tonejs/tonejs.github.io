@@ -1,6 +1,6 @@
 import { Tone } from "../Tone.js";
-import { optionsFromArguments } from "./Defaults.js";
 import { assert } from "./Debug.js";
+import { optionsFromArguments } from "./Defaults.js";
 import { EQ, GT, GTE, LT } from "./Math.js";
 /**
  * A Timeline class for scheduling and maintaining state

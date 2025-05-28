@@ -1,10 +1,10 @@
 import { MidiClass } from "../core/type/Midi.js";
+import { assert, warn } from "../core/util/Debug.js";
 import { deepMerge, omitFromObject, optionsFromArguments, } from "../core/util/Defaults.js";
 import { isArray, isNumber } from "../core/util/TypeCheck.js";
 import { Instrument } from "./Instrument.js";
 import { Monophonic } from "./Monophonic.js";
 import { Synth } from "./Synth.js";
-import { assert, warn } from "../core/util/Debug.js";
 /**
  * PolySynth handles voice creation and allocation for any
  * instruments passed in as the second parameter. PolySynth is

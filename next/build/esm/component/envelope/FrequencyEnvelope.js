@@ -1,8 +1,8 @@
-import { optionsFromArguments } from "../../core/util/Defaults.js";
-import { Envelope } from "./Envelope.js";
-import { Scale } from "../../signal/Scale.js";
-import { Pow } from "../../signal/Pow.js";
 import { assertRange } from "../../core/util/Debug.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { Pow } from "../../signal/Pow.js";
+import { Scale } from "../../signal/Scale.js";
+import { Envelope } from "./Envelope.js";
 /**
  * FrequencyEnvelope is an {@link Envelope} which ramps between {@link baseFrequency}
  * and {@link octaves}. It can also have an optional {@link exponent} to adjust the curve

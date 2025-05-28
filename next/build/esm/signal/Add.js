@@ -1,5 +1,5 @@
-import { connectSeries } from "../core/context/ToneAudioNode.js";
 import { Gain } from "../core/context/Gain.js";
+import { connectSeries } from "../core/context/ToneAudioNode.js";
 import { optionsFromArguments } from "../core/util/Defaults.js";
 import { Signal } from "./Signal.js";
 /**

@@ -1,8 +1,8 @@
-import { StereoXFeedbackEffect, } from "./StereoXFeedbackEffect.js";
-import { optionsFromArguments } from "../core/util/Defaults.js";
 import { Delay } from "../core/context/Delay.js";
-import { Signal } from "../signal/Signal.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
 import { readOnly } from "../core/util/Interface.js";
+import { Signal } from "../signal/Signal.js";
+import { StereoXFeedbackEffect, } from "./StereoXFeedbackEffect.js";
 /**
  * PingPongDelay is a feedback delay effect where the echo is heard
  * first in one channel and next in the opposite channel. In a stereo

@@ -1,6 +1,6 @@
 import { Tone } from "../Tone.js";
-import { isDefined } from "./TypeCheck.js";
 import { assert } from "./Debug.js";
+import { isDefined } from "./TypeCheck.js";
 /**
  * Similar to Tone.Timeline, but all events represent
  * intervals with both "time" and "duration" times. The

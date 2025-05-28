@@ -4,8 +4,8 @@ import { MidiClass } from "./core/type/Midi.js";
 import { TicksClass } from "./core/type/Ticks.js";
 import { TimeClass } from "./core/type/Time.js";
 import { TransportTimeClass } from "./core/type/TransportTime.js";
-import { isDefined, isFunction } from "./core/util/TypeCheck.js";
 import { omitFromObject } from "./core/util/Defaults.js";
+import { isDefined, isFunction } from "./core/util/TypeCheck.js";
 /**
  * Bind the TimeBaseClass to the context
  */

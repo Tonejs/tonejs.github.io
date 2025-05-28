@@ -1,5 +1,5 @@
-import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
 import { Gain } from "../../core/context/Gain.js";
+import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
 import { PlaybackState } from "../../core/util/StateTimeline.js";
 export interface RecorderOptions extends ToneAudioNodeOptions {
     mimeType?: string;

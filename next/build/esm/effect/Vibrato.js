@@ -1,8 +1,8 @@
-import { Effect } from "./Effect.js";
-import { optionsFromArguments } from "../core/util/Defaults.js";
-import { LFO } from "../source/oscillator/LFO.js";
 import { Delay } from "../core/context/Delay.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
 import { readOnly } from "../core/util/Interface.js";
+import { LFO } from "../source/oscillator/LFO.js";
+import { Effect } from "./Effect.js";
 /**
  * A Vibrato effect composed of a Tone.Delay and a Tone.LFO. The LFO
  * modulates the delayTime of the delay, causing the pitch to rise and fall.

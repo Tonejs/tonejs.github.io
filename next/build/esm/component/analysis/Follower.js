@@ -1,7 +1,7 @@
 import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
 import { optionsFromArguments } from "../../core/util/Defaults.js";
-import { OnePoleFilter } from "../filter/OnePoleFilter.js";
 import { Abs } from "../../signal/Abs.js";
+import { OnePoleFilter } from "../filter/OnePoleFilter.js";
 /**
  * Follower is a simple envelope follower.
  * It's implemented by applying a lowpass filter to the absolute value of the incoming signal.

@@ -1,11 +1,11 @@
+import { Gain } from "../core/context/Gain.js";
+import { deepMerge, omitFromObject, optionsFromArguments, } from "../core/util/Defaults.js";
+import { readOnly } from "../core/util/Interface.js";
+import { Multiply } from "../signal/Multiply.js";
+import { Signal } from "../signal/Signal.js";
+import { LFO } from "../source/oscillator/LFO.js";
 import { Monophonic } from "./Monophonic.js";
 import { MonoSynth } from "./MonoSynth.js";
-import { Signal } from "../signal/Signal.js";
-import { readOnly } from "../core/util/Interface.js";
-import { LFO } from "../source/oscillator/LFO.js";
-import { Gain } from "../core/context/Gain.js";
-import { Multiply } from "../signal/Multiply.js";
-import { deepMerge, omitFromObject, optionsFromArguments, } from "../core/util/Defaults.js";
 /**
  * DuoSynth is a monophonic synth composed of two {@link MonoSynth}s run in parallel with control over the
  * frequency ratio between the two voices and vibrato effect.

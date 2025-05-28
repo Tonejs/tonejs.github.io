@@ -1,15 +1,15 @@
-import { Signal } from "../signal/Signal.js";
-import { Multiply } from "../signal/Multiply.js";
-import { Gain } from "../core/context/Gain.js";
-import { NormalRange, Positive, Seconds, Time } from "../core/type/Units.js";
+import { AmplitudeEnvelope } from "../component/envelope/AmplitudeEnvelope.js";
 import { EnvelopeOptions } from "../component/envelope/Envelope.js";
+import { Gain } from "../core/context/Gain.js";
 import { ToneAudioNodeOptions } from "../core/context/ToneAudioNode.js";
-import { Monophonic } from "./Monophonic.js";
+import { NormalRange, Positive, Seconds, Time } from "../core/type/Units.js";
+import { RecursivePartial } from "../core/util/Interface.js";
+import { Multiply } from "../signal/Multiply.js";
+import { Signal } from "../signal/Signal.js";
 import { OmniOscillator } from "../source/oscillator/OmniOscillator.js";
 import { OmniOscillatorSynthOptions } from "../source/oscillator/OscillatorInterface.js";
+import { Monophonic } from "./Monophonic.js";
 import { Synth, SynthOptions } from "./Synth.js";
-import { AmplitudeEnvelope } from "../component/envelope/AmplitudeEnvelope.js";
-import { RecursivePartial } from "../core/util/Interface.js";
 export interface ModulationSynthOptions extends SynthOptions {
     harmonicity: Positive;
     modulationEnvelope: Omit<EnvelopeOptions, keyof ToneAudioNodeOptions>;

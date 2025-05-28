@@ -1,10 +1,10 @@
 import { ToneWithContext, } from "../context/ToneWithContext.js";
+import { assertContextRunning } from "../util/Debug.js";
 import { optionsFromArguments } from "../util/Defaults.js";
 import { Emitter } from "../util/Emitter.js";
 import { noOp, readOnly } from "../util/Interface.js";
 import { StateTimeline } from "../util/StateTimeline.js";
 import { TickSource } from "./TickSource.js";
-import { assertContextRunning } from "../util/Debug.js";
 /**
  * A sample accurate clock which provides a callback at the given rate.
  * While the callback is not sample-accurate (it is still susceptible to

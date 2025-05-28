@@ -1,9 +1,9 @@
 import { Tone } from "../Tone.js";
+import { assert } from "../util/Debug.js";
 import { optionsFromArguments } from "../util/Defaults.js";
 import { noOp } from "../util/Interface.js";
 import { isString } from "../util/TypeCheck.js";
 import { ToneAudioBuffer } from "./ToneAudioBuffer.js";
-import { assert } from "../util/Debug.js";
 /**
  * A data structure for holding multiple buffers in a Map-like data structure.
  *

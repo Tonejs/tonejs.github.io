@@ -1,7 +1,7 @@
-import { SignalOperator } from "./SignalOperator.js";
-import { Multiply } from "./Multiply.js";
-import { WaveShaper } from "./WaveShaper.js";
 import { optionsFromArguments } from "../core/util/Defaults.js";
+import { Multiply } from "./Multiply.js";
+import { SignalOperator } from "./SignalOperator.js";
+import { WaveShaper } from "./WaveShaper.js";
 /**
  * GreaterThanZero outputs 1 when the input is strictly greater than zero
  * @example

@@ -1,7 +1,7 @@
-import { Effect } from "./Effect.js";
+import { assert } from "../core/util/Debug.js";
 import { optionsFromArguments } from "../core/util/Defaults.js";
 import { WaveShaper } from "../signal/WaveShaper.js";
-import { assert } from "../core/util/Debug.js";
+import { Effect } from "./Effect.js";
 /**
  * Chebyshev is a waveshaper which is good
  * for making different types of distortion sounds.

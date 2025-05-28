@@ -1,13 +1,13 @@
 import { __awaiter } from "tslib";
+import { assertRange } from "../../core/util/Debug.js";
 import { deepEquals, optionsFromArguments } from "../../core/util/Defaults.js";
 import { readOnly } from "../../core/util/Interface.js";
+import { clamp } from "../../core/util/Math.js";
 import { isDefined } from "../../core/util/TypeCheck.js";
 import { Signal } from "../../signal/Signal.js";
 import { Source } from "../Source.js";
 import { generateWaveform, } from "./OscillatorInterface.js";
 import { ToneOscillatorNode } from "./ToneOscillatorNode.js";
-import { assertRange } from "../../core/util/Debug.js";
-import { clamp } from "../../core/util/Math.js";
 /**
  * Oscillator supports a number of features including
  * phase rotation, multiple oscillator types (see Oscillator.type),

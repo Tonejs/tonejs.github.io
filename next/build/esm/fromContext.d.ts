@@ -1,8 +1,8 @@
 import * as Classes from "./classes.js";
 import { TransportClass } from "./core/clock/Transport.js";
 import { Context } from "./core/context/Context.js";
-import { ListenerClass } from "./core/context/Listener.js";
 import { DestinationClass } from "./core/context/Destination.js";
+import { ListenerClass } from "./core/context/Listener.js";
 import { DrawClass } from "./core/util/Draw.js";
 type ClassesWithoutSingletons = Omit<typeof Classes, "Transport" | "Destination" | "Draw">;
 /**

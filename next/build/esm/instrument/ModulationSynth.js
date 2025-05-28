@@ -1,14 +1,14 @@
-import { Signal } from "../signal/Signal.js";
-import { Multiply } from "../signal/Multiply.js";
-import { Gain } from "../core/context/Gain.js";
 import { Envelope } from "../component/envelope/Envelope.js";
+import { Gain } from "../core/context/Gain.js";
 import { ToneAudioNode, } from "../core/context/ToneAudioNode.js";
-import { Monophonic } from "./Monophonic.js";
+import { omitFromObject, optionsFromArguments } from "../core/util/Defaults.js";
+import { readOnly } from "../core/util/Interface.js";
+import { Multiply } from "../signal/Multiply.js";
+import { Signal } from "../signal/Signal.js";
 import { OmniOscillator } from "../source/oscillator/OmniOscillator.js";
 import { Source } from "../source/Source.js";
+import { Monophonic } from "./Monophonic.js";
 import { Synth } from "./Synth.js";
-import { readOnly } from "../core/util/Interface.js";
-import { omitFromObject, optionsFromArguments } from "../core/util/Defaults.js";
 /**
  * Base class for both AM and FM synths
  */

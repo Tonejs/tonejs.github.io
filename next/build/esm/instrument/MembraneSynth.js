@@ -1,10 +1,10 @@
 import { __decorate } from "tslib";
 import { FrequencyClass } from "../core/type/Frequency.js";
+import { range, timeRange } from "../core/util/Decorator.js";
 import { deepMerge, optionsFromArguments } from "../core/util/Defaults.js";
 import { readOnly } from "../core/util/Interface.js";
 import { Monophonic } from "./Monophonic.js";
 import { Synth } from "./Synth.js";
-import { range, timeRange } from "../core/util/Decorator.js";
 /**
  * MembraneSynth makes kick and tom sounds using a single oscillator
  * with an amplitude envelope and frequency ramp. A Tone.OmniOscillator

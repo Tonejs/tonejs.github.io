@@ -1,8 +1,8 @@
 import { __awaiter } from "tslib";
-import { connect, ToneAudioNode, } from "../core/context/ToneAudioNode.js";
 import { Volume } from "../component/channel/Volume.js";
-import { optionsFromArguments } from "../core/util/Defaults.js";
+import { connect, ToneAudioNode, } from "../core/context/ToneAudioNode.js";
 import { assert } from "../core/util/Debug.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
 import { readOnly } from "../core/util/Interface.js";
 import { isDefined, isNumber } from "../core/util/TypeCheck.js";
 /**

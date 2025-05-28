@@ -1,5 +1,5 @@
-import { optionsFromArguments } from "../core/util/Defaults.js";
 import { ToneAudioNode, } from "../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
 import { connectSignal } from "./Signal.js";
 /**
  * A signal operator has an input and output and modifies the signal.

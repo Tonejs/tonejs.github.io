@@ -1,6 +1,6 @@
-import { WaveShaper } from "./WaveShaper.js";
 import { optionsFromArguments } from "../core/util/Defaults.js";
 import { SignalOperator } from "./SignalOperator.js";
+import { WaveShaper } from "./WaveShaper.js";
 /**
  * Pow applies an exponent to the incoming signal. The incoming signal must be AudioRange [-1, 1]
  *

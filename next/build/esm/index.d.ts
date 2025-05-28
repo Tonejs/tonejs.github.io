@@ -7,8 +7,8 @@ import { Seconds } from "./core/type/Units.js";
 export { supported } from "./core/context/AudioContext.js";
 import type { TransportClass } from "./core/clock/Transport.js";
 import type { DestinationClass } from "./core/context/Destination.js";
-import type { DrawClass } from "./core/util/Draw.js";
 import type { ListenerClass } from "./core/context/Listener.js";
+import type { DrawClass } from "./core/util/Draw.js";
 /**
  * The current audio context time of the global {@link BaseContext}.
  * @see {@link Context.now}

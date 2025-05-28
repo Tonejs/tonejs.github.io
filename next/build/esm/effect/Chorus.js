@@ -1,8 +1,8 @@
-import { StereoFeedbackEffect, } from "../effect/StereoFeedbackEffect.js";
-import { optionsFromArguments } from "../core/util/Defaults.js";
-import { LFO } from "../source/oscillator/LFO.js";
 import { Delay } from "../core/context/Delay.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
 import { readOnly } from "../core/util/Interface.js";
+import { StereoFeedbackEffect, } from "../effect/StereoFeedbackEffect.js";
+import { LFO } from "../source/oscillator/LFO.js";
 /**
  * Chorus is a stereo chorus effect composed of a left and right delay with an {@link LFO} applied to the delayTime of each channel.
  * When {@link feedback} is set to a value larger than 0, you also get Flanger-type effects.

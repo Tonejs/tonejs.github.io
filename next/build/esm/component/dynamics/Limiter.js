@@ -1,7 +1,7 @@
 import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
 import { optionsFromArguments } from "../../core/util/Defaults.js";
-import { Compressor } from "./Compressor.js";
 import { readOnly } from "../../core/util/Interface.js";
+import { Compressor } from "./Compressor.js";
 /**
  * Limiter will limit the loudness of an incoming signal.
  * Under the hood its composed of a {@link Compressor} with a fast attack

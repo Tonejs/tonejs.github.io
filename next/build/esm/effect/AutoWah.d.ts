@@ -1,6 +1,6 @@
-import { Effect, EffectOptions } from "./Effect.js";
 import { Decibels, Frequency, GainFactor, Positive, Time } from "../core/type/Units.js";
 import { Signal } from "../signal/Signal.js";
+import { Effect, EffectOptions } from "./Effect.js";
 export interface AutoWahOptions extends EffectOptions {
     baseFrequency: Frequency;
     octaves: Positive;

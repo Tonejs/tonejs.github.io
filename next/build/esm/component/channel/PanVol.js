@@ -1,6 +1,6 @@
-import { readOnly } from "../../core/util/Interface.js";
 import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
 import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { readOnly } from "../../core/util/Interface.js";
 import { Panner } from "./Panner.js";
 import { Volume } from "./Volume.js";
 /**

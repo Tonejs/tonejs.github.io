@@ -1,9 +1,9 @@
+import { Gain } from "../../core/context/Gain.js";
 import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
 import { optionsFromArguments } from "../../core/util/Defaults.js";
-import { Solo } from "./Solo.js";
-import { PanVol } from "./PanVol.js";
 import { readOnly } from "../../core/util/Interface.js";
-import { Gain } from "../../core/context/Gain.js";
+import { PanVol } from "./PanVol.js";
+import { Solo } from "./Solo.js";
 /**
  * Channel provides a channel strip interface with volume, pan, solo and mute controls.
  * @see {@link PanVol} and {@link Solo}

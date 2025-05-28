@@ -1,8 +1,8 @@
+import { Gain } from "../../core/context/Gain.js";
 import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { assert, assertRange } from "../../core/util/Debug.js";
 import { optionsFromArguments } from "../../core/util/Defaults.js";
 import { Split } from "../channel/Split.js";
-import { Gain } from "../../core/context/Gain.js";
-import { assert, assertRange } from "../../core/util/Debug.js";
 /**
  * Wrapper around the native Web Audio's [AnalyserNode](http://webaudio.github.io/web-audio-api/#idl-def-AnalyserNode).
  * Extracts FFT or Waveform data from the incoming signal.

@@ -1,9 +1,9 @@
-import { StereoEffect } from "./StereoEffect.js";
+import { FeedbackCombFilter } from "../component/filter/FeedbackCombFilter.js";
 import { optionsFromArguments } from "../core/util/Defaults.js";
+import { readOnly } from "../core/util/Interface.js";
 import { Scale } from "../signal/Scale.js";
 import { Signal } from "../signal/Signal.js";
-import { FeedbackCombFilter } from "../component/filter/FeedbackCombFilter.js";
-import { readOnly } from "../core/util/Interface.js";
+import { StereoEffect } from "./StereoEffect.js";
 /**
  * an array of the comb filter delay time values
  */

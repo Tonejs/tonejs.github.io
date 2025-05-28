@@ -1,8 +1,8 @@
-import { Effect, EffectOptions } from "./Effect.js";
-import { ToneOscillatorType } from "../source/oscillator/OscillatorInterface.js";
+import { Param } from "../core/context/Param.js";
 import { Frequency, NormalRange, Seconds } from "../core/type/Units.js";
 import { Signal } from "../signal/Signal.js";
-import { Param } from "../core/context/Param.js";
+import { ToneOscillatorType } from "../source/oscillator/OscillatorInterface.js";
+import { Effect, EffectOptions } from "./Effect.js";
 export interface VibratoOptions extends EffectOptions {
     maxDelay: Seconds;
     frequency: Frequency;

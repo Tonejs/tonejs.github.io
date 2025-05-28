@@ -1,7 +1,7 @@
-import { StereoEffect, StereoEffectOptions } from "./StereoEffect.js";
-import { Signal } from "../signal/Signal.js";
 import { Degrees, Frequency, NormalRange, Time } from "../core/type/Units.js";
+import { Signal } from "../signal/Signal.js";
 import { ToneOscillatorType } from "../source/oscillator/OscillatorInterface.js";
+import { StereoEffect, StereoEffectOptions } from "./StereoEffect.js";
 export interface TremoloOptions extends StereoEffectOptions {
     frequency: Frequency;
     type: ToneOscillatorType;

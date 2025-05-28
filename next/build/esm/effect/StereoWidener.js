@@ -1,10 +1,10 @@
-import { MidSideEffect, } from "../effect/MidSideEffect.js";
-import { Signal } from "../signal/Signal.js";
-import { Multiply } from "../signal/Multiply.js";
-import { Subtract } from "../signal/Subtract.js";
+import { connect } from "../core/context/ToneAudioNode.js";
 import { optionsFromArguments } from "../core/util/Defaults.js";
 import { readOnly } from "../core/util/Interface.js";
-import { connect } from "../core/context/ToneAudioNode.js";
+import { MidSideEffect, } from "../effect/MidSideEffect.js";
+import { Multiply } from "../signal/Multiply.js";
+import { Signal } from "../signal/Signal.js";
+import { Subtract } from "../signal/Subtract.js";
 /**
  * Applies a width factor to the mid/side separation.
  * 0 is all mid and 1 is all side.

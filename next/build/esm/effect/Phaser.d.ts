@@ -1,6 +1,6 @@
-import { StereoEffect, StereoEffectOptions } from "./StereoEffect.js";
 import { Frequency, Positive } from "../core/type/Units.js";
 import { Signal } from "../signal/Signal.js";
+import { StereoEffect, StereoEffectOptions } from "./StereoEffect.js";
 export interface PhaserOptions extends StereoEffectOptions {
     frequency: Frequency;
     octaves: Positive;

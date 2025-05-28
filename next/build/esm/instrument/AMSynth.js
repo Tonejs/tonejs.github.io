@@ -1,5 +1,5 @@
-import { AudioToGain } from "../signal/AudioToGain.js";
 import { optionsFromArguments } from "../core/util/Defaults.js";
+import { AudioToGain } from "../signal/AudioToGain.js";
 import { ModulationSynth } from "./ModulationSynth.js";
 /**
  * AMSynth uses the output of one Tone.Synth to modulate the

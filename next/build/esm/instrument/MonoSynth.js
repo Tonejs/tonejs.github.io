@@ -1,13 +1,13 @@
 import { AmplitudeEnvelope } from "../component/envelope/AmplitudeEnvelope.js";
 import { Envelope } from "../component/envelope/Envelope.js";
+import { FrequencyEnvelope, } from "../component/envelope/FrequencyEnvelope.js";
 import { Filter } from "../component/filter/Filter.js";
+import { ToneAudioNode, } from "../core/context/ToneAudioNode.js";
 import { omitFromObject, optionsFromArguments } from "../core/util/Defaults.js";
 import { readOnly } from "../core/util/Interface.js";
 import { Monophonic } from "../instrument/Monophonic.js";
 import { OmniOscillator } from "../source/oscillator/OmniOscillator.js";
 import { Source } from "../source/Source.js";
-import { FrequencyEnvelope, } from "../component/envelope/FrequencyEnvelope.js";
-import { ToneAudioNode, } from "../core/context/ToneAudioNode.js";
 /**
  * MonoSynth is composed of one `oscillator`, one `filter`, and two `envelopes`.
  * The amplitude of the Oscillator and the cutoff frequency of the

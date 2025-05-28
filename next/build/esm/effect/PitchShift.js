@@ -1,11 +1,11 @@
-import { FeedbackEffect } from "./FeedbackEffect.js";
-import { optionsFromArguments } from "../core/util/Defaults.js";
-import { LFO } from "../source/oscillator/LFO.js";
-import { Delay } from "../core/context/Delay.js";
 import { CrossFade } from "../component/channel/CrossFade.js";
-import { Signal } from "../signal/Signal.js";
-import { readOnly } from "../core/util/Interface.js";
+import { Delay } from "../core/context/Delay.js";
 import { intervalToFrequencyRatio } from "../core/type/Conversions.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { readOnly } from "../core/util/Interface.js";
+import { Signal } from "../signal/Signal.js";
+import { LFO } from "../source/oscillator/LFO.js";
+import { FeedbackEffect } from "./FeedbackEffect.js";
 /**
  * PitchShift does near-realtime pitch shifting to the incoming signal.
  * The effect is achieved by speeding up or slowing down the delayTime

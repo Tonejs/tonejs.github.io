@@ -1,7 +1,7 @@
-import { ToneEvent } from "./ToneEvent.js";
 import { ToneWithContext, } from "../core/context/ToneWithContext.js";
 import { optionsFromArguments } from "../core/util/Defaults.js";
 import { noOp } from "../core/util/Interface.js";
+import { ToneEvent } from "./ToneEvent.js";
 /**
  * Loop creates a looped callback at the
  * specified interval. The callback can be

@@ -1,7 +1,7 @@
-import { Loop } from "./Loop.js";
-import { PatternGenerator } from "./PatternGenerator.js";
 import { optionsFromArguments } from "../core/util/Defaults.js";
 import { noOp } from "../core/util/Interface.js";
+import { Loop } from "./Loop.js";
+import { PatternGenerator } from "./PatternGenerator.js";
 /**
  * Pattern arpeggiates between the given notes
  * in a number of patterns.
