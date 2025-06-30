@@ -14,6 +14,9 @@ export interface SamplerOptions extends InstrumentOptions {
     baseUrl: string;
     curve: ToneBufferSourceCurve;
     urls: SamplesMap;
+    loop: boolean;
+    loopEnd: number;
+    loopStart: number;
 }
 /**
  * Pass in an object which maps the note's pitch or midi value to the url,
@@ -46,6 +49,22 @@ export declare class Sampler extends Instrument<SamplerOptions> {
      * The object of all currently playing BufferSources
      */
     private _activeSources;
+    /**
+     * The list of all provided midi notes
+     */
+    private _providedMidiNotes;
+    /**
+     * if the buffer should loop once its over
+     */
+    private _loop;
+    /**
+     * if 'loop' is true, the loop will start at this position
+     */
+    private _loopStart;
+    /**
+     * if 'loop' is true, the loop will end at this position
+     */
+    private _loopEnd;
     /**
      * The envelope applied to the beginning of the sample.
      * @min 0
@@ -118,6 +137,43 @@ export declare class Sampler extends Instrument<SamplerOptions> {
      * If the buffers are loaded or not
      */
     get loaded(): boolean;
+    /**
+     * Set the loop start and end. Will only loop if loop is set to true.
+     * @param loopStart The loop start time
+     * @param loopEnd The loop end time
+     * @example
+     * const sampler = new Tone.Sampler({
+     *      urls: {
+     *           A1: "https://tonejs.github.io/audio/berklee/guitar_chord4.mp3",
+     *      },
+     * }).toDestination();
+     * // loop between the given points
+     * sampler.setLoopPoints(0.2, 0.3);
+     * sampler.loop = true;
+     */
+    setLoopPoints(loopStart: Time, loopEnd: Time): this;
+    /**
+     * If loop is true, the loop will start at this position.
+     */
+    get loopStart(): Time;
+    set loopStart(loopStart: Time);
+    /**
+     * If loop is true, the loop will end at this position.
+     */
+    get loopEnd(): Time;
+    set loopEnd(loopEnd: Time);
+    /**
+     * If the buffers should loop once they are over.
+     * @example
+     * const sampler = new Tone.Sampler({
+     *      urls: {
+     *           A4: "https://tonejs.github.io/audio/berklee/femalevoice_aa_A4.mp3",
+     *      },
+     * }).toDestination();
+     * sampler.loop = true;
+     */
+    get loop(): boolean;
+    set loop(loop: boolean);
     /**
      * Clean up
      */

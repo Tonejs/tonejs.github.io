@@ -2,9 +2,9 @@ import { __decorate } from "tslib";
 import { ToneAudioBuffers } from "../core/context/ToneAudioBuffers.js";
 import { ftomf, intervalToFrequencyRatio } from "../core/type/Conversions.js";
 import { FrequencyClass } from "../core/type/Frequency.js";
-import { assert } from "../core/util/Debug.js";
+import { assert, assertRange } from "../core/util/Debug.js";
 import { timeRange } from "../core/util/Decorator.js";
-import { optionsFromArguments } from "../core/util/Defaults.js";
+import { defaultArg, optionsFromArguments } from "../core/util/Defaults.js";
 import { noOp } from "../core/util/Interface.js";
 import { isArray, isNote, isNumber } from "../core/util/TypeCheck.js";
 import { Instrument } from "../instrument/Instrument.js";
@@ -39,6 +39,10 @@ export class Sampler extends Instrument {
          * The object of all currently playing BufferSources
          */
         this._activeSources = new Map();
+        /**
+         * The list of all provided midi notes
+         */
+        this._providedMidiNotes = [];
         const urlMap = {};
         Object.keys(options.urls).forEach((note) => {
             const noteNumber = parseInt(note, 10);
@@ -62,6 +66,9 @@ export class Sampler extends Instrument {
         this.attack = options.attack;
         this.release = options.release;
         this.curve = options.curve;
+        this._loop = options.loop;
+        this._loopStart = options.loopStart;
+        this._loopEnd = options.loopEnd;
         // invoke the callback if it's already loaded
         if (this._buffers.loaded) {
             // invoke onload deferred
@@ -77,6 +84,9 @@ export class Sampler extends Instrument {
             onerror: noOp,
             release: 0.1,
             urls: {},
+            loop: false,
+            loopEnd: 0,
+            loopStart: 0,
         });
     }
     /**
@@ -108,6 +118,7 @@ export class Sampler extends Instrument {
         if (!Array.isArray(notes)) {
             notes = [notes];
         }
+        const offset = defaultArg(this._loopStart, 0);
         notes.forEach((note) => {
             const midiFloat = ftomf(new FrequencyClass(this.context, note).toFrequency());
             const midi = Math.round(midiFloat);
@@ -117,6 +128,9 @@ export class Sampler extends Instrument {
             const closestNote = midi - difference;
             const buffer = this._buffers.get(closestNote);
             const playbackRate = intervalToFrequencyRatio(difference + remainder);
+            const duration = this._loop
+                ? undefined
+                : buffer.duration / playbackRate;
             // play that note
             const source = new ToneBufferSource({
                 url: buffer,
@@ -124,9 +138,12 @@ export class Sampler extends Instrument {
                 curve: this.curve,
                 fadeIn: this.attack,
                 fadeOut: this.release,
+                loop: this._loop,
+                loopStart: this._loopStart,
+                loopEnd: this._loopEnd,
                 playbackRate,
             }).connect(this.output);
-            source.start(time, 0, buffer.duration / playbackRate, velocity);
+            source.start(time, offset, duration, velocity);
             // add it to the active sources
             if (!isArray(this._activeSources.get(midi))) {
                 this._activeSources.set(midi, []);
@@ -236,6 +253,93 @@ export class Sampler extends Instrument {
      */
     get loaded() {
         return this._buffers.loaded;
+    }
+    /**
+     * Set the loop start and end. Will only loop if loop is set to true.
+     * @param loopStart The loop start time
+     * @param loopEnd The loop end time
+     * @example
+     * const sampler = new Tone.Sampler({
+     *      urls: {
+     *           A1: "https://tonejs.github.io/audio/berklee/guitar_chord4.mp3",
+     *      },
+     * }).toDestination();
+     * // loop between the given points
+     * sampler.setLoopPoints(0.2, 0.3);
+     * sampler.loop = true;
+     */
+    setLoopPoints(loopStart, loopEnd) {
+        this.loopStart = loopStart;
+        this.loopEnd = loopEnd;
+        return this;
+    }
+    /**
+     * If loop is true, the loop will start at this position.
+     */
+    get loopStart() {
+        return this._loopStart;
+    }
+    set loopStart(loopStart) {
+        this._loopStart = loopStart;
+        this._providedMidiNotes.forEach((midiNote) => {
+            const buffer = this._buffers.get(midiNote);
+            if (buffer.loaded) {
+                assertRange(this.toSeconds(loopStart), 0, buffer.duration);
+            }
+        });
+        // get the current sources
+        this._activeSources.forEach((sourceList) => {
+            sourceList.forEach((source) => {
+                source.loopStart = loopStart;
+            });
+        });
+    }
+    /**
+     * If loop is true, the loop will end at this position.
+     */
+    get loopEnd() {
+        return this._loopEnd;
+    }
+    set loopEnd(loopEnd) {
+        this._loopEnd = loopEnd;
+        this._providedMidiNotes.forEach((midiNote) => {
+            const buffer = this._buffers.get(midiNote);
+            if (buffer.loaded) {
+                assertRange(this.toSeconds(loopEnd), 0, buffer.duration);
+            }
+        });
+        // get the current sources
+        this._activeSources.forEach((sourceList) => {
+            sourceList.forEach((source) => {
+                source.loopEnd = loopEnd;
+            });
+        });
+    }
+    /**
+     * If the buffers should loop once they are over.
+     * @example
+     * const sampler = new Tone.Sampler({
+     *      urls: {
+     *           A4: "https://tonejs.github.io/audio/berklee/femalevoice_aa_A4.mp3",
+     *      },
+     * }).toDestination();
+     * sampler.loop = true;
+     */
+    get loop() {
+        return this._loop;
+    }
+    set loop(loop) {
+        // if no change, do nothing
+        if (this._loop === loop) {
+            return;
+        }
+        this._loop = loop;
+        // set the loop of all of the sources
+        this._activeSources.forEach((sourceList) => {
+            sourceList.forEach((source) => {
+                source.loop = loop;
+            });
+        });
     }
     /**
      * Clean up
