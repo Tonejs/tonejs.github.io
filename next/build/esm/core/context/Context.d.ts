@@ -12,6 +12,7 @@ export interface ContextOptions {
     lookAhead: Seconds;
     updateInterval: Seconds;
     context: AnyAudioContext;
+    sampleRate: number;
 }
 export interface ContextTimeoutEvent {
     callback: (...args: any[]) => void;

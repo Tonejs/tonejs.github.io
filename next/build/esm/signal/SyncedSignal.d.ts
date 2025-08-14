@@ -1,3 +1,4 @@
+import "../core/clock/Transport.js";
 import { OutputNode } from "../core/context/ToneAudioNode.js";
 import { NormalRange, Time, TransportTime, UnitMap, UnitName } from "../core/type/Units.js";
 import { Signal, SignalOptions } from "./Signal.js";

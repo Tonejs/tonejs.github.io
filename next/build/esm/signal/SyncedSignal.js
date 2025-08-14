@@ -1,3 +1,4 @@
+import "../core/clock/Transport.js";
 import { TransportTimeClass } from "../core/type/TransportTime.js";
 import { optionsFromArguments } from "../core/util/Defaults.js";
 import { Signal } from "./Signal.js";

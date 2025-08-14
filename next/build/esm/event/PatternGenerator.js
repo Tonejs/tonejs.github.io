@@ -131,9 +131,8 @@ function* randomWalk(numValues) {
  * according to the passed in pattern that can be used as indexes into an array of size numValues.
  * @param numValues The size of the array to emit indexes for
  * @param pattern The name of the pattern use when iterating over
- * @param index Where to start in the offset of the values array
  */
-export function* PatternGenerator(numValues, pattern = "up", index = 0) {
+export function* PatternGenerator(numValues, pattern = "up") {
     // safeguards
     assert(numValues >= 1, "The number of values must be at least one");
     switch (pattern) {
