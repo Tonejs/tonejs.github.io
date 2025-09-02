@@ -1,10 +1,10 @@
-import type { TransportClass as Transport } from "../clock/Transport.js";
+import type { TransportInstance as Transport } from "../clock/Transport.js";
 import { Seconds } from "../type/Units.js";
-import type { DrawClass as Draw } from "../util/Draw.js";
+import type { DrawInstance as Draw } from "../util/Draw.js";
 import { Emitter } from "../util/Emitter.js";
 import { AnyAudioContext } from "./AudioContext.js";
-import type { DestinationClass as Destination } from "./Destination.js";
-import type { ListenerClass as Listener } from "./Listener.js";
+import type { DestinationInstance as Destination } from "./Destination.js";
+import type { ListenerInstance as Listener } from "./Listener.js";
 export type ExcludedFromBaseAudioContext = "onstatechange" | "addEventListener" | "removeEventListener" | "listener" | "dispatchEvent" | "audioWorklet" | "destination" | "createScriptProcessor";
 export type BaseAudioContextSubset = Omit<BaseAudioContext, ExcludedFromBaseAudioContext>;
 export type ContextLatencyHint = AudioContextLatencyCategory;

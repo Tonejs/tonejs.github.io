@@ -23,14 +23,14 @@ export function immediate() {
 }
 /**
  * The Transport object belonging to the global Tone.js Context.
- * @see {@link TransportClass}
+ * @see {@link TransportInstance}
  * @category Core
  * @deprecated Use {@link getTransport} instead
  */
 export const Transport = getContext().transport;
 /**
  * The Transport object belonging to the global Tone.js Context.
- * @see {@link TransportClass}
+ * @see {@link TransportInstance}
  * @category Core
  */
 export function getTransport() {
@@ -38,7 +38,7 @@ export function getTransport() {
 }
 /**
  * The Destination (output) belonging to the global Tone.js Context.
- * @see {@link DestinationClass}
+ * @see {@link DestinationInstance}
  * @category Core
  * @deprecated Use {@link getDestination} instead
  */
@@ -49,20 +49,20 @@ export const Destination = getContext().destination;
 export const Master = getContext().destination;
 /**
  * The Destination (output) belonging to the global Tone.js Context.
- * @see {@link DestinationClass}
+ * @see {@link DestinationInstance}
  * @category Core
  */
 export function getDestination() {
     return getContext().destination;
 }
 /**
- * The {@link ListenerClass} belonging to the global Tone.js Context.
+ * The {@link ListenerInstance} belonging to the global Tone.js Context.
  * @category Core
  * @deprecated Use {@link getListener} instead
  */
 export const Listener = getContext().listener;
 /**
- * The {@link ListenerClass} belonging to the global Tone.js Context.
+ * The {@link ListenerInstance} belonging to the global Tone.js Context.
  * @category Core
  */
 export function getListener() {
@@ -70,7 +70,7 @@ export function getListener() {
 }
 /**
  * Draw is used to synchronize the draw frame with the Transport's callbacks.
- * @see {@link DrawClass}
+ * @see {@link DrawInstance}
  * @category Core
  * @deprecated Use {@link getDraw} instead
  */
@@ -78,7 +78,7 @@ export const Draw = getContext().draw;
 /**
  * Get the singleton attached to the global context.
  * Draw is used to synchronize the draw frame with the Transport's callbacks.
- * @see {@link DrawClass}
+ * @see {@link DrawInstance}
  * @category Core
  */
 export function getDraw() {

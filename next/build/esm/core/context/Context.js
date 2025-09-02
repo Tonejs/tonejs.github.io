@@ -57,12 +57,14 @@ export class Context extends BaseContext {
             this._latencyHint = ((_a = arguments[0]) === null || _a === void 0 ? void 0 : _a.latencyHint) || "";
         }
         else {
-            this._context = createAudioContext(options.sampleRate ? {
-                latencyHint: options.latencyHint,
-                sampleRate: options.sampleRate,
-            } : {
-                latencyHint: options.latencyHint,
-            });
+            this._context = createAudioContext(options.sampleRate
+                ? {
+                    latencyHint: options.latencyHint,
+                    sampleRate: options.sampleRate,
+                }
+                : {
+                    latencyHint: options.latencyHint,
+                });
             this._latencyHint = options.latencyHint;
         }
         this._ticker = new Ticker(this.emit.bind(this, "tick"), options.clockSource, options.updateInterval, this._context.sampleRate);

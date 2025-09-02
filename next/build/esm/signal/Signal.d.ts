@@ -50,6 +50,7 @@ export declare class Signal<TypeName extends UnitName = "number"> extends ToneAu
     constructor(options?: Partial<SignalOptions<TypeName>>);
     static getDefaults(): SignalOptions<any>;
     connect(destination: InputNode, outputNum?: number, inputNum?: number): this;
+    disconnect(destination?: InputNode, outputNum?: number, inputNum?: number): this;
     dispose(): this;
     setValueAtTime(value: UnitMap[TypeName], time: Time): this;
     getValueAtTime(time: Time): UnitMap[TypeName];
@@ -90,3 +91,12 @@ export declare class Signal<TypeName extends UnitName = "number"> extends ToneAu
  * @param inputNum the input number
  */
 export declare function connectSignal(signal: OutputNode, destination: InputNode, outputNum?: number, inputNum?: number): void;
+/**
+ * Disconnect a signal connection and restore the value of the destination if
+ * it was a signal that was overridden by the connection.
+ * @param signal
+ * @param destination
+ * @param outputNum
+ * @param inputNum
+ */
+export declare function disconnectSignal(signal: OutputNode, destination?: InputNode, outputNum?: number, inputNum?: number): void;

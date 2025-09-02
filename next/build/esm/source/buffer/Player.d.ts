@@ -54,6 +54,18 @@ export declare class Player extends Source<PlayerOptions> {
      */
     private _activeSources;
     /**
+     * Used as the source of the TickParam, but not started or used for anything else.
+     */
+    private _constantSource;
+    /**
+     * Used to track the progress of the player.
+     */
+    private _progressTracker;
+    /**
+     * Combined with the _progressTracker param to track the progress of the player in seconds.
+     */
+    private _progressOffset;
+    /**
      * The fadeIn time of the amplitude envelope.
      */
     fadeIn: Time;
@@ -78,6 +90,22 @@ export declare class Player extends Source<PlayerOptions> {
      * @param url The url of the buffer to load. Filetype support depends on the browser.
      */
     load(url: string): Promise<this>;
+    /**
+     * Internal method to get the progress at a specific time.
+     * @param time The time to evaluate the progress at.
+     */
+    private _getProgressAtTime;
+    /**
+     * Displays the elapsed seconds since the player was started, taking into account playbackRate changes.
+     * @example
+     * const player = new Tone.Player("https://tonejs.github.io/audio/berklee/gong_1.mp3", () => {
+     * 	player.start();
+     * 	setInterval(() => {
+     * 		console.log(player.progress);
+     * 	}, 100);
+     * }).toDestination();
+     */
+    get progress(): Seconds;
     /**
      * Internal callback when the buffer is loaded.
      */

@@ -18,9 +18,9 @@ import { connectSeries, ToneAudioNode, } from "./ToneAudioNode.js";
  * oscillator.toDestination();
  * @category Core
  */
-export class DestinationClass extends ToneAudioNode {
+export class DestinationInstance extends ToneAudioNode {
     constructor() {
-        const options = optionsFromArguments(DestinationClass.getDefaults(), arguments);
+        const options = optionsFromArguments(DestinationInstance.getDefaults(), arguments);
         super(options);
         this.name = "Destination";
         this.input = new Volume({ context: this.context });
@@ -101,7 +101,7 @@ export class DestinationClass extends ToneAudioNode {
 // 	INITIALIZATION
 //-------------------------------------
 onContextInit((context) => {
-    context.destination = new DestinationClass({ context });
+    context.destination = new DestinationInstance({ context });
 });
 onContextClose((context) => {
     context.destination.dispose();

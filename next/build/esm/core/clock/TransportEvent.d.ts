@@ -1,12 +1,12 @@
 import { Seconds, Ticks } from "../type/Units.js";
-import type { TransportClass as Transport } from "./Transport.js";
+import type { TransportInstance as Transport } from "./Transport.js";
 export interface TransportEventOptions {
     callback: (time: number) => void;
     once: boolean;
     time: Ticks;
 }
 /**
- * TransportEvent is an internal class used by {@link TransportClass}
+ * TransportEvent is an internal class used by {@link TransportInstance}
  * to schedule events. Do no invoke this class directly, it is
  * handled from within Tone.Transport.
  */

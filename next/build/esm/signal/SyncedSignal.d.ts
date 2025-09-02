@@ -3,7 +3,7 @@ import { OutputNode } from "../core/context/ToneAudioNode.js";
 import { NormalRange, Time, TransportTime, UnitMap, UnitName } from "../core/type/Units.js";
 import { Signal, SignalOptions } from "./Signal.js";
 /**
- * Adds the ability to synchronize the signal to the {@link TransportClass}
+ * Adds the ability to synchronize the signal to the {@link TransportInstance}
  * @category Signal
  */
 export declare class SyncedSignal<TypeName extends UnitName = "number"> extends Signal<TypeName> {

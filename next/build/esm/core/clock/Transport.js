@@ -38,9 +38,9 @@ import { TransportRepeatEvent } from "./TransportRepeatEvent.js";
  * Tone.getTransport().start();
  * @category Core
  */
-export class TransportClass extends ToneWithContext {
+export class TransportInstance extends ToneWithContext {
     constructor() {
-        const options = optionsFromArguments(TransportClass.getDefaults(), arguments);
+        const options = optionsFromArguments(TransportInstance.getDefaults(), arguments);
         super(options);
         this.name = "Transport";
         //-------------------------------------
@@ -605,12 +605,12 @@ export class TransportClass extends ToneWithContext {
         return this;
     }
 }
-Emitter.mixin(TransportClass);
+Emitter.mixin(TransportInstance);
 //-------------------------------------
 // 	INITIALIZATION
 //-------------------------------------
 onContextInit((context) => {
-    context.transport = new TransportClass({ context });
+    context.transport = new TransportInstance({ context });
 });
 onContextClose((context) => {
     context.transport.dispose();

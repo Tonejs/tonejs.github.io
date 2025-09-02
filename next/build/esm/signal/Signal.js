@@ -1,8 +1,9 @@
 import { Param } from "../core/context/Param.js";
-import { ToneAudioNode, } from "../core/context/ToneAudioNode.js";
+import { disconnect, ToneAudioNode, } from "../core/context/ToneAudioNode.js";
 import { connect } from "../core/context/ToneAudioNode.js";
 import { isAudioParam } from "../core/util/AdvancedTypeCheck.js";
 import { optionsFromArguments } from "../core/util/Defaults.js";
+import { isUndef } from "../core/util/TypeCheck.js";
 import { ToneConstantSource } from "./ToneConstantSource.js";
 /**
  * A signal is an audio-rate value. Tone.Signal is a core component of the library.
@@ -56,6 +57,11 @@ export class Signal extends ToneAudioNode {
     connect(destination, outputNum = 0, inputNum = 0) {
         // start it only when connected to something
         connectSignal(this, destination, outputNum, inputNum);
+        return this;
+    }
+    disconnect(destination, outputNum, inputNum) {
+        // disconnect the signal
+        disconnectSignal(this, destination, outputNum, inputNum);
         return this;
     }
     dispose() {
@@ -160,6 +166,10 @@ export class Signal extends ToneAudioNode {
     }
 }
 /**
+ * Keep track of connected signals so they can be disconnected and restored to their previous value
+ */
+const connectedSignals = new WeakMap();
+/**
  * When connecting from a signal, it's necessary to zero out the node destination
  * node if that node is also a signal. If the destination is not 0, then the values
  * will be summed. This method insures that the output of the destination signal will
@@ -170,9 +180,11 @@ export class Signal extends ToneAudioNode {
  * @param inputNum the input number
  */
 export function connectSignal(signal, destination, outputNum, inputNum) {
+    var _a;
     if (destination instanceof Param ||
         isAudioParam(destination) ||
         (destination instanceof Signal && destination.override)) {
+        const previousValue = destination.value;
         // cancel changes
         destination.cancelScheduledValues(0);
         // reset the value
@@ -181,7 +193,57 @@ export function connectSignal(signal, destination, outputNum, inputNum) {
         if (destination instanceof Signal) {
             destination.overridden = true;
         }
+        // store the connection
+        if (!connectedSignals.has(signal)) {
+            connectedSignals.set(signal, []);
+        }
+        (_a = connectedSignals.get(signal)) === null || _a === void 0 ? void 0 : _a.push({
+            destination,
+            outputNum: outputNum || 0,
+            inputNum: inputNum || 0,
+            previousValue,
+        });
     }
     connect(signal, destination, outputNum, inputNum);
+}
+/**
+ * Disconnect a signal connection and restore the value of the destination if
+ * it was a signal that was overridden by the connection.
+ * @param signal
+ * @param destination
+ * @param outputNum
+ * @param inputNum
+ */
+export function disconnectSignal(signal, destination, outputNum, inputNum) {
+    if (destination instanceof Param ||
+        isAudioParam(destination) ||
+        (destination instanceof Signal && destination.override) ||
+        destination === undefined) {
+        if (connectedSignals.has(signal)) {
+            let connections = connectedSignals.get(signal);
+            if (destination) {
+                connections = connections.filter((conn) => {
+                    return (conn.destination === destination &&
+                        (isUndef(outputNum) || conn.outputNum === outputNum) &&
+                        (isUndef(inputNum) || conn.inputNum === inputNum));
+                });
+            }
+            if (!connections.length) {
+                throw new Error("Not connected to destination node");
+            }
+            // restore the value
+            connections.forEach((connection) => {
+                if (connection.destination instanceof Signal) {
+                    connection.destination.overridden = false;
+                }
+                connection.destination.setValueAtTime(connection.previousValue, 0);
+            });
+            // remove the connection from the stored array
+            connectedSignals.set(signal, connectedSignals
+                .get(signal)
+                .filter((conn) => !connections.includes(conn)));
+        }
+    }
+    disconnect(signal, destination, outputNum, inputNum);
 }
 //# sourceMappingURL=Signal.js.map

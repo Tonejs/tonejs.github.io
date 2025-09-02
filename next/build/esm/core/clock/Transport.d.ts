@@ -39,7 +39,7 @@ type TransportCallback = (time: Seconds) => void;
  * Tone.getTransport().start();
  * @category Core
  */
-export declare class TransportClass extends ToneWithContext<TransportOptions> implements Emitter<TransportEventNames> {
+export declare class TransportInstance extends ToneWithContext<TransportOptions> implements Emitter<TransportEventNames> {
     readonly name: string;
     /**
      * If the transport loops or not.

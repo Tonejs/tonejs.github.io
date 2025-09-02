@@ -1,6 +1,6 @@
 import { noOp } from "../util/Interface.js";
 /**
- * TransportEvent is an internal class used by {@link TransportClass}
+ * TransportEvent is an internal class used by {@link TransportInstance}
  * to schedule events. Do no invoke this class directly, it is
  * handled from within Tone.Transport.
  */

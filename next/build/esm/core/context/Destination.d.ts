@@ -22,7 +22,7 @@ interface DestinationOptions extends ToneAudioNodeOptions {
  * oscillator.toDestination();
  * @category Core
  */
-export declare class DestinationClass extends ToneAudioNode<DestinationOptions> {
+export declare class DestinationInstance extends ToneAudioNode<DestinationOptions> {
     readonly name: string;
     input: Volume;
     output: Gain;

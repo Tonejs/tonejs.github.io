@@ -18,7 +18,7 @@ import { Seconds, Time } from "../type/Units.js";
  * Tone.Transport.start();
  * @category Core
  */
-export declare class DrawClass extends ToneWithContext<ToneWithContextOptions> {
+export declare class DrawInstance extends ToneWithContext<ToneWithContextOptions> {
     readonly name: string;
     /**
      * The duration after which events are not invoked.

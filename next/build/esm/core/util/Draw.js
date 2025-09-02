@@ -19,7 +19,7 @@ import { Timeline } from "./Timeline.js";
  * Tone.Transport.start();
  * @category Core
  */
-export class DrawClass extends ToneWithContext {
+export class DrawInstance extends ToneWithContext {
     constructor() {
         super(...arguments);
         this.name = "Draw";
@@ -102,7 +102,7 @@ export class DrawClass extends ToneWithContext {
 // 	INITIALIZATION
 //-------------------------------------
 onContextInit((context) => {
-    context.draw = new DrawClass({ context });
+    context.draw = new DrawInstance({ context });
 });
 onContextClose((context) => {
     context.draw.dispose();
