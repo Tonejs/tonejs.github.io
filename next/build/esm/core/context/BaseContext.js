@@ -1,4 +1,7 @@
 import { Emitter } from "../util/Emitter.js";
+/**
+ * Shared class for both Offline and Online Audio Context's
+ */
 export class BaseContext extends Emitter {
     constructor() {
         super(...arguments);

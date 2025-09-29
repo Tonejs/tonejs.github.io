@@ -8,6 +8,9 @@ import type { ListenerInstance as Listener } from "./Listener.js";
 export type ExcludedFromBaseAudioContext = "onstatechange" | "addEventListener" | "removeEventListener" | "listener" | "dispatchEvent" | "audioWorklet" | "destination" | "createScriptProcessor";
 export type BaseAudioContextSubset = Omit<BaseAudioContext, ExcludedFromBaseAudioContext>;
 export type ContextLatencyHint = AudioContextLatencyCategory;
+/**
+ * Shared class for both Offline and Online Audio Context's
+ */
 export declare abstract class BaseContext extends Emitter<"statechange" | "tick"> implements BaseAudioContextSubset {
     abstract createAnalyser(): AnalyserNode;
     abstract createOscillator(): OscillatorNode;

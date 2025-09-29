@@ -45,7 +45,7 @@ export function assertUsedScheduleTime(time) {
         isInsideScheduledCallback &&
         !printedScheduledWarning) {
         printedScheduledWarning = true;
-        warn("Events scheduled inside of scheduled callbacks should use the passed in scheduling time. See https://github.com/Tonejs/Tone.js/wiki/Accurate-Timing");
+        warn("Schedulable methods should include the provided time argument to ensure accurate timing. See https://github.com/Tonejs/Tone.js/wiki/Accurate-Timing");
     }
 }
 /**

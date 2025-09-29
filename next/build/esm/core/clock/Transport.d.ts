@@ -278,11 +278,23 @@ export declare class TransportInstance extends ToneWithContext<TransportOptions>
      */
     getTicksAtTime(time?: Time): Ticks;
     /**
+     * Set the Transport's {@link ticks} value at the given time
+     * @param  ticks  The tick value to set
+     * @param  time   The Context time at which to set the seconds value
+     */
+    setTicksAtTime(ticks: Ticks, time: Time): this;
+    /**
      * Return the elapsed seconds at the given time.
      * @param  time  When to get the elapsed seconds
      * @return  The number of elapsed seconds
      */
     getSecondsAtTime(time: Time): Seconds;
+    /**
+     * Set the Transport's {@link seconds} value at the given time.
+     * @param seconds The seconds value to set
+     * @param time The Context time at which to set the seconds value
+     */
+    setSecondsAtTime(seconds: Seconds, time: Time): this;
     /**
      * Pulses Per Quarter note. This is the smallest resolution
      * the Transport timing supports. This should be set once

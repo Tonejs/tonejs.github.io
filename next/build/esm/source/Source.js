@@ -137,7 +137,6 @@ export class Source extends ToneAudioNode {
             this.restart(computedTime, offset, duration);
         }
         else {
-            this.log("start", computedTime);
             this._state.setStateAtTime("started", computedTime);
             if (this._synced) {
                 // add the offset time to the event

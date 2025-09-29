@@ -7,6 +7,7 @@ import { ToneWithContext, } from "../context/ToneWithContext.js";
 import { TicksClass } from "../type/Ticks.js";
 import { TransportTimeClass } from "../type/TransportTime.js";
 import { enterScheduledCallback } from "../util/Debug.js";
+import { assertUsedScheduleTime } from "../util/Debug.js";
 import { optionsFromArguments } from "../util/Defaults.js";
 import { Emitter } from "../util/Emitter.js";
 import { readOnly, writable } from "../util/Interface.js";
@@ -447,6 +448,7 @@ export class TransportInstance extends ToneWithContext {
         return this._clock.ticks;
     }
     set ticks(t) {
+        assertUsedScheduleTime();
         if (this._clock.ticks !== t) {
             const now = this.now();
             // stop everything synced to the transport
@@ -475,12 +477,30 @@ export class TransportInstance extends ToneWithContext {
         return this._clock.getTicksAtTime(time);
     }
     /**
+     * Set the Transport's {@link ticks} value at the given time
+     * @param  ticks  The tick value to set
+     * @param  time   The Context time at which to set the seconds value
+     */
+    setTicksAtTime(ticks, time) {
+        this._clock.setTicksAtTime(ticks, time);
+        return this;
+    }
+    /**
      * Return the elapsed seconds at the given time.
      * @param  time  When to get the elapsed seconds
      * @return  The number of elapsed seconds
      */
     getSecondsAtTime(time) {
         return this._clock.getSecondsAtTime(time);
+    }
+    /**
+     * Set the Transport's {@link seconds} value at the given time.
+     * @param seconds The seconds value to set
+     * @param time The Context time at which to set the seconds value
+     */
+    setSecondsAtTime(seconds, time) {
+        this.setTicksAtTime(this.toTicks(seconds), time);
+        return this;
     }
     /**
      * Pulses Per Quarter note. This is the smallest resolution
