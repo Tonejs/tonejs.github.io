@@ -47,6 +47,7 @@ export class Signal extends ToneAudioNode {
         this._constantSource.start(0);
         this.input = this._param = this._constantSource.offset;
     }
+    /** @inheritdoc */
     static getDefaults() {
         return Object.assign(ToneAudioNode.getDefaults(), {
             convert: true,
@@ -54,16 +55,19 @@ export class Signal extends ToneAudioNode {
             value: 0,
         });
     }
+    /** @inheritdoc */
     connect(destination, outputNum = 0, inputNum = 0) {
         // start it only when connected to something
         connectSignal(this, destination, outputNum, inputNum);
         return this;
     }
+    /** @inheritdoc */
     disconnect(destination, outputNum, inputNum) {
         // disconnect the signal
         disconnectSignal(this, destination, outputNum, inputNum);
         return this;
     }
+    /** @inheritdoc */
     dispose() {
         super.dispose();
         this._param.dispose();
@@ -75,82 +79,101 @@ export class Signal extends ToneAudioNode {
     // just a proxy for the ConstantSourceNode's offset AudioParam
     // all docs are generated from AbstractParam.ts
     //-------------------------------------
+    /** @inheritdoc */
     setValueAtTime(value, time) {
         this._param.setValueAtTime(value, time);
         return this;
     }
+    /** @inheritdoc */
     getValueAtTime(time) {
         return this._param.getValueAtTime(time);
     }
+    /** @inheritdoc */
     setRampPoint(time) {
         this._param.setRampPoint(time);
         return this;
     }
+    /** @inheritdoc */
     linearRampToValueAtTime(value, time) {
         this._param.linearRampToValueAtTime(value, time);
         return this;
     }
+    /** @inheritdoc */
     exponentialRampToValueAtTime(value, time) {
         this._param.exponentialRampToValueAtTime(value, time);
         return this;
     }
+    /** @inheritdoc */
     exponentialRampTo(value, rampTime, startTime) {
         this._param.exponentialRampTo(value, rampTime, startTime);
         return this;
     }
+    /** @inheritdoc */
     linearRampTo(value, rampTime, startTime) {
         this._param.linearRampTo(value, rampTime, startTime);
         return this;
     }
+    /** @inheritdoc */
     targetRampTo(value, rampTime, startTime) {
         this._param.targetRampTo(value, rampTime, startTime);
         return this;
     }
+    /** @inheritdoc */
     exponentialApproachValueAtTime(value, time, rampTime) {
         this._param.exponentialApproachValueAtTime(value, time, rampTime);
         return this;
     }
+    /** @inheritdoc */
     setTargetAtTime(value, startTime, timeConstant) {
         this._param.setTargetAtTime(value, startTime, timeConstant);
         return this;
     }
+    /** @inheritdoc */
     setValueCurveAtTime(values, startTime, duration, scaling) {
         this._param.setValueCurveAtTime(values, startTime, duration, scaling);
         return this;
     }
+    /** @inheritdoc */
     cancelScheduledValues(time) {
         this._param.cancelScheduledValues(time);
         return this;
     }
+    /** @inheritdoc */
     cancelAndHoldAtTime(time) {
         this._param.cancelAndHoldAtTime(time);
         return this;
     }
+    /** @inheritdoc */
     rampTo(value, rampTime, startTime) {
         this._param.rampTo(value, rampTime, startTime);
         return this;
     }
+    /** @inheritdoc */
     get value() {
         return this._param.value;
     }
     set value(value) {
         this._param.value = value;
     }
+    /** @inheritdoc */
     get convert() {
         return this._param.convert;
     }
     set convert(convert) {
         this._param.convert = convert;
     }
+    /** @inheritdoc */
     get units() {
         return this._param.units;
     }
+    /** @inheritdoc */
     get overridden() {
         return this._param.overridden;
     }
     set overridden(overridden) {
         this._param.overridden = overridden;
     }
+    /** @inheritdoc */
     get maxValue() {
         return this._param.maxValue;
     }
@@ -190,7 +213,7 @@ export function connectSignal(signal, destination, outputNum, inputNum) {
         // reset the value
         destination.setValueAtTime(0, 0);
         // mark the value as overridden
-        if (destination instanceof Signal) {
+        if (destination instanceof Signal || destination instanceof Param) {
             destination.overridden = true;
         }
         // store the connection
@@ -233,7 +256,8 @@ export function disconnectSignal(signal, destination, outputNum, inputNum) {
             }
             // restore the value
             connections.forEach((connection) => {
-                if (connection.destination instanceof Signal) {
+                if (connection.destination instanceof Signal ||
+                    connection.destination instanceof Param) {
                     connection.destination.overridden = false;
                 }
                 connection.destination.setValueAtTime(connection.previousValue, 0);

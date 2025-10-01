@@ -48,31 +48,54 @@ export declare class Signal<TypeName extends UnitName = "number"> extends ToneAu
      */
     constructor(value?: UnitMap[TypeName], units?: TypeName);
     constructor(options?: Partial<SignalOptions<TypeName>>);
+    /** @inheritdoc */
     static getDefaults(): SignalOptions<any>;
+    /** @inheritdoc */
     connect(destination: InputNode, outputNum?: number, inputNum?: number): this;
+    /** @inheritdoc */
     disconnect(destination?: InputNode, outputNum?: number, inputNum?: number): this;
+    /** @inheritdoc */
     dispose(): this;
+    /** @inheritdoc */
     setValueAtTime(value: UnitMap[TypeName], time: Time): this;
+    /** @inheritdoc */
     getValueAtTime(time: Time): UnitMap[TypeName];
+    /** @inheritdoc */
     setRampPoint(time: Time): this;
+    /** @inheritdoc */
     linearRampToValueAtTime(value: UnitMap[TypeName], time: Time): this;
+    /** @inheritdoc */
     exponentialRampToValueAtTime(value: UnitMap[TypeName], time: Time): this;
+    /** @inheritdoc */
     exponentialRampTo(value: UnitMap[TypeName], rampTime: Time, startTime?: Time): this;
+    /** @inheritdoc */
     linearRampTo(value: UnitMap[TypeName], rampTime: Time, startTime?: Time): this;
+    /** @inheritdoc */
     targetRampTo(value: UnitMap[TypeName], rampTime: Time, startTime?: Time): this;
+    /** @inheritdoc */
     exponentialApproachValueAtTime(value: UnitMap[TypeName], time: Time, rampTime: Time): this;
+    /** @inheritdoc */
     setTargetAtTime(value: UnitMap[TypeName], startTime: Time, timeConstant: number): this;
+    /** @inheritdoc */
     setValueCurveAtTime(values: UnitMap[TypeName][], startTime: Time, duration: Time, scaling?: number): this;
+    /** @inheritdoc */
     cancelScheduledValues(time: Time): this;
+    /** @inheritdoc */
     cancelAndHoldAtTime(time: Time): this;
+    /** @inheritdoc */
     rampTo(value: UnitMap[TypeName], rampTime: Time, startTime?: Time): this;
+    /** @inheritdoc */
     get value(): UnitMap[TypeName];
     set value(value: UnitMap[TypeName]);
+    /** @inheritdoc */
     get convert(): boolean;
     set convert(convert: boolean);
+    /** @inheritdoc */
     get units(): UnitName;
+    /** @inheritdoc */
     get overridden(): boolean;
     set overridden(overridden: boolean);
+    /** @inheritdoc */
     get maxValue(): number;
     get minValue(): number;
     /**

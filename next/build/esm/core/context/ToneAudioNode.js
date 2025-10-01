@@ -301,7 +301,7 @@ export function connect(srcNode, dstNode, outputNumber = 0, inputNumber = 0) {
 export function disconnect(srcNode, dstNode, outputNumber = 0, inputNumber = 0) {
     // resolve the destination node
     if (isDefined(dstNode)) {
-        while (dstNode instanceof ToneAudioNode) {
+        while (dstNode instanceof ToneAudioNode || dstNode instanceof Param) {
             dstNode = dstNode.input;
         }
     }

@@ -277,6 +277,8 @@ export declare class Envelope extends ToneAudioNode<EnvelopeOptions> {
      * Connect the envelope to a destination node.
      */
     connect(destination: InputNode, outputNumber?: number, inputNumber?: number): this;
+    /** @inheritdoc */
+    disconnect(destination?: InputNode, outputNumber?: number, inputNumber?: number): this;
     /**
      * Render the envelope curve to an array of the given length.
      * Good for visualizing the envelope curve. Rescales the duration of the

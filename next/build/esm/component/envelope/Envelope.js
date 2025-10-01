@@ -5,7 +5,7 @@ import { assert } from "../../core/util/Debug.js";
 import { range, timeRange } from "../../core/util/Decorator.js";
 import { optionsFromArguments } from "../../core/util/Defaults.js";
 import { isArray, isObject, isString } from "../../core/util/TypeCheck.js";
-import { connectSignal, Signal } from "../../signal/Signal.js";
+import { connectSignal, disconnectSignal, Signal, } from "../../signal/Signal.js";
 /**
  * Envelope is an [ADSR](https://en.wikipedia.org/wiki/Synthesizer#ADSR_envelope)
  * envelope generator. Envelope outputs a signal which
@@ -334,6 +334,11 @@ export class Envelope extends ToneAudioNode {
      */
     connect(destination, outputNumber = 0, inputNumber = 0) {
         connectSignal(this, destination, outputNumber, inputNumber);
+        return this;
+    }
+    /** @inheritdoc */
+    disconnect(destination, outputNumber = 0, inputNumber = 0) {
+        disconnectSignal(this, destination, outputNumber, inputNumber);
         return this;
     }
     /**

@@ -5,5 +5,8 @@ export type SignalOperatorOptions = ToneAudioNodeOptions;
  */
 export declare abstract class SignalOperator<Options extends SignalOperatorOptions> extends ToneAudioNode<Options> {
     constructor(options?: Partial<Options>);
+    /** @inheritdoc */
     connect(destination: InputNode, outputNum?: number, inputNum?: number): this;
+    /** @inheritdoc */
+    disconnect(destination: InputNode, outputNum?: number, inputNum?: number): this;
 }

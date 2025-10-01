@@ -159,6 +159,10 @@ export declare class LFO extends ToneAudioNode<LFOOptions> {
      */
     connect(node: InputNode, outputNum?: number, inputNum?: number): this;
     /**
+     * Disconnect the LFO.
+     */
+    disconnect(destination?: InputNode, outputNum?: number, inputNum?: number): this;
+    /**
      * Private methods borrowed from Param
      */
     private _fromType;

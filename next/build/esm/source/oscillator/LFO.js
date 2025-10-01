@@ -5,7 +5,7 @@ import { optionsFromArguments } from "../../core/util/Defaults.js";
 import { readOnly } from "../../core/util/Interface.js";
 import { AudioToGain } from "../../signal/AudioToGain.js";
 import { Scale } from "../../signal/Scale.js";
-import { connectSignal, Signal } from "../../signal/Signal.js";
+import { connectSignal, disconnectSignal, Signal, } from "../../signal/Signal.js";
 import { Zero } from "../../signal/Zero.js";
 import { Oscillator } from "./Oscillator.js";
 /**
@@ -222,6 +222,13 @@ export class LFO extends ToneAudioNode {
             this.units = node.units;
         }
         connectSignal(this, node, outputNum, inputNum);
+        return this;
+    }
+    /**
+     * Disconnect the LFO.
+     */
+    disconnect(destination, outputNum = 0, inputNum = 0) {
+        disconnectSignal(this, destination, outputNum, inputNum);
         return this;
     }
     dispose() {
