@@ -6,14 +6,17 @@ import { noOp, readOnly } from "../util/Interface.js";
 import { StateTimeline } from "../util/StateTimeline.js";
 import { TickSource } from "./TickSource.js";
 /**
- * A sample accurate clock which provides a callback at the given rate.
- * While the callback is not sample-accurate (it is still susceptible to
- * loose JS timing), the time passed in as the argument to the callback
- * is precise. For most applications, it is better to use Tone.Transport
- * instead of the Clock by itself since you can synchronize multiple callbacks.
+ * A sample-accurate clock that provides a callback at a given rate.
+ *
+ * While the callback is not sample-accurate (it is susceptible to
+ * loose JavaScript timing), the time passed to the callback is precise.
+ *
+ * For most applications, it is better to use {@link Transport} instead of the
+ * Clock by itself, since you can synchronize multiple callbacks.
+ *
  * @example
- * // the callback will be invoked approximately once a second
- * // and will print the time exactly once a second apart.
+ * // The callback will be invoked approximately once a second,
+ * // and it will print the time exactly one second apart.
  * const clock = new Tone.Clock(time => {
  * 	console.log(time);
  * }, 1);
@@ -67,16 +70,15 @@ export class Clock extends ToneWithContext {
         });
     }
     /**
-     * Returns the playback state of the source, either "started", "stopped" or "paused".
+     * The playback state of the clock, either "started", "stopped", or "paused".
      */
     get state() {
         return this._state.getValueAtTime(this.now());
     }
     /**
-     * Start the clock at the given time. Optionally pass in an offset
-     * of where to start the tick counter from.
-     * @param  time    The time the clock should start
-     * @param offset  Where the tick counter starts counting from.
+     * Start the clock at the given time.
+     * @param time The time the clock should start.
+     * @param offset The number of ticks to start the clock from.
      */
     start(time, offset) {
         // make sure the context is running
@@ -101,7 +103,7 @@ export class Clock extends ToneWithContext {
      * 	console.log(time);
      * }, 1);
      * clock.start();
-     * // stop the clock after 10 seconds
+     * // Stop the clock after 10 seconds.
      * clock.stop("+10");
      */
     stop(time) {
@@ -117,7 +119,7 @@ export class Clock extends ToneWithContext {
     }
     /**
      * Pause the clock. Pausing does not reset the tick counter.
-     * @param time The time when the clock should stop.
+     * @param time The time when the clock should pause.
      */
     pause(time) {
         const computedTime = this.toSeconds(time);
@@ -131,8 +133,9 @@ export class Clock extends ToneWithContext {
         return this;
     }
     /**
-     * The number of times the callback was invoked. Starts counting at 0
-     * and increments after the callback was invoked.
+     * The number of times the callback has been invoked.
+     *
+     * Starts counting at 0 and increments after the callback is invoked.
      */
     get ticks() {
         return Math.ceil(this.getTicksAtTime(this.now()));
@@ -141,7 +144,9 @@ export class Clock extends ToneWithContext {
         this._tickSource.ticks = t;
     }
     /**
-     * The time since ticks=0 that the Clock has been running. Accounts for tempo curves
+     * The time since ticks=0 that the clock has been running.
+     *
+     * Accounts for tempo curves.
      */
     get seconds() {
         return this._tickSource.seconds;
@@ -151,27 +156,30 @@ export class Clock extends ToneWithContext {
     }
     /**
      * Return the elapsed seconds at the given time.
-     * @param  time  When to get the elapsed seconds
-     * @return  The number of elapsed seconds
+     * @param time When to get the elapsed seconds.
+     * @return The number of elapsed seconds.
      */
     getSecondsAtTime(time) {
         return this._tickSource.getSecondsAtTime(time);
     }
     /**
      * Set the clock's ticks at the given time.
-     * @param  ticks The tick value to set
-     * @param  time  When to set the tick value
+     * @param ticks The tick value to set.
+     * @param time When to set the tick value.
      */
     setTicksAtTime(ticks, time) {
         this._tickSource.setTicksAtTime(ticks, time);
         return this;
     }
     /**
-     * Get the time of the given tick. The second argument
-     * is when to test before. Since ticks can be set (with setTicksAtTime)
-     * there may be multiple times for a given tick value.
-     * @param  tick The tick number.
-     * @param  before When to measure the tick value from.
+     * Get the time of the given tick.
+     *
+     * The second argument is when to test before. Since ticks can be set
+     * (with {@link setTicksAtTime}), there may be multiple times for a given
+     * tick value.
+     *
+     * @param tick The tick number.
+     * @param before When to measure the tick value from.
      * @return The time of the tick
      */
     getTimeOfTick(tick, before = this.now()) {
@@ -179,15 +187,15 @@ export class Clock extends ToneWithContext {
     }
     /**
      * Get the clock's ticks at the given time.
-     * @param  time  When to get the tick value
+     * @param time When to get the tick value.
      * @return The tick value at the given time.
      */
     getTicksAtTime(time) {
         return this._tickSource.getTicksAtTime(time);
     }
     /**
-     * Get the time of the next tick
-     * @param  offset The tick number.
+     * Get the time of the next tick.
+     * @param offset The tick number.
      */
     nextTickTime(offset, when) {
         const computedTime = this.toSeconds(when);

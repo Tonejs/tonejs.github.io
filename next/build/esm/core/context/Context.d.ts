@@ -20,25 +20,25 @@ export interface ContextTimeoutEvent {
     time: Seconds;
 }
 /**
- * Wrapper around the native AudioContext.
+ * Wraps the native AudioContext.
  * @category Core
  */
 export declare class Context extends BaseContext {
     readonly name: string;
     /**
-     * private reference to the BaseAudioContext
+         * A private reference to the BaseAudioContext.
      */
     protected readonly _context: AnyAudioContext;
     /**
-     * A reliable callback method
+     * A reliable callback method.
      */
     private readonly _ticker;
     /**
-     * The default latency hint
+     * The default latency hint.
      */
     private _latencyHint;
     /**
-     * An object containing all of the constants AudioBufferSourceNodes
+     * An object containing all of the AudioBufferSourceNodes with constant values.
      */
     private _constants;
     /**
@@ -240,24 +240,30 @@ export declare class Context extends BaseContext {
      */
     private _timeoutLoop;
     /**
-     * A setTimeout which is guaranteed by the clock source.
+     * A `setTimeout` which is guaranteed by the clock source.
+     *
      * Also runs in the offline context.
-     * @param  fn       The callback to invoke
-     * @param  timeout  The timeout in seconds
-     * @returns ID to use when invoking Context.clearTimeout
+     *
+     * @param fn The callback to invoke.
+     * @param timeout The timeout in seconds.
+     * @returns ID to use when invoking {@link clearTimeout}.
      */
     setTimeout(fn: (...args: any[]) => void, timeout: Seconds): number;
     /**
-     * Clears a previously scheduled timeout with Tone.context.setTimeout
-     * @param  id  The ID returned from setTimeout
+     * Clears a previously scheduled timeout with {@link setTimeout}.
+     * @param id The ID returned from {@link setTimeout}.
      */
     clearTimeout(id: number): this;
     /**
-     * Clear the function scheduled by {@link setInterval}
+     * Clear the function scheduled by {@link setInterval}.
+     * @param id The ID returned from {@link setInterval}.
      */
     clearInterval(id: number): this;
     /**
-     * Adds a repeating event to the context's callback clock
+     * Adds a repeating event to the context's callback clock.
+     * @param fn The callback to invoke.
+     * @param interval The timeout in seconds.
+     * @returns ID to use when invoking {@link clearInterval}.
      */
     setInterval(fn: (...args: any[]) => void, interval: Seconds): number;
 }
