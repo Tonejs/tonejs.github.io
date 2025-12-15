@@ -59,6 +59,11 @@ export declare class Oscillator extends Source<ToneOscillatorOptions> implements
      */
     protected _start(time?: Time): void;
     /**
+     * Cleans up the connections to the oscillator for online contexts once it
+     * has stopped.
+     */
+    private _cleanUpConnections;
+    /**
      * stop the oscillator
      */
     protected _stop(time?: Time): void;

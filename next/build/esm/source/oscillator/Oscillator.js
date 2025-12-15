@@ -66,7 +66,10 @@ export class Oscillator extends Source {
         // new oscillator with previous values
         const oscillator = new ToneOscillatorNode({
             context: this.context,
-            onended: () => this.onstop(this),
+            onended: () => {
+                this._cleanUpConnections(oscillator);
+                this.onstop(this);
+            },
         });
         this._oscillator = oscillator;
         if (this._wave) {
@@ -81,6 +84,19 @@ export class Oscillator extends Source {
         this.detune.connect(this._oscillator.detune);
         // start the oscillator
         this._oscillator.start(computedTime);
+    }
+    /**
+     * Cleans up the connections to the oscillator for online contexts once it
+     * has stopped.
+     */
+    _cleanUpConnections(oscillator) {
+        if (this.context.isOffline) {
+            return;
+        }
+        // Clean up connections fixes #1379
+        this.frequency.disconnect(oscillator.frequency);
+        this.detune.disconnect(oscillator.detune);
+        oscillator.disconnect();
     }
     /**
      * stop the oscillator
