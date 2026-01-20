@@ -10,10 +10,6 @@
   url : https://apps.musedlab.org/groovepizza/
   image : https://drive.google.com/thumbnail?id=1K1woFLltDUWHqmu9Snd9Q5st1TMpp6Z1&sz=w400-h400
 
-- title : Chromatic
-  url : https://chromatic.funktroniclabs.com/
-  image : https://drive.google.com/thumbnail?id=1HYcs1oitlkfAVFzOhR4QY7hq8eo50zF1&sz=w400-h400
-
 - title : Jazz.Computer
   url : http://jazz.computer/
   image : https://drive.google.com/thumbnail?id=1tBbftWcCa4e9OFZ-cyiHutTK6V_0X0WI&sz=w400-h400
@@ -26,14 +22,6 @@
   url : http://robertvinluan.com/Ramsophone/
   image : https://drive.google.com/thumbnail?id=1z0h1ADqHs7E5LePNR8RUfSgaJFImm0Kl&sz=w400-h400
 
-- title : Solace
-  url : http://www.rememberspook.com/
-  image : https://drive.google.com/thumbnail?id=1I2A4Hfi2X3bHxeJ9IFZOpHO1EzeiHVBF&sz=w400-h400
-
-- title : motionEmotion
-  url : https://motionemotion.herokuapp.com/
-  image : https://drive.google.com/thumbnail?id=1TbuKGrDpmXPqMHwMi2VJ1ueca-Ua-tTe&sz=w400-h400
-
 - title : Hypercube
   url : http://eddietree.github.io/hypercube/
   image : https://drive.google.com/thumbnail?id=1CE_OVAfsEQ953bn1hG7I_taOI3HQKtq_&sz=w400-h400
@@ -42,17 +30,9 @@
   url : https://experiments.withgoogle.com/ai/ai-duet/view/
   image : https://drive.google.com/thumbnail?id=1I934UxRFPpF2aWYBTejRAOnntOrsIwLX&sz=w400-h400
 
-- title : Solarbeat
-  url : http://www.whitevinyldesign.com/solarbeat/
-  image : https://drive.google.com/thumbnail?id=1yotHCA_7f2bnN2iA0aR8ohZpLet5uIB4&sz=w400-h400
-
 - title : Infinite Drum Machine
   url : https://experiments.withgoogle.com/ai/drum-machine
   image : https://drive.google.com/thumbnail?id=1esFZh6zQxlsfLZvFa99nhLMoA6KeHiEP&sz=w400-h400
-
-- title : Block Chords
-  url : http://dev.abe.sh/block-chords/
-  image : https://drive.google.com/thumbnail?id=15s_cvqr9U4a0POO5TJmvcfeCZS2aJbs-&sz=w400-h400
 
 - title : This is Not a Machine Learning
   url : http://posttool.github.io/
@@ -61,14 +41,6 @@
 - title : Scratch + Tone.js
   url : http://ericrosenbaum.github.io/tone-synth-extension/
   image : https://drive.google.com/thumbnail?id=1GV5WnVS1p1XGggbzVX60SqTbV_47QQQs&sz=w400-h400
-
-- title : Game of Reich
-  url : http://nexusosc.com/gameofreich/
-  image : https://drive.google.com/thumbnail?id=18c0EB4mB6vez9wpxPjvXQTYTsjb5IO6c&sz=w400-h400
-
-- title : Tweet FM
-  url : https://tweet-fm.herokuapp.com/
-  image : https://drive.google.com/thumbnail?id=1LhfV7EZ8tXIz6oAnWq7zoDB3qoSN41Vs&sz=w400-h400
 
 - title : TextXoX
   url : http://rustleworks.com/textxox/
@@ -90,10 +62,6 @@
   url : http://douglastarr.com/keyboard-boogie
   image : https://drive.google.com/thumbnail?id=1aozg3MQsk9jFAzY2dcRtvAlTnDCdqSQo&sz=w400-h400
 
-- title : Reflect
-  url : http://reflect.sydneyzh.com/
-  image : https://drive.google.com/thumbnail?id=1eot5y-6mlXh4q-Cn0I8p1qsMhp8bCF_R&sz=w400-h400
-
 - title : Music Blocks
   url : http://walterbender.github.io/musicblocks/
   image : https://drive.google.com/thumbnail?id=16sfehsMDyq10nj3xpG5rOc3OYheSTmjh&sz=w400-h400
@@ -102,10 +70,6 @@
   url : https://uduk.org/
   image : https://drive.google.com/thumbnail?id=1jxjFSuW0yqE6nkZKCgngH2SL8KAyzyZg&sz=w400-h400
 
-- title : 2016.Management
-  url : http://2016.management/
-  image : https://drive.google.com/thumbnail?id=1Dk1_58Bgn_JrSVSvxqemw1C4lX-0xAAy&sz=w400-h400
-
 - title : microscale
   url : http://alestsurko.by/microscale/
   image : https://drive.google.com/thumbnail?id=1aYFF9KVylI2S2K5wF4Sdf6wniZkzgYzR&sz=w400-h400
@@ -113,10 +77,6 @@
 - title : holdspace
   url : http://holdspace.surge.sh/
   image : https://drive.google.com/thumbnail?id=1pIYsBspwBuRO_sFerE75Xl-PhOKzL_7f&sz=w400-h400
-
-- title : Sequ
-  url : http://sequ.timpulver.de/
-  image : https://drive.google.com/thumbnail?id=1PUen7SJrLIi2yYWdNVBlO-luSs9Ia0au&sz=w400-h400
 
 - title : duly noted
   url : https://p5js.org/assets/p5_featured/maya-dulynoted/
@@ -162,10 +122,6 @@
   url : http://note.kitchen/
   image : https://drive.google.com/thumbnail?id=1WCYeZo88uvD8i7q-zwcV3ABIMCvZAj0j&sz=w400-h400
 
-- title : Moolody
-  url : http://keyuguo.net/MoolodyWebVersion/
-  image : https://drive.google.com/thumbnail?id=1UsxCIlHX_-Wl1k7MxRrUXF_iPBQl94D_&sz=w400-h400
-
 - title : Fractal Fantasy
   url : http://fractalfantasy.net/liquid-entropy
   image : https://drive.google.com/thumbnail?id=1TX7JH-XoA3NBFIjvHmSAJCVt1L54Ixtk&sz=w400-h400
@@ -178,10 +134,6 @@
   url : https://yoolthefool.github.io/onCall/
   image : https://drive.google.com/thumbnail?id=15_9X9fs8tzUIOXX0sFfY5Jt7VPoirlLS&sz=w400-h400
 
-- title : Blips
-  url : http://blipsoflife.herokuapp.com/
-  image : https://drive.google.com/thumbnail?id=10WZzwuelJ13Jb2ARsCMKaN1GAlU004TU&sz=w400-h400
-
 - title : Face The Music
   url : https://face-the-music.glitch.me
   image : https://drive.google.com/thumbnail?id=1Bc9umt9SICFNmjd-oYJ4ycYb49Eu1oIE&sz=w400-h400
@@ -189,10 +141,6 @@
 - title : DeepDrum
   url : https://gogul09.github.io/software/deep-drum
   image : https://drive.google.com/thumbnail?id=1asMcdmU7cekcLWpEuZzK92DzEHQKm95q&sz=w400-h400
-
-- title : Interactive Live Input Spectrogram
-  url : https://listeningtowaves.github.io/Spectrogram
-  image : https://drive.google.com/thumbnail?id=10Rj7-Si4CVE_amyGJixp8my7yu3VzSvY&sz=w400-h400
 
 - title : Brainwave Entertainment II
   url : http://www.axisproject.net/brainwave2
@@ -214,10 +162,6 @@
   url : https://bitcoinaudio.github.io/
   image : https://drive.google.com/thumbnail?id=1Yi5dRnLX96ncagpfsXuzvAWsnk0AIkwf&sz=w400-h400
 
-- title : Euclidean Sequencer
-  url : http://euclidean-sequencer.herokuapp.com/
-  image : https://drive.google.com/thumbnail?id=1pQ1PyNaHOT_PKsJp42kjVuVM6G-wUWf1&sz=w400-h400
-
 - title : Harmopark
   url : https://www.harmopark.app
   image : https://drive.google.com/thumbnail?id=1W06AqrHM3qs2DMXHitQz82NiH8uqLvhs&sz=w400-h400
@@ -225,10 +169,6 @@
 - title : Speed Trainer / Metronome
   url : https://indiebubbler.github.io/metro
   image : https://drive.google.com/thumbnail?id=1OzneEClIIQ8EdBHGMc0uDVgbD_Kdv7uz&sz=w400-h400
-
-- title : Akson
-  url : www.akson.xyz
-  image : https://drive.google.com/thumbnail?id=1yI02wdBVYkAglmfrKChm9TBAj9_X9eQi&sz=w400-h400
 
 - title : Mala Vida - Manu Chao (Karaoke)
   url : https://www.franceinter.fr/embed/multipistes
@@ -253,10 +193,6 @@
 - title : Simple Synth
   url : https://crwi.uk/apps/synth
   image : https://drive.google.com/thumbnail?id=1FfpCzyO8U12h-gN5lIUhJfwgWII3SVg7&sz=w400-h400
-
-- title : Custom piano keys demo
-  url : http://51.38.51.120/pianokeysdemo_2/
-  image : https://drive.google.com/thumbnail?id=1k-aGPa6TmH3RT610Xc3HP6f4aQ0qvTdF&sz=w400-h400
 
 - title : Guitar Cheats
   url : https://streamer.k26.ru
@@ -326,15 +262,6 @@
   url : https://diegodorado.com/es/labs/bingo/
   image : https://drive.google.com/thumbnail?id=1EvkjAngjp3LFdcmQojErJpu_qN_4xhCX&sz=w400-h400
 
-- title : Dunka Dunka
-  url : https://dunkadunka.com/
-  image : https://drive.google.com/thumbnail?id=109QweLLnbXb8kQlSC81usGpFKVvIuYBf&sz=w400-h400
-
 - title : Weather Synth
   url : https://psherrard.github.io/patrickSherrardProject5/
   image : https://drive.google.com/thumbnail?id=1N0xP9di0VOgnK7qSsomq1FGvs798GhyA&sz=w400-h400
-
-- title : ToneMatrix Redux
-  url : https://www.maxlaumeister.com/tonematrix/
-  image : https://drive.google.com/thumbnail?id=19bC70dC08AmMMh0uP22GR3BeMnQhFaZq&sz=w400-h400
-
