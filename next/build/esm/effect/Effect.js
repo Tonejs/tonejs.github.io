@@ -22,7 +22,7 @@ export class Effect extends ToneAudioNode {
          */
         this.wet = this._dryWet.fade;
         /**
-         * connect the effectSend to the input of hte effect
+         * connect the effectSend to the input of the effect
          */
         this.effectSend = new Gain({ context: this.context });
         /**

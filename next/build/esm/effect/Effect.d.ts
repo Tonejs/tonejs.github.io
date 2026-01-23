@@ -24,7 +24,7 @@ export declare abstract class Effect<Options extends EffectOptions> extends Tone
      */
     wet: Signal<"normalRange">;
     /**
-     * connect the effectSend to the input of hte effect
+     * connect the effectSend to the input of the effect
      */
     protected effectSend: Gain;
     /**
