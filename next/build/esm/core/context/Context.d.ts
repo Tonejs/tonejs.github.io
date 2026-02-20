@@ -26,7 +26,7 @@ export interface ContextTimeoutEvent {
 export declare class Context extends BaseContext {
     readonly name: string;
     /**
-         * A private reference to the BaseAudioContext.
+     * A private reference to the BaseAudioContext.
      */
     protected readonly _context: AnyAudioContext;
     /**
@@ -228,6 +228,7 @@ export declare class Context extends BaseContext {
     close(): Promise<void>;
     /**
      * **Internal** Generate a looped buffer at some constant value.
+     * @deprecated
      */
     getConstant(val: number): AudioBufferSourceNode;
     /**

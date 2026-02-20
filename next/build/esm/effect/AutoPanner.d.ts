@@ -1,8 +1,8 @@
-import { Frequency, NormalRange } from "../core/type/Units.js";
+import { Panner } from "../component/channel/Panner.js";
+import { Frequency } from "../core/type/Units.js";
 import { LFOEffect, LFOEffectOptions } from "./LFOEffect.js";
 export interface AutoPannerOptions extends LFOEffectOptions {
     channelCount: number;
-    width: NormalRange;
 }
 /**
  * AutoPanner is a {@link Panner} with an {@link LFO} connected to the pan amount.
@@ -20,22 +20,12 @@ export declare class AutoPanner extends LFOEffect<AutoPannerOptions> {
     /**
      * The filter node
      */
-    private readonly _panner;
-    private _width;
+    readonly _panner: Panner;
     /**
      * @param frequency Rate of left-right oscillation.
      */
     constructor(frequency?: Frequency);
     constructor(options?: Partial<AutoPannerOptions>);
     static getDefaults(): AutoPannerOptions;
-    /**
-     * Updates the LFO min/max based on width
-     */
-    private _updateLFORange;
-    /**
-     * The width of the panning effect. 0 = no panning, 1 = full left-right panning.
-     */
-    get width(): NormalRange;
-    set width(width: NormalRange);
     dispose(): this;
 }

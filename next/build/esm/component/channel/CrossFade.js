@@ -4,6 +4,7 @@ import { optionsFromArguments } from "../../core/util/Defaults.js";
 import { readOnly } from "../../core/util/Interface.js";
 import { GainToAudio } from "../../signal/GainToAudio.js";
 import { Signal } from "../../signal/Signal.js";
+import { ToneConstantSource } from "../../signal/ToneConstantSource.js";
 /**
  * Tone.Crossfade provides equal power fading between two inputs.
  * More on crossfading technique [here](https://en.wikipedia.org/wiki/Fade_(audio_engineering)#Crossfading).
@@ -73,7 +74,11 @@ export class CrossFade extends ToneAudioNode {
             value: options.fade,
         });
         readOnly(this, "fade");
-        this.context.getConstant(1).connect(this._panner);
+        this._constant = new ToneConstantSource({
+            context: this.context,
+            offset: 1,
+        }).start();
+        this._constant.connect(this._panner);
         this._panner.connect(this._split);
         // this is necessary for standardized-audio-context
         // doesn't make any difference for the native AudioContext
@@ -100,6 +105,7 @@ export class CrossFade extends ToneAudioNode {
         this._g2a.dispose();
         this._panner.disconnect();
         this._split.disconnect();
+        this._constant.dispose();
         return this;
     }
 }

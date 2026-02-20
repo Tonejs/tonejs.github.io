@@ -47,6 +47,10 @@ export declare class CrossFade extends ToneAudioNode<CrossFadeOptions> {
      */
     private _g2a;
     /**
+     * The constant source which is used to control the panner
+     */
+    private _constant;
+    /**
      * The input which is at full level when fade = 0
      */
     readonly a: Gain;

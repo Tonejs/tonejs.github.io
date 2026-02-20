@@ -1,5 +1,4 @@
-import { Gain } from "../core/context/Gain.js";
-import { ToneAudioNodeOptions } from "../core/context/ToneAudioNode.js";
+import { ToneAudioNode, ToneAudioNodeOptions } from "../core/context/ToneAudioNode.js";
 import { SignalOperator } from "./SignalOperator.js";
 /**
  * Tone.Zero outputs 0's at audio-rate. The reason this has to be
@@ -10,13 +9,13 @@ import { SignalOperator } from "./SignalOperator.js";
 export declare class Zero extends SignalOperator<ToneAudioNodeOptions> {
     readonly name: string;
     /**
-     * The gain node which connects the constant source to the output
+     * A constant source which outputs 0
      */
-    private _gain;
+    private _constant;
     /**
      * Only outputs 0
      */
-    output: Gain<"gain">;
+    output: ToneAudioNode;
     /**
      * no input node
      */

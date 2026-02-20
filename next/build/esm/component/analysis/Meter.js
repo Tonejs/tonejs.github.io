@@ -1,4 +1,4 @@
-import { gainToDb } from "../../core/type/Conversions.js";
+import { dbToGain, gainToDb } from "../../core/type/Conversions.js";
 import { warn } from "../../core/util/Debug.js";
 import { optionsFromArguments } from "../../core/util/Defaults.js";
 import { Analyser } from "./Analyser.js";
@@ -28,6 +28,10 @@ export class Meter extends MeterBase {
         ]);
         super(options);
         this.name = "Meter";
+        /**
+         * Below this threshold, stop smoothing.
+         */
+        this.minValue = dbToGain(-100);
         this.input =
             this.output =
                 this._analyser =
@@ -69,15 +73,20 @@ export class Meter extends MeterBase {
         const channelValues = this.channels === 1
             ? [aValues]
             : aValues;
-        const vals = channelValues.map((values, index) => {
+        const vals = channelValues.map((values, channel) => {
             const totalSquared = values.reduce((total, current) => total + current * current, 0);
             const rms = Math.sqrt(totalSquared / values.length);
-            // the rms can only fall at the rate of the smoothing
-            // but can jump up instantly
-            this._rms[index] = Math.max(rms, this._rms[index] * this.smoothing);
+            if (rms < this.minValue) {
+                this._rms[channel] = 0;
+            }
+            else {
+                // the rms can only fall at the rate of the smoothing
+                // but can jump up instantly
+                this._rms[channel] = Math.max(rms, this._rms[channel] * this.smoothing);
+            }
             return this.normalRange
-                ? this._rms[index]
-                : gainToDb(this._rms[index]);
+                ? this._rms[channel]
+                : gainToDb(this._rms[channel]);
         });
         if (this.channels === 1) {
             return vals[0];

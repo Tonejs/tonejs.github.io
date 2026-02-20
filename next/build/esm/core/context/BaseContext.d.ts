@@ -43,6 +43,9 @@ export declare abstract class BaseContext extends Emitter<"statechange" | "tick"
     abstract clearTimeout(_id: number): this;
     abstract setInterval(_fn: (...args: any[]) => void, _interval: Seconds): number;
     abstract clearInterval(_id: number): this;
+    /**
+     * @deprecated use ToneConstantSource instead
+     */
     abstract getConstant(_val: number): AudioBufferSourceNode;
     abstract get currentTime(): Seconds;
     abstract get state(): AudioContextState;

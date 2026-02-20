@@ -51,6 +51,10 @@ export declare class Meter extends MeterBase<MeterOptions> {
      */
     getLevel(): number | number[];
     /**
+     * Below this threshold, stop smoothing.
+     */
+    private minValue;
+    /**
      * Get the current value of the incoming signal.
      * Output is in decibels when {@link normalRange} is `false`.
      * If {@link channels} = 1, then the output is a single number

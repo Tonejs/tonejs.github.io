@@ -376,6 +376,7 @@ export class Context extends BaseContext {
     }
     /**
      * **Internal** Generate a looped buffer at some constant value.
+     * @deprecated
      */
     getConstant(val) {
         if (this._constants.has(val)) {
