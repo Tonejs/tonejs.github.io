@@ -1,8 +1,8 @@
-import { Degrees, Frequency, NormalRange, Time } from "../core/type/Units.js";
+import { Degrees, Frequency, NormalRange } from "../core/type/Units.js";
 import { Signal } from "../signal/Signal.js";
 import { ToneOscillatorType } from "../source/oscillator/OscillatorInterface.js";
-import { StereoEffect, StereoEffectOptions } from "./StereoEffect.js";
-export interface TremoloOptions extends StereoEffectOptions {
+import { LFOStereoEffect, LFOStereoEffectOptions } from "./LFOStereoEffect.js";
+export interface TremoloOptions extends LFOStereoEffectOptions {
     frequency: Frequency;
     type: ToneOscillatorType;
     depth: NormalRange;
@@ -20,16 +20,8 @@ export interface TremoloOptions extends StereoEffectOptions {
  *
  * @category Effect
  */
-export declare class Tremolo extends StereoEffect<TremoloOptions> {
+export declare class Tremolo extends LFOStereoEffect<TremoloOptions> {
     readonly name: string;
-    /**
-     * The tremolo LFO in the left channel
-     */
-    private _lfoL;
-    /**
-     * The tremolo LFO in the left channel
-     */
-    private _lfoR;
     /**
      * Where the gain is multiplied
      */
@@ -38,10 +30,6 @@ export declare class Tremolo extends StereoEffect<TremoloOptions> {
      * Where the gain is multiplied
      */
     private _amplitudeR;
-    /**
-     * The frequency of the tremolo.
-     */
-    readonly frequency: Signal<"frequency">;
     /**
      * The depth of the effect. A depth of 0, has no effect
      * on the amplitude, and a depth of 1 makes the amplitude
@@ -55,22 +43,6 @@ export declare class Tremolo extends StereoEffect<TremoloOptions> {
     constructor(frequency?: Frequency, depth?: NormalRange);
     constructor(options?: Partial<TremoloOptions>);
     static getDefaults(): TremoloOptions;
-    /**
-     * Start the tremolo.
-     */
-    start(time?: Time): this;
-    /**
-     * Stop the tremolo.
-     */
-    stop(time?: Time): this;
-    /**
-     * Sync the effect to the transport.
-     */
-    sync(): this;
-    /**
-     * Unsync the filter from the transport
-     */
-    unsync(): this;
     /**
      * The oscillator type.
      */

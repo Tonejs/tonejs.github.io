@@ -41,6 +41,10 @@ export declare class StereoWidener extends MidSideEffect<StereoWidenerOptions> {
      */
     private _sideMult;
     /**
+     * A constant source to get the value of 1 for the subtract node
+     */
+    private _constant;
+    /**
      * @param width The stereo width. A width of 0 is mono and 1 is stereo. 0.5 is no change.
      */
     constructor(width?: NormalRange);

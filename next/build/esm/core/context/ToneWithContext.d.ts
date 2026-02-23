@@ -103,4 +103,18 @@ export declare abstract class ToneWithContext<Options extends ToneWithContextOpt
      * player.autostart = true;
      */
     set(props: RecursivePartial<Options>): this;
+    /**
+     * Internal method which removes the onContextRunning callback.
+     */
+    private _removeOnContextRunning?;
+    /**
+     * Internal method which is called the first time the context is resumed.
+     * Useful for setting up AudioNodes which should be running as soon
+     * as the context is running, but should not be started until then.
+     */
+    protected _onContextRunning(callback: () => void): void;
+    /**
+     * Dispose and disconnect
+     */
+    dispose(): this;
 }

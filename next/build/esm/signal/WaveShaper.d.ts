@@ -48,6 +48,11 @@ export declare class WaveShaper extends SignalOperator<WaveShaperOptions> {
     constructor(options?: Partial<WaveShaperOptions>);
     static getDefaults(): WaveShaperOptions;
     /**
+     * Set the curve for the first time. This is run only after the audio context is
+     * running to avoid any context warnings.
+     */
+    private initCurve;
+    /**
      * Uses a mapping function to set the value of the curve.
      * @param mapping The function used to define the values.
      *                The mapping function take two arguments:

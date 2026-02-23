@@ -31,18 +31,26 @@ export class WaveShaper extends SignalOperator {
          * The output from the waveshaper node
          */
         this.output = this._shaper;
-        if (isArray(options.mapping) ||
-            options.mapping instanceof Float32Array) {
-            this.curve = Float32Array.from(options.mapping);
-        }
-        else if (isFunction(options.mapping)) {
-            this.setMap(options.mapping, options.length);
-        }
+        this._onContextRunning(() => {
+            this.initCurve(options.mapping, options.length);
+        });
     }
     static getDefaults() {
         return Object.assign(Signal.getDefaults(), {
             length: 1024,
         });
+    }
+    /**
+     * Set the curve for the first time. This is run only after the audio context is
+     * running to avoid any context warnings.
+     */
+    initCurve(mapping, length) {
+        if (isArray(mapping) || mapping instanceof Float32Array) {
+            this.curve = Float32Array.from(mapping);
+        }
+        else if (isFunction(mapping)) {
+            this.setMap(mapping, length);
+        }
     }
     /**
      * Uses a mapping function to set the value of the curve.

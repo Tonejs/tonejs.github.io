@@ -1,8 +1,7 @@
 import { Frequency, Positive } from "../core/type/Units.js";
 import { Signal } from "../signal/Signal.js";
-import { StereoEffect, StereoEffectOptions } from "./StereoEffect.js";
-export interface PhaserOptions extends StereoEffectOptions {
-    frequency: Frequency;
+import { LFOStereoEffect, LFOStereoEffectOptions } from "./LFOStereoEffect.js";
+export interface PhaserOptions extends LFOStereoEffectOptions {
     octaves: Positive;
     stages: Positive;
     Q: Positive;
@@ -23,16 +22,8 @@ export interface PhaserOptions extends StereoEffectOptions {
  * synth.triggerAttackRelease("E3", "2n");
  * @category Effect
  */
-export declare class Phaser extends StereoEffect<PhaserOptions> {
+export declare class Phaser extends LFOStereoEffect<PhaserOptions> {
     readonly name: string;
-    /**
-     * the lfo which controls the frequency on the left side
-     */
-    private _lfoL;
-    /**
-     * the lfo which controls the frequency on the right side
-     */
-    private _lfoR;
     /**
      * the base modulation frequency
      */
@@ -53,10 +44,6 @@ export declare class Phaser extends StereoEffect<PhaserOptions> {
      * the array of filters for the left side
      */
     private _filtersR;
-    /**
-     * the frequency of the effect
-     */
-    readonly frequency: Signal<"frequency">;
     /**
      * @param frequency The speed of the phasing.
      * @param octaves The octaves of the effect.

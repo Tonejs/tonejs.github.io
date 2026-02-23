@@ -6,6 +6,7 @@ import { TransportTimeClass } from "../type/TransportTime.js";
 import { assertUsedScheduleTime } from "../util/Debug.js";
 import { getDefaultsFromInstance, optionsFromArguments, } from "../util/Defaults.js";
 import { isArray, isBoolean, isDefined, isNumber, isString, isUndef, } from "../util/TypeCheck.js";
+import { onContextRunning } from "./OnRunning.js";
 /**
  * The Base class for all nodes that have an AudioContext.
  */
@@ -171,6 +172,23 @@ export class ToneWithContext extends Tone {
                 }
             }
         });
+        return this;
+    }
+    /**
+     * Internal method which is called the first time the context is resumed.
+     * Useful for setting up AudioNodes which should be running as soon
+     * as the context is running, but should not be started until then.
+     */
+    _onContextRunning(callback) {
+        this._removeOnContextRunning = onContextRunning(this.context, callback);
+    }
+    /**
+     * Dispose and disconnect
+     */
+    dispose() {
+        var _a;
+        super.dispose();
+        (_a = this._removeOnContextRunning) === null || _a === void 0 ? void 0 : _a.call(this);
         return this;
     }
 }

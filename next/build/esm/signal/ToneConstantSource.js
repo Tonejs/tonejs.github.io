@@ -9,40 +9,18 @@ import { OneShotSource, } from "../source/OneShotSource.js";
  */
 export class ToneConstantSource extends OneShotSource {
     constructor() {
-        var _a;
         const options = optionsFromArguments(ToneConstantSource.getDefaults(), arguments, ["offset"]);
         super(options);
         this.name = "ToneConstantSource";
-        /**
-         * Once the context is started, kick off source.
-         */
-        this._contextStarted = (state) => {
-            if (state !== "running") {
-                return;
-            }
-            this._source = this.context.createConstantSource();
-            connect(this._source, this._gainNode);
-            this.offset.setParam(this._source.offset);
-            if (this.state === "started") {
-                this._source.start(0);
-            }
-        };
-        const isSuspended = !this.context.isOffline && this.context.state !== "running";
-        if (!isSuspended) {
-            this._source = this.context.createConstantSource();
-            connect(this._source, this._gainNode);
-        }
-        else {
-            this.context.on("statechange", this._contextStarted);
-        }
+        this._onContextRunning(() => this._contextStarted());
         this.offset = new Param({
             context: this.context,
             convert: options.convert,
-            param: isSuspended
+            param: !this._source
                 ? // placeholder param until the context is started
                     this.context.createGain().gain
-                : (_a = this._source) === null || _a === void 0 ? void 0 : _a.offset,
-            swappable: isSuspended,
+                : this._source.offset,
+            swappable: !this._source,
             units: options.units,
             value: options.offset,
             minValue: options.minValue,
@@ -55,6 +33,18 @@ export class ToneConstantSource extends OneShotSource {
             offset: 1,
             units: "number",
         });
+    }
+    /**
+     * Once the context is started, kick off source.
+     */
+    _contextStarted() {
+        var _a;
+        this._source = this.context.createConstantSource();
+        connect(this._source, this._gainNode);
+        (_a = this.offset) === null || _a === void 0 ? void 0 : _a.setParam(this._source.offset);
+        if (this.state === "started") {
+            this._source.start(0);
+        }
     }
     /**
      * Start the source node at the given time
@@ -83,7 +73,6 @@ export class ToneConstantSource extends OneShotSource {
         }
         (_a = this._source) === null || _a === void 0 ? void 0 : _a.disconnect();
         this.offset.dispose();
-        this.context.off("statechange", this._contextStarted);
         return this;
     }
 }

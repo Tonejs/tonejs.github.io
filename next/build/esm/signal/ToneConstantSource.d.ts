@@ -32,7 +32,7 @@ export declare class ToneConstantSource<TypeName extends UnitName = "number"> ex
     /**
      * Once the context is started, kick off source.
      */
-    private readonly _contextStarted;
+    private _contextStarted;
     /**
      * Start the source node at the given time
      * @param  time When to start the source
