@@ -58,11 +58,11 @@ export declare class UserMedia extends ToneAudioNode<UserMediaOptions> {
      * Open the media stream. If a string is passed in, it is assumed
      * to be the label or id of the stream, if a number is passed in,
      * it is the input number of the stream.
-     * @param  labelOrId The label or id of the audio input media device.
-     *                   With no argument, the default stream is opened.
+     * @param  labelOrIdOrConstraints The label or id of the audio input media device, or a getUserMedia constraints object.
+     *                   			  With no argument, the default stream is opened.
      * @return The promise is resolved when the stream is open.
      */
-    open(labelOrId?: string | number): Promise<this>;
+    open(labelOrIdOrConstraints?: string | number | MediaStreamConstraints): Promise<this>;
     /**
      * Close the media stream
      */
