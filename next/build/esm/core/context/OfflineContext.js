@@ -1,6 +1,7 @@
 import { __awaiter } from "tslib";
 import { createOfflineAudioContext } from "../context/AudioContext.js";
 import { Context } from "../context/Context.js";
+import { getContext, setContext } from "../Global.js";
 import { isOfflineAudioContext } from "../util/AdvancedTypeCheck.js";
 import { ToneAudioBuffer } from "./ToneAudioBuffer.js";
 /**
@@ -55,8 +56,12 @@ export class OfflineContext extends Context {
         return __awaiter(this, void 0, void 0, function* () {
             let index = 0;
             while (this._duration - this._currentTime >= 0) {
-                // invoke all the callbacks on that time
+                // temporarily set this offline context as the global default
+                // so that any nodes created inside tick callbacks use this context
+                const previousContext = getContext();
+                setContext(this);
                 this.emit("tick");
+                setContext(previousContext);
                 // increment the clock in block-sized chunks
                 this._currentTime += 128 / this.sampleRate;
                 // yield once a second of audio

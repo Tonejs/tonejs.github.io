@@ -18,6 +18,20 @@ export class TransportTimeClass extends TimeClass {
     _now() {
         return this.context.transport.seconds;
     }
+    _getExpressions() {
+        const expressions = super._getExpressions();
+        // Override the quantize ("@") handler so that it returns Transport time
+        // instead of AudioContext time.
+        expressions.quantize = {
+            method: (capture) => {
+                const quantTo = new TimeClass(this.context, capture).valueOf();
+                const nextSubdivisionAudioTime = this.context.transport.nextSubdivision(quantTo);
+                return this._secondsToUnits(this.context.transport.getSecondsAtTime(nextSubdivisionAudioTime));
+            },
+            regexp: /^@(.+)/,
+        };
+        return expressions;
+    }
 }
 /**
  * TransportTime is a time along the Transport's

@@ -1,6 +1,6 @@
 import { Seconds, Ticks } from "../type/Units.js";
 import { TimeClass } from "./Time.js";
-import { TimeBaseUnit, TimeValue } from "./TimeBase.js";
+import { TimeBaseUnit, TimeExpression, TimeValue } from "./TimeBase.js";
 /**
  * TransportTime is a time along the Transport's
  * timeline. It is similar to Tone.Time, but instead of evaluating
@@ -14,6 +14,7 @@ export declare class TransportTimeClass<Type extends Seconds | Ticks = Seconds> 
      * Return the current time in whichever context is relevant
      */
     protected _now(): Type;
+    protected _getExpressions(): TimeExpression<Type>;
 }
 /**
  * TransportTime is a time along the Transport's
