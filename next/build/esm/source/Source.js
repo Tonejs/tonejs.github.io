@@ -102,6 +102,15 @@ export class Source extends ToneAudioNode {
         this._volume.mute = mute;
     }
     /**
+     * Compute the buffer offset to use when the source is started mid-playback.
+     * @param explicitOffset The buffer-time offset the caller passed to `start()`
+     * @param transportElapsed Seconds of Transport time that have elapsed since
+     *   this source was scheduled to start.
+     */
+    _getSyncedStartOffset(explicitOffset, transportElapsed) {
+        return explicitOffset + transportElapsed;
+    }
+    /**
      * Ensure that the scheduled time is not before the current time.
      * Should only be used when scheduled unsynced.
      */
@@ -240,7 +249,7 @@ export class Source extends ToneAudioNode {
                                 this.toSeconds(stateEvent.duration) -
                                     startOffset;
                         }
-                        this._start(time, this.toSeconds(stateEvent.offset) + startOffset, duration);
+                        this._start(time, this._getSyncedStartOffset(this.toSeconds(stateEvent.offset), startOffset), duration);
                     }
                 }
             };

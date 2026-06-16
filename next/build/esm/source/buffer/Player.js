@@ -174,6 +174,13 @@ export class Player extends Source {
         return this;
     }
     /**
+     * Factor in the playback rate to compute the buffer offset when the player
+     * is synced to the Transport.
+     */
+    _getSyncedStartOffset(explicitOffset, transportElapsed) {
+        return explicitOffset + transportElapsed * this._playbackRate;
+    }
+    /**
      * Internal start method
      */
     _start(startTime, offset, duration) {

@@ -125,6 +125,11 @@ export declare class Player extends Source<PlayerOptions> {
      */
     start(time?: Time, offset?: Time, duration?: Time): this;
     /**
+     * Factor in the playback rate to compute the buffer offset when the player
+     * is synced to the Transport.
+     */
+    protected _getSyncedStartOffset(explicitOffset: number, transportElapsed: number): number;
+    /**
      * Internal start method
      */
     protected _start(startTime?: Time, offset?: Time, duration?: Time): void;

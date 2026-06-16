@@ -100,6 +100,13 @@ export declare abstract class Source<Options extends SourceOptions> extends Tone
     protected abstract _stop(time: Time): void;
     protected abstract _restart(time: Seconds, offset?: Time, duration?: Time): void;
     /**
+     * Compute the buffer offset to use when the source is started mid-playback.
+     * @param explicitOffset The buffer-time offset the caller passed to `start()`
+     * @param transportElapsed Seconds of Transport time that have elapsed since
+     *   this source was scheduled to start.
+     */
+    protected _getSyncedStartOffset(explicitOffset: Seconds, transportElapsed: Seconds): Seconds;
+    /**
      * Ensure that the scheduled time is not before the current time.
      * Should only be used when scheduled unsynced.
      */
