@@ -301,14 +301,23 @@ export class TickSource extends ToneWithContext {
         let error = null;
         if (lastStateEvent && lastStateEvent.state === "started") {
             const maxStartTime = Math.max(lastStateEvent.time, startTime);
-            // figure out the difference between the frequency ticks and the
+            // Figure out how far past the last whole-tick boundary maxStartTime
+            // sits, so we can compute the time of the next tick at or after it.
             const startTicks = this.frequency.getTicksAtTime(maxStartTime);
             const ticksAtStart = this.frequency.getTicksAtTime(lastStateEvent.time);
             const diff = startTicks - ticksAtStart;
-            let offset = Math.ceil(diff) - diff;
-            // guard against floating point issues
-            offset = EQ(offset, 1) ? 0 : offset;
-            let nextTickTime = this.frequency.getTimeOfTick(startTicks + offset);
+            const offset = Math.ceil(diff) - diff;
+            // Guard against floating-point issues: when startTicks is just barely
+            // above an integer tick boundary (offset ≈ 1), snap back to that integer
+            const firstTick = EQ(offset, 1)
+                ? Math.floor(startTicks)
+                : startTicks + offset;
+            let nextTickTime = this.frequency.getTimeOfTick(firstTick);
+            // Advance past any ticks that land before the start of this window
+            // to avoid any tick that was already processed.
+            if (nextTickTime < maxStartTime) {
+                nextTickTime += this.frequency.getDurationOfTicks(1, nextTickTime);
+            }
             while (nextTickTime < endTime) {
                 try {
                     callback(nextTickTime, Math.round(this.getTicksAtTime(nextTickTime)));

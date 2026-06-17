@@ -101,6 +101,10 @@ export declare class Timeline<GenericEvent extends TimelineEvent> extends Tone {
      */
     previousEvent(event: GenericEvent): GenericEvent | null;
     /**
+     * Return the index of the given event in the timeline. -1 if it is not found.
+     */
+    private _indexOf;
+    /**
      * Does a binary search on the timeline array and returns the
      * nearest event index whose time is after or equal to the given time.
      * If a time is searched before the first index in the timeline, -1 is returned.

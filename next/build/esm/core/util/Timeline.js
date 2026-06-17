@@ -63,7 +63,7 @@ export class Timeline extends Tone {
      * @returns {Timeline} this
      */
     remove(event) {
-        const index = this._timeline.indexOf(event);
+        const index = this._indexOf(event);
         if (index !== -1) {
             this._timeline.splice(index, 1);
         }
@@ -181,13 +181,42 @@ export class Timeline extends Tone {
      * @return The event right before the given event
      */
     previousEvent(event) {
-        const index = this._timeline.indexOf(event);
+        const index = this._indexOf(event);
         if (index > 0) {
             return this._timeline[index - 1];
         }
         else {
             return null;
         }
+    }
+    /**
+     * Return the index of the given event in the timeline. -1 if it is not found.
+     */
+    _indexOf(event) {
+        // Use _search since internally implemented with binary search.
+        const index = this._search(event.time);
+        if (index === -1) {
+            return -1;
+        }
+        // There may be multiple events with the same time, so find the exact event
+        // Search forward and backward for events with the same time
+        for (let i = index; i < this._timeline.length; i++) {
+            if (this._timeline[i] === event) {
+                return i;
+            }
+            else if (this._timeline[i].time !== event.time) {
+                break;
+            }
+        }
+        for (let j = index - 1; j >= 0; j--) {
+            if (this._timeline[j] === event) {
+                return j;
+            }
+            else if (this._timeline[j].time !== event.time) {
+                break;
+            }
+        }
+        return -1;
     }
     /**
      * Does a binary search on the timeline array and returns the

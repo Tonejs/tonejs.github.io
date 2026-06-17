@@ -26,6 +26,10 @@ export class Context extends BaseContext {
          */
         this._timeouts = new Timeline();
         /**
+         * A Map from timeout ID to event for O(1) lookup in clearTimeout.
+         */
+        this._timeoutMap = new Map();
+        /**
          * The timeout id counter
          */
         this._timeoutIds = 0;
@@ -405,6 +409,7 @@ export class Context extends BaseContext {
         super.dispose();
         this._ticker.dispose();
         this._timeouts.dispose();
+        this._timeoutMap.clear();
         Object.keys(this._constants).map((val) => this._constants[val].disconnect());
         this.close();
         return this;
@@ -412,6 +417,24 @@ export class Context extends BaseContext {
     //---------------------------
     // TIMEOUTS
     //---------------------------
+    /**
+     * Add a timeout event to the timeline and map.
+     */
+    _addTimeoutEvent(event) {
+        this._timeouts.add(event);
+        this._timeoutMap.set(event.id, event);
+    }
+    /**
+     * Remove a timeout event from the timeline and map.
+     */
+    _removeTimeoutEvent(event) {
+        this._timeouts.remove(event);
+        // Skips the map deletion in setInterval case where the same id
+        // is reused for the next event.
+        if (this._timeoutMap.get(event.id) === event) {
+            this._timeoutMap.delete(event.id);
+        }
+    }
     /**
      * The private loop which keeps track of the context scheduled timeouts
      * Is invoked from the clock source
@@ -423,7 +446,7 @@ export class Context extends BaseContext {
                 event.callback();
             }
             finally {
-                this._timeouts.remove(event);
+                this._removeTimeoutEvent(event);
             }
         });
     }
@@ -439,7 +462,7 @@ export class Context extends BaseContext {
     setTimeout(fn, timeout) {
         this._timeoutIds++;
         const now = this.now();
-        this._timeouts.add({
+        this._addTimeoutEvent({
             callback: fn,
             id: this._timeoutIds,
             time: now + timeout,
@@ -451,11 +474,10 @@ export class Context extends BaseContext {
      * @param id The ID returned from {@link setTimeout}.
      */
     clearTimeout(id) {
-        this._timeouts.forEach((event) => {
-            if (event.id === id) {
-                this._timeouts.remove(event);
-            }
-        });
+        const event = this._timeoutMap.get(id);
+        if (event) {
+            this._removeTimeoutEvent(event);
+        }
         return this;
     }
     /**
@@ -475,7 +497,7 @@ export class Context extends BaseContext {
         const id = ++this._timeoutIds;
         const intervalFn = () => {
             const now = this.now();
-            this._timeouts.add({
+            this._addTimeoutEvent({
                 callback: () => {
                     // invoke the callback
                     fn();

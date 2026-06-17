@@ -46,6 +46,10 @@ export declare class Context extends BaseContext {
      */
     private _timeouts;
     /**
+     * A Map from timeout ID to event for O(1) lookup in clearTimeout.
+     */
+    private _timeoutMap;
+    /**
      * The timeout id counter
      */
     private _timeoutIds;
@@ -235,6 +239,14 @@ export declare class Context extends BaseContext {
      * Clean up. Also closes the audio context.
      */
     dispose(): this;
+    /**
+     * Add a timeout event to the timeline and map.
+     */
+    private _addTimeoutEvent;
+    /**
+     * Remove a timeout event from the timeline and map.
+     */
+    private _removeTimeoutEvent;
     /**
      * The private loop which keeps track of the context scheduled timeouts
      * Is invoked from the clock source
