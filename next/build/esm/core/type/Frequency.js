@@ -35,11 +35,12 @@ export class FrequencyClass extends TimeClass {
             midi: {
                 regexp: /^(\d+(?:\.\d+)?midi)/,
                 method(value) {
+                    const numericValue = parseFloat(value);
                     if (this.defaultUnits === "midi") {
-                        return value;
+                        return numericValue;
                     }
                     else {
-                        return FrequencyClass.mtof(value);
+                        return FrequencyClass.mtof(numericValue);
                     }
                 },
             },
@@ -59,17 +60,18 @@ export class FrequencyClass extends TimeClass {
             tr: {
                 regexp: /^(\d+(?:\.\d+)?):(\d+(?:\.\d+)?):?(\d+(?:\.\d+)?)?/,
                 method(m, q, s) {
-                    let total = 1;
+                    const self = this;
+                    let totalBeats = 0;
                     if (m && m !== "0") {
-                        total *= this._beatsToUnits(this._getTimeSignature() * parseFloat(m));
+                        totalBeats += self._getTimeSignature() * parseFloat(m);
                     }
                     if (q && q !== "0") {
-                        total *= this._beatsToUnits(parseFloat(q));
+                        totalBeats += parseFloat(q);
                     }
                     if (s && s !== "0") {
-                        total *= this._beatsToUnits(parseFloat(s) / 4);
+                        totalBeats += parseFloat(s) / 4;
                     }
-                    return total;
+                    return self._beatsToUnits(totalBeats);
                 },
             },
         });

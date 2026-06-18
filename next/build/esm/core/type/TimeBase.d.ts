@@ -8,12 +8,12 @@ export type TimeValue = Time | TimeBaseClass<any, any>;
 export type TimeBaseUnit = "s" | "n" | "t" | "m" | "i" | "hz" | "tr" | "samples" | "number";
 export interface TypeFunction {
     regexp: RegExp;
-    method: (value: string, ...args: string[]) => number;
+    method: (this: TimeBaseClass<any, any>, value: string, ...args: string[]) => number;
 }
 export interface TimeExpression<Type extends number> {
     [key: string]: {
         regexp: RegExp;
-        method: (value: string, ...args: string[]) => Type;
+        method: (this: TimeBaseClass<any, any>, value: string, ...args: string[]) => Type;
     };
 }
 /**

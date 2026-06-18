@@ -39,7 +39,7 @@ export class OneShotSource extends ToneAudioNode {
         /**
          * Get the playback state at the given time
          */
-        this.getStateAtTime = function (time) {
+        this.getStateAtTime = (time) => {
             const computedTime = this.toSeconds(time);
             if (this._startTime !== -1 &&
                 computedTime >= this._startTime &&

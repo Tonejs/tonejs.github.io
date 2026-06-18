@@ -145,7 +145,7 @@ export class TimeBaseClass extends Tone {
                 return expr.method.apply(this, matching.slice(1));
             }
             else {
-                return expr.method.call(this, this._val);
+                return expr.method.call(this, String(this._val));
             }
         }
         else if (isString(this._val)) {

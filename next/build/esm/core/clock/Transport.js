@@ -119,7 +119,7 @@ export class TransportInstance extends ToneWithContext {
      * called on every tick
      * @param  tickTime clock relative tick time
      */
-    _processTick(tickTime, ticks) {
+    _processTick(tickTime, ticks = 0) {
         // do the loop test
         if (this._loop.get(tickTime)) {
             if (ticks >= this._loopEnd) {
