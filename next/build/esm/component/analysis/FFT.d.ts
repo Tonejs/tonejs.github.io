@@ -10,7 +10,7 @@ export interface FFTOptions extends MeterBaseOptions {
  * Read more about FFT algorithms on [Wikipedia] (https://en.wikipedia.org/wiki/Fast_Fourier_transform).
  * @category Component
  */
-export declare class FFT extends MeterBase<FFTOptions> {
+export declare class FFT extends MeterBase<FFTOptions, 1> {
     readonly name: string;
     /**
      * If the output should be in decibels or normal range between 0-1. If `normalRange` is false,

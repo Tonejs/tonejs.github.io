@@ -1,18 +1,18 @@
 import { InputNode, OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
 import { NormalRange, PowerOfTwo } from "../../core/type/Units.js";
 export type AnalyserType = "fft" | "waveform";
-export interface AnalyserOptions extends ToneAudioNodeOptions {
+export interface AnalyserOptions<ChannelCount extends number> extends ToneAudioNodeOptions {
     size: PowerOfTwo;
     type: AnalyserType;
     smoothing: NormalRange;
-    channels: number;
+    channels: ChannelCount;
 }
 /**
  * Wrapper around the native Web Audio's [AnalyserNode](http://webaudio.github.io/web-audio-api/#idl-def-AnalyserNode).
  * Extracts FFT or Waveform data from the incoming signal.
  * @category Component
  */
-export declare class Analyser extends ToneAudioNode<AnalyserOptions> {
+export declare class Analyser<ChannelCount extends number = 1> extends ToneAudioNode<AnalyserOptions<ChannelCount>> {
     readonly name: string;
     readonly input: InputNode;
     readonly output: OutputNode;
@@ -41,15 +41,15 @@ export declare class Analyser extends ToneAudioNode<AnalyserOptions> {
      * @param size The size of the FFT. This must be a power of two in the range 16 to 16384.
      */
     constructor(type?: AnalyserType, size?: number);
-    constructor(options?: Partial<AnalyserOptions>);
-    static getDefaults(): AnalyserOptions;
+    constructor(options?: Partial<AnalyserOptions<ChannelCount>>);
+    static getDefaults(): AnalyserOptions<1>;
     /**
      * Run the analysis given the current settings. If {@link channels} = 1,
      * it will return a Float32Array. If {@link channels} > 1, it will
      * return an array of Float32Arrays where each index in the array
      * represents the analysis done on a channel.
      */
-    getValue(): Float32Array | Float32Array[];
+    getValue(): ChannelCount extends 1 ? Float32Array : Float32Array[];
     /**
      * The size of analysis. This must be a power of two in the range 16 to 16384.
      */
@@ -59,7 +59,7 @@ export declare class Analyser extends ToneAudioNode<AnalyserOptions> {
      * The number of channels the analyser does the analysis on. Channel
      * separation is done using {@link Split}
      */
-    get channels(): number;
+    get channels(): ChannelCount;
     /**
      * The analysis function returned by analyser.getValue(), either "fft" or "waveform".
      */

@@ -1,9 +1,9 @@
 import { NormalRange } from "../../core/type/Units.js";
 import { MeterBase, MeterBaseOptions } from "./MeterBase.js";
-export interface MeterOptions extends MeterBaseOptions {
+export interface MeterOptions<ChannelCount extends number> extends MeterBaseOptions {
     smoothing: NormalRange;
     normalRange: boolean;
-    channelCount: number;
+    channelCount: ChannelCount;
 }
 /**
  * Meter gets the [RMS](https://en.wikipedia.org/wiki/Root_mean_square)
@@ -23,7 +23,7 @@ export interface MeterOptions extends MeterBaseOptions {
  * setInterval(() => console.log(meter.getValue()), 100);
  * @category Component
  */
-export declare class Meter extends MeterBase<MeterOptions> {
+export declare class Meter<ChannelCount extends number = 1> extends MeterBase<MeterOptions<ChannelCount>, ChannelCount> {
     readonly name: string;
     /**
      * If the output should be in decibels or normal range between 0-1. If `normalRange` is false,
@@ -43,8 +43,8 @@ export declare class Meter extends MeterBase<MeterOptions> {
      * @param smoothing The amount of smoothing applied between frames.
      */
     constructor(smoothing?: NormalRange);
-    constructor(options?: Partial<MeterOptions>);
-    static getDefaults(): MeterOptions;
+    constructor(options?: Partial<MeterOptions<ChannelCount>>);
+    static getDefaults(): MeterOptions<1>;
     /**
      * Use {@link getValue} instead. For the previous getValue behavior, use DCMeter.
      * @deprecated
@@ -61,10 +61,10 @@ export declare class Meter extends MeterBase<MeterOptions> {
      * representing the value of the input signal. When {@link channels} > 1,
      * then each channel is returned as a value in a number array.
      */
-    getValue(): number | number[];
+    getValue(): ChannelCount extends 1 ? number : number[];
     /**
      * The number of channels of analysis.
      */
-    get channels(): number;
+    get channels(): ChannelCount;
     dispose(): this;
 }

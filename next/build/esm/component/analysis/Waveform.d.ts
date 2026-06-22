@@ -10,7 +10,7 @@ export interface WaveformOptions extends MeterBaseOptions {
  * Get the current waveform data of the connected audio source.
  * @category Component
  */
-export declare class Waveform extends MeterBase<WaveformOptions> {
+export declare class Waveform extends MeterBase<WaveformOptions, 1> {
     readonly name: string;
     /**
      * @param size The size of the Waveform. Value must be a power of two in the range 16 to 16384.

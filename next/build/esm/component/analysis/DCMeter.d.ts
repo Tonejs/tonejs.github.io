@@ -14,7 +14,7 @@ export type DCMeterOptions = MeterBaseOptions;
  * const level = meter.getValue();
  * @category Component
  */
-export declare class DCMeter extends MeterBase<DCMeterOptions> {
+export declare class DCMeter extends MeterBase<DCMeterOptions, 1> {
     readonly name: string;
     constructor(options?: Partial<DCMeterOptions>);
     /**
