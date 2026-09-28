@@ -143,6 +143,14 @@ export declare class Clock<TypeName extends "bpm" | "hertz" = "hertz"> extends T
      */
     private _loop;
     /**
+     * Invoke the state-transition events (start/stop/pause) and tick
+     * callbacks scheduled between startTime and endTime, and advance
+     * _lastUpdate to endTime.
+     * @param startTime The beginning of the range to process.
+     * @param endTime The end of the range to process.
+     */
+    private _processRange;
+    /**
      * Returns the scheduled state at the given time.
      * @param  time  The time to query.
      * @return  The name of the state input in setStateAtTime.

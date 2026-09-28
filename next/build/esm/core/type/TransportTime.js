@@ -1,4 +1,5 @@
 import { getContext } from "../Global.js";
+import { isDefined } from "../util/TypeCheck.js";
 import { TimeClass } from "./Time.js";
 /**
  * TransportTime is a time along the Transport's
@@ -17,6 +18,20 @@ export class TransportTimeClass extends TimeClass {
      */
     _now() {
         return this.context.transport.seconds;
+    }
+    /**
+     * Return the time in ticks.
+     */
+    toTicks() {
+        if (isDefined(this._val)) {
+            return super.toTicks();
+        }
+        // read the transport's actual current tick instead of re-deriving it
+        // from elapsed seconds at the current bpm, which ignores tempo changes.
+        // round up to the next tick since the current one may already be
+        // in the middle of being processed by the clock.
+        const transport = this.context.transport;
+        return Math.ceil(transport.getTicksAtTime(transport.now()));
     }
     _getExpressions() {
         const expressions = super._getExpressions();

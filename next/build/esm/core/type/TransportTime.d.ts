@@ -14,6 +14,10 @@ export declare class TransportTimeClass<Type extends Seconds | Ticks = Seconds> 
      * Return the current time in whichever context is relevant
      */
     protected _now(): Type;
+    /**
+     * Return the time in ticks.
+     */
+    toTicks(): Ticks;
     protected _getExpressions(): TimeExpression<Type>;
 }
 /**

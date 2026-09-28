@@ -3,6 +3,7 @@ import { ToneWithContext, } from "../core/context/ToneWithContext.js";
 import { TicksClass } from "../core/type/Ticks.js";
 import { defaultArg, optionsFromArguments } from "../core/util/Defaults.js";
 import { noOp } from "../core/util/Interface.js";
+import { clamp } from "../core/util/Math.js";
 import { StateTimeline, } from "../core/util/StateTimeline.js";
 import { isBoolean, isNumber } from "../core/util/TypeCheck.js";
 /**
@@ -84,9 +85,12 @@ export class ToneEvent extends ToneWithContext {
                     if (isNumber(this._loop)) {
                         duration = this._loop * this._getLoopDuration();
                     }
-                    const nextEvent = this._state.getAfter(startTick);
+                    // look up the next boundary in the same (unshifted) frame as
+                    // event.time; startOffset can push startTick past it entirely,
+                    // in which case this segment shouldn't schedule anything
+                    const nextEvent = this._state.getAfter(event.time);
                     if (nextEvent !== null) {
-                        duration = Math.min(duration, nextEvent.time - startTick);
+                        duration = clamp(nextEvent.time - startTick, 0, duration);
                     }
                     if (duration !== Infinity) {
                         duration = new TicksClass(this.context, duration);
