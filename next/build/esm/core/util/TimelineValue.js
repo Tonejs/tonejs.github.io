@@ -32,13 +32,9 @@ export class TimelineValue extends Tone {
      * Get the value at the given time
      */
     get(time) {
+        var _a;
         const event = this._timeline.get(time);
-        if (event) {
-            return event.value;
-        }
-        else {
-            return this._initialValue;
-        }
+        return (_a = event === null || event === void 0 ? void 0 : event.value) !== null && _a !== void 0 ? _a : this._initialValue;
     }
 }
 //# sourceMappingURL=TimelineValue.js.map

@@ -151,7 +151,8 @@ export class Sampler extends Instrument {
             this._activeSources.get(midi).push(source);
             // remove it when it's done
             source.onended = () => {
-                if (this._activeSources && this._activeSources.has(midi)) {
+                var _a;
+                if ((_a = this._activeSources) === null || _a === void 0 ? void 0 : _a.has(midi)) {
                     const sources = this._activeSources.get(midi);
                     const index = sources.indexOf(source);
                     if (index !== -1) {

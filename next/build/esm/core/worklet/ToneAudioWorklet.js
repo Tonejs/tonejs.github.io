@@ -36,12 +36,11 @@ export class ToneAudioWorklet extends ToneAudioNode {
         });
     }
     dispose() {
+        var _a, _b;
         super.dispose();
         this._dummyGain.disconnect();
-        if (this._worklet) {
-            this._worklet.port.postMessage("dispose");
-            this._worklet.disconnect();
-        }
+        (_a = this._worklet) === null || _a === void 0 ? void 0 : _a.port.postMessage("dispose");
+        (_b = this._worklet) === null || _b === void 0 ? void 0 : _b.disconnect();
         return this;
     }
 }

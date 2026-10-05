@@ -393,7 +393,7 @@ export class Player extends Source {
         this._progressTracker.setValueAtTime(rate, now);
         // cancel the stop event since it's at a different time now
         const stopEvent = this._state.getNextState("stopped", now);
-        if (stopEvent && stopEvent.implicitEnd) {
+        if (stopEvent === null || stopEvent === void 0 ? void 0 : stopEvent.implicitEnd) {
             this._state.cancel(stopEvent.time);
             this._activeSources.forEach((source) => source.cancelStop());
             const progress = this._getProgressAtTime(now);

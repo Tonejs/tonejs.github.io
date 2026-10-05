@@ -139,10 +139,9 @@ export class Noise extends Source {
      * Clean up.
      */
     dispose() {
+        var _a;
         super.dispose();
-        if (this._source) {
-            this._source.disconnect();
-        }
+        (_a = this._source) === null || _a === void 0 ? void 0 : _a.disconnect();
         return this;
     }
 }

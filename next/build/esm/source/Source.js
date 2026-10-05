@@ -248,6 +248,9 @@ export class Source extends ToneAudioNode {
                             duration =
                                 this.toSeconds(stateEvent.duration) -
                                     startOffset;
+                            if (duration <= 0) {
+                                return;
+                            }
                         }
                         this._start(time, this._getSyncedStartOffset(this.toSeconds(stateEvent.offset), startOffset), duration);
                     }

@@ -143,7 +143,8 @@ export class UserMedia extends ToneAudioNode {
      * and "stopped" when the mic is closed.
      */
     get state() {
-        return this._stream && this._stream.active ? "started" : "stopped";
+        var _a;
+        return ((_a = this._stream) === null || _a === void 0 ? void 0 : _a.active) ? "started" : "stopped";
     }
     /**
      * Returns an identifier for the represented device that is
@@ -154,12 +155,8 @@ export class UserMedia extends ToneAudioNode {
      * device is not open.
      */
     get deviceId() {
-        if (this._device) {
-            return this._device.deviceId;
-        }
-        else {
-            return undefined;
-        }
+        var _a;
+        return (_a = this._device) === null || _a === void 0 ? void 0 : _a.deviceId;
     }
     /**
      * Returns a group identifier. Two devices have the
@@ -167,12 +164,8 @@ export class UserMedia extends ToneAudioNode {
      * Returns null  when the device is not open.
      */
     get groupId() {
-        if (this._device) {
-            return this._device.groupId;
-        }
-        else {
-            return undefined;
-        }
+        var _a;
+        return (_a = this._device) === null || _a === void 0 ? void 0 : _a.groupId;
     }
     /**
      * Returns a label describing this device (for example "Built-in Microphone").
@@ -180,12 +173,8 @@ export class UserMedia extends ToneAudioNode {
      * because of permissions.
      */
     get label() {
-        if (this._device) {
-            return this._device.label;
-        }
-        else {
-            return undefined;
-        }
+        var _a;
+        return (_a = this._device) === null || _a === void 0 ? void 0 : _a.label;
     }
     /**
      * Mute the output.

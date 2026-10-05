@@ -314,21 +314,30 @@ export class Timeline extends Tone {
      * @param  callback The callback to invoke with every item
      */
     forEachBetween(startTime, endTime, callback) {
+        // _search compares times with an epsilon, so do the same here
         let lowerBound = this._search(startTime);
         let upperBound = this._search(endTime);
-        if (lowerBound !== -1 && upperBound !== -1) {
-            if (this._timeline[lowerBound].time !== startTime) {
-                lowerBound += 1;
-            }
-            // exclusive of the end time
-            if (this._timeline[upperBound].time === endTime) {
-                upperBound -= 1;
-            }
-            this._iterate(callback, lowerBound, upperBound);
+        if (lowerBound === -1) {
+            // every event is after the start time
+            lowerBound = 0;
         }
-        else if (lowerBound === -1) {
-            this._iterate(callback, 0, upperBound);
+        else if (EQ(this._timeline[lowerBound].time, startTime)) {
+            // _search returns the last event at the start time,
+            // include every event at the start time
+            while (lowerBound > 0 &&
+                EQ(this._timeline[lowerBound - 1].time, startTime)) {
+                lowerBound -= 1;
+            }
         }
+        else {
+            lowerBound += 1;
+        }
+        // exclusive of the end time
+        while (upperBound >= 0 &&
+            EQ(this._timeline[upperBound].time, endTime)) {
+            upperBound -= 1;
+        }
+        this._iterate(callback, lowerBound, upperBound);
         return this;
     }
     /**

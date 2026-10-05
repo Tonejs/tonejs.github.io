@@ -45,12 +45,8 @@ export class ToneAudioBuffer extends Tone {
      * The sample rate of the AudioBuffer
      */
     get sampleRate() {
-        if (this._buffer) {
-            return this._buffer.sampleRate;
-        }
-        else {
-            return getContext().sampleRate;
-        }
+        var _a, _b;
+        return (_b = (_a = this._buffer) === null || _a === void 0 ? void 0 : _a.sampleRate) !== null && _b !== void 0 ? _b : getContext().sampleRate;
     }
     /**
      * Pass in an AudioBuffer or ToneAudioBuffer to set the value of this buffer.
@@ -188,12 +184,8 @@ export class ToneAudioBuffer extends Tone {
      * @return The audio as a TypedArray
      */
     getChannelData(channel) {
-        if (this._buffer) {
-            return this._buffer.getChannelData(channel);
-        }
-        else {
-            return new Float32Array(0);
-        }
+        var _a, _b;
+        return (_b = (_a = this._buffer) === null || _a === void 0 ? void 0 : _a.getChannelData(channel)) !== null && _b !== void 0 ? _b : new Float32Array(0);
     }
     /**
      * Cut a subsection of the array and return a buffer of the
@@ -234,34 +226,22 @@ export class ToneAudioBuffer extends Tone {
      * The duration of the buffer in seconds.
      */
     get duration() {
-        if (this._buffer) {
-            return this._buffer.duration;
-        }
-        else {
-            return 0;
-        }
+        var _a, _b;
+        return (_b = (_a = this._buffer) === null || _a === void 0 ? void 0 : _a.duration) !== null && _b !== void 0 ? _b : 0;
     }
     /**
      * The length of the buffer in samples
      */
     get length() {
-        if (this._buffer) {
-            return this._buffer.length;
-        }
-        else {
-            return 0;
-        }
+        var _a, _b;
+        return (_b = (_a = this._buffer) === null || _a === void 0 ? void 0 : _a.length) !== null && _b !== void 0 ? _b : 0;
     }
     /**
      * The number of discrete audio channels. Returns 0 if no buffer is loaded.
      */
     get numberOfChannels() {
-        if (this._buffer) {
-            return this._buffer.numberOfChannels;
-        }
-        else {
-            return 0;
-        }
+        var _a, _b;
+        return (_b = (_a = this._buffer) === null || _a === void 0 ? void 0 : _a.numberOfChannels) !== null && _b !== void 0 ? _b : 0;
     }
     /**
      * Reverse the buffer.

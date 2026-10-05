@@ -1,7 +1,6 @@
 import { ToneWithContext, } from "../context/ToneWithContext.js";
 import { optionsFromArguments } from "../util/Defaults.js";
 import { readOnly } from "../util/Interface.js";
-import { EQ } from "../util/Math.js";
 import { StateTimeline, } from "../util/StateTimeline.js";
 import { Timeline } from "../util/Timeline.js";
 import { isDefined } from "../util/TypeCheck.js";
@@ -291,42 +290,29 @@ export class TickSource extends ToneWithContext {
         // only iterate through the sections where it is "started"
         let lastStateEvent = this._state.get(startTime);
         this._state.forEachBetween(startTime, endTime, (event) => {
-            if (lastStateEvent &&
-                lastStateEvent.state === "started" &&
+            if ((lastStateEvent === null || lastStateEvent === void 0 ? void 0 : lastStateEvent.state) === "started" &&
                 event.state !== "started") {
                 this.forEachTickBetween(Math.max(lastStateEvent.time, startTime), event.time - this.sampleTime, callback);
             }
             lastStateEvent = event;
         });
         let error = null;
-        if (lastStateEvent && lastStateEvent.state === "started") {
-            const maxStartTime = Math.max(lastStateEvent.time, startTime);
-            // Figure out how far past the last whole-tick boundary maxStartTime
-            // sits, so we can compute the time of the next tick at or after it.
-            const startTicks = this.frequency.getTicksAtTime(maxStartTime);
-            const ticksAtStart = this.frequency.getTicksAtTime(lastStateEvent.time);
-            const diff = startTicks - ticksAtStart;
-            const offset = Math.ceil(diff) - diff;
-            // Guard against floating-point issues: when startTicks is just barely
-            // above an integer tick boundary (offset ≈ 1), snap back to that integer
-            const firstTick = EQ(offset, 1)
-                ? Math.floor(startTicks)
-                : startTicks + offset;
-            let nextTickTime = this.frequency.getTimeOfTick(firstTick);
-            // Advance past any ticks that land before the start of this window
-            // to avoid any tick that was already processed.
-            if (nextTickTime < maxStartTime) {
-                nextTickTime += this.frequency.getDurationOfTicks(1, nextTickTime);
-            }
-            while (nextTickTime < endTime) {
+        if ((lastStateEvent === null || lastStateEvent === void 0 ? void 0 : lastStateEvent.state) === "started") {
+            const origin = this.frequency.getTicksAtTime(lastStateEvent.time);
+            const endTicks = this.frequency.getTicksAtTime(endTime) - origin;
+            const tick = Math.ceil(this.frequency.getTicksAtTime(Math.max(lastStateEvent.time, startTime)) - origin);
+            for (let t = tick; t < endTicks; t++) {
+                const time = this.frequency.getTimeOfTick(origin + t);
                 try {
-                    callback(nextTickTime, Math.round(this.getTicksAtTime(nextTickTime)));
+                    callback(time, Math.round(this.getTicksAtTime(time)));
                 }
                 catch (e) {
                     error = e;
                     break;
                 }
-                nextTickTime += this.frequency.getDurationOfTicks(1, nextTickTime);
+                if (this.disposed) {
+                    break;
+                }
             }
         }
         if (error) {
