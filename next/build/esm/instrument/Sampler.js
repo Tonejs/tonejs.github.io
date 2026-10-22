@@ -66,6 +66,10 @@ export class Sampler extends Instrument {
         this.attack = options.attack;
         this.release = options.release;
         this.curve = options.curve;
+        this._urls = options.urls;
+        this._baseUrl = options.baseUrl;
+        this._onload = options.onload;
+        this._onerror = options.onerror;
         this._loop = options.loop;
         this._loopStart = options.loopStart;
         this._loopEnd = options.loopEnd;
@@ -87,6 +91,19 @@ export class Sampler extends Instrument {
             loop: false,
             loopEnd: 0,
             loopStart: 0,
+        });
+    }
+    /**
+     * urls, baseUrl, onload and onerror aren't stored as regular class
+     * properties (unlike attack/release/curve), so the base implementation
+     * can't find them via `Reflect.has` and they'd be silently missing here.
+     */
+    get() {
+        return Object.assign(super.get(), {
+            urls: this._urls,
+            baseUrl: this._baseUrl,
+            onload: this._onload,
+            onerror: this._onerror,
         });
     }
     /**

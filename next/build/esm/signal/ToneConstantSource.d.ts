@@ -20,6 +20,10 @@ export declare class ToneConstantSource<TypeName extends UnitName = "number"> ex
      */
     private _source?;
     /**
+     * Whether the native source was started, so it can be stopped
+     */
+    private _sourceStarted;
+    /**
      * The offset of the signal generator
      */
     readonly offset: Param<TypeName>;

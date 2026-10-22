@@ -12,6 +12,10 @@ export class ToneConstantSource extends OneShotSource {
         const options = optionsFromArguments(ToneConstantSource.getDefaults(), arguments, ["offset"]);
         super(options);
         this.name = "ToneConstantSource";
+        /**
+         * Whether the native source was started, so it can be stopped
+         */
+        this._sourceStarted = false;
         this._onContextRunning(() => this._contextStarted());
         this.offset = new Param({
             context: this.context,
@@ -46,6 +50,7 @@ export class ToneConstantSource extends OneShotSource {
         const isStoppedBeforeStart = this._stopTime !== -1 && this._stopTime < this._startTime;
         if (isStarted && !isStoppedBeforeStart) {
             this._source.start(this._startTime);
+            this._sourceStarted = true;
         }
     }
     /**
@@ -53,19 +58,22 @@ export class ToneConstantSource extends OneShotSource {
      * @param  time When to start the source
      */
     start(time) {
-        var _a;
         const computedTime = this.toSeconds(time);
         this.log("start", computedTime);
         this._startGain(computedTime);
-        (_a = this._source) === null || _a === void 0 ? void 0 : _a.start(computedTime);
+        if (this._source) {
+            this._source.start(computedTime);
+            this._sourceStarted = true;
+        }
         return this;
     }
     _stopSource(time) {
         var _a;
-        if (this.state === "stopped") {
-            return;
+        // state is already "stopped" here: OneShotSource defers this call
+        // until after _stopTime, so check the native node instead
+        if (this._sourceStarted) {
+            (_a = this._source) === null || _a === void 0 ? void 0 : _a.stop(time);
         }
-        (_a = this._source) === null || _a === void 0 ? void 0 : _a.stop(time);
     }
     dispose() {
         var _a;

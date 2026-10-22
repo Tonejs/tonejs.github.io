@@ -83,6 +83,22 @@ export declare class Sampler extends Instrument<SamplerOptions> {
      */
     curve: ToneBufferSourceCurve;
     /**
+     * The urls passed in the constructor, kept so `get()` can report them back.
+     */
+    private _urls;
+    /**
+     * The baseUrl passed in the constructor, kept so `get()` can report it back.
+     */
+    private _baseUrl;
+    /**
+     * The onload callback passed in the constructor, kept so `get()` can report it back.
+     */
+    private _onload;
+    /**
+     * The onerror callback passed in the constructor, kept so `get()` can report it back.
+     */
+    private _onerror;
+    /**
      * @param samples An object of samples mapping either Midi Note Numbers or
      * 			Scientific Pitch Notation to the url of that sample.
      * @param onload The callback to invoke when all of the samples are loaded.
@@ -97,6 +113,12 @@ export declare class Sampler extends Instrument<SamplerOptions> {
     constructor(samples?: SamplesMap, options?: Partial<Omit<SamplerOptions, "urls">>);
     constructor(options?: Partial<SamplerOptions>);
     static getDefaults(): SamplerOptions;
+    /**
+     * urls, baseUrl, onload and onerror aren't stored as regular class
+     * properties (unlike attack/release/curve), so the base implementation
+     * can't find them via `Reflect.has` and they'd be silently missing here.
+     */
+    get(): SamplerOptions;
     /**
      * Returns the difference in steps between the given midi note at the closets sample.
      */
