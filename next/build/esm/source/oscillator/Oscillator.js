@@ -152,14 +152,16 @@ export class Oscillator extends Source {
     _getCachedPeriodicWave() {
         if (this._type === "custom") {
             const oscProps = Oscillator._periodicWaveCache.find((description) => {
-                return (description.phase === this._phase &&
+                return (description.sampleRate === this.context.sampleRate &&
+                    description.phase === this._phase &&
                     deepEquals(description.partials, this._partials));
             });
             return oscProps;
         }
         else {
             const oscProps = Oscillator._periodicWaveCache.find((description) => {
-                return (description.type === this._type &&
+                return (description.sampleRate === this.context.sampleRate &&
+                    description.type === this._type &&
                     description.phase === this._phase);
             });
             this._partialCount = oscProps
@@ -207,6 +209,7 @@ export class Oscillator extends Source {
                     partialCount: this._partialCount,
                     partials: this._partials,
                     phase: this._phase,
+                    sampleRate: this.context.sampleRate,
                     real,
                     type: this._type,
                     wave: this._wave,
