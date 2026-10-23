@@ -1,6 +1,6 @@
-import { Positive, Time } from "../core/type/Units";
-import { Source, SourceOptions } from "../source/Source";
-export declare type NoiseType = "white" | "brown" | "pink";
+import { Positive, Time } from "../core/type/Units.js";
+import { Source, SourceOptions } from "../source/Source.js";
+export type NoiseType = "white" | "brown" | "pink";
 export interface NoiseOptions extends SourceOptions {
     type: NoiseType;
     playbackRate: Positive;

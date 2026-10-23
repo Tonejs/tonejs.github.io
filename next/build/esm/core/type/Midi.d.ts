@@ -1,6 +1,6 @@
-import { FrequencyClass, FrequencyUnit } from "./Frequency";
-import { TimeValue } from "./TimeBase";
-import { Hertz, Interval, MidiNote, Seconds, Ticks } from "./Units";
+import { FrequencyClass, FrequencyUnit } from "./Frequency.js";
+import { TimeValue } from "./TimeBase.js";
+import { Hertz, Interval, MidiNote, Seconds, Ticks } from "./Units.js";
 /**
  * Midi is a primitive type for encoding Time values.
  * Midi can be constructed with or without the `new` keyword. Midi can be passed

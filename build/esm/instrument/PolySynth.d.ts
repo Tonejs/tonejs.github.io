@@ -1,22 +1,22 @@
-import { Frequency, NormalRange, Time } from "../core/type/Units";
-import { RecursivePartial } from "../core/util/Interface";
-import { Instrument, InstrumentOptions } from "./Instrument";
-import { MembraneSynth, MembraneSynthOptions } from "./MembraneSynth";
-import { FMSynth, FMSynthOptions } from "./FMSynth";
-import { AMSynth, AMSynthOptions } from "./AMSynth";
-import { MonoSynth, MonoSynthOptions } from "./MonoSynth";
-import { MetalSynth, MetalSynthOptions } from "./MetalSynth";
-import { Monophonic } from "./Monophonic";
-import { Synth, SynthOptions } from "./Synth";
-declare type VoiceConstructor<V> = {
+import { Frequency, NormalRange, Time } from "../core/type/Units.js";
+import { RecursivePartial } from "../core/util/Interface.js";
+import { Instrument, InstrumentOptions } from "./Instrument.js";
+import { MembraneSynth, MembraneSynthOptions } from "./MembraneSynth.js";
+import { FMSynth, FMSynthOptions } from "./FMSynth.js";
+import { AMSynth, AMSynthOptions } from "./AMSynth.js";
+import { MonoSynth, MonoSynthOptions } from "./MonoSynth.js";
+import { MetalSynth, MetalSynthOptions } from "./MetalSynth.js";
+import { Monophonic } from "./Monophonic.js";
+import { Synth, SynthOptions } from "./Synth.js";
+type VoiceConstructor<V> = {
     getDefaults: () => VoiceOptions<V>;
 } & (new (...args: any[]) => V);
-declare type OmitMonophonicOptions<T> = Omit<T, "context" | "onsilence">;
-declare type VoiceOptions<T> = T extends MembraneSynth ? MembraneSynthOptions : T extends MetalSynth ? MetalSynthOptions : T extends FMSynth ? FMSynthOptions : T extends MonoSynth ? MonoSynthOptions : T extends AMSynth ? AMSynthOptions : T extends Synth ? SynthOptions : never;
+type OmitMonophonicOptions<T> = Omit<T, "context" | "onsilence">;
+type VoiceOptions<T> = T extends MembraneSynth ? MembraneSynthOptions : T extends MetalSynth ? MetalSynthOptions : T extends FMSynth ? FMSynthOptions : T extends MonoSynth ? MonoSynthOptions : T extends AMSynth ? AMSynthOptions : T extends Synth ? SynthOptions : T extends Monophonic<infer U> ? U : never;
 /**
  * The settable synth options. excludes monophonic options.
  */
-declare type PartialVoiceOptions<T> = RecursivePartial<OmitMonophonicOptions<VoiceOptions<T>>>;
+type PartialVoiceOptions<T> = RecursivePartial<OmitMonophonicOptions<VoiceOptions<T>>>;
 export interface PolySynthOptions<Voice> extends InstrumentOptions {
     maxPolyphony: number;
     voice: VoiceConstructor<Voice>;
@@ -24,7 +24,7 @@ export interface PolySynthOptions<Voice> extends InstrumentOptions {
 }
 /**
  * PolySynth handles voice creation and allocation for any
- * instruments passed in as the second paramter. PolySynth is
+ * instruments passed in as the second parameter. PolySynth is
  * not a synthesizer by itself, it merely manages voices of
  * one of the other types of synths, allowing any of the
  * monophonic synthesizers to be polyphonic.
@@ -131,7 +131,6 @@ export declare class PolySynth<Voice extends Monophonic<any> = Synth> extends In
      * @param  notes The notes to play. Accepts a single Frequency or an array of frequencies.
      * @param  time  When the release will be triggered.
      * @example
-     * @example
      * const poly = new Tone.PolySynth(Tone.AMSynth).toDestination();
      * poly.triggerAttack(["Ab3", "C4", "F5"]);
      * // trigger the release of the given notes.
@@ -152,6 +151,10 @@ export declare class PolySynth<Voice extends Monophonic<any> = Synth> extends In
      */
     triggerAttackRelease(notes: Frequency | Frequency[], duration: Time | Time[], time?: Time, velocity?: NormalRange): this;
     sync(): this;
+    /**
+     * The release which is scheduled to the timeline.
+     */
+    protected _syncedRelease: (time: number) => this;
     /**
      * Set a member/attribute of the voices
      * @example

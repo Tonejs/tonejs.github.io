@@ -1,11 +1,11 @@
-import { TickerClockSource } from "../clock/Ticker";
-import { Seconds } from "../type/Units";
-import { AnyAudioContext } from "./AudioContext";
-import { BaseContext, ContextLatencyHint } from "./BaseContext";
-declare type Transport = import("../clock/Transport").Transport;
-declare type Destination = import("./Destination").Destination;
-declare type Listener = import("./Listener").Listener;
-declare type Draw = import("../util/Draw").Draw;
+import { TickerClockSource } from "../clock/Ticker.js";
+import { Seconds } from "../type/Units.js";
+import { AnyAudioContext } from "./AudioContext.js";
+import { BaseContext, ContextLatencyHint } from "./BaseContext.js";
+import type { DrawClass as Draw } from "../util/Draw.js";
+import type { DestinationClass as Destination } from "./Destination.js";
+import type { TransportClass as Transport } from "../clock/Transport.js";
+import type { ListenerClass as Listener } from "./Listener.js";
 export interface ContextOptions {
     clockSource: TickerClockSource;
     latencyHint: ContextLatencyHint;
@@ -24,12 +24,6 @@ export interface ContextTimeoutEvent {
  */
 export declare class Context extends BaseContext {
     readonly name: string;
-    /**
-     * The amount of time into the future events are scheduled. Giving Web Audio
-     * a short amount of time into the future to schedule events can reduce clicks and
-     * improve performance. This value can be set to 0 to get the lowest latency.
-     */
-    lookAhead: Seconds;
     /**
      * private reference to the BaseAudioContext
      */
@@ -74,6 +68,10 @@ export declare class Context extends BaseContext {
      * Private indicator if the context has been initialized
      */
     private _initialized;
+    /**
+     * Private indicator if a close() has been called on the context, since close is async
+     */
+    private _closeStarted;
     /**
      * Indicates if the context is an OfflineAudioContext or an AudioContext
      */
@@ -141,18 +139,17 @@ export declare class Context extends BaseContext {
     /**
      * Maps a module name to promise of the addModule method
      */
-    private _workletModules;
+    private _workletPromise;
     /**
      * Create an audio worklet node from a name and options. The module
-     * must first be loaded using [[addAudioWorkletModule]].
+     * must first be loaded using {@link addAudioWorkletModule}.
      */
     createAudioWorkletNode(name: string, options?: Partial<AudioWorkletNodeOptions>): AudioWorkletNode;
     /**
      * Add an AudioWorkletProcessor module
      * @param url The url of the module
-     * @param name The name of the module
      */
-    addAudioWorkletModule(url: string, name: string): Promise<void>;
+    addAudioWorkletModule(url: string): Promise<void>;
     /**
      * Returns a promise which resolves when all of the worklets have been loaded on this context
      */
@@ -160,8 +157,9 @@ export declare class Context extends BaseContext {
     /**
      * How often the interval callback is invoked.
      * This number corresponds to how responsive the scheduling
-     * can be. context.updateInterval + context.lookAhead gives you the
-     * total latency between scheduling an event and hearing it.
+     * can be. Setting to 0 will result in the lowest practial interval
+     * based on context properties. context.updateInterval + context.lookAhead
+     * gives you the total latency between scheduling an event and hearing it.
      */
     get updateInterval(): Seconds;
     set updateInterval(interval: Seconds);
@@ -171,6 +169,15 @@ export declare class Context extends BaseContext {
      */
     get clockSource(): TickerClockSource;
     set clockSource(type: TickerClockSource);
+    /**
+     * The amount of time into the future events are scheduled. Giving Web Audio
+     * a short amount of time into the future to schedule events can reduce clicks and
+     * improve performance. This value can be set to 0 to get the lowest latency.
+     * Adjusting this value also affects the {@link updateInterval}.
+     */
+    get lookAhead(): Seconds;
+    set lookAhead(time: Seconds);
+    private _lookAhead;
     /**
      * The type of playback, which affects tradeoffs between audio
      * output latency and responsiveness.
@@ -188,28 +195,29 @@ export declare class Context extends BaseContext {
      */
     get latencyHint(): ContextLatencyHint | Seconds;
     /**
-     * Update the lookAhead and updateInterval based on the latencyHint
-     */
-    private _setLatencyHint;
-    /**
      * The unwrapped AudioContext or OfflineAudioContext
      */
     get rawContext(): AnyAudioContext;
     /**
-     * The current audio context time plus a short [[lookAhead]].
+     * The current audio context time plus a short {@link lookAhead}.
+     * @example
+     * setInterval(() => {
+     * 	console.log("now", Tone.now());
+     * }, 100);
      */
     now(): Seconds;
     /**
-     * The current audio context time without the [[lookAhead]].
-     * In most cases it is better to use [[now]] instead of [[immediate]] since
-     * with [[now]] the [[lookAhead]] is applied equally to _all_ components including internal components,
-     * to making sure that everything is scheduled in sync. Mixing [[now]] and [[immediate]]
-     * can cause some timing issues. If no lookAhead is desired, you can set the [[lookAhead]] to `0`.
+     * The current audio context time without the {@link lookAhead}.
+     * In most cases it is better to use {@link now} instead of {@link immediate} since
+     * with {@link now} the {@link lookAhead} is applied equally to _all_ components including internal components,
+     * to making sure that everything is scheduled in sync. Mixing {@link now} and {@link immediate}
+     * can cause some timing issues. If no lookAhead is desired, you can set the {@link lookAhead} to `0`.
      */
     immediate(): Seconds;
     /**
      * Starts the audio context from a suspended state. This is required
-     * to initially start the AudioContext. See [[Tone.start]]
+     * to initially start the AudioContext.
+     * @see {@link start}
      */
     resume(): Promise<void>;
     /**
@@ -244,7 +252,7 @@ export declare class Context extends BaseContext {
      */
     clearTimeout(id: number): this;
     /**
-     * Clear the function scheduled by [[setInterval]]
+     * Clear the function scheduled by {@link setInterval}
      */
     clearInterval(id: number): this;
     /**
@@ -252,4 +260,3 @@ export declare class Context extends BaseContext {
      */
     setInterval(fn: (...args: any[]) => void, interval: Seconds): number;
 }
-export {};

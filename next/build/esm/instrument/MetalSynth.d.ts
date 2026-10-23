@@ -1,9 +1,9 @@
-import { Envelope, EnvelopeOptions } from "../component/envelope/Envelope";
-import { ToneAudioNodeOptions } from "../core/context/ToneAudioNode";
-import { Frequency, NormalRange, Positive, Seconds, Time } from "../core/type/Units";
-import { RecursivePartial } from "../core/util/Interface";
-import { Signal } from "../signal/Signal";
-import { Monophonic, MonophonicOptions } from "./Monophonic";
+import { Envelope, EnvelopeOptions } from "../component/envelope/Envelope.js";
+import { ToneAudioNodeOptions } from "../core/context/ToneAudioNode.js";
+import { Frequency, NormalRange, Positive, Seconds, Time } from "../core/type/Units.js";
+import { RecursivePartial } from "../core/util/Interface.js";
+import { Signal } from "../signal/Signal.js";
+import { Monophonic, MonophonicOptions } from "./Monophonic.js";
 export interface MetalSynthOptions extends MonophonicOptions {
     harmonicity: Positive;
     modulationIndex: Positive;
@@ -55,7 +55,7 @@ export declare class MetalSynth extends Monophonic<MetalSynthOptions> {
     /**
      * The envelope which is connected both to the
      * amplitude and a highpass filter's cutoff frequency.
-     * The lower-limit of the filter is controlled by the [[resonance]]
+     * The lower-limit of the filter is controlled by the {@link resonance}
      */
     readonly envelope: Envelope;
     constructor(options?: RecursivePartial<MetalSynthOptions>);
@@ -74,7 +74,7 @@ export declare class MetalSynth extends Monophonic<MetalSynthOptions> {
     getLevelAtTime(time: Time): NormalRange;
     /**
      * The modulationIndex of the oscillators which make up the source.
-     * see [[FMOscillator.modulationIndex]]
+     * see {@link FMOscillator.modulationIndex}
      * @min 1
      * @max 100
      */

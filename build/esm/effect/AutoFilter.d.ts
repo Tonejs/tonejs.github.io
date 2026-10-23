@@ -1,7 +1,7 @@
-import { Frequency, Positive } from "../core/type/Units";
-import { Filter, FilterOptions } from "../component/filter/Filter";
-import { SourceOptions } from "../source/Source";
-import { LFOEffect, LFOEffectOptions } from "./LFOEffect";
+import { Frequency, Positive } from "../core/type/Units.js";
+import { Filter, FilterOptions } from "../component/filter/Filter.js";
+import { SourceOptions } from "../source/Source.js";
+import { LFOEffect, LFOEffectOptions } from "./LFOEffect.js";
 export interface AutoFilterOptions extends LFOEffectOptions {
     baseFrequency: Frequency;
     octaves: Positive;

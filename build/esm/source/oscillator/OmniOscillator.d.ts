@@ -1,38 +1,38 @@
-import { Cents, Degrees, Frequency, Seconds, Time } from "../../core/type/Units";
-import { Signal } from "../../signal/Signal";
-import { Source } from "../Source";
-import { AMOscillator } from "./AMOscillator";
-import { FatOscillator } from "./FatOscillator";
-import { FMOscillator } from "./FMOscillator";
-import { Oscillator } from "./Oscillator";
-import { OmniOscillatorOptions, OmniOscillatorType, ToneOscillatorInterface, ToneOscillatorType } from "./OscillatorInterface";
-import { PulseOscillator } from "./PulseOscillator";
-import { PWMOscillator } from "./PWMOscillator";
-export { OmniOscillatorOptions } from "./OscillatorInterface";
+import { Cents, Degrees, Frequency, Seconds, Time } from "../../core/type/Units.js";
+import { Signal } from "../../signal/Signal.js";
+import { Source } from "../Source.js";
+import { AMOscillator } from "./AMOscillator.js";
+import { FatOscillator } from "./FatOscillator.js";
+import { FMOscillator } from "./FMOscillator.js";
+import { Oscillator } from "./Oscillator.js";
+import { OmniOscillatorOptions, OmniOscillatorType, ToneOscillatorInterface, ToneOscillatorType } from "./OscillatorInterface.js";
+import { PulseOscillator } from "./PulseOscillator.js";
+import { PWMOscillator } from "./PWMOscillator.js";
+export { OmniOscillatorOptions } from "./OscillatorInterface.js";
 /**
  * All of the oscillator types that OmniOscillator can take on
  */
-declare type AnyOscillator = Oscillator | PWMOscillator | PulseOscillator | FatOscillator | AMOscillator | FMOscillator;
+type AnyOscillator = Oscillator | PWMOscillator | PulseOscillator | FatOscillator | AMOscillator | FMOscillator;
 /**
  * All of the Oscillator constructor types mapped to their name.
  */
 interface OmniOscillatorSource {
-    "fm": FMOscillator;
-    "am": AMOscillator;
-    "pwm": PWMOscillator;
-    "pulse": PulseOscillator;
-    "oscillator": Oscillator;
-    "fat": FatOscillator;
+    fm: FMOscillator;
+    am: AMOscillator;
+    pwm: PWMOscillator;
+    pulse: PulseOscillator;
+    oscillator: Oscillator;
+    fat: FatOscillator;
 }
 /**
  * The available oscillator types.
  */
-export declare type OmniOscSourceType = keyof OmniOscillatorSource;
-declare type IsAmOrFmOscillator<Osc, Ret> = Osc extends AMOscillator ? Ret : Osc extends FMOscillator ? Ret : undefined;
-declare type IsFatOscillator<Osc, Ret> = Osc extends FatOscillator ? Ret : undefined;
-declare type IsPWMOscillator<Osc, Ret> = Osc extends PWMOscillator ? Ret : undefined;
-declare type IsPulseOscillator<Osc, Ret> = Osc extends PulseOscillator ? Ret : undefined;
-declare type IsFMOscillator<Osc, Ret> = Osc extends FMOscillator ? Ret : undefined;
+export type OmniOscSourceType = keyof OmniOscillatorSource;
+type IsAmOrFmOscillator<Osc, Ret> = Osc extends AMOscillator ? Ret : Osc extends FMOscillator ? Ret : undefined;
+type IsFatOscillator<Osc, Ret> = Osc extends FatOscillator ? Ret : undefined;
+type IsPWMOscillator<Osc, Ret> = Osc extends PWMOscillator ? Ret : undefined;
+type IsPulseOscillator<Osc, Ret> = Osc extends PulseOscillator ? Ret : undefined;
+type IsFMOscillator<Osc, Ret> = Osc extends FMOscillator ? Ret : undefined;
 /**
  * OmniOscillator aggregates all of the oscillator types into one.
  * @example
@@ -87,7 +87,7 @@ export declare class OmniOscillator<OscType extends AnyOscillator> extends Sourc
     /**
      * The value is an empty array when the type is not "custom".
      * This is not available on "pwm" and "pulse" oscillator types.
-     * See [[Oscillator.partials]]
+     * @see {@link Oscillator.partials}
      */
     get partials(): number[];
     set partials(partials: number[]);
@@ -110,7 +110,8 @@ export declare class OmniOscillator<OscType extends AnyOscillator> extends Sourc
     set sourceType(sType: OmniOscSourceType);
     private _getOscType;
     /**
-     * The base type of the oscillator. See [[Oscillator.baseType]]
+     * The base type of the oscillator.
+     * @see {@link Oscillator.baseType}
      * @example
      * const omniOsc = new Tone.OmniOscillator(440, "fmsquare4");
      * console.log(omniOsc.sourceType, omniOsc.baseType, omniOsc.partialCount);
@@ -119,40 +120,40 @@ export declare class OmniOscillator<OscType extends AnyOscillator> extends Sourc
     set baseType(baseType: OscillatorType | "pwm" | "pulse");
     /**
      * The width of the oscillator when sourceType === "pulse".
-     * See [[PWMOscillator.width]]
+     * @see {@link PWMOscillator}
      */
     get width(): IsPulseOscillator<OscType, Signal<"audioRange">>;
     /**
      * The number of detuned oscillators when sourceType === "fat".
-     * See [[FatOscillator.count]]
+     * @see {@link FatOscillator.count}
      */
     get count(): IsFatOscillator<OscType, number>;
     set count(count: IsFatOscillator<OscType, number>);
     /**
      * The detune spread between the oscillators when sourceType === "fat".
-     * See [[FatOscillator.count]]
+     * @see {@link FatOscillator.count}
      */
     get spread(): IsFatOscillator<OscType, Cents>;
     set spread(spread: IsFatOscillator<OscType, Cents>);
     /**
      * The type of the modulator oscillator. Only if the oscillator is set to "am" or "fm" types.
-     * See [[AMOscillator]] or [[FMOscillator]]
+     * @see {@link AMOscillator} or {@link FMOscillator}
      */
     get modulationType(): IsAmOrFmOscillator<OscType, ToneOscillatorType>;
     set modulationType(mType: IsAmOrFmOscillator<OscType, ToneOscillatorType>);
     /**
      * The modulation index when the sourceType === "fm"
-     * See [[FMOscillator]].
+     * @see {@link FMOscillator}.
      */
     get modulationIndex(): IsFMOscillator<OscType, Signal<"positive">>;
     /**
      * Harmonicity is the frequency ratio between the carrier and the modulator oscillators.
-     * See [[AMOscillator]] or [[FMOscillator]]
+     * @see {@link AMOscillator} or {@link FMOscillator}
      */
     get harmonicity(): IsAmOrFmOscillator<OscType, Signal<"positive">>;
     /**
      * The modulationFrequency Signal of the oscillator when sourceType === "pwm"
-     * see [[PWMOscillator]]
+     * see {@link PWMOscillator}
      * @min 0.1
      * @max 5
      */

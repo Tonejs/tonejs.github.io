@@ -1,6 +1,6 @@
-import { Frequency, NormalRange, Time } from "../core/type/Units";
-import { RecursivePartial } from "../core/util/Interface";
-import { Instrument, InstrumentOptions } from "./Instrument";
+import { Frequency, NormalRange, Time } from "../core/type/Units.js";
+import { RecursivePartial } from "../core/util/Interface.js";
+import { Instrument, InstrumentOptions } from "./Instrument.js";
 export interface PluckSynthOptions extends InstrumentOptions {
     attackNoise: number;
     dampening: Frequency;
@@ -8,7 +8,7 @@ export interface PluckSynthOptions extends InstrumentOptions {
     release: Time;
 }
 /**
- * Karplus-String string synthesis.
+ * Karplus-Strong string synthesis.
  * @example
  * const plucky = new Tone.PluckSynth().toDestination();
  * plucky.triggerAttack("C4", "+0.5");
@@ -50,7 +50,7 @@ export declare class PluckSynth extends Instrument<PluckSynthOptions> {
     set dampening(fq: Frequency);
     triggerAttack(note: Frequency, time?: Time): this;
     /**
-     * Ramp down the [[resonance]] to 0 over the duration of the release time.
+     * Ramp down the {@link resonance} to 0 over the duration of the release time.
      */
     triggerRelease(time?: Time): this;
     dispose(): this;

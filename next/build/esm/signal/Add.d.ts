@@ -1,6 +1,6 @@
-import { Gain } from "../core/context/Gain";
-import { Param } from "../core/context/Param";
-import { Signal, SignalOptions } from "./Signal";
+import { Gain } from "../core/context/Gain.js";
+import { Param } from "../core/context/Param.js";
+import { Signal, SignalOptions } from "./Signal.js";
 /**
  * Add a signal and a number or two signals. When no value is
  * passed into the constructor, Tone.Add will sum input and `addend`
@@ -31,7 +31,7 @@ export declare class Add extends Signal {
      */
     readonly addend: Param<"number">;
     /**
-     * @param value If no value is provided, will sum the input and [[addend]].
+     * @param value If no value is provided, will sum the input and {@link addend}.
      */
     constructor(value?: number);
     constructor(options?: Partial<SignalOptions<"number">>);

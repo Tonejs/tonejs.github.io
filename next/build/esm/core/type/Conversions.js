@@ -27,7 +27,7 @@ export function gainToDb(gain) {
  * Tone.intervalToFrequencyRatio(-12); // 0.5
  */
 export function intervalToFrequencyRatio(interval) {
-    return Math.pow(2, (interval / 12));
+    return Math.pow(2, interval / 12);
 }
 /**
  * The Global [concert tuning pitch](https://en.wikipedia.org/wiki/Concert_pitch) which is used

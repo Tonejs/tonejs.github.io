@@ -1,6 +1,6 @@
-import { Param } from "../context/Param";
-import { Seconds, Time } from "../type/Units";
-import { ToneAudioNode, ToneAudioNodeOptions } from "./ToneAudioNode";
+import { Param } from "../context/Param.js";
+import { Seconds, Time } from "../type/Units.js";
+import { ToneAudioNode, ToneAudioNodeOptions } from "./ToneAudioNode.js";
 export interface DelayOptions extends ToneAudioNodeOptions {
     delayTime: Time;
     maxDelay: Time;

@@ -1,5 +1,5 @@
-import { Seconds } from "../type/Units";
-export declare type TickerClockSource = "worker" | "timeout" | "offline";
+import { Seconds } from "../type/Units.js";
+export type TickerClockSource = "worker" | "timeout" | "offline";
 /**
  * A class which provides a reliable callback using either
  * a Web Worker, or if that isn't supported, falls back to setTimeout.

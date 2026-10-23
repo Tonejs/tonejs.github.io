@@ -1,6 +1,6 @@
-import { Tone } from "../Tone";
-import { Seconds } from "../type/Units";
-declare type TimelineSearchParam = "ticks" | "time";
+import { Tone } from "../Tone.js";
+import { Seconds } from "../type/Units.js";
+type TimelineSearchParam = "ticks" | "time";
 /**
  * The options object for Timeline
  */
@@ -19,6 +19,7 @@ export interface TimelineEvent {
  * along a timeline. All events must have a "time" property.
  * Internally, events are stored in time order for fast
  * retrieval.
+ * @internal
  */
 export declare class Timeline<GenericEvent extends TimelineEvent> extends Tone {
     readonly name: string;
@@ -65,10 +66,12 @@ export declare class Timeline<GenericEvent extends TimelineEvent> extends Tone {
     /**
      * Return the first event in the timeline without removing it
      * @returns {Object} The first event object
+     * @deprecated
      */
     peek(): GenericEvent | undefined;
     /**
      * Return the first event in the timeline and remove it
+     * @deprecated
      */
     shift(): GenericEvent | undefined;
     /**
@@ -97,6 +100,10 @@ export declare class Timeline<GenericEvent extends TimelineEvent> extends Tone {
      * @return The event right before the given event
      */
     previousEvent(event: GenericEvent): GenericEvent | null;
+    /**
+     * Return the index of the given event in the timeline. -1 if it is not found.
+     */
+    private _indexOf;
     /**
      * Does a binary search on the timeline array and returns the
      * nearest event index whose time is after or equal to the given time.
@@ -128,7 +135,7 @@ export declare class Timeline<GenericEvent extends TimelineEvent> extends Tone {
     forEachAfter(time: Seconds, callback: (event: GenericEvent) => void): this;
     /**
      * Iterate over everything in the array between the startTime and endTime.
-     * The timerange is inclusive of the startTime, but exclusive of the endTime.
+     * The time range is inclusive of the startTime, but exclusive of the endTime.
      * range = [startTime, endTime).
      * @param  startTime The time to check if items are before
      * @param  endTime The end of the test interval.

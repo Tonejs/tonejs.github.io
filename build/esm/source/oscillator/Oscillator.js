@@ -1,13 +1,13 @@
 import { __awaiter } from "tslib";
-import { deepEquals, optionsFromArguments } from "../../core/util/Defaults";
-import { readOnly } from "../../core/util/Interface";
-import { isDefined } from "../../core/util/TypeCheck";
-import { Signal } from "../../signal/Signal";
-import { Source } from "../Source";
-import { generateWaveform } from "./OscillatorInterface";
-import { ToneOscillatorNode } from "./ToneOscillatorNode";
-import { assertRange } from "../../core/util/Debug";
-import { clamp } from "../../core/util/Math";
+import { deepEquals, optionsFromArguments } from "../../core/util/Defaults.js";
+import { readOnly } from "../../core/util/Interface.js";
+import { isDefined } from "../../core/util/TypeCheck.js";
+import { Signal } from "../../signal/Signal.js";
+import { Source } from "../Source.js";
+import { generateWaveform, } from "./OscillatorInterface.js";
+import { ToneOscillatorNode } from "./ToneOscillatorNode.js";
+import { assertRange } from "../../core/util/Debug.js";
+import { clamp } from "../../core/util/Math.js";
 /**
  * Oscillator supports a number of features including
  * phase rotation, multiple oscillator types (see Oscillator.type),
@@ -20,13 +20,13 @@ import { clamp } from "../../core/util/Math";
  */
 export class Oscillator extends Source {
     constructor() {
-        super(optionsFromArguments(Oscillator.getDefaults(), arguments, ["frequency", "type"]));
+        const options = optionsFromArguments(Oscillator.getDefaults(), arguments, ["frequency", "type"]);
+        super(options);
         this.name = "Oscillator";
         /**
          * the main oscillator
          */
         this._oscillator = null;
-        const options = optionsFromArguments(Oscillator.getDefaults(), arguments, ["frequency", "type"]);
         this.frequency = new Signal({
             context: this.context,
             units: "frequency",
@@ -43,7 +43,8 @@ export class Oscillator extends Source {
         this._partialCount = options.partialCount;
         this._type = options.type;
         if (options.partialCount && options.type !== "custom") {
-            this._type = this.baseType + options.partialCount.toString();
+            this._type = (this.baseType +
+                options.partialCount.toString());
         }
         this.phase = options.phase;
     }
@@ -121,7 +122,7 @@ export class Oscillator extends Source {
     }
     /**
      * Unsync the oscillator's frequency from the Transport.
-     * See Oscillator.syncFrequency
+     * @see {@link syncFrequency}
      */
     unsyncFrequency() {
         this.context.transport.unsyncSignal(this.frequency);
@@ -134,18 +135,20 @@ export class Oscillator extends Source {
      */
     _getCachedPeriodicWave() {
         if (this._type === "custom") {
-            const oscProps = Oscillator._periodicWaveCache.find(description => {
-                return description.phase === this._phase &&
-                    deepEquals(description.partials, this._partials);
+            const oscProps = Oscillator._periodicWaveCache.find((description) => {
+                return (description.phase === this._phase &&
+                    deepEquals(description.partials, this._partials));
             });
             return oscProps;
         }
         else {
-            const oscProps = Oscillator._periodicWaveCache.find(description => {
-                return description.type === this._type &&
-                    description.phase === this._phase;
+            const oscProps = Oscillator._periodicWaveCache.find((description) => {
+                return (description.type === this._type &&
+                    description.phase === this._phase);
             });
-            this._partialCount = oscProps ? oscProps.partialCount : this._partialCount;
+            this._partialCount = oscProps
+                ? oscProps.partialCount
+                : this._partialCount;
             return oscProps;
         }
     }
@@ -202,8 +205,10 @@ export class Oscillator extends Source {
         return this._type.replace(this.partialCount.toString(), "");
     }
     set baseType(baseType) {
-        if (this.partialCount && this._type !== "custom" && baseType !== "custom") {
-            this.type = baseType + this.partialCount;
+        if (this.partialCount &&
+            this._type !== "custom" &&
+            baseType !== "custom") {
+            this.type = (baseType + this.partialCount);
         }
         else {
             this.type = baseType;
@@ -224,14 +229,14 @@ export class Oscillator extends Source {
                 this.type = type;
             }
             else {
-                this.type = type + p.toString();
+                this.type = (type + p.toString());
             }
         }
         else {
             // extend or shorten the partials array
             const fullPartials = new Float32Array(p);
             // copy over the partials array
-            this._partials.forEach((v, i) => fullPartials[i] = v);
+            this._partials.forEach((v, i) => (fullPartials[i] = v));
             this._partials = Array.from(fullPartials);
             this.type = this._type;
         }
@@ -275,20 +280,23 @@ export class Oscillator extends Source {
             let b;
             switch (type) {
                 case "sine":
-                    b = (n <= partialCount) ? 1 : 0;
+                    b = n <= partialCount ? 1 : 0;
                     this._partials[n - 1] = b;
                     break;
                 case "square":
-                    b = (n & 1) ? 2 * piFactor : 0;
+                    b = n & 1 ? 2 * piFactor : 0;
                     this._partials[n - 1] = b;
                     break;
                 case "sawtooth":
-                    b = piFactor * ((n & 1) ? 1 : -1);
+                    b = piFactor * (n & 1 ? 1 : -1);
                     this._partials[n - 1] = b;
                     break;
                 case "triangle":
                     if (n & 1) {
-                        b = 2 * (piFactor * piFactor) * ((((n - 1) >> 1) & 1) ? -1 : 1);
+                        b =
+                            2 *
+                                (piFactor * piFactor) *
+                                (((n - 1) >> 1) & 1 ? -1 : 1);
                     }
                     else {
                         b = 0;
@@ -319,7 +327,8 @@ export class Oscillator extends Source {
         let sum = 0;
         const len = real.length;
         for (let i = 0; i < len; i++) {
-            sum += real[i] * Math.cos(i * phase) + imag[i] * Math.sin(i * phase);
+            sum +=
+                real[i] * Math.cos(i * phase) + imag[i] * Math.sin(i * phase);
         }
         return sum;
     }
@@ -352,12 +361,12 @@ export class Oscillator extends Source {
         return this._phase * (180 / Math.PI);
     }
     set phase(phase) {
-        this._phase = phase * Math.PI / 180;
+        this._phase = (phase * Math.PI) / 180;
         // reset the type
         this.type = this._type;
     }
-    asArray(length = 1024) {
-        return __awaiter(this, void 0, void 0, function* () {
+    asArray() {
+        return __awaiter(this, arguments, void 0, function* (length = 1024) {
             return generateWaveform(this, length);
         });
     }

@@ -1,9 +1,9 @@
-import { Gain } from "../../core/context/Gain";
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { readOnly, writable } from "../../core/util/Interface";
-import { Signal } from "../../signal/Signal";
-import { Filter } from "../filter/Filter";
+import { Gain } from "../../core/context/Gain.js";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { readOnly, writable } from "../../core/util/Interface.js";
+import { Signal } from "../../signal/Signal.js";
+import { Filter } from "../filter/Filter.js";
 /**
  * Split the incoming signal into three bands (low, mid, high)
  * with two crossover frequency controls.
@@ -24,7 +24,8 @@ import { Filter } from "../filter/Filter";
  */
 export class MultibandSplit extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(MultibandSplit.getDefaults(), arguments, ["lowFrequency", "highFrequency"]));
+        const options = optionsFromArguments(MultibandSplit.getDefaults(), arguments, ["lowFrequency", "highFrequency"]);
+        super(options);
         this.name = "MultibandSplit";
         /**
          * the input
@@ -67,7 +68,6 @@ export class MultibandSplit extends ToneAudioNode {
             type: "highpass",
         });
         this._internalChannels = [this.low, this.mid, this.high];
-        const options = optionsFromArguments(MultibandSplit.getDefaults(), arguments, ["lowFrequency", "highFrequency"]);
         this.lowFrequency = new Signal({
             context: this.context,
             units: "frequency",

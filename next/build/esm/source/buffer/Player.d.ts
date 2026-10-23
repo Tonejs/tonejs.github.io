@@ -1,6 +1,6 @@
-import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer";
-import { Positive, Seconds, Time } from "../../core/type/Units";
-import { Source, SourceOptions } from "../Source";
+import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer.js";
+import { Positive, Seconds, Time } from "../../core/type/Units.js";
+import { Source, SourceOptions } from "../Source.js";
 export interface PlayerOptions extends SourceOptions {
     onload: () => void;
     onerror: (error: Error) => void;
@@ -34,7 +34,7 @@ export declare class Player extends Source<PlayerOptions> {
      */
     private _buffer;
     /**
-     * if the buffer should loop once it's over
+     * if the buffer should loop once its over
      */
     private _loop;
     /**
@@ -53,6 +53,18 @@ export declare class Player extends Source<PlayerOptions> {
      * All of the active buffer source nodes
      */
     private _activeSources;
+    /**
+     * Used as the source of the TickParam, but not started or used for anything else.
+     */
+    private _constantSource;
+    /**
+     * Used to track the progress of the player.
+     */
+    private _progressTracker;
+    /**
+     * Combined with the _progressTracker param to track the progress of the player in seconds.
+     */
+    private _progressOffset;
     /**
      * The fadeIn time of the amplitude envelope.
      */
@@ -79,6 +91,22 @@ export declare class Player extends Source<PlayerOptions> {
      */
     load(url: string): Promise<this>;
     /**
+     * Internal method to get the progress at a specific time.
+     * @param time The time to evaluate the progress at.
+     */
+    private _getProgressAtTime;
+    /**
+     * Displays the elapsed seconds since the player was started, taking into account playbackRate changes.
+     * @example
+     * const player = new Tone.Player("https://tonejs.github.io/audio/berklee/gong_1.mp3", () => {
+     * 	player.start();
+     * 	setInterval(() => {
+     * 		console.log(player.progress);
+     * 	}, 100);
+     * }).toDestination();
+     */
+    get progress(): Seconds;
+    /**
      * Internal callback when the buffer is loaded.
      */
     private _onload;
@@ -96,6 +124,11 @@ export declare class Player extends Source<PlayerOptions> {
      * @param  duration How long the sample should play. If no duration is given, it will default to the full length of the sample (minus any offset)
      */
     start(time?: Time, offset?: Time, duration?: Time): this;
+    /**
+     * Factor in the playback rate to compute the buffer offset when the player
+     * is synced to the Transport.
+     */
+    protected _getSyncedStartOffset(explicitOffset: number, transportElapsed: number): number;
     /**
      * Internal start method
      */
@@ -154,7 +187,7 @@ export declare class Player extends Source<PlayerOptions> {
     get buffer(): ToneAudioBuffer;
     set buffer(buffer: ToneAudioBuffer);
     /**
-     * If the buffer should loop once it's over.
+     * If the buffer should loop once its over.
      * @example
      * const player = new Tone.Player("https://tonejs.github.io/audio/drum-samples/breakbeat.mp3").toDestination();
      * player.loop = true;
@@ -174,7 +207,7 @@ export declare class Player extends Source<PlayerOptions> {
     get playbackRate(): Positive;
     set playbackRate(rate: Positive);
     /**
-     * If the buffer should be reversed. Note that this sets the underlying [[ToneAudioBuffer.reverse]], so
+     * If the buffer should be reversed. Note that this sets the underlying {@link ToneAudioBuffer.reverse}, so
      * if multiple players are pointing at the same ToneAudioBuffer, they will all be reversed.
      * @example
      * const player = new Tone.Player("https://tonejs.github.io/audio/berklee/chime_1.mp3").toDestination();

@@ -1,7 +1,7 @@
-import { AbstractParam } from "../context/AbstractParam";
-import { Positive, Time, UnitMap, UnitName } from "../type/Units";
-import { Timeline } from "../util/Timeline";
-import { ToneWithContext, ToneWithContextOptions } from "./ToneWithContext";
+import { AbstractParam } from "../context/AbstractParam.js";
+import { Positive, Time, UnitMap, UnitName } from "../type/Units.js";
+import { Timeline } from "../util/Timeline.js";
+import { ToneWithContext, ToneWithContextOptions } from "./ToneWithContext.js";
 export interface ParamOptions<TypeName extends UnitName> extends ToneWithContextOptions {
     units: TypeName;
     value?: UnitMap[TypeName];
@@ -14,7 +14,7 @@ export interface ParamOptions<TypeName extends UnitName> extends ToneWithContext
 /**
  * the possible automation types
  */
-declare type AutomationType = "linearRampToValueAtTime" | "exponentialRampToValueAtTime" | "setValueAtTime" | "setTargetAtTime" | "cancelScheduledValues";
+type AutomationType = "linearRampToValueAtTime" | "exponentialRampToValueAtTime" | "setValueAtTime" | "setTargetAtTime" | "cancelScheduledValues";
 interface TargetAutomationEvent {
     type: "setTargetAtTime";
     time: number;
@@ -29,7 +29,7 @@ interface NormalAutomationEvent {
 /**
  * The events on the automation
  */
-export declare type AutomationEvent = NormalAutomationEvent | TargetAutomationEvent;
+export type AutomationEvent = NormalAutomationEvent | TargetAutomationEvent;
 /**
  * Param wraps the native Web Audio's AudioParam to provide
  * additional unit conversion functionality. It also

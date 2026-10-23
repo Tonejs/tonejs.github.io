@@ -1,11 +1,11 @@
 import { __awaiter, __decorate } from "tslib";
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { isArray, isObject, isString } from "../../core/util/TypeCheck";
-import { connectSignal, Signal } from "../../signal/Signal";
-import { OfflineContext } from "../../core/context/OfflineContext";
-import { assert } from "../../core/util/Debug";
-import { range, timeRange } from "../../core/util/Decorator";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { isArray, isObject, isString } from "../../core/util/TypeCheck.js";
+import { connectSignal, Signal } from "../../signal/Signal.js";
+import { OfflineContext } from "../../core/context/OfflineContext.js";
+import { assert } from "../../core/util/Debug.js";
+import { range, timeRange } from "../../core/util/Decorator.js";
 /**
  * Envelope is an [ADSR](https://en.wikipedia.org/wiki/Synthesizer#ADSR_envelope)
  * envelope generator. Envelope outputs a signal which
@@ -35,7 +35,8 @@ import { range, timeRange } from "../../core/util/Decorator";
  */
 export class Envelope extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Envelope.getDefaults(), arguments, ["attack", "decay", "sustain", "release"]));
+        const options = optionsFromArguments(Envelope.getDefaults(), arguments, ["attack", "decay", "sustain", "release"]);
+        super(options);
         this.name = "Envelope";
         /**
          * the signal which is output.
@@ -52,7 +53,6 @@ export class Envelope extends ToneAudioNode {
          * Envelope has no input
          */
         this.input = undefined;
-        const options = optionsFromArguments(Envelope.getDefaults(), arguments, ["attack", "decay", "sustain", "release"]);
         this.attack = options.attack;
         this.decay = options.decay;
         this.sustain = options.sustain;
@@ -186,11 +186,10 @@ export class Envelope extends ToneAudioNode {
      * }, 1, 1);
      */
     get decayCurve() {
-        return this._decayCurve;
+        return this._getCurve(this._decayCurve, "Out");
     }
     set decayCurve(curve) {
-        assert(["linear", "exponential"].some(c => c === curve), `Invalid envelope curve: ${curve}`);
-        this._decayCurve = curve;
+        this._setCurve("_decayCurve", "Out", curve);
     }
     /**
      * Trigger the attack/decay portion of the ADSR envelope.
@@ -342,8 +341,8 @@ export class Envelope extends ToneAudioNode {
      * Good for visualizing the envelope curve. Rescales the duration of the
      * envelope to fit the length.
      */
-    asArray(length = 1024) {
-        return __awaiter(this, void 0, void 0, function* () {
+    asArray() {
+        return __awaiter(this, arguments, void 0, function* (length = 1024) {
             const duration = length / this.context.sampleRate;
             const context = new OfflineContext(1, duration, this.context.sampleRate);
             // normalize the ADSR for the given duration with 20% sustain time
@@ -353,13 +352,13 @@ export class Envelope extends ToneAudioNode {
             const totalDuration = envelopeDuration + sustainTime;
             // @ts-ignore
             const clone = new this.constructor(Object.assign(this.get(), {
-                attack: duration * this.toSeconds(this.attack) / totalDuration,
-                decay: duration * this.toSeconds(this.decay) / totalDuration,
-                release: duration * this.toSeconds(this.release) / totalDuration,
-                context
+                attack: (duration * this.toSeconds(this.attack)) / totalDuration,
+                decay: (duration * this.toSeconds(this.decay)) / totalDuration,
+                release: (duration * this.toSeconds(this.release)) / totalDuration,
+                context,
             }));
             clone._sig.toDestination();
-            clone.triggerAttackRelease(duration * (attackPortion + sustainTime) / totalDuration, 0);
+            clone.triggerAttackRelease((duration * (attackPortion + sustainTime)) / totalDuration, 0);
             const buffer = yield context.render();
             return buffer.getChannelData(0);
         });
@@ -398,7 +397,7 @@ const EnvelopeCurves = (() => {
     const rippleCurve = [];
     const rippleCurveFreq = 6.4;
     for (i = 0; i < curveLen - 1; i++) {
-        k = (i / (curveLen - 1));
+        k = i / (curveLen - 1);
         const sineWave = Math.sin(k * (Math.PI * 2) * rippleCurveFreq - Math.PI / 2) + 1;
         rippleCurve[i] = sineWave / 10 + k * 0.83;
     }

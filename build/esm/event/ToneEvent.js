@@ -1,10 +1,10 @@
-import "../core/clock/Transport";
-import { ToneWithContext } from "../core/context/ToneWithContext";
-import { TicksClass } from "../core/type/Ticks";
-import { defaultArg, optionsFromArguments } from "../core/util/Defaults";
-import { noOp } from "../core/util/Interface";
-import { StateTimeline } from "../core/util/StateTimeline";
-import { isBoolean, isNumber } from "../core/util/TypeCheck";
+import "../core/clock/Transport.js";
+import { ToneWithContext, } from "../core/context/ToneWithContext.js";
+import { TicksClass } from "../core/type/Ticks.js";
+import { defaultArg, optionsFromArguments } from "../core/util/Defaults.js";
+import { noOp } from "../core/util/Interface.js";
+import { StateTimeline, } from "../core/util/StateTimeline.js";
+import { isBoolean, isNumber } from "../core/util/TypeCheck.js";
 /**
  * ToneEvent abstracts away this.context.transport.schedule and provides a schedulable
  * callback for a single or repeatable events along the timeline.
@@ -25,7 +25,8 @@ import { isBoolean, isNumber } from "../core/util/TypeCheck";
  */
 export class ToneEvent extends ToneWithContext {
     constructor() {
-        super(optionsFromArguments(ToneEvent.getDefaults(), arguments, ["callback", "value"]));
+        const options = optionsFromArguments(ToneEvent.getDefaults(), arguments, ["callback", "value"]);
+        super(options);
         this.name = "ToneEvent";
         /**
          * Tracks the scheduled events
@@ -35,7 +36,6 @@ export class ToneEvent extends ToneWithContext {
          * A delay time from when the event is scheduled to start
          */
         this._startOffset = 0;
-        const options = optionsFromArguments(ToneEvent.getDefaults(), arguments, ["callback", "value"]);
         this._loop = options.loop;
         this.callback = options.callback;
         this.value = options.value;
@@ -70,25 +70,25 @@ export class ToneEvent extends ToneWithContext {
      */
     _rescheduleEvents(after = -1) {
         // if no argument is given, schedules all of the events
-        this._state.forEachFrom(after, event => {
+        this._state.forEachFrom(after, (event) => {
             let duration;
             if (event.state === "started") {
                 if (event.id !== -1) {
                     this.context.transport.clear(event.id);
                 }
-                const startTick = event.time + Math.round(this.startOffset / this._playbackRate);
-                if (this._loop === true || isNumber(this._loop) && this._loop > 1) {
+                const startTick = event.time +
+                    Math.round(this.startOffset / this._playbackRate);
+                if (this._loop === true ||
+                    (isNumber(this._loop) && this._loop > 1)) {
                     duration = Infinity;
                     if (isNumber(this._loop)) {
-                        duration = (this._loop) * this._getLoopDuration();
+                        duration = this._loop * this._getLoopDuration();
                     }
                     const nextEvent = this._state.getAfter(startTick);
                     if (nextEvent !== null) {
                         duration = Math.min(duration, nextEvent.time - startTick);
                     }
                     if (duration !== Infinity) {
-                        // schedule a stop since it's finite duration
-                        this._state.setStateAtTime("stopped", startTick + duration + 1, { id: -1 });
                         duration = new TicksClass(this.context, duration);
                     }
                     const interval = new TicksClass(this.context, this._getLoopDuration());
@@ -164,11 +164,11 @@ export class ToneEvent extends ToneWithContext {
         if (this._state.getValueAtTime(ticks) === "started") {
             this._state.setStateAtTime("stopped", ticks, { id: -1 });
             const previousEvent = this._state.getBefore(ticks);
-            let reschedulTime = ticks;
+            let rescheduleTime = ticks;
             if (previousEvent !== null) {
-                reschedulTime = previousEvent.time;
+                rescheduleTime = previousEvent.time;
             }
-            this._rescheduleEvents(reschedulTime);
+            this._rescheduleEvents(rescheduleTime);
         }
         return this;
     }
@@ -179,7 +179,7 @@ export class ToneEvent extends ToneWithContext {
     cancel(time) {
         time = defaultArg(time, -Infinity);
         const ticks = this.toTicks(time);
-        this._state.forEachFrom(ticks, event => {
+        this._state.forEachFrom(ticks, (event) => {
             this.context.transport.clear(event.id);
         });
         this._state.cancel(ticks);
@@ -210,7 +210,7 @@ export class ToneEvent extends ToneWithContext {
      * Get the duration of the loop.
      */
     _getLoopDuration() {
-        return Math.round((this._loopEnd - this._loopStart) / this._playbackRate);
+        return (this._loopEnd - this._loopStart) / this._playbackRate;
     }
     /**
      * If the note should loop or not
@@ -230,7 +230,7 @@ export class ToneEvent extends ToneWithContext {
         this._rescheduleEvents();
     }
     /**
-     * The playback rate of the note. Defaults to 1.
+     * The playback rate of the event. Defaults to 1.
      * @example
      * const note = new Tone.ToneEvent();
      * note.loop = true;

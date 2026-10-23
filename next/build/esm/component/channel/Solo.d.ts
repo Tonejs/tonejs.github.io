@@ -1,5 +1,5 @@
-import { Gain } from "../../core/context/Gain";
-import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
+import { Gain } from "../../core/context/Gain.js";
+import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
 export interface SoloOptions extends ToneAudioNodeOptions {
     solo: boolean;
 }

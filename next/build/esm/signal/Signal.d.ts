@@ -1,8 +1,8 @@
-import { AbstractParam } from "../core/context/AbstractParam";
-import { Param } from "../core/context/Param";
-import { InputNode, OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../core/context/ToneAudioNode";
-import { Time, UnitMap, UnitName } from "../core/type/Units";
-import { ToneConstantSource } from "./ToneConstantSource";
+import { AbstractParam } from "../core/context/AbstractParam.js";
+import { Param } from "../core/context/Param.js";
+import { InputNode, OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../core/context/ToneAudioNode.js";
+import { Time, UnitMap, UnitName } from "../core/type/Units.js";
+import { ToneConstantSource } from "./ToneConstantSource.js";
 export interface SignalOptions<TypeName extends UnitName> extends ToneAudioNodeOptions {
     value: UnitMap[TypeName];
     units: TypeName;
@@ -20,7 +20,7 @@ export interface SignalOptions<TypeName extends UnitName> extends ToneAudioNodeO
  *
  * @example
  * const osc = new Tone.Oscillator().toDestination().start();
- * // a scheduleable signal which can be connected to control an AudioParam or another Signal
+ * // a schedulable signal which can be connected to control an AudioParam or another Signal
  * const signal = new Tone.Signal({
  * 	value: "C4",
  * 	units: "frequency"
@@ -48,34 +48,58 @@ export declare class Signal<TypeName extends UnitName = "number"> extends ToneAu
      */
     constructor(value?: UnitMap[TypeName], units?: TypeName);
     constructor(options?: Partial<SignalOptions<TypeName>>);
+    /** @inheritdoc */
     static getDefaults(): SignalOptions<any>;
+    /** @inheritdoc */
     connect(destination: InputNode, outputNum?: number, inputNum?: number): this;
+    /** @inheritdoc */
+    disconnect(destination?: InputNode, outputNum?: number, inputNum?: number): this;
+    /** @inheritdoc */
     dispose(): this;
+    /** @inheritdoc */
     setValueAtTime(value: UnitMap[TypeName], time: Time): this;
+    /** @inheritdoc */
     getValueAtTime(time: Time): UnitMap[TypeName];
+    /** @inheritdoc */
     setRampPoint(time: Time): this;
+    /** @inheritdoc */
     linearRampToValueAtTime(value: UnitMap[TypeName], time: Time): this;
+    /** @inheritdoc */
     exponentialRampToValueAtTime(value: UnitMap[TypeName], time: Time): this;
+    /** @inheritdoc */
     exponentialRampTo(value: UnitMap[TypeName], rampTime: Time, startTime?: Time): this;
+    /** @inheritdoc */
     linearRampTo(value: UnitMap[TypeName], rampTime: Time, startTime?: Time): this;
+    /** @inheritdoc */
     targetRampTo(value: UnitMap[TypeName], rampTime: Time, startTime?: Time): this;
+    /** @inheritdoc */
     exponentialApproachValueAtTime(value: UnitMap[TypeName], time: Time, rampTime: Time): this;
+    /** @inheritdoc */
     setTargetAtTime(value: UnitMap[TypeName], startTime: Time, timeConstant: number): this;
+    /** @inheritdoc */
     setValueCurveAtTime(values: UnitMap[TypeName][], startTime: Time, duration: Time, scaling?: number): this;
+    /** @inheritdoc */
     cancelScheduledValues(time: Time): this;
+    /** @inheritdoc */
     cancelAndHoldAtTime(time: Time): this;
+    /** @inheritdoc */
     rampTo(value: UnitMap[TypeName], rampTime: Time, startTime?: Time): this;
+    /** @inheritdoc */
     get value(): UnitMap[TypeName];
     set value(value: UnitMap[TypeName]);
+    /** @inheritdoc */
     get convert(): boolean;
     set convert(convert: boolean);
+    /** @inheritdoc */
     get units(): UnitName;
+    /** @inheritdoc */
     get overridden(): boolean;
     set overridden(overridden: boolean);
+    /** @inheritdoc */
     get maxValue(): number;
     get minValue(): number;
     /**
-     * See [[Param.apply]].
+     * @see {@link Param.apply}.
      */
     apply(param: Param | AudioParam): this;
 }
@@ -90,3 +114,12 @@ export declare class Signal<TypeName extends UnitName = "number"> extends ToneAu
  * @param inputNum the input number
  */
 export declare function connectSignal(signal: OutputNode, destination: InputNode, outputNum?: number, inputNum?: number): void;
+/**
+ * Disconnect a signal connection and restore the value of the destination if
+ * it was a signal that was overridden by the connection.
+ * @param signal
+ * @param destination
+ * @param outputNum
+ * @param inputNum
+ */
+export declare function disconnectSignal(signal: OutputNode, destination?: InputNode, outputNum?: number, inputNum?: number): void;

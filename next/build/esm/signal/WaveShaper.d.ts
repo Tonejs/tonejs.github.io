@@ -1,7 +1,7 @@
-import { ToneAudioNodeOptions } from "../core/context/ToneAudioNode";
-import { SignalOperator } from "./SignalOperator";
-export declare type WaveShaperMappingFn = (value: number, index?: number) => number;
-declare type WaveShaperMapping = WaveShaperMappingFn | number[] | Float32Array;
+import { ToneAudioNodeOptions } from "../core/context/ToneAudioNode.js";
+import { SignalOperator } from "./SignalOperator.js";
+export type WaveShaperMappingFn = (value: number, index?: number) => number;
+type WaveShaperMapping = WaveShaperMappingFn | number[] | Float32Array;
 interface WaveShaperOptions extends ToneAudioNodeOptions {
     mapping?: WaveShaperMapping;
     length: number;
@@ -42,11 +42,16 @@ export declare class WaveShaper extends SignalOperator<WaveShaperOptions> {
      *                signal is an AudioRange [-1, 1] value and the output
      *                signal can take on any numerical values.
      *
-     * @param bufferLen The length of the WaveShaperNode buffer.
+     * @param length The length of the WaveShaperNode buffer.
      */
     constructor(mapping?: WaveShaperMapping, length?: number);
     constructor(options?: Partial<WaveShaperOptions>);
     static getDefaults(): WaveShaperOptions;
+    /**
+     * Set the curve for the first time. This is run only after the audio context is
+     * running to avoid any context warnings.
+     */
+    private initCurve;
     /**
      * Uses a mapping function to set the value of the curve.
      * @param mapping The function used to define the values.

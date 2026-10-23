@@ -1,7 +1,7 @@
-import { Gain } from "../core/context/Gain";
-import { ToneAudioNode, } from "../core/context/ToneAudioNode";
-import { noOp } from "../core/util/Interface";
-import { assert } from "../core/util/Debug";
+import { Gain } from "../core/context/Gain.js";
+import { ToneAudioNode, } from "../core/context/ToneAudioNode.js";
+import { assert } from "../core/util/Debug.js";
+import { noOp } from "../core/util/Interface.js";
 /**
  * Base class for fire-and-forget nodes
  */
@@ -39,7 +39,7 @@ export class OneShotSource extends ToneAudioNode {
         /**
          * Get the playback state at the given time
          */
-        this.getStateAtTime = function (time) {
+        this.getStateAtTime = (time) => {
             const computedTime = this.toSeconds(time);
             if (this._startTime !== -1 &&
                 computedTime >= this._startTime &&
@@ -138,21 +138,20 @@ export class OneShotSource extends ToneAudioNode {
      * Invoke the onended callback
      */
     _onended() {
-        if (this.onended !== noOp) {
-            this.onended(this);
-            // overwrite onended to make sure it only is called once
-            this.onended = noOp;
-            // dispose when it's ended to free up for garbage collection only in the online context
-            if (!this.context.isOffline) {
-                const disposeCallback = () => this.dispose();
-                // @ts-ignore
-                if (typeof window.requestIdleCallback !== "undefined") {
-                    // @ts-ignore
-                    window.requestIdleCallback(disposeCallback);
-                }
-                else {
-                    setTimeout(disposeCallback, 1000);
-                }
+        if (this.onended === noOp) {
+            return;
+        }
+        this.onended(this);
+        // overwrite onended to make sure it only is called once
+        this.onended = noOp;
+        // dispose when it's ended to free up for garbage collection only in the online context
+        if (!this.context.isOffline) {
+            const disposeCallback = () => this.dispose();
+            if (typeof requestIdleCallback !== "undefined") {
+                requestIdleCallback(disposeCallback);
+            }
+            else {
+                setTimeout(disposeCallback, 10);
             }
         }
     }

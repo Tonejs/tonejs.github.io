@@ -1,8 +1,8 @@
-import { Effect } from "./Effect";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { LFO } from "../source/oscillator/LFO";
-import { Delay } from "../core/context/Delay";
-import { readOnly } from "../core/util/Interface";
+import { Delay } from "../core/context/Delay.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { readOnly } from "../core/util/Interface.js";
+import { LFO } from "../source/oscillator/LFO.js";
+import { Effect } from "./Effect.js";
 /**
  * A Vibrato effect composed of a Tone.Delay and a Tone.LFO. The LFO
  * modulates the delayTime of the delay, causing the pitch to rise and fall.
@@ -10,9 +10,12 @@ import { readOnly } from "../core/util/Interface";
  */
 export class Vibrato extends Effect {
     constructor() {
-        super(optionsFromArguments(Vibrato.getDefaults(), arguments, ["frequency", "depth"]));
+        const options = optionsFromArguments(Vibrato.getDefaults(), arguments, [
+            "frequency",
+            "depth",
+        ]);
+        super(options);
         this.name = "Vibrato";
-        const options = optionsFromArguments(Vibrato.getDefaults(), arguments, ["frequency", "depth"]);
         this._delayNode = new Delay({
             context: this.context,
             delayTime: 0,
@@ -24,20 +27,23 @@ export class Vibrato extends Effect {
             min: 0,
             max: options.maxDelay,
             frequency: options.frequency,
-            phase: -90 // offse the phase so the resting position is in the center
-        }).start().connect(this._delayNode.delayTime);
+            phase: -90, // offset the phase so the resting position is in the center
+        }).connect(this._delayNode.delayTime);
         this.frequency = this._lfo.frequency;
         this.depth = this._lfo.amplitude;
         this.depth.value = options.depth;
         readOnly(this, ["frequency", "depth"]);
         this.effectSend.chain(this._delayNode, this.effectReturn);
+        this._onContextRunning(() => {
+            this._lfo.start();
+        });
     }
     static getDefaults() {
         return Object.assign(Effect.getDefaults(), {
             maxDelay: 0.005,
             frequency: 5,
             depth: 0.1,
-            type: "sine"
+            type: "sine",
         });
     }
     /**

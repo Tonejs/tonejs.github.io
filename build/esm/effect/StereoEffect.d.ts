@@ -1,11 +1,11 @@
-import { EffectOptions } from "./Effect";
-import { OutputNode, ToneAudioNode } from "../core/context/ToneAudioNode";
-import { CrossFade } from "../component/channel/CrossFade";
-import { Signal } from "../signal/Signal";
-import { Split } from "../component/channel/Split";
-import { Gain } from "../core/context/Gain";
-import { Merge } from "../component/channel/Merge";
-export declare type StereoEffectOptions = EffectOptions;
+import { EffectOptions } from "./Effect.js";
+import { OutputNode, ToneAudioNode } from "../core/context/ToneAudioNode.js";
+import { CrossFade } from "../component/channel/CrossFade.js";
+import { Signal } from "../signal/Signal.js";
+import { Split } from "../component/channel/Split.js";
+import { Gain } from "../core/context/Gain.js";
+import { Merge } from "../component/channel/Merge.js";
+export type StereoEffectOptions = EffectOptions;
 /**
  * Base class for Stereo effects.
  */

@@ -1,7 +1,8 @@
-import { MeterBase, MeterBaseOptions } from "./MeterBase";
-export declare type DCMeterOptions = MeterBaseOptions;
+import { MeterBase, MeterBaseOptions } from "./MeterBase.js";
+export type DCMeterOptions = MeterBaseOptions;
 /**
  * DCMeter gets the raw value of the input signal at the current time.
+ * @see {@link Meter}.
  *
  * @example
  * const meter = new Tone.DCMeter();
@@ -13,7 +14,7 @@ export declare type DCMeterOptions = MeterBaseOptions;
  * const level = meter.getValue();
  * @category Component
  */
-export declare class DCMeter extends MeterBase<DCMeterOptions> {
+export declare class DCMeter extends MeterBase<DCMeterOptions, 1> {
     readonly name: string;
     constructor(options?: Partial<DCMeterOptions>);
     /**

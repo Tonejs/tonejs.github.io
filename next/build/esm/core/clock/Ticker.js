@@ -6,7 +6,7 @@ export class Ticker {
     constructor(callback, type, updateInterval, contextSampleRate) {
         this._callback = callback;
         this._type = type;
-        this._minimumUpdateInterval = Math.max(128 / (contextSampleRate || 44100), .001);
+        this._minimumUpdateInterval = Math.max(128 / (contextSampleRate || 44100), 0.001);
         this.updateInterval = updateInterval;
         // create the clock source for the first time
         this._createClock();
@@ -31,7 +31,7 @@ export class Ticker {
 			}
 			// call tick initially
 			tick();
-			`
+			`,
         ], { type: "text/javascript" });
         const blobUrl = URL.createObjectURL(blob);
         const worker = new Worker(blobUrl);
@@ -54,6 +54,7 @@ export class Ticker {
         if (this._type === "worker") {
             try {
                 this._createWorker();
+                // eslint-disable-next-line unused-imports/no-unused-vars
             }
             catch (e) {
                 // workers not supported, fallback to timeout
@@ -69,11 +70,12 @@ export class Ticker {
      * Clean up the current clock source
      */
     _disposeClock() {
+        var _a;
         if (this._timeout) {
             clearTimeout(this._timeout);
         }
+        (_a = this._worker) === null || _a === void 0 ? void 0 : _a.terminate();
         if (this._worker) {
-            this._worker.terminate();
             this._worker.onmessage = null;
         }
     }

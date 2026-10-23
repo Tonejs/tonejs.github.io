@@ -1,7 +1,7 @@
-import { Loop, LoopOptions } from "./Loop";
-import { PatternName } from "./PatternGenerator";
-import { ToneEventCallback } from "./ToneEvent";
-import { Seconds } from "../core/type/Units";
+import { Loop, LoopOptions } from "./Loop.js";
+import { PatternName } from "./PatternGenerator.js";
+import { ToneEventCallback } from "./ToneEvent.js";
+import { Seconds } from "../core/type/Units.js";
 export interface PatternOptions<ValueType> extends LoopOptions {
     pattern: PatternName;
     values: ValueType[];
@@ -22,6 +22,10 @@ export declare class Pattern<ValueType> extends Loop<PatternOptions<ValueType>> 
      * The pattern generator function
      */
     private _pattern;
+    /**
+     * The current index
+     */
+    private _index?;
     /**
      * The current value
      */
@@ -60,7 +64,11 @@ export declare class Pattern<ValueType> extends Loop<PatternOptions<ValueType>> 
      */
     get value(): ValueType | undefined;
     /**
-     * The pattern type. See Tone.CtrlPattern for the full list of patterns.
+     * The current index of the pattern.
+     */
+    get index(): number | undefined;
+    /**
+     * The pattern type.
      */
     get pattern(): PatternName;
     set pattern(pattern: PatternName);

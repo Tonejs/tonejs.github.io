@@ -1,19 +1,23 @@
-import { Signal } from "./Signal";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { TransportTimeClass } from "../core/type/TransportTime";
-import { ToneConstantSource } from "./ToneConstantSource";
+import { Signal } from "./Signal.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { TransportTimeClass } from "../core/type/TransportTime.js";
+import { ToneConstantSource } from "./ToneConstantSource.js";
 /**
- * Adds the ability to synchronize the signal to the [[Transport]]
+ * Adds the ability to synchronize the signal to the {@link TransportClass}
+ * @category Signal
  */
 export class SyncedSignal extends Signal {
     constructor() {
-        super(optionsFromArguments(Signal.getDefaults(), arguments, ["value", "units"]));
+        const options = optionsFromArguments(Signal.getDefaults(), arguments, [
+            "value",
+            "units",
+        ]);
+        super(options);
         this.name = "SyncedSignal";
         /**
          * Don't override when something is connected to the input
          */
         this.override = false;
-        const options = optionsFromArguments(Signal.getDefaults(), arguments, ["value", "units"]);
         this._lastVal = options.value;
         this._synced = this.context.transport.scheduleRepeat(this._onTick.bind(this), "1i");
         this._syncedCallback = this._anchorValue.bind(this);

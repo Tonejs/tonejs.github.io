@@ -1,6 +1,6 @@
-import { Param } from "../core/context/Param";
-import { Signal, SignalOptions } from "./Signal";
-import { InputNode, OutputNode } from "../core/context/ToneAudioNode";
+import { Param } from "../core/context/Param.js";
+import { Signal, SignalOptions } from "./Signal.js";
+import { InputNode, OutputNode } from "../core/context/ToneAudioNode.js";
 /**
  * Multiply two incoming signals. Or, if a number is given in the constructor,
  * multiplies the incoming signal by that value.
@@ -35,7 +35,7 @@ export declare class Multiply<TypeName extends "number" | "positive" = "number">
      */
     input: InputNode;
     /**
-     * The product of the input and [[factor]]
+     * The product of the input and {@link factor}
      */
     output: OutputNode;
     /**

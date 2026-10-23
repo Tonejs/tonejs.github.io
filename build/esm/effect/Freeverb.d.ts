@@ -1,6 +1,6 @@
-import { StereoEffect, StereoEffectOptions } from "./StereoEffect";
-import { Frequency, NormalRange } from "../core/type/Units";
-import { Signal } from "../signal/Signal";
+import { StereoEffect, StereoEffectOptions } from "./StereoEffect.js";
+import { Frequency, NormalRange } from "../core/type/Units.js";
+import { Signal } from "../signal/Signal.js";
 export interface FreeverbOptions extends StereoEffectOptions {
     dampening: Frequency;
     roomSize: NormalRange;
@@ -8,7 +8,7 @@ export interface FreeverbOptions extends StereoEffectOptions {
 /**
  * Freeverb is a reverb based on [Freeverb](https://ccrma.stanford.edu/~jos/pasp/Freeverb.html).
  * Read more on reverb on [Sound On Sound](https://web.archive.org/web/20160404083902/http://www.soundonsound.com:80/sos/feb01/articles/synthsecrets.asp).
- * Freeverb is now implemented with an AudioWorkletNode which may result on performance degradation on some platforms. Consider using [[Reverb]].
+ * Freeverb is now implemented with an AudioWorkletNode which may result on performance degradation on some platforms. Consider using {@link Reverb}.
  * @example
  * const freeverb = new Tone.Freeverb().toDestination();
  * freeverb.dampening = 1000;

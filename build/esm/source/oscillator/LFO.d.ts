@@ -1,11 +1,11 @@
-import { Param } from "../../core/context/Param";
-import { InputNode, OutputNode, ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { Degrees, Frequency, NormalRange, Time, UnitName } from "../../core/type/Units";
-import { BasicPlaybackState } from "../../core/util/StateTimeline";
-import { Signal } from "../../signal/Signal";
-import { ToneOscillatorType } from "./Oscillator";
-import { ToneOscillatorOptions } from "./OscillatorInterface";
-export declare type LFOOptions = {
+import { Param } from "../../core/context/Param.js";
+import { InputNode, OutputNode, ToneAudioNode } from "../../core/context/ToneAudioNode.js";
+import { Degrees, Frequency, NormalRange, Time, UnitName } from "../../core/type/Units.js";
+import { BasicPlaybackState } from "../../core/util/StateTimeline.js";
+import { Signal } from "../../signal/Signal.js";
+import { ToneOscillatorType } from "./Oscillator.js";
+import { ToneOscillatorOptions } from "./OscillatorInterface.js";
+export type LFOOptions = {
     min: number;
     max: number;
     amplitude: NormalRange;
@@ -73,7 +73,7 @@ export declare class LFO extends ToneAudioNode<LFOOptions> {
      */
     private _units;
     /**
-     * If the input value is converted using the [[units]]
+     * If the input value is converted using the {@link units}
      */
     convert: boolean;
     /**
@@ -127,12 +127,14 @@ export declare class LFO extends ToneAudioNode<LFOOptions> {
     get max(): number;
     set max(max: number);
     /**
-     * The type of the oscillator: See [[Oscillator.type]]
+     * The type of the oscillator.
+     * @see {@link Oscillator.type}
      */
     get type(): ToneOscillatorType;
     set type(type: ToneOscillatorType);
     /**
-     * The oscillator's partials array: See [[Oscillator.partials]]
+     * The oscillator's partials array.
+     * @see {@link Oscillator.partials}
      */
     get partials(): number[];
     set partials(partials: number[]);

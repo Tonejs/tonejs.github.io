@@ -1,18 +1,19 @@
-import { Volume } from "../../component/channel/Volume";
-import { ToneAudioBuffers } from "../../core/context/ToneAudioBuffers";
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { assert } from "../../core/util/Debug";
-import { noOp, readOnly } from "../../core/util/Interface";
-import { Source } from "../Source";
-import { Player } from "./Player";
+import { Volume } from "../../component/channel/Volume.js";
+import { ToneAudioBuffers, } from "../../core/context/ToneAudioBuffers.js";
+import { ToneAudioNode } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { assert } from "../../core/util/Debug.js";
+import { noOp, readOnly } from "../../core/util/Interface.js";
+import { Source } from "../Source.js";
+import { Player } from "./Player.js";
 /**
- * Players combines multiple [[Player]] objects.
+ * Players combines multiple {@link Player} objects.
  * @category Source
  */
 export class Players extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Players.getDefaults(), arguments, ["urls", "onload"], "urls"));
+        const options = optionsFromArguments(Players.getDefaults(), arguments, ["urls", "onload"], "urls");
+        super(options);
         this.name = "Players";
         /**
          * Players has no input.
@@ -22,7 +23,6 @@ export class Players extends ToneAudioNode {
          * The container of all of the players
          */
         this._players = new Map();
-        const options = optionsFromArguments(Players.getDefaults(), arguments, ["urls", "onload"], "urls");
         /**
          * The output volume node
          */
@@ -36,7 +36,7 @@ export class Players extends ToneAudioNode {
             urls: options.urls,
             onload: options.onload,
             baseUrl: options.baseUrl,
-            onerror: options.onerror
+            onerror: options.onerror,
         });
         // mute initially
         this.mute = options.mute;
@@ -72,7 +72,7 @@ export class Players extends ToneAudioNode {
     }
     set fadeIn(fadeIn) {
         this._fadeIn = fadeIn;
-        this._players.forEach(player => {
+        this._players.forEach((player) => {
             player.fadeIn = fadeIn;
         });
     }
@@ -84,7 +84,7 @@ export class Players extends ToneAudioNode {
     }
     set fadeOut(fadeOut) {
         this._fadeOut = fadeOut;
-        this._players.forEach(player => {
+        this._players.forEach((player) => {
             player.fadeOut = fadeOut;
         });
     }
@@ -130,6 +130,12 @@ export class Players extends ToneAudioNode {
      * @param  name A unique name to give the player
      * @param  url  Either the url of the bufer or a buffer which will be added with the given name.
      * @param callback  The callback to invoke when the url is loaded.
+     * @example
+     * const players = new Tone.Players();
+     * players.add("gong", "https://tonejs.github.io/audio/berklee/gong_1.mp3", () => {
+     * 	console.log("gong loaded");
+     * 	players.player("gong").start();
+     * });
      */
     add(name, url, callback) {
         assert(!this._buffers.has(name), "A buffer with that name already exists on this object");
@@ -141,14 +147,14 @@ export class Players extends ToneAudioNode {
      * @param time The time to stop all of the players.
      */
     stopAll(time) {
-        this._players.forEach(player => player.stop(time));
+        this._players.forEach((player) => player.stop(time));
         return this;
     }
     dispose() {
         super.dispose();
         this._volume.dispose();
         this.volume.dispose();
-        this._players.forEach(player => player.dispose());
+        this._players.forEach((player) => player.dispose());
         this._buffers.dispose();
         return this;
     }

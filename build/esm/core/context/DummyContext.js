@@ -1,5 +1,5 @@
 import { __awaiter } from "tslib";
-import { BaseContext } from "./BaseContext";
+import { BaseContext } from "./BaseContext.js";
 export class DummyContext extends BaseContext {
     constructor() {
         super(...arguments);
@@ -82,7 +82,7 @@ export class DummyContext extends BaseContext {
     get rawContext() {
         return {};
     }
-    addAudioWorkletModule(_url, _name) {
+    addAudioWorkletModule(_url) {
         return __awaiter(this, void 0, void 0, function* () {
             return Promise.resolve();
         });

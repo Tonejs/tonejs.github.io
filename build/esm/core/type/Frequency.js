@@ -1,7 +1,8 @@
-import { getContext } from "../Global";
-import { intervalToFrequencyRatio, mtof } from "./Conversions";
-import { ftom, getA4, setA4 } from "./Conversions";
-import { TimeClass } from "./Time";
+/* eslint-disable key-spacing */
+import { getContext } from "../Global.js";
+import { intervalToFrequencyRatio, mtof } from "./Conversions.js";
+import { ftom, getA4, setA4 } from "./Conversions.js";
+import { TimeClass } from "./Time.js";
 /**
  * Frequency is a primitive type for encoding Frequency values.
  * Eventually all time values are evaluated to hertz using the `valueOf` method.
@@ -44,7 +45,7 @@ export class FrequencyClass extends TimeClass {
                 },
             },
             note: {
-                regexp: /^([a-g]{1}(?:b|#|x|bb)?)(-?[0-9]+)/i,
+                regexp: /^([a-g]{1}(?:b|#|##|x|bb|###|#x|x#|bbb)?)(-?[0-9]+)/i,
                 method(pitch, octave) {
                     const index = noteToScaleIndex[pitch.toLowerCase()];
                     const noteNumber = index + (parseInt(octave, 10) + 1) * 12;
@@ -94,7 +95,7 @@ export class FrequencyClass extends TimeClass {
      * Tone.Frequency("A4").harmonize([0, 3, 7]); // ["A4", "C5", "E5"]
      */
     harmonize(intervals) {
-        return intervals.map(interval => {
+        return intervals.map((interval) => {
             return this.transpose(interval);
         });
     }
@@ -123,7 +124,7 @@ export class FrequencyClass extends TimeClass {
             noteNumber += -12 * octave;
         }
         const noteName = scaleIndexToNote[noteNumber % 12];
-        return noteName + octave.toString();
+        return (noteName + octave.toString());
     }
     /**
      * Return the duration of one cycle in seconds.
@@ -158,19 +159,19 @@ export class FrequencyClass extends TimeClass {
      * Returns the value of a tick in the current time units
      */
     _ticksToUnits(ticks) {
-        return 1 / ((ticks * 60) / (this._getBpm() * this._getPPQ()));
+        return (1 / ((ticks * 60) / (this._getBpm() * this._getPPQ())));
     }
     /**
      * Return the value of the beats in the current units
      */
     _beatsToUnits(beats) {
-        return 1 / super._beatsToUnits(beats);
+        return (1 / super._beatsToUnits(beats));
     }
     /**
      * Returns the value of a second in the current units
      */
     _secondsToUnits(seconds) {
-        return 1 / seconds;
+        return (1 / seconds);
     }
     /**
      * Convert a MIDI note to frequency value.
@@ -196,19 +197,95 @@ export class FrequencyClass extends TimeClass {
  * @hidden
  */
 const noteToScaleIndex = {
-    cbb: -2, cb: -1, c: 0, "c#": 1, cx: 2,
-    dbb: 0, db: 1, d: 2, "d#": 3, dx: 4,
-    ebb: 2, eb: 3, e: 4, "e#": 5, ex: 6,
-    fbb: 3, fb: 4, f: 5, "f#": 6, fx: 7,
-    gbb: 5, gb: 6, g: 7, "g#": 8, gx: 9,
-    abb: 7, ab: 8, a: 9, "a#": 10, ax: 11,
-    bbb: 9, bb: 10, b: 11, "b#": 12, bx: 13,
+    cbbb: -3,
+    cbb: -2,
+    cb: -1,
+    c: 0,
+    "c#": 1,
+    cx: 2,
+    "c##": 2,
+    "c###": 3,
+    "cx#": 3,
+    "c#x": 3,
+    dbbb: -1,
+    dbb: 0,
+    db: 1,
+    d: 2,
+    "d#": 3,
+    dx: 4,
+    "d##": 4,
+    "d###": 5,
+    "dx#": 5,
+    "d#x": 5,
+    ebbb: 1,
+    ebb: 2,
+    eb: 3,
+    e: 4,
+    "e#": 5,
+    ex: 6,
+    "e##": 6,
+    "e###": 7,
+    "ex#": 7,
+    "e#x": 7,
+    fbbb: 2,
+    fbb: 3,
+    fb: 4,
+    f: 5,
+    "f#": 6,
+    fx: 7,
+    "f##": 7,
+    "f###": 8,
+    "fx#": 8,
+    "f#x": 8,
+    gbbb: 4,
+    gbb: 5,
+    gb: 6,
+    g: 7,
+    "g#": 8,
+    gx: 9,
+    "g##": 9,
+    "g###": 10,
+    "gx#": 10,
+    "g#x": 10,
+    abbb: 6,
+    abb: 7,
+    ab: 8,
+    a: 9,
+    "a#": 10,
+    ax: 11,
+    "a##": 11,
+    "a###": 12,
+    "ax#": 12,
+    "a#x": 12,
+    bbbb: 8,
+    bbb: 9,
+    bb: 10,
+    b: 11,
+    "b#": 12,
+    bx: 13,
+    "b##": 13,
+    "b###": 14,
+    "bx#": 14,
+    "b#x": 14,
 };
 /**
  * scale index to note (sharps)
  * @hidden
  */
-const scaleIndexToNote = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+const scaleIndexToNote = [
+    "C",
+    "C#",
+    "D",
+    "D#",
+    "E",
+    "F",
+    "F#",
+    "G",
+    "G#",
+    "A",
+    "A#",
+    "B",
+];
 /**
  * Convert a value into a FrequencyClass object.
  * @category Unit

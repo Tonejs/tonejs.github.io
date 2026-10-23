@@ -1,8 +1,8 @@
-import { Tone } from "../Tone";
-import { TimeClass } from "../type/Time";
-import { Frequency, Hertz, Seconds, Ticks, Time } from "../type/Units";
-import { RecursivePartial } from "../util/Interface";
-import { BaseContext } from "./BaseContext";
+import { Tone } from "../Tone.js";
+import { TimeClass } from "../type/Time.js";
+import { Frequency, Hertz, Seconds, Ticks, Time } from "../type/Units.js";
+import { RecursivePartial } from "../util/Interface.js";
+import { BaseContext } from "./BaseContext.js";
 /**
  * A unit which process audio
  */
@@ -47,8 +47,6 @@ export declare abstract class ToneWithContext<Options extends ToneWithContextOpt
     immediate(): Seconds;
     /**
      * The duration in seconds of one sample.
-     * @example
-     * console.log(Tone.Transport.sampleTime);
      */
     get sampleTime(): Seconds;
     /**
@@ -59,7 +57,7 @@ export declare abstract class ToneWithContext<Options extends ToneWithContextOpt
     get blockTime(): Seconds;
     /**
      * Convert the incoming time to seconds.
-     * This is calculated against the current [[Tone.Transport]] bpm
+     * This is calculated against the current {@link TransportClass} bpm
      * @example
      * const gain = new Tone.Gain();
      * setInterval(() => console.log(gain.toSeconds("4n")), 100);

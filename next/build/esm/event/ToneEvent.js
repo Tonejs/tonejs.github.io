@@ -1,10 +1,11 @@
-import "../core/clock/Transport";
-import { ToneWithContext } from "../core/context/ToneWithContext";
-import { TicksClass } from "../core/type/Ticks";
-import { defaultArg, optionsFromArguments } from "../core/util/Defaults";
-import { noOp } from "../core/util/Interface";
-import { StateTimeline } from "../core/util/StateTimeline";
-import { isBoolean, isNumber } from "../core/util/TypeCheck";
+import "../core/clock/Transport.js";
+import { ToneWithContext, } from "../core/context/ToneWithContext.js";
+import { TicksClass } from "../core/type/Ticks.js";
+import { defaultArg, optionsFromArguments } from "../core/util/Defaults.js";
+import { noOp } from "../core/util/Interface.js";
+import { clamp } from "../core/util/Math.js";
+import { StateTimeline, } from "../core/util/StateTimeline.js";
+import { isBoolean, isNumber } from "../core/util/TypeCheck.js";
 /**
  * ToneEvent abstracts away this.context.transport.schedule and provides a schedulable
  * callback for a single or repeatable events along the timeline.
@@ -25,7 +26,8 @@ import { isBoolean, isNumber } from "../core/util/TypeCheck";
  */
 export class ToneEvent extends ToneWithContext {
     constructor() {
-        super(optionsFromArguments(ToneEvent.getDefaults(), arguments, ["callback", "value"]));
+        const options = optionsFromArguments(ToneEvent.getDefaults(), arguments, ["callback", "value"]);
+        super(options);
         this.name = "ToneEvent";
         /**
          * Tracks the scheduled events
@@ -35,7 +37,6 @@ export class ToneEvent extends ToneWithContext {
          * A delay time from when the event is scheduled to start
          */
         this._startOffset = 0;
-        const options = optionsFromArguments(ToneEvent.getDefaults(), arguments, ["callback", "value"]);
         this._loop = options.loop;
         this.callback = options.callback;
         this.value = options.value;
@@ -70,21 +71,26 @@ export class ToneEvent extends ToneWithContext {
      */
     _rescheduleEvents(after = -1) {
         // if no argument is given, schedules all of the events
-        this._state.forEachFrom(after, event => {
+        this._state.forEachFrom(after, (event) => {
             let duration;
             if (event.state === "started") {
                 if (event.id !== -1) {
                     this.context.transport.clear(event.id);
                 }
-                const startTick = event.time + Math.round(this.startOffset / this._playbackRate);
-                if (this._loop === true || isNumber(this._loop) && this._loop > 1) {
+                const startTick = event.time +
+                    Math.round(this.startOffset / this._playbackRate);
+                if (this._loop === true ||
+                    (isNumber(this._loop) && this._loop > 1)) {
                     duration = Infinity;
                     if (isNumber(this._loop)) {
-                        duration = (this._loop) * this._getLoopDuration();
+                        duration = this._loop * this._getLoopDuration();
                     }
-                    const nextEvent = this._state.getAfter(startTick);
+                    // look up the next boundary in the same (unshifted) frame as
+                    // event.time; startOffset can push startTick past it entirely,
+                    // in which case this segment shouldn't schedule anything
+                    const nextEvent = this._state.getAfter(event.time);
                     if (nextEvent !== null) {
-                        duration = Math.min(duration, nextEvent.time - startTick);
+                        duration = clamp(nextEvent.time - startTick, 0, duration);
                     }
                     if (duration !== Infinity) {
                         duration = new TicksClass(this.context, duration);
@@ -177,7 +183,7 @@ export class ToneEvent extends ToneWithContext {
     cancel(time) {
         time = defaultArg(time, -Infinity);
         const ticks = this.toTicks(time);
-        this._state.forEachFrom(ticks, event => {
+        this._state.forEachFrom(ticks, (event) => {
             this.context.transport.clear(event.id);
         });
         this._state.cancel(ticks);

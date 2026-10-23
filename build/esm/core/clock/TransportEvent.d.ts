@@ -1,12 +1,12 @@
-import { Seconds, Ticks } from "../type/Units";
-declare type Transport = import("../clock/Transport").Transport;
+import { Seconds, Ticks } from "../type/Units.js";
+import type { TransportClass as Transport } from "./Transport.js";
 export interface TransportEventOptions {
     callback: (time: number) => void;
     once: boolean;
     time: Ticks;
 }
 /**
- * TransportEvent is an internal class used by [[Transport]]
+ * TransportEvent is an internal class used by {@link TransportClass}
  * to schedule events. Do no invoke this class directly, it is
  * handled from within Tone.Transport.
  */
@@ -32,6 +32,11 @@ export declare class TransportEvent {
      */
     private _once;
     /**
+     * The remaining value between the passed in time, and Math.floor(time).
+     * This value is later added back when scheduling to get sub-tick precision.
+     */
+    protected _remainderTime: number;
+    /**
      * @param transport The transport object which the event belongs to
      */
     constructor(transport: Transport, opts: Partial<TransportEventOptions>);
@@ -40,6 +45,10 @@ export declare class TransportEvent {
      * Current ID counter
      */
     private static _eventId;
+    /**
+     * Get the time and remainder time.
+     */
+    protected get floatTime(): number;
     /**
      * Invoke the event callback.
      * @param  time  The AudioContext time in seconds of the event
@@ -50,4 +59,3 @@ export declare class TransportEvent {
      */
     dispose(): this;
 }
-export {};

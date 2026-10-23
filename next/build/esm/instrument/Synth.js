@@ -1,13 +1,13 @@
-import { AmplitudeEnvelope } from "../component/envelope/AmplitudeEnvelope";
-import { Envelope } from "../component/envelope/Envelope";
-import { ToneAudioNode } from "../core/context/ToneAudioNode";
-import { omitFromObject, optionsFromArguments } from "../core/util/Defaults";
-import { readOnly } from "../core/util/Interface";
-import { OmniOscillator } from "../source/oscillator/OmniOscillator";
-import { Source } from "../source/Source";
-import { Monophonic } from "./Monophonic";
+import { AmplitudeEnvelope } from "../component/envelope/AmplitudeEnvelope.js";
+import { Envelope } from "../component/envelope/Envelope.js";
+import { ToneAudioNode, } from "../core/context/ToneAudioNode.js";
+import { omitFromObject, optionsFromArguments } from "../core/util/Defaults.js";
+import { readOnly } from "../core/util/Interface.js";
+import { OmniOscillator } from "../source/oscillator/OmniOscillator.js";
+import { Source } from "../source/Source.js";
+import { Monophonic } from "./Monophonic.js";
 /**
- * Synth is composed simply of a [[OmniOscillator]] routed through an [[AmplitudeEnvelope]].
+ * Synth is composed simply of a {@link OmniOscillator} routed through an {@link AmplitudeEnvelope}.
  * ```
  * +----------------+   +-------------------+
  * | OmniOscillator +>--> AmplitudeEnvelope +>--> Output
@@ -20,9 +20,9 @@ import { Monophonic } from "./Monophonic";
  */
 export class Synth extends Monophonic {
     constructor() {
-        super(optionsFromArguments(Synth.getDefaults(), arguments));
-        this.name = "Synth";
         const options = optionsFromArguments(Synth.getDefaults(), arguments);
+        super(options);
+        this.name = "Synth";
         this.oscillator = new OmniOscillator(Object.assign({
             context: this.context,
             detune: options.detune,
@@ -45,7 +45,11 @@ export class Synth extends Monophonic {
                 release: 1,
                 sustain: 0.3,
             }),
-            oscillator: Object.assign(omitFromObject(OmniOscillator.getDefaults(), [...Object.keys(Source.getDefaults()), "frequency", "detune"]), {
+            oscillator: Object.assign(omitFromObject(OmniOscillator.getDefaults(), [
+                ...Object.keys(Source.getDefaults()),
+                "frequency",
+                "detune",
+            ]), {
                 type: "triangle",
             }),
         });

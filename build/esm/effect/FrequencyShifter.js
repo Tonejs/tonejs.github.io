@@ -1,12 +1,12 @@
-import { PhaseShiftAllpass } from "../component/filter/PhaseShiftAllpass";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { Effect } from "../effect/Effect";
-import { Add } from "../signal/Add";
-import { Multiply } from "../signal/Multiply";
-import { Negate } from "../signal/Negate";
-import { Signal } from "../signal/Signal";
-import { Oscillator } from "../source/oscillator/Oscillator";
-import { ToneOscillatorNode } from "../source/oscillator/ToneOscillatorNode";
+import { PhaseShiftAllpass } from "../component/filter/PhaseShiftAllpass.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { Effect } from "../effect/Effect.js";
+import { Add } from "../signal/Add.js";
+import { Multiply } from "../signal/Multiply.js";
+import { Negate } from "../signal/Negate.js";
+import { Signal } from "../signal/Signal.js";
+import { Oscillator } from "../source/oscillator/Oscillator.js";
+import { ToneOscillatorNode } from "../source/oscillator/ToneOscillatorNode.js";
 /**
  * FrequencyShifter can be used to shift all frequencies of a signal by a fixed amount.
  * The amount can be changed at audio rate and the effect is applied in real time.
@@ -27,9 +27,9 @@ import { ToneOscillatorNode } from "../source/oscillator/ToneOscillatorNode";
  */
 export class FrequencyShifter extends Effect {
     constructor() {
-        super(optionsFromArguments(FrequencyShifter.getDefaults(), arguments, ["frequency"]));
-        this.name = "FrequencyShifter";
         const options = optionsFromArguments(FrequencyShifter.getDefaults(), arguments, ["frequency"]);
+        super(options);
+        this.name = "FrequencyShifter";
         this.frequency = new Signal({
             context: this.context,
             units: "frequency",

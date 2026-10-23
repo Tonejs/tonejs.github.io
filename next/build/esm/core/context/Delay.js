@@ -1,7 +1,7 @@
-import { Param } from "../context/Param";
-import { optionsFromArguments } from "../util/Defaults";
-import { readOnly } from "../util/Interface";
-import { ToneAudioNode } from "./ToneAudioNode";
+import { Param } from "../context/Param.js";
+import { optionsFromArguments } from "../util/Defaults.js";
+import { readOnly } from "../util/Interface.js";
+import { ToneAudioNode } from "./ToneAudioNode.js";
 /**
  * Wrapper around Web Audio's native [DelayNode](http://webaudio.github.io/web-audio-api/#the-delaynode-interface).
  * @category Core
@@ -16,12 +16,18 @@ import { ToneAudioNode } from "./ToneAudioNode";
  */
 export class Delay extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Delay.getDefaults(), arguments, ["delayTime", "maxDelay"]));
+        const options = optionsFromArguments(Delay.getDefaults(), arguments, [
+            "delayTime",
+            "maxDelay",
+        ]);
+        super(options);
         this.name = "Delay";
-        const options = optionsFromArguments(Delay.getDefaults(), arguments, ["delayTime", "maxDelay"]);
         const maxDelayInSeconds = this.toSeconds(options.maxDelay);
         this._maxDelay = Math.max(maxDelayInSeconds, this.toSeconds(options.delayTime));
-        this._delayNode = this.input = this.output = this.context.createDelay(maxDelayInSeconds);
+        this._delayNode =
+            this.input =
+                this.output =
+                    this.context.createDelay(maxDelayInSeconds);
         this.delayTime = new Param({
             context: this.context,
             param: this._delayNode.delayTime,

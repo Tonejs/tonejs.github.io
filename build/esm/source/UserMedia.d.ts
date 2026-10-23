@@ -1,6 +1,6 @@
-import { OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../core/context/ToneAudioNode";
-import { Decibels } from "../core/type/Units";
-import { Param } from "../core/context/Param";
+import { OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../core/context/ToneAudioNode.js";
+import { Decibels } from "../core/type/Units.js";
+import { Param } from "../core/context/Param.js";
 export interface UserMediaOptions extends ToneAudioNodeOptions {
     volume: Decibels;
     mute: boolean;
@@ -81,7 +81,7 @@ export declare class UserMedia extends ToneAudioNode<UserMediaOptions> {
      * Returns the playback state of the source, "started" when the microphone is open
      * and "stopped" when the mic is closed.
      */
-    get state(): "stopped" | "started";
+    get state(): "started" | "stopped";
     /**
      * Returns an identifier for the represented device that is
      * persisted across sessions. It is un-guessable by other applications and

@@ -1,6 +1,6 @@
-import { Param } from "../../core/context/Param";
-import { InputNode, OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
-import { AudioRange, Decibels } from "../../core/type/Units";
+import { Param } from "../../core/context/Param.js";
+import { InputNode, OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
+import { AudioRange, Decibels } from "../../core/type/Units.js";
 export interface PanVolOptions extends ToneAudioNodeOptions {
     pan: AudioRange;
     volume: Decibels;

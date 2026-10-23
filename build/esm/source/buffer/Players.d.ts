@@ -1,11 +1,11 @@
-import { Param } from "../../core/context/Param";
-import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer";
-import { ToneAudioBuffersUrlMap } from "../../core/context/ToneAudioBuffers";
-import { OutputNode, ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { Decibels, Time } from "../../core/type/Units";
-import { BasicPlaybackState } from "../../core/util/StateTimeline";
-import { SourceOptions } from "../Source";
-import { Player } from "./Player";
+import { Param } from "../../core/context/Param.js";
+import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer.js";
+import { ToneAudioBuffersUrlMap } from "../../core/context/ToneAudioBuffers.js";
+import { OutputNode, ToneAudioNode } from "../../core/context/ToneAudioNode.js";
+import { Decibels, Time } from "../../core/type/Units.js";
+import { BasicPlaybackState } from "../../core/util/StateTimeline.js";
+import { SourceOptions } from "../Source.js";
+import { Player } from "./Player.js";
 export interface PlayersOptions extends SourceOptions {
     urls: ToneAudioBuffersUrlMap;
     volume: Decibels;
@@ -17,7 +17,7 @@ export interface PlayersOptions extends SourceOptions {
     fadeOut: Time;
 }
 /**
- * Players combines multiple [[Player]] objects.
+ * Players combines multiple {@link Player} objects.
  * @category Source
  */
 export declare class Players extends ToneAudioNode<PlayersOptions> {
@@ -104,6 +104,12 @@ export declare class Players extends ToneAudioNode<PlayersOptions> {
      * @param  name A unique name to give the player
      * @param  url  Either the url of the bufer or a buffer which will be added with the given name.
      * @param callback  The callback to invoke when the url is loaded.
+     * @example
+     * const players = new Tone.Players();
+     * players.add("gong", "https://tonejs.github.io/audio/berklee/gong_1.mp3", () => {
+     * 	console.log("gong loaded");
+     * 	players.player("gong").start();
+     * });
      */
     add(name: string, url: string | ToneAudioBuffer | AudioBuffer, callback?: () => void): this;
     /**

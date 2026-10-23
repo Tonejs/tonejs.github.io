@@ -1,7 +1,7 @@
-import { ToneEvent } from "./ToneEvent";
-import { ToneWithContext } from "../core/context/ToneWithContext";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { noOp } from "../core/util/Interface";
+import { ToneEvent } from "./ToneEvent.js";
+import { ToneWithContext, } from "../core/context/ToneWithContext.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { noOp } from "../core/util/Interface.js";
 /**
  * Loop creates a looped callback at the
  * specified interval. The callback can be
@@ -17,16 +17,20 @@ import { noOp } from "../core/util/Interface";
  */
 export class Loop extends ToneWithContext {
     constructor() {
-        super(optionsFromArguments(Loop.getDefaults(), arguments, ["callback", "interval"]));
+        const options = optionsFromArguments(Loop.getDefaults(), arguments, [
+            "callback",
+            "interval",
+        ]);
+        super(options);
         this.name = "Loop";
-        const options = optionsFromArguments(Loop.getDefaults(), arguments, ["callback", "interval"]);
         this._event = new ToneEvent({
             context: this.context,
             callback: this._tick.bind(this),
             loop: true,
             loopEnd: options.interval,
             playbackRate: options.playbackRate,
-            probability: options.probability
+            probability: options.probability,
+            humanize: options.humanize,
         });
         this.callback = options.callback;
         // set the iterations
@@ -40,7 +44,7 @@ export class Loop extends ToneWithContext {
             iterations: Infinity,
             probability: 1,
             mute: false,
-            humanize: false
+            humanize: false,
         });
     }
     /**

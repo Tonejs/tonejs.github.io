@@ -1,6 +1,6 @@
-import { Gain } from "../core/context/Gain";
-import { ToneAudioNodeOptions } from "../core/context/ToneAudioNode";
-import { SignalOperator } from "./SignalOperator";
+import { Gain } from "../core/context/Gain.js";
+import { ToneAudioNodeOptions } from "../core/context/ToneAudioNode.js";
+import { SignalOperator } from "./SignalOperator.js";
 /**
  * Tone.Zero outputs 0's at audio-rate. The reason this has to be
  * it's own class is that many browsers optimize out Tone.Signal

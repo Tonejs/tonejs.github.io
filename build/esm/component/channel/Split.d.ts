@@ -1,4 +1,4 @@
-import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
+import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
 interface SplitOptions extends ToneAudioNodeOptions {
     channels: number;
 }

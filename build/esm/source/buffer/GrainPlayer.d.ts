@@ -1,6 +1,6 @@
-import { Source, SourceOptions } from "../Source";
-import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer";
-import { Cents, Positive, Seconds, Time } from "../../core/type/Units";
+import { Source, SourceOptions } from "../Source.js";
+import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer.js";
+import { Cents, Positive, Seconds, Time } from "../../core/type/Units.js";
 interface GrainPlayerOptions extends SourceOptions {
     onload: () => void;
     onerror: (error: Error) => void;

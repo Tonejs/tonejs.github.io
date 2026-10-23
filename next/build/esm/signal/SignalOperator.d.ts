@@ -1,9 +1,12 @@
-import { InputNode, ToneAudioNode, ToneAudioNodeOptions } from "../core/context/ToneAudioNode";
-export declare type SignalOperatorOptions = ToneAudioNodeOptions;
+import { InputNode, ToneAudioNode, ToneAudioNodeOptions } from "../core/context/ToneAudioNode.js";
+export type SignalOperatorOptions = ToneAudioNodeOptions;
 /**
  * A signal operator has an input and output and modifies the signal.
  */
 export declare abstract class SignalOperator<Options extends SignalOperatorOptions> extends ToneAudioNode<Options> {
     constructor(options?: Partial<Options>);
+    /** @inheritdoc */
     connect(destination: InputNode, outputNum?: number, inputNum?: number): this;
+    /** @inheritdoc */
+    disconnect(destination: InputNode, outputNum?: number, inputNum?: number): this;
 }

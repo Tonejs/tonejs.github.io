@@ -1,11 +1,11 @@
-import { FeedbackEffect } from "./FeedbackEffect";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { LFO } from "../source/oscillator/LFO";
-import { Delay } from "../core/context/Delay";
-import { CrossFade } from "../component/channel/CrossFade";
-import { Signal } from "../signal/Signal";
-import { readOnly } from "../core/util/Interface";
-import { intervalToFrequencyRatio } from "../core/type/Conversions";
+import { CrossFade } from "../component/channel/CrossFade.js";
+import { Delay } from "../core/context/Delay.js";
+import { intervalToFrequencyRatio } from "../core/type/Conversions.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { readOnly } from "../core/util/Interface.js";
+import { Signal } from "../signal/Signal.js";
+import { LFO } from "../source/oscillator/LFO.js";
+import { FeedbackEffect } from "./FeedbackEffect.js";
 /**
  * PitchShift does near-realtime pitch shifting to the incoming signal.
  * The effect is achieved by speeding up or slowing down the delayTime
@@ -16,30 +16,30 @@ import { intervalToFrequencyRatio } from "../core/type/Conversions";
  */
 export class PitchShift extends FeedbackEffect {
     constructor() {
-        super(optionsFromArguments(PitchShift.getDefaults(), arguments, ["pitch"]));
-        this.name = "PitchShift";
         const options = optionsFromArguments(PitchShift.getDefaults(), arguments, ["pitch"]);
+        super(options);
+        this.name = "PitchShift";
         this._frequency = new Signal({ context: this.context });
         this._delayA = new Delay({
             maxDelay: 1,
-            context: this.context
+            context: this.context,
         });
         this._lfoA = new LFO({
             context: this.context,
             min: 0,
             max: 0.1,
-            type: "sawtooth"
+            type: "sawtooth",
         }).connect(this._delayA.delayTime);
         this._delayB = new Delay({
             maxDelay: 1,
-            context: this.context
+            context: this.context,
         });
         this._lfoB = new LFO({
             context: this.context,
             min: 0,
             max: 0.1,
             type: "sawtooth",
-            phase: 180
+            phase: 180,
         }).connect(this._delayB.delayTime);
         this._crossFade = new CrossFade({ context: this.context });
         this._crossFadeLFO = new LFO({
@@ -47,7 +47,7 @@ export class PitchShift extends FeedbackEffect {
             min: 0,
             max: 1,
             type: "triangle",
-            phase: 90
+            phase: 90,
         }).connect(this._crossFade.fade);
         this._feedbackDelay = new Delay({
             delayTime: options.delayTime,
@@ -65,20 +65,22 @@ export class PitchShift extends FeedbackEffect {
         // route the input
         this.effectSend.fan(this._delayA, this._delayB);
         this._crossFade.chain(this._feedbackDelay, this.effectReturn);
-        // start the LFOs at the same time
-        const now = this.now();
-        this._lfoA.start(now);
-        this._lfoB.start(now);
-        this._crossFadeLFO.start(now);
         // set the initial value
         this.windowSize = this._windowSize;
+        // start the LFOs at the same time
+        this._onContextRunning(() => {
+            const now = this.immediate();
+            this._lfoA.start(now);
+            this._lfoB.start(now);
+            this._crossFadeLFO.start(now);
+        });
     }
     static getDefaults() {
         return Object.assign(FeedbackEffect.getDefaults(), {
             pitch: 0,
             windowSize: 0.1,
             delayTime: 0,
-            feedback: 0
+            feedback: 0,
         });
     }
     /**

@@ -1,8 +1,8 @@
-import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
-import { Merge } from "./Merge";
-export declare type MidSideMergeOptions = ToneAudioNodeOptions;
+import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
+import { Merge } from "./Merge.js";
+export type MidSideMergeOptions = ToneAudioNodeOptions;
 /**
- * MidSideMerge merges the mid and side signal after they've been separated by [[MidSideSplit]]
+ * MidSideMerge merges the mid and side signal after they've been separated by {@link MidSideSplit}
  * ```
  * Mid = (Left+Right)/sqrt(2);   // obtain mid-signal from left and right
  * Side = (Left-Right)/sqrt(2);   // obtain side-signal from left and right
@@ -12,7 +12,7 @@ export declare type MidSideMergeOptions = ToneAudioNodeOptions;
 export declare class MidSideMerge extends ToneAudioNode<MidSideMergeOptions> {
     readonly name: string;
     /**
-     * There is no input, connect sources to either [[mid]] or [[side]] inputs.
+     * There is no input, connect sources to either {@link mid} or {@link side} inputs.
      */
     readonly input: undefined;
     /**

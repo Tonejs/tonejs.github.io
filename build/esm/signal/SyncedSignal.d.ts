@@ -1,8 +1,9 @@
-import { Signal, SignalOptions } from "./Signal";
-import { NormalRange, Time, TransportTime, UnitMap, UnitName } from "../core/type/Units";
-import { OutputNode } from "../core/context/ToneAudioNode";
+import { Signal, SignalOptions } from "./Signal.js";
+import { NormalRange, Time, TransportTime, UnitMap, UnitName } from "../core/type/Units.js";
+import { OutputNode } from "../core/context/ToneAudioNode.js";
 /**
- * Adds the ability to synchronize the signal to the [[Transport]]
+ * Adds the ability to synchronize the signal to the {@link TransportClass}
+ * @category Signal
  */
 export declare class SyncedSignal<TypeName extends UnitName = "number"> extends Signal<TypeName> {
     readonly name: string;

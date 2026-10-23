@@ -1,6 +1,6 @@
-import { Gain } from "../../core/context/Gain";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { Envelope } from "./Envelope";
+import { Gain } from "../../core/context/Gain.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { Envelope } from "./Envelope.js";
 /**
  * AmplitudeEnvelope is a Tone.Envelope connected to a gain node.
  * Unlike Tone.Envelope, which outputs the envelope's value, AmplitudeEnvelope accepts
@@ -25,7 +25,12 @@ import { Envelope } from "./Envelope";
  */
 export class AmplitudeEnvelope extends Envelope {
     constructor() {
-        super(optionsFromArguments(AmplitudeEnvelope.getDefaults(), arguments, ["attack", "decay", "sustain", "release"]));
+        super(optionsFromArguments(AmplitudeEnvelope.getDefaults(), arguments, [
+            "attack",
+            "decay",
+            "sustain",
+            "release",
+        ]));
         this.name = "AmplitudeEnvelope";
         this._gainNode = new Gain({
             context: this.context,

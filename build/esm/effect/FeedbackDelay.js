@@ -1,7 +1,7 @@
-import { Delay } from "../core/context/Delay";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { readOnly } from "../core/util/Interface";
-import { FeedbackEffect } from "./FeedbackEffect";
+import { Delay } from "../core/context/Delay.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { readOnly } from "../core/util/Interface.js";
+import { FeedbackEffect } from "./FeedbackEffect.js";
 /**
  * FeedbackDelay is a DelayNode in which part of output signal is fed back into the delay.
  *
@@ -18,9 +18,9 @@ import { FeedbackEffect } from "./FeedbackEffect";
  */
 export class FeedbackDelay extends FeedbackEffect {
     constructor() {
-        super(optionsFromArguments(FeedbackDelay.getDefaults(), arguments, ["delayTime", "feedback"]));
-        this.name = "FeedbackDelay";
         const options = optionsFromArguments(FeedbackDelay.getDefaults(), arguments, ["delayTime", "feedback"]);
+        super(options);
+        this.name = "FeedbackDelay";
         this._delayNode = new Delay({
             context: this.context,
             delayTime: options.delayTime,

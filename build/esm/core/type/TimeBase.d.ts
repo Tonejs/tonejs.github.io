@@ -1,11 +1,11 @@
-import { BaseContext } from "../context/BaseContext";
-import { Tone } from "../Tone";
-import { BPM, Hertz, MidiNote, Milliseconds, Samples, Seconds, Ticks, Time } from "./Units";
-export declare type TimeValue = Time | TimeBaseClass<any, any>;
+import { BaseContext } from "../context/BaseContext.js";
+import { Tone } from "../Tone.js";
+import { BPM, Hertz, MidiNote, Milliseconds, Samples, Seconds, Ticks, Time } from "./Units.js";
+export type TimeValue = Time | TimeBaseClass<any, any>;
 /**
  * The units that the TimeBase can accept. extended by other classes
  */
-export declare type TimeBaseUnit = "s" | "n" | "t" | "m" | "i" | "hz" | "tr" | "samples" | "number";
+export type TimeBaseUnit = "s" | "n" | "t" | "m" | "i" | "hz" | "tr" | "samples" | "number";
 export interface TypeFunction {
     regexp: RegExp;
     method: (value: string, ...args: string[]) => number;

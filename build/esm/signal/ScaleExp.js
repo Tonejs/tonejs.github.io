@@ -1,6 +1,6 @@
-import { Scale } from "./Scale";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { Pow } from "./Pow";
+import { Scale } from "./Scale.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { Pow } from "./Pow.js";
 /**
  * Performs an exponential scaling on an input signal.
  * Scales a NormalRange value [0,1] exponentially
@@ -12,9 +12,9 @@ import { Pow } from "./Pow";
  */
 export class ScaleExp extends Scale {
     constructor() {
-        super(Object.assign(optionsFromArguments(ScaleExp.getDefaults(), arguments, ["min", "max", "exponent"])));
-        this.name = "ScaleExp";
         const options = optionsFromArguments(ScaleExp.getDefaults(), arguments, ["min", "max", "exponent"]);
+        super(options);
+        this.name = "ScaleExp";
         this.input = this._exp = new Pow({
             context: this.context,
             value: options.exponent,
@@ -27,8 +27,8 @@ export class ScaleExp extends Scale {
         });
     }
     /**
-     * Instead of interpolating linearly between the [[min]] and
-     * [[max]] values, setting the exponent will interpolate between
+     * Instead of interpolating linearly between the {@link min} and
+     * {@link max} values, setting the exponent will interpolate between
      * the two values with an exponential curve.
      */
     get exponent() {

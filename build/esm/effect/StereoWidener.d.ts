@@ -1,6 +1,6 @@
-import { MidSideEffect, MidSideEffectOptions } from "../effect/MidSideEffect";
-import { Signal } from "../signal/Signal";
-import { NormalRange } from "../core/type/Units";
+import { MidSideEffect, MidSideEffectOptions } from "../effect/MidSideEffect.js";
+import { Signal } from "../signal/Signal.js";
+import { NormalRange } from "../core/type/Units.js";
 export interface StereoWidenerOptions extends MidSideEffectOptions {
     width: NormalRange;
 }

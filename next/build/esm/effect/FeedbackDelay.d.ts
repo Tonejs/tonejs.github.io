@@ -1,7 +1,7 @@
-import { Param } from "../core/context/Param";
-import { NormalRange, Time } from "../core/type/Units";
-import { FeedbackEffect, FeedbackEffectOptions } from "./FeedbackEffect";
-interface FeedbackDelayOptions extends FeedbackEffectOptions {
+import { Param } from "../core/context/Param.js";
+import { NormalRange, Time } from "../core/type/Units.js";
+import { FeedbackEffect, FeedbackEffectOptions } from "./FeedbackEffect.js";
+export interface FeedbackDelayOptions extends FeedbackEffectOptions {
     delayTime: Time;
     maxDelay: Time;
 }
@@ -34,4 +34,3 @@ export declare class FeedbackDelay extends FeedbackEffect<FeedbackDelayOptions> 
     static getDefaults(): FeedbackDelayOptions;
     dispose(): this;
 }
-export {};

@@ -1,6 +1,6 @@
-import { OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../core/context/ToneAudioNode";
-import { Decibels } from "../core/type/Units";
-import { Param } from "../core/context/Param";
+import { Param } from "../core/context/Param.js";
+import { OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../core/context/ToneAudioNode.js";
+import { Decibels } from "../core/type/Units.js";
 export interface UserMediaOptions extends ToneAudioNodeOptions {
     volume: Decibels;
     mute: boolean;
@@ -58,11 +58,11 @@ export declare class UserMedia extends ToneAudioNode<UserMediaOptions> {
      * Open the media stream. If a string is passed in, it is assumed
      * to be the label or id of the stream, if a number is passed in,
      * it is the input number of the stream.
-     * @param  labelOrId The label or id of the audio input media device.
-     *                   With no argument, the default stream is opened.
+     * @param  labelOrIdOrConstraints The label or id of the audio input media device, or a getUserMedia constraints object.
+     *                   			  With no argument, the default stream is opened.
      * @return The promise is resolved when the stream is open.
      */
-    open(labelOrId?: string | number): Promise<this>;
+    open(labelOrIdOrConstraints?: string | number | MediaStreamConstraints): Promise<this>;
     /**
      * Close the media stream
      */
@@ -81,7 +81,7 @@ export declare class UserMedia extends ToneAudioNode<UserMediaOptions> {
      * Returns the playback state of the source, "started" when the microphone is open
      * and "stopped" when the mic is closed.
      */
-    get state(): "stopped" | "started";
+    get state(): "started" | "stopped";
     /**
      * Returns an identifier for the represented device that is
      * persisted across sessions. It is un-guessable by other applications and

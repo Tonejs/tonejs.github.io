@@ -1,8 +1,8 @@
-import { AudioRange, Degrees, Frequency, Seconds, Time } from "../../core/type/Units";
-import { Signal } from "../../signal/Signal";
-import { Source } from "../Source";
-import { PulseOscillatorOptions, ToneOscillatorInterface } from "./OscillatorInterface";
-export { PulseOscillatorOptions } from "./OscillatorInterface";
+import { AudioRange, Degrees, Frequency, Seconds, Time } from "../../core/type/Units.js";
+import { Signal } from "../../signal/Signal.js";
+import { Source } from "../Source.js";
+import { PulseOscillatorOptions, ToneOscillatorInterface } from "./OscillatorInterface.js";
+export { PulseOscillatorOptions } from "./OscillatorInterface.js";
 /**
  * PulseOscillator is an oscillator with control over pulse width,
  * also known as the duty cycle. At 50% duty cycle (width = 0) the wave is

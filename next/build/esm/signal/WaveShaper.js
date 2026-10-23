@@ -1,8 +1,8 @@
-import { optionsFromArguments } from "../core/util/Defaults";
-import { isArray, isFunction } from "../core/util/TypeCheck";
-import { assert } from "../core/util/Debug";
-import { Signal } from "./Signal";
-import { SignalOperator } from "./SignalOperator";
+import { assert } from "../core/util/Debug.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { isArray, isFunction } from "../core/util/TypeCheck.js";
+import { Signal } from "./Signal.js";
+import { SignalOperator } from "./SignalOperator.js";
 /**
  * Wraps the native Web Audio API
  * [WaveShaperNode](http://webaudio.github.io/web-audio-api/#the-waveshapernode-interface).
@@ -16,7 +16,8 @@ import { SignalOperator } from "./SignalOperator";
  */
 export class WaveShaper extends SignalOperator {
     constructor() {
-        super(Object.assign(optionsFromArguments(WaveShaper.getDefaults(), arguments, ["mapping", "length"])));
+        const options = optionsFromArguments(WaveShaper.getDefaults(), arguments, ["mapping", "length"]);
+        super(options);
         this.name = "WaveShaper";
         /**
          * the waveshaper node
@@ -30,18 +31,26 @@ export class WaveShaper extends SignalOperator {
          * The output from the waveshaper node
          */
         this.output = this._shaper;
-        const options = optionsFromArguments(WaveShaper.getDefaults(), arguments, ["mapping", "length"]);
-        if (isArray(options.mapping) || options.mapping instanceof Float32Array) {
-            this.curve = Float32Array.from(options.mapping);
-        }
-        else if (isFunction(options.mapping)) {
-            this.setMap(options.mapping, options.length);
-        }
+        this._onContextRunning(() => {
+            this.initCurve(options.mapping, options.length);
+        });
     }
     static getDefaults() {
         return Object.assign(Signal.getDefaults(), {
             length: 1024,
         });
+    }
+    /**
+     * Set the curve for the first time. This is run only after the audio context is
+     * running to avoid any context warnings.
+     */
+    initCurve(mapping, length) {
+        if (isArray(mapping) || mapping instanceof Float32Array) {
+            this.curve = Float32Array.from(mapping);
+        }
+        else if (isFunction(mapping)) {
+            this.setMap(mapping, length);
+        }
     }
     /**
      * Uses a mapping function to set the value of the curve.
@@ -83,7 +92,7 @@ export class WaveShaper extends SignalOperator {
         return this._shaper.oversample;
     }
     set oversample(oversampling) {
-        const isOverSampleType = ["none", "2x", "4x"].some(str => str.includes(oversampling));
+        const isOverSampleType = ["none", "2x", "4x"].some((str) => str.includes(oversampling));
         assert(isOverSampleType, "oversampling must be either 'none', '2x', or '4x'");
         this._shaper.oversample = oversampling;
     }

@@ -1,13 +1,14 @@
-import { Param } from "./Param";
-import { ToneWithContext, ToneWithContextOptions } from "./ToneWithContext";
-export declare type InputNode = ToneAudioNode | AudioNode | Param<any> | AudioParam;
-export declare type OutputNode = ToneAudioNode | AudioNode;
+import { Param } from "./Param.js";
+import { ToneWithContext, ToneWithContextOptions } from "./ToneWithContext.js";
+export type InputNode = ToneAudioNode | AudioNode | Param<any> | AudioParam;
+export type OutputNode = ToneAudioNode | AudioNode;
 /**
  * The possible options for this node
  */
-export declare type ToneAudioNodeOptions = ToneWithContextOptions;
+export type ToneAudioNodeOptions = ToneWithContextOptions;
 /**
  * ToneAudioNode is the base class for classes which process audio.
+ * @category Core
  */
 export declare abstract class ToneAudioNode<Options extends ToneAudioNodeOptions = ToneAudioNodeOptions> extends ToneWithContext<Options> {
     /**
@@ -103,7 +104,7 @@ export declare abstract class ToneAudioNode<Options extends ToneAudioNodeOptions
     toDestination(): this;
     /**
      * Connect the output to the context's destination node.
-     * See [[toDestination]]
+     * @see {@link toDestination}
      * @deprecated
      */
     toMaster(): this;
@@ -168,6 +169,6 @@ export declare function disconnect(srcNode: OutputNode, dstNode?: InputNode, out
  * const player1 = new Tone.Player("https://tonejs.github.io/audio/drum-samples/conga-rhythm.mp3");
  * const filter = new Tone.Filter("G5").toDestination();
  * // connect nodes to a common destination
- * fanIn(player, player1, filter);
+ * Tone.fanIn(player, player1, filter);
  */
 export declare function fanIn(...nodes: OutputNode[]): void;

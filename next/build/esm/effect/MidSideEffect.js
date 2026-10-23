@@ -1,12 +1,12 @@
-import { Effect } from "./Effect";
-import { MidSideSplit } from "../component/channel/MidSideSplit";
-import { MidSideMerge } from "../component/channel/MidSideMerge";
+import { MidSideMerge } from "../component/channel/MidSideMerge.js";
+import { MidSideSplit } from "../component/channel/MidSideSplit.js";
+import { Effect } from "./Effect.js";
 /**
  * Mid/Side processing separates the the 'mid' signal
  * (which comes out of both the left and the right channel)
  * and the 'side' (which only comes out of the the side channels)
  * and effects them separately before being recombined.
- * Applies a Mid/Side seperation and recombination.
+ * Applies a Mid/Side separation and recombination.
  * Algorithm found in [kvraudio forums](http://www.kvraudio.com/forum/viewtopic.php?t=212587).
  * This is a base-class for Mid/Side Effects.
  * @category Effect

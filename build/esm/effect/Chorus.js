@@ -1,13 +1,13 @@
-import { StereoFeedbackEffect } from "../effect/StereoFeedbackEffect";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { LFO } from "../source/oscillator/LFO";
-import { Delay } from "../core/context/Delay";
-import { readOnly } from "../core/util/Interface";
+import { StereoFeedbackEffect, } from "../effect/StereoFeedbackEffect.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { LFO } from "../source/oscillator/LFO.js";
+import { Delay } from "../core/context/Delay.js";
+import { readOnly } from "../core/util/Interface.js";
 /**
- * Chorus is a stereo chorus effect composed of a left and right delay with an [[LFO]] applied to the delayTime of each channel.
- * When [[feedback]] is set to a value larger than 0, you also get Flanger-type effects.
+ * Chorus is a stereo chorus effect composed of a left and right delay with an {@link LFO} applied to the delayTime of each channel.
+ * When {@link feedback} is set to a value larger than 0, you also get Flanger-type effects.
  * Inspiration from [Tuna.js](https://github.com/Dinahmoe/tuna/blob/master/tuna.js).
- * Read more on the chorus effect on [SoundOnSound](http://www.soundonsound.com/sos/jun04/articles/synthsecrets.htm).
+ * Read more on the chorus effect on [Sound On Sound](http://www.soundonsound.com/sos/jun04/articles/synthsecrets.htm).
  *
  * @example
  * const chorus = new Tone.Chorus(4, 2.5, 0.5).toDestination().start();
@@ -18,9 +18,13 @@ import { readOnly } from "../core/util/Interface";
  */
 export class Chorus extends StereoFeedbackEffect {
     constructor() {
-        super(optionsFromArguments(Chorus.getDefaults(), arguments, ["frequency", "delayTime", "depth"]));
+        const options = optionsFromArguments(Chorus.getDefaults(), arguments, [
+            "frequency",
+            "delayTime",
+            "depth",
+        ]);
+        super(options);
         this.name = "Chorus";
-        const options = optionsFromArguments(Chorus.getDefaults(), arguments, ["frequency", "delayTime", "depth"]);
         this._depth = options.depth;
         this._delayTime = options.delayTime / 1000;
         this._lfoL = new LFO({
@@ -34,7 +38,7 @@ export class Chorus extends StereoFeedbackEffect {
             frequency: options.frequency,
             min: 0,
             max: 1,
-            phase: 180
+            phase: 180,
         });
         this._delayNodeL = new Delay({ context: this.context });
         this._delayNodeR = new Delay({ context: this.context });
@@ -109,8 +113,8 @@ export class Chorus extends StereoFeedbackEffect {
         return this._lfoR.phase - this._lfoL.phase;
     }
     set spread(spread) {
-        this._lfoL.phase = 90 - (spread / 2);
-        this._lfoR.phase = (spread / 2) + 90;
+        this._lfoL.phase = 90 - spread / 2;
+        this._lfoR.phase = spread / 2 + 90;
     }
     /**
      * Start the effect.
@@ -129,7 +133,8 @@ export class Chorus extends StereoFeedbackEffect {
         return this;
     }
     /**
-     * Sync the filter to the transport. See [[LFO.sync]]
+     * Sync the filter to the transport.
+     * @see {@link LFO.sync}
      */
     sync() {
         this._lfoL.sync();

@@ -1,12 +1,12 @@
-import { MidSideEffect } from "../effect/MidSideEffect";
-import { Signal } from "../signal/Signal";
-import { Multiply } from "../signal/Multiply";
-import { Subtract } from "../signal/Subtract";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { readOnly } from "../core/util/Interface";
-import { connect } from "../core/context/ToneAudioNode";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { readOnly } from "../core/util/Interface.js";
+import { MidSideEffect, } from "../effect/MidSideEffect.js";
+import { Multiply } from "../signal/Multiply.js";
+import { Signal } from "../signal/Signal.js";
+import { Subtract } from "../signal/Subtract.js";
+import { ToneConstantSource } from "../signal/ToneConstantSource.js";
 /**
- * Applies a width factor to the mid/side seperation.
+ * Applies a width factor to the mid/side separation.
  * 0 is all mid and 1 is all side.
  * Algorithm found in [kvraudio forums](http://www.kvraudio.com/forum/viewtopic.php?t=212587).
  * ```
@@ -17,9 +17,9 @@ import { connect } from "../core/context/ToneAudioNode";
  */
 export class StereoWidener extends MidSideEffect {
     constructor() {
-        super(optionsFromArguments(StereoWidener.getDefaults(), arguments, ["width"]));
-        this.name = "StereoWidener";
         const options = optionsFromArguments(StereoWidener.getDefaults(), arguments, ["width"]);
+        super(options);
+        this.name = "StereoWidener";
         this.width = new Signal({
             context: this.context,
             value: options.width,
@@ -39,7 +39,11 @@ export class StereoWidener extends MidSideEffect {
         this.connectEffectMid(this._midMult);
         this._oneMinusWidth = new Subtract({ context: this.context });
         this._oneMinusWidth.connect(this._twoTimesWidthMid);
-        connect(this.context.getConstant(1), this._oneMinusWidth);
+        this._constant = new ToneConstantSource({
+            context: this.context,
+            offset: 1,
+        }).start();
+        this._constant.connect(this._oneMinusWidth);
         this.width.connect(this._oneMinusWidth.subtrahend);
         this._sideMult = new Multiply({ context: this.context });
         this.width.connect(this._twoTimesWidthSide);
@@ -59,6 +63,7 @@ export class StereoWidener extends MidSideEffect {
         this._twoTimesWidthMid.dispose();
         this._twoTimesWidthSide.dispose();
         this._oneMinusWidth.dispose();
+        this._constant.dispose();
         return this;
     }
 }

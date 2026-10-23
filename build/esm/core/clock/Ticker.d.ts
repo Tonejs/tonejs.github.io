@@ -1,5 +1,5 @@
-import { Seconds } from "../type/Units";
-export declare type TickerClockSource = "worker" | "timeout" | "offline";
+import { Seconds } from "../type/Units.js";
+export type TickerClockSource = "worker" | "timeout" | "offline";
 /**
  * A class which provides a reliable callback using either
  * a Web Worker, or if that isn't supported, falls back to setTimeout.
@@ -14,6 +14,10 @@ export declare class Ticker {
      */
     private _updateInterval;
     /**
+     * The lowest allowable interval, preferably calculated from context sampleRate
+     */
+    private _minimumUpdateInterval;
+    /**
      * The callback to invoke at regular intervals
      */
     private _callback;
@@ -25,7 +29,7 @@ export declare class Ticker {
      * private reference to the worker
      */
     private _worker;
-    constructor(callback: () => void, type: TickerClockSource, updateInterval: Seconds);
+    constructor(callback: () => void, type: TickerClockSource, updateInterval: Seconds, contextSampleRate?: number);
     /**
      * Generate a web worker
      */

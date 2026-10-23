@@ -1,7 +1,7 @@
-import { Frequency } from "../core/type/Units";
-import { Effect, EffectOptions } from "../effect/Effect";
-import { Signal } from "../signal/Signal";
-interface FrequencyShifterOptions extends EffectOptions {
+import { Frequency } from "../core/type/Units.js";
+import { Effect, EffectOptions } from "../effect/Effect.js";
+import { Signal } from "../signal/Signal.js";
+export interface FrequencyShifterOptions extends EffectOptions {
     frequency: Frequency;
 }
 /**
@@ -11,7 +11,7 @@ interface FrequencyShifterOptions extends EffectOptions {
  * Note: Contrary to pitch shifting, all frequencies are shifted by the same amount,
  * destroying the harmonic relationship between them. This leads to the classic ring modulator timbre distortion.
  * The algorithm will produces some aliasing towards the high end, especially if your source material
- * contains a lot of high frequencies. Unfortunatelly the webaudio API does not support resampling
+ * contains a lot of high frequencies. Unfortunately the Web Audio API does not support resampling
  * buffers in real time, so it is not possible to fix it properly. Depending on the use case it might
  * be an option to low pass filter your input before frequency shifting it to get ride of the aliasing.
  * You can find a very detailed description of the algorithm here: https://larzeitlin.github.io/RMFS/
@@ -65,4 +65,3 @@ export declare class FrequencyShifter extends Effect<FrequencyShifterOptions> {
     static getDefaults(): FrequencyShifterOptions;
     dispose(): this;
 }
-export {};

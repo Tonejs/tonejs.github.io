@@ -1,13 +1,13 @@
-import { MidiClass } from "../core/type/Midi";
-import { deepMerge, omitFromObject, optionsFromArguments } from "../core/util/Defaults";
-import { isArray, isNumber } from "../core/util/TypeCheck";
-import { Instrument } from "./Instrument";
-import { Monophonic } from "./Monophonic";
-import { Synth } from "./Synth";
-import { assert, warn } from "../core/util/Debug";
+import { MidiClass } from "../core/type/Midi.js";
+import { assert, warn } from "../core/util/Debug.js";
+import { deepMerge, omitFromObject, optionsFromArguments, } from "../core/util/Defaults.js";
+import { isArray, isNumber } from "../core/util/TypeCheck.js";
+import { Instrument } from "./Instrument.js";
+import { Monophonic } from "./Monophonic.js";
+import { Synth } from "./Synth.js";
 /**
  * PolySynth handles voice creation and allocation for any
- * instruments passed in as the second paramter. PolySynth is
+ * instruments passed in as the second parameter. PolySynth is
  * not a synthesizer by itself, it merely manages voices of
  * one of the other types of synths, allowing any of the
  * monophonic synthesizers to be polyphonic.
@@ -22,7 +22,8 @@ import { assert, warn } from "../core/util/Debug";
  */
 export class PolySynth extends Instrument {
     constructor() {
-        super(optionsFromArguments(PolySynth.getDefaults(), arguments, ["voice", "options"]));
+        const options = optionsFromArguments(PolySynth.getDefaults(), arguments, ["voice", "options"]);
+        super(options);
         this.name = "PolySynth";
         /**
          * The voices which are not currently in use
@@ -48,7 +49,6 @@ export class PolySynth extends Instrument {
          * The release which is scheduled to the timeline.
          */
         this._syncedRelease = (time) => this.releaseAll(time);
-        const options = optionsFromArguments(PolySynth.getDefaults(), arguments, ["voice", "options"]);
         // check against the old API (pre 14.3.0)
         assert(!isNumber(options.voice), "DEPRECATED: The polyphony count is no longer the first argument.");
         const defaults = options.voice.getDefaults();
@@ -78,7 +78,7 @@ export class PolySynth extends Instrument {
     }
     /**
      * Invoked when the source is done making sound, so that it can be
-     * readded to the pool of available voices
+     * re-added to the pool of available voices
      */
     _makeVoiceAvailable(voice) {
         this._availableVoices.push(voice);
@@ -116,7 +116,8 @@ export class PolySynth extends Instrument {
      */
     _collectGarbage() {
         this._averageActiveVoices = Math.max(this._averageActiveVoices * 0.95, this.activeVoices);
-        if (this._availableVoices.length && this._voices.length > Math.ceil(this._averageActiveVoices + 1)) {
+        if (this._availableVoices.length &&
+            this._voices.length > Math.ceil(this._averageActiveVoices + 1)) {
             // take off an available note
             const firstAvail = this._availableVoices.shift();
             const index = this._voices.indexOf(firstAvail);
@@ -130,13 +131,15 @@ export class PolySynth extends Instrument {
      * Internal method which triggers the attack
      */
     _triggerAttack(notes, time, velocity) {
-        notes.forEach(note => {
+        notes.forEach((note) => {
             const midiNote = new MidiClass(this.context, note).toMidi();
             const voice = this._getNextAvailableVoice();
             if (voice) {
                 voice.triggerAttack(note, time, velocity);
                 this._activeVoices.push({
-                    midi: midiNote, voice, released: false,
+                    midi: midiNote,
+                    voice,
+                    released: false,
                 });
                 this.log("triggerAttack", note, time);
             }
@@ -146,7 +149,7 @@ export class PolySynth extends Instrument {
      * Internal method which triggers the release
      */
     _triggerRelease(notes, time) {
-        notes.forEach(note => {
+        notes.forEach((note) => {
             const midiNote = new MidiClass(this.context, note).toMidi();
             const event = this._activeVoices.find(({ midi, released }) => midi === midiNote && !released);
             if (event) {
@@ -206,7 +209,6 @@ export class PolySynth extends Instrument {
      * a note (or array of notes) needs to be passed in as the first argument.
      * @param  notes The notes to play. Accepts a single Frequency or an array of frequencies.
      * @param  time  When the release will be triggered.
-     * @example
      * @example
      * const poly = new Tone.PolySynth(Tone.AMSynth).toDestination();
      * poly.triggerAttack(["Ab3", "C4", "F5"]);
@@ -278,10 +280,13 @@ export class PolySynth extends Instrument {
      */
     set(options) {
         // remove options which are controlled by the PolySynth
-        const sanitizedOptions = omitFromObject(options, ["onsilence", "context"]);
+        const sanitizedOptions = omitFromObject(options, [
+            "onsilence",
+            "context",
+        ]);
         // store all of the options
         this.options = deepMerge(this.options, sanitizedOptions);
-        this._voices.forEach(voice => voice.set(sanitizedOptions));
+        this._voices.forEach((voice) => voice.set(sanitizedOptions));
         this._dummyVoice.set(sanitizedOptions);
         return this;
     }
@@ -302,7 +307,7 @@ export class PolySynth extends Instrument {
     dispose() {
         super.dispose();
         this._dummyVoice.dispose();
-        this._voices.forEach(v => v.dispose());
+        this._voices.forEach((v) => v.dispose());
         this._activeVoices = [];
         this._availableVoices = [];
         this.context.clearInterval(this._gcTimeout);

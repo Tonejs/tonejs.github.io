@@ -1,9 +1,9 @@
-import { TicksClass } from "../core/type/Ticks";
-import { TransportTimeClass } from "../core/type/TransportTime";
-import { defaultArg, optionsFromArguments } from "../core/util/Defaults";
-import { StateTimeline } from "../core/util/StateTimeline";
-import { isArray, isDefined, isObject, isUndef } from "../core/util/TypeCheck";
-import { ToneEvent } from "./ToneEvent";
+import { TicksClass } from "../core/type/Ticks.js";
+import { TransportTimeClass } from "../core/type/TransportTime.js";
+import { defaultArg, optionsFromArguments } from "../core/util/Defaults.js";
+import { StateTimeline } from "../core/util/StateTimeline.js";
+import { isArray, isDefined, isObject, isUndef, } from "../core/util/TypeCheck.js";
+import { ToneEvent } from "./ToneEvent.js";
 /**
  * Part is a collection ToneEvents which can be started/stopped and looped as a single unit.
  *
@@ -13,7 +13,7 @@ import { ToneEvent } from "./ToneEvent";
  * 	// the notes given as the second element in the array
  * 	// will be passed in as the second argument
  * 	synth.triggerAttackRelease(note, "8n", time);
- * }), [[0, "C2"], ["0:2", "C3"], ["0:3:2", "G2"]]);
+ * }), [[0, "C2"], ["0:2", "C3"], ["0:3:2", "G2"]]).start(0);
  * Tone.Transport.start();
  * @example
  * const synth = new Tone.Synth().toDestination();
@@ -29,7 +29,11 @@ import { ToneEvent } from "./ToneEvent";
  */
 export class Part extends ToneEvent {
     constructor() {
-        super(optionsFromArguments(Part.getDefaults(), arguments, ["callback", "events"]));
+        const options = optionsFromArguments(Part.getDefaults(), arguments, [
+            "callback",
+            "events",
+        ]);
+        super(options);
         this.name = "Part";
         /**
          * Tracks the scheduled events
@@ -39,11 +43,10 @@ export class Part extends ToneEvent {
          * The events that belong to this part
          */
         this._events = new Set();
-        const options = optionsFromArguments(Part.getDefaults(), arguments, ["callback", "events"]);
         // make sure things are assigned in the right order
         this._state.increasing = true;
         // add the events
-        options.events.forEach(event => {
+        options.events.forEach((event) => {
             if (isArray(event)) {
                 this.add(event[0], event[1]);
             }
@@ -79,7 +82,7 @@ export class Part extends ToneEvent {
                 state: "started",
                 time: ticks,
             });
-            this._forEach(event => {
+            this._forEach((event) => {
                 this._startNote(event, ticks, computedOffset);
             });
         }
@@ -95,14 +98,16 @@ export class Part extends ToneEvent {
     _startNote(event, ticks, offset) {
         ticks -= offset;
         if (this._loop) {
-            if (event.startOffset >= this._loopStart && event.startOffset < this._loopEnd) {
+            if (event.startOffset >= this._loopStart &&
+                event.startOffset < this._loopEnd) {
                 if (event.startOffset < offset) {
                     // start it on the next loop
                     ticks += this._getLoopDuration();
                 }
                 event.start(new TicksClass(this.context, ticks));
             }
-            else if (event.startOffset < this._loopStart && event.startOffset >= offset) {
+            else if (event.startOffset < this._loopStart &&
+                event.startOffset >= offset) {
                 event.loop = false;
                 event.start(new TicksClass(this.context, ticks));
             }
@@ -116,7 +121,7 @@ export class Part extends ToneEvent {
     }
     set startOffset(offset) {
         this._startOffset = offset;
-        this._forEach(event => {
+        this._forEach((event) => {
             event.startOffset += this._startOffset;
         });
     }
@@ -128,7 +133,7 @@ export class Part extends ToneEvent {
         const ticks = this.toTicks(time);
         this._state.cancel(ticks);
         this._state.setStateAtTime("stopped", ticks);
-        this._forEach(event => {
+        this._forEach((event) => {
             event.stop(time);
         });
         return this;
@@ -228,9 +233,10 @@ export class Part extends ToneEvent {
             time = value.time;
         }
         time = this.toTicks(time);
-        this._events.forEach(event => {
+        this._events.forEach((event) => {
             if (event.startOffset === time) {
-                if (isUndef(value) || (isDefined(value) && event.value === value)) {
+                if (isUndef(value) ||
+                    (isDefined(value) && event.value === value)) {
                     this._events.delete(event);
                     event.dispose();
                 }
@@ -242,7 +248,7 @@ export class Part extends ToneEvent {
      * Remove all of the notes from the group.
      */
     clear() {
-        this._forEach(event => event.dispose());
+        this._forEach((event) => event.dispose());
         this._events.clear();
         return this;
     }
@@ -251,7 +257,7 @@ export class Part extends ToneEvent {
      * @param after The time after which to cancel the scheduled events.
      */
     cancel(after) {
-        this._forEach(event => event.cancel(after));
+        this._forEach((event) => event.cancel(after));
         this._state.cancel(this.toTicks(after));
         return this;
     }
@@ -260,7 +266,7 @@ export class Part extends ToneEvent {
      */
     _forEach(callback) {
         if (this._events) {
-            this._events.forEach(event => {
+            this._events.forEach((event) => {
                 if (event instanceof Part) {
                     event._forEach(callback);
                 }
@@ -277,7 +283,7 @@ export class Part extends ToneEvent {
      * @param  value      The value to set it to
      */
     _setAll(attr, value) {
-        this._forEach(event => {
+        this._forEach((event) => {
             event[attr] = value;
         });
     }
@@ -296,7 +302,9 @@ export class Part extends ToneEvent {
      * @param  event  The event to test
      */
     _testLoopBoundries(event) {
-        if (this._loop && (event.startOffset < this._loopStart || event.startOffset >= this._loopEnd)) {
+        if (this._loop &&
+            (event.startOffset < this._loopStart ||
+                event.startOffset >= this._loopEnd)) {
             event.cancel(0);
         }
         else if (event.state === "stopped") {
@@ -337,7 +345,7 @@ export class Part extends ToneEvent {
     }
     set loop(loop) {
         this._loop = loop;
-        this._forEach(event => {
+        this._forEach((event) => {
             event.loopStart = this.loopStart;
             event.loopEnd = this.loopEnd;
             event.loop = loop;
@@ -354,7 +362,7 @@ export class Part extends ToneEvent {
     set loopEnd(loopEnd) {
         this._loopEnd = this.toTicks(loopEnd);
         if (this._loop) {
-            this._forEach(event => {
+            this._forEach((event) => {
                 event.loopEnd = loopEnd;
                 this._testLoopBoundries(event);
             });
@@ -370,7 +378,7 @@ export class Part extends ToneEvent {
     set loopStart(loopStart) {
         this._loopStart = this.toTicks(loopStart);
         if (this._loop) {
-            this._forEach(event => {
+            this._forEach((event) => {
                 event.loopStart = this.loopStart;
                 this._testLoopBoundries(event);
             });

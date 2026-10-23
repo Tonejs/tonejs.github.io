@@ -1,10 +1,10 @@
 import { __awaiter } from "tslib";
-import { connect, ToneAudioNode } from "../core/context/ToneAudioNode";
-import { Volume } from "../component/channel/Volume";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { assert } from "../core/util/Debug";
-import { readOnly } from "../core/util/Interface";
-import { isDefined, isNumber } from "../core/util/TypeCheck";
+import { Volume } from "../component/channel/Volume.js";
+import { connect, ToneAudioNode, } from "../core/context/ToneAudioNode.js";
+import { assert } from "../core/util/Debug.js";
+import { deepMerge, optionsFromArguments } from "../core/util/Defaults.js";
+import { readOnly } from "../core/util/Interface.js";
+import { isDefined, isNumber, isObject } from "../core/util/TypeCheck.js";
 /**
  * UserMedia uses MediaDevices.getUserMedia to open up and external microphone or audio input.
  * Check [MediaDevices API Support](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia)
@@ -26,9 +26,9 @@ import { isDefined, isNumber } from "../core/util/TypeCheck";
  */
 export class UserMedia extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(UserMedia.getDefaults(), arguments, ["volume"]));
-        this.name = "UserMedia";
         const options = optionsFromArguments(UserMedia.getDefaults(), arguments, ["volume"]);
+        super(options);
+        this.name = "UserMedia";
         this._volume = this.output = new Volume({
             context: this.context,
             volume: options.volume,
@@ -40,50 +40,57 @@ export class UserMedia extends ToneAudioNode {
     static getDefaults() {
         return Object.assign(ToneAudioNode.getDefaults(), {
             mute: false,
-            volume: 0
+            volume: 0,
         });
     }
     /**
      * Open the media stream. If a string is passed in, it is assumed
      * to be the label or id of the stream, if a number is passed in,
      * it is the input number of the stream.
-     * @param  labelOrId The label or id of the audio input media device.
-     *                   With no argument, the default stream is opened.
+     * @param  labelOrIdOrConstraints The label or id of the audio input media device, or a getUserMedia constraints object.
+     *                   			  With no argument, the default stream is opened.
      * @return The promise is resolved when the stream is open.
      */
-    open(labelOrId) {
+    open(labelOrIdOrConstraints) {
         return __awaiter(this, void 0, void 0, function* () {
             assert(UserMedia.supported, "UserMedia is not supported");
             // close the previous stream
             if (this.state === "started") {
                 this.close();
             }
-            const devices = yield UserMedia.enumerateDevices();
-            if (isNumber(labelOrId)) {
-                this._device = devices[labelOrId];
-            }
-            else {
-                this._device = devices.find((device) => {
-                    return device.label === labelOrId || device.deviceId === labelOrId;
-                });
-                // didn't find a matching device
-                if (!this._device && devices.length > 0) {
-                    this._device = devices[0];
-                }
-                assert(isDefined(this._device), `No matching device ${labelOrId}`);
-            }
-            // do getUserMedia
-            const constraints = {
+            let constraints = {
                 audio: {
                     echoCancellation: false,
                     sampleRate: this.context.sampleRate,
                     noiseSuppression: false,
-                    mozNoiseSuppression: false,
-                }
+                },
             };
-            if (this._device) {
-                // @ts-ignore
-                constraints.audio.deviceId = this._device.deviceId;
+            if (isObject(labelOrIdOrConstraints)) {
+                // if the user passed in a constraints object
+                constraints = deepMerge(constraints, labelOrIdOrConstraints);
+            }
+            else {
+                // if the user passed in a label or id
+                const devices = yield UserMedia.enumerateDevices();
+                if (isNumber(labelOrIdOrConstraints)) {
+                    this._device = devices[labelOrIdOrConstraints];
+                }
+                else {
+                    this._device = devices.find((device) => {
+                        return (device.label === labelOrIdOrConstraints ||
+                            device.deviceId === labelOrIdOrConstraints);
+                    });
+                    // didn't find a matching device
+                    if (!this._device && devices.length > 0) {
+                        this._device = devices[0];
+                    }
+                    assert(isDefined(this._device), `No matching device ${labelOrIdOrConstraints}`);
+                }
+                // if there is a device, set the deviceId
+                if (this._device) {
+                    // @ts-ignore
+                    constraints.audio.deviceId = this._device.deviceId;
+                }
             }
             const stream = yield navigator.mediaDevices.getUserMedia(constraints);
             // start a new source only if the previous one is closed
@@ -126,7 +133,7 @@ export class UserMedia extends ToneAudioNode {
     static enumerateDevices() {
         return __awaiter(this, void 0, void 0, function* () {
             const allDevices = yield navigator.mediaDevices.enumerateDevices();
-            return allDevices.filter(device => {
+            return allDevices.filter((device) => {
                 return device.kind === "audioinput";
             });
         });
@@ -136,7 +143,8 @@ export class UserMedia extends ToneAudioNode {
      * and "stopped" when the mic is closed.
      */
     get state() {
-        return this._stream && this._stream.active ? "started" : "stopped";
+        var _a;
+        return ((_a = this._stream) === null || _a === void 0 ? void 0 : _a.active) ? "started" : "stopped";
     }
     /**
      * Returns an identifier for the represented device that is
@@ -147,12 +155,8 @@ export class UserMedia extends ToneAudioNode {
      * device is not open.
      */
     get deviceId() {
-        if (this._device) {
-            return this._device.deviceId;
-        }
-        else {
-            return undefined;
-        }
+        var _a;
+        return (_a = this._device) === null || _a === void 0 ? void 0 : _a.deviceId;
     }
     /**
      * Returns a group identifier. Two devices have the
@@ -160,12 +164,8 @@ export class UserMedia extends ToneAudioNode {
      * Returns null  when the device is not open.
      */
     get groupId() {
-        if (this._device) {
-            return this._device.groupId;
-        }
-        else {
-            return undefined;
-        }
+        var _a;
+        return (_a = this._device) === null || _a === void 0 ? void 0 : _a.groupId;
     }
     /**
      * Returns a label describing this device (for example "Built-in Microphone").
@@ -173,12 +173,8 @@ export class UserMedia extends ToneAudioNode {
      * because of permissions.
      */
     get label() {
-        if (this._device) {
-            return this._device.label;
-        }
-        else {
-            return undefined;
-        }
+        var _a;
+        return (_a = this._device) === null || _a === void 0 ? void 0 : _a.label;
     }
     /**
      * Mute the output.
@@ -207,8 +203,8 @@ export class UserMedia extends ToneAudioNode {
      * If getUserMedia is supported by the browser.
      */
     static get supported() {
-        return isDefined(navigator.mediaDevices) &&
-            isDefined(navigator.mediaDevices.getUserMedia);
+        return (isDefined(navigator.mediaDevices) &&
+            isDefined(navigator.mediaDevices.getUserMedia));
     }
 }
 //# sourceMappingURL=UserMedia.js.map

@@ -1,6 +1,6 @@
-import { Param } from "../core/context/Param";
-import { OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../core/context/ToneAudioNode";
-import { Decibels, Frequency, NormalRange, Time } from "../core/type/Units";
+import { Param } from "../core/context/Param.js";
+import { OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../core/context/ToneAudioNode.js";
+import { Decibels, Frequency, NormalRange, Time } from "../core/type/Units.js";
 export interface InstrumentOptions extends ToneAudioNodeOptions {
     volume: Decibels;
 }
@@ -38,7 +38,7 @@ export declare abstract class Instrument<Options extends InstrumentOptions> exte
     static getDefaults(): InstrumentOptions;
     /**
      * Sync the instrument to the Transport. All subsequent calls of
-     * [[triggerAttack]] and [[triggerRelease]] will be scheduled along the transport.
+     * {@link triggerAttack} and {@link triggerRelease} will be scheduled along the transport.
      * @example
      * const fmSynth = new Tone.FMSynth().toDestination();
      * fmSynth.volume.value = -6;
@@ -81,8 +81,8 @@ export declare abstract class Instrument<Options extends InstrumentOptions> exte
     /**
      * Start the instrument's note.
      * @param note the note to trigger
-     * @param time the time to trigger the ntoe
-     * @param velocity the velocity to trigger the note (betwee 0-1)
+     * @param time the time to trigger the note
+     * @param velocity the velocity to trigger the note (between 0-1)
      */
     abstract triggerAttack(note: Frequency, time?: Time, velocity?: NormalRange): this;
     private _original_triggerAttack;
@@ -92,6 +92,10 @@ export declare abstract class Instrument<Options extends InstrumentOptions> exte
      */
     abstract triggerRelease(...args: any[]): this;
     private _original_triggerRelease;
+    /**
+     * The release which is scheduled to the timeline.
+     */
+    protected _syncedRelease: (time: number) => this;
     /**
      * clean up
      * @returns {Instrument} this

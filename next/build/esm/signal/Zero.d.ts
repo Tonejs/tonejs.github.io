@@ -1,22 +1,21 @@
-import { Gain } from "../core/context/Gain";
-import { ToneAudioNodeOptions } from "../core/context/ToneAudioNode";
-import { SignalOperator } from "./SignalOperator";
+import { ToneAudioNode, ToneAudioNodeOptions } from "../core/context/ToneAudioNode.js";
+import { SignalOperator } from "./SignalOperator.js";
 /**
  * Tone.Zero outputs 0's at audio-rate. The reason this has to be
- * it's own class is that many browsers optimize out Tone.Signal
+ * its own class is that many browsers optimize out Tone.Signal
  * with a value of 0 and will not process nodes further down the graph.
  * @category Signal
  */
 export declare class Zero extends SignalOperator<ToneAudioNodeOptions> {
     readonly name: string;
     /**
-     * The gain node which connects the constant source to the output
+     * A constant source which outputs 0
      */
-    private _gain;
+    private _constant;
     /**
      * Only outputs 0
      */
-    output: Gain<"gain">;
+    output: ToneAudioNode;
     /**
      * no input node
      */

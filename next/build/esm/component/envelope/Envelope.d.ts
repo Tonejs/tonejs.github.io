@@ -1,9 +1,9 @@
-import { InputNode, OutputNode } from "../../core/context/ToneAudioNode";
-import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
-import { NormalRange, Time } from "../../core/type/Units";
-import { Signal } from "../../signal/Signal";
-declare type BasicEnvelopeCurve = "linear" | "exponential";
-export declare type EnvelopeCurve = EnvelopeCurveName | number[];
+import { InputNode, OutputNode } from "../../core/context/ToneAudioNode.js";
+import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
+import { NormalRange, Time } from "../../core/type/Units.js";
+import { Signal } from "../../signal/Signal.js";
+type BasicEnvelopeCurve = "linear" | "exponential";
+export type EnvelopeCurve = EnvelopeCurveName | number[];
 export interface EnvelopeOptions extends ToneAudioNodeOptions {
     attack: Time;
     decay: Time;
@@ -44,7 +44,7 @@ export declare class Envelope extends ToneAudioNode<EnvelopeOptions> {
     readonly name: string;
     /**
      * When triggerAttack is called, the attack time is the amount of
-     * time it takes for the envelope to reach it's maximum value.
+     * time it takes for the envelope to reach its maximum value.
      * ```
      *           /\
      *          /X \
@@ -62,7 +62,7 @@ export declare class Envelope extends ToneAudioNode<EnvelopeOptions> {
     attack: Time;
     /**
      * After the attack portion of the envelope, the value will fall
-     * over the duration of the decay time to it's sustain value.
+     * over the duration of the decay time to its sustain value.
      * ```
      *           /\
      *          / X\
@@ -97,7 +97,7 @@ export declare class Envelope extends ToneAudioNode<EnvelopeOptions> {
     sustain: NormalRange;
     /**
      * After triggerRelease is called, the envelope's
-     * value will fall to it's miminum value over the
+     * value will fall to its minimum value over the
      * duration of the release time.
      * ```
      *           /\
@@ -140,7 +140,7 @@ export declare class Envelope extends ToneAudioNode<EnvelopeOptions> {
     input: InputNode | undefined;
     /**
      * @param attack The amount of time it takes for the envelope to go from
-     *                        0 to it's maximum value.
+     *                        0 to its maximum value.
      * @param decay	The period of time after the attack that it takes for the envelope
      *                      	to fall to the sustain value. Value must be greater than 0.
      * @param sustain	The percent of the maximum value that the envelope rests at until
@@ -220,8 +220,8 @@ export declare class Envelope extends ToneAudioNode<EnvelopeOptions> {
      * 	env.triggerAttack();
      * }, 1, 1);
      */
-    get decayCurve(): BasicEnvelopeCurve;
-    set decayCurve(curve: BasicEnvelopeCurve);
+    get decayCurve(): EnvelopeCurve;
+    set decayCurve(curve: EnvelopeCurve);
     /**
      * Trigger the attack/decay portion of the ADSR envelope.
      * @param  time When the attack should start.
@@ -277,6 +277,8 @@ export declare class Envelope extends ToneAudioNode<EnvelopeOptions> {
      * Connect the envelope to a destination node.
      */
     connect(destination: InputNode, outputNumber?: number, inputNumber?: number): this;
+    /** @inheritdoc */
+    disconnect(destination?: InputNode, outputNumber?: number, inputNumber?: number): this;
     /**
      * Render the envelope curve to an array of the given length.
      * Good for visualizing the envelope curve. Rescales the duration of the
@@ -298,5 +300,5 @@ interface EnvelopeCurveMap {
     ripple: EnvelopeCurveObject;
     step: EnvelopeCurveObject;
 }
-declare type EnvelopeCurveName = keyof EnvelopeCurveMap;
+type EnvelopeCurveName = keyof EnvelopeCurveMap;
 export {};

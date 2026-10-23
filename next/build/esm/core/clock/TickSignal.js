@@ -1,6 +1,6 @@
-import { Signal } from "../../signal/Signal";
-import { optionsFromArguments } from "../util/Defaults";
-import { TickParam } from "./TickParam";
+import { Signal } from "../../signal/Signal.js";
+import { optionsFromArguments } from "../util/Defaults.js";
+import { TickParam } from "./TickParam.js";
 /**
  * TickSignal extends Tone.Signal, but adds the capability
  * to calculate the number of elapsed ticks. exponential and target curves
@@ -12,9 +12,9 @@ import { TickParam } from "./TickParam";
  */
 export class TickSignal extends Signal {
     constructor() {
-        super(optionsFromArguments(TickSignal.getDefaults(), arguments, ["value"]));
-        this.name = "TickSignal";
         const options = optionsFromArguments(TickSignal.getDefaults(), arguments, ["value"]);
+        super(options);
+        this.name = "TickSignal";
         this.input = this._param = new TickParam({
             context: this.context,
             convert: options.convert,

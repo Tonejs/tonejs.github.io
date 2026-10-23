@@ -1,7 +1,7 @@
-import { connectSeries } from "../core/context/ToneAudioNode";
-import { Gain } from "../core/context/Gain";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { Signal } from "./Signal";
+import { connectSeries } from "../core/context/ToneAudioNode.js";
+import { Gain } from "../core/context/Gain.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { Signal } from "./Signal.js";
 /**
  * Add a signal and a number or two signals. When no value is
  * passed into the constructor, Tone.Add will sum input and `addend`
@@ -20,7 +20,7 @@ import { Signal } from "./Signal";
  */
 export class Add extends Signal {
     constructor() {
-        super(Object.assign(optionsFromArguments(Add.getDefaults(), arguments, ["value"])));
+        super(optionsFromArguments(Add.getDefaults(), arguments, ["value"]));
         this.override = false;
         this.name = "Add";
         /**

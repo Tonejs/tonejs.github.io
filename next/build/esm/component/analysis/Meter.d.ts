@@ -1,13 +1,17 @@
-import { NormalRange } from "../../core/type/Units";
-import { MeterBase, MeterBaseOptions } from "./MeterBase";
-export interface MeterOptions extends MeterBaseOptions {
+import { NormalRange } from "../../core/type/Units.js";
+import { MeterBase, MeterBaseOptions } from "./MeterBase.js";
+export interface MeterOptions<ChannelCount extends number> extends MeterBaseOptions {
     smoothing: NormalRange;
     normalRange: boolean;
-    channelCount: number;
+    channelCount: ChannelCount;
 }
 /**
  * Meter gets the [RMS](https://en.wikipedia.org/wiki/Root_mean_square)
  * of an input signal. It can also get the raw value of the input signal.
+ * Setting `normalRange` to `true` will covert the output to a range of
+ * 0-1. See an example using a graphical display
+ * [here](https://tonejs.github.io/examples/meter).
+ * @see {@link DCMeter}.
  *
  * @example
  * const meter = new Tone.Meter();
@@ -19,7 +23,7 @@ export interface MeterOptions extends MeterBaseOptions {
  * setInterval(() => console.log(meter.getValue()), 100);
  * @category Component
  */
-export declare class Meter extends MeterBase<MeterOptions> {
+export declare class Meter<ChannelCount extends number = 1> extends MeterBase<MeterOptions<ChannelCount>, ChannelCount> {
     readonly name: string;
     /**
      * If the output should be in decibels or normal range between 0-1. If `normalRange` is false,
@@ -39,24 +43,28 @@ export declare class Meter extends MeterBase<MeterOptions> {
      * @param smoothing The amount of smoothing applied between frames.
      */
     constructor(smoothing?: NormalRange);
-    constructor(options?: Partial<MeterOptions>);
-    static getDefaults(): MeterOptions;
+    constructor(options?: Partial<MeterOptions<ChannelCount>>);
+    static getDefaults(): MeterOptions<1>;
     /**
-     * Use [[getValue]] instead. For the previous getValue behavior, use DCMeter.
+     * Use {@link getValue} instead. For the previous getValue behavior, use DCMeter.
      * @deprecated
      */
     getLevel(): number | number[];
     /**
+     * Below this threshold, stop smoothing.
+     */
+    private minValue;
+    /**
      * Get the current value of the incoming signal.
-     * Output is in decibels when [[normalRange]] is `false`.
-     * If [[channels]] = 1, then the output is a single number
-     * representing the value of the input signal. When [[channels]] > 1,
+     * Output is in decibels when {@link normalRange} is `false`.
+     * If {@link channels} = 1, then the output is a single number
+     * representing the value of the input signal. When {@link channels} > 1,
      * then each channel is returned as a value in a number array.
      */
-    getValue(): number | number[];
+    getValue(): ChannelCount extends 1 ? number : number[];
     /**
      * The number of channels of analysis.
      */
-    get channels(): number;
+    get channels(): ChannelCount;
     dispose(): this;
 }

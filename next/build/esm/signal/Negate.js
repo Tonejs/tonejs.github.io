@@ -1,5 +1,5 @@
-import { Multiply } from "./Multiply";
-import { SignalOperator } from "./SignalOperator";
+import { Multiply } from "./Multiply.js";
+import { SignalOperator } from "./SignalOperator.js";
 /**
  * Negate the incoming signal. i.e. an input signal of 10 will output -10
  *

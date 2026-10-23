@@ -1,18 +1,18 @@
-import { AmplitudeEnvelope } from "../component/envelope/AmplitudeEnvelope";
-import { EnvelopeOptions } from "../component/envelope/Envelope";
-import { ToneAudioNodeOptions } from "../core/context/ToneAudioNode";
-import { NormalRange, Seconds, Time } from "../core/type/Units";
-import { RecursivePartial } from "../core/util/Interface";
-import { Signal } from "../signal/Signal";
-import { OmniOscillator } from "../source/oscillator/OmniOscillator";
-import { OmniOscillatorSynthOptions } from "../source/oscillator/OscillatorInterface";
-import { Monophonic, MonophonicOptions } from "./Monophonic";
+import { AmplitudeEnvelope } from "../component/envelope/AmplitudeEnvelope.js";
+import { EnvelopeOptions } from "../component/envelope/Envelope.js";
+import { ToneAudioNodeOptions } from "../core/context/ToneAudioNode.js";
+import { NormalRange, Seconds, Time } from "../core/type/Units.js";
+import { RecursivePartial } from "../core/util/Interface.js";
+import { Signal } from "../signal/Signal.js";
+import { OmniOscillator } from "../source/oscillator/OmniOscillator.js";
+import { OmniOscillatorSynthOptions } from "../source/oscillator/OscillatorInterface.js";
+import { Monophonic, MonophonicOptions } from "./Monophonic.js";
 export interface SynthOptions extends MonophonicOptions {
     oscillator: OmniOscillatorSynthOptions;
     envelope: Omit<EnvelopeOptions, keyof ToneAudioNodeOptions>;
 }
 /**
- * Synth is composed simply of a [[OmniOscillator]] routed through an [[AmplitudeEnvelope]].
+ * Synth is composed simply of a {@link OmniOscillator} routed through an {@link AmplitudeEnvelope}.
  * ```
  * +----------------+   +-------------------+
  * | OmniOscillator +>--> AmplitudeEnvelope +>--> Output

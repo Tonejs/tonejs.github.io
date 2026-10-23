@@ -1,9 +1,9 @@
-import { ToneAudioNodeOptions } from "../core/context/ToneAudioNode";
-import { SignalOperator } from "./SignalOperator";
-import { WaveShaper } from "./WaveShaper";
+import { ToneAudioNodeOptions } from "../core/context/ToneAudioNode.js";
+import { SignalOperator } from "./SignalOperator.js";
+import { WaveShaper } from "./WaveShaper.js";
 /**
  * AudioToGain converts an input in AudioRange [-1,1] to NormalRange [0,1].
- * See [[GainToAudio]].
+ * @see {@link GainToAudio}.
  * @category Signal
  */
 export declare class AudioToGain extends SignalOperator<ToneAudioNodeOptions> {

@@ -1,6 +1,6 @@
-import { Param } from "../core/context/Param";
-import { Seconds, Time, UnitMap, UnitName } from "../core/type/Units";
-import { OneShotSource, OneShotSourceOptions } from "../source/OneShotSource";
+import { Param } from "../core/context/Param.js";
+import { Seconds, Time, UnitMap, UnitName } from "../core/type/Units.js";
+import { OneShotSource, OneShotSourceOptions } from "../source/OneShotSource.js";
 export interface ToneConstantSourceOptions<TypeName extends UnitName> extends OneShotSourceOptions {
     convert: boolean;
     offset: UnitMap[TypeName];
@@ -18,7 +18,11 @@ export declare class ToneConstantSource<TypeName extends UnitName = "number"> ex
     /**
      * The signal generator
      */
-    private _source;
+    private _source?;
+    /**
+     * Whether the native source was started, so it can be stopped
+     */
+    private _sourceStarted;
     /**
      * The offset of the signal generator
      */
@@ -29,6 +33,10 @@ export declare class ToneConstantSource<TypeName extends UnitName = "number"> ex
     constructor(offset: UnitMap[TypeName]);
     constructor(options?: Partial<ToneConstantSourceOptions<TypeName>>);
     static getDefaults(): ToneConstantSourceOptions<any>;
+    /**
+     * Once the context is started, kick off source.
+     */
+    private _contextStarted;
     /**
      * Start the source node at the given time
      * @param  time When to start the source

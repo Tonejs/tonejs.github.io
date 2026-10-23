@@ -1,13 +1,13 @@
-import { InputNode, OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
-import { Analyser } from "./Analyser";
-export declare type MeterBaseOptions = ToneAudioNodeOptions;
+import { InputNode, OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
+import { Analyser } from "./Analyser.js";
+export type MeterBaseOptions = ToneAudioNodeOptions;
 /**
  * The base class for Metering classes.
  */
-export declare class MeterBase<Options extends MeterBaseOptions> extends ToneAudioNode<Options> {
+export declare class MeterBase<Options extends MeterBaseOptions, ChannelCount extends number> extends ToneAudioNode<Options> {
     readonly name: string;
     /**
-     * The signal to be analysed
+     * The signal to be analyzed
      */
     input: InputNode;
     /**
@@ -17,7 +17,7 @@ export declare class MeterBase<Options extends MeterBaseOptions> extends ToneAud
     /**
      * The analyser node for the incoming signal
      */
-    protected _analyser: Analyser;
+    protected _analyser: Analyser<ChannelCount>;
     constructor(options?: Partial<MeterBaseOptions>);
     dispose(): this;
 }

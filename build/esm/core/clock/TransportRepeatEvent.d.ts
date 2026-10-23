@@ -1,7 +1,7 @@
-import { BaseContext } from "../context/BaseContext";
-import { Seconds, Ticks } from "../type/Units";
-import { TransportEvent, TransportEventOptions } from "./TransportEvent";
-declare type Transport = import("../clock/Transport").Transport;
+import { BaseContext } from "../context/BaseContext.js";
+import { Seconds, Ticks } from "../type/Units.js";
+import { TransportEvent, TransportEventOptions } from "./TransportEvent.js";
+import type { TransportClass as Transport } from "./Transport.js";
 interface TransportRepeatEventOptions extends TransportEventOptions {
     interval: Ticks;
     duration: Ticks;
@@ -51,11 +51,15 @@ export declare class TransportRepeatEvent extends TransportEvent {
      */
     invoke(time: Seconds): void;
     /**
+     * Create an event on the transport on the nextTick
+     */
+    private _createEvent;
+    /**
      * Push more events onto the timeline to keep up with the position of the timeline
      */
     private _createEvents;
     /**
-     * Push more events onto the timeline to keep up with the position of the timeline
+     * Re-compute the events when the transport time has changed from a start/ticks/loopStart event
      */
     private _restart;
     /**

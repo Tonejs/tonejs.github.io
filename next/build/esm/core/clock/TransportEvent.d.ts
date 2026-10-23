@@ -1,12 +1,12 @@
-import { Seconds, Ticks } from "../type/Units";
-declare type Transport = import("../clock/Transport").Transport;
+import { Seconds, Ticks } from "../type/Units.js";
+import type { TransportInstance as Transport } from "./Transport.js";
 export interface TransportEventOptions {
     callback: (time: number) => void;
     once: boolean;
     time: Ticks;
 }
 /**
- * TransportEvent is an internal class used by [[Transport]]
+ * TransportEvent is an internal class used by {@link TransportInstance}
  * to schedule events. Do no invoke this class directly, it is
  * handled from within Tone.Transport.
  */
@@ -59,4 +59,3 @@ export declare class TransportEvent {
      */
     dispose(): this;
 }
-export {};

@@ -1,5 +1,5 @@
-import { Tone } from "../Tone";
-import { isUndef } from "./TypeCheck";
+import { Tone } from "../Tone.js";
+import { isUndef } from "./TypeCheck.js";
 /**
  * Emitter gives classes which extend it
  * the ability to listen for and emit events.
@@ -20,7 +20,7 @@ export class Emitter extends Tone {
     on(event, callback) {
         // split the event
         const events = event.split(/\W+/);
-        events.forEach(eventName => {
+        events.forEach((eventName) => {
             if (isUndef(this._events)) {
                 this._events = {};
             }
@@ -54,16 +54,16 @@ export class Emitter extends Tone {
      */
     off(event, callback) {
         const events = event.split(/\W+/);
-        events.forEach(eventName => {
+        events.forEach((eventName) => {
             if (isUndef(this._events)) {
                 this._events = {};
             }
-            if (this._events.hasOwnProperty(event)) {
+            if (this._events.hasOwnProperty(eventName)) {
                 if (isUndef(callback)) {
-                    this._events[event] = [];
+                    this._events[eventName] = [];
                 }
                 else {
-                    const eventList = this._events[event];
+                    const eventList = this._events[eventName];
                     for (let i = eventList.length - 1; i >= 0; i--) {
                         if (eventList[i] === callback) {
                             eventList.splice(i, 1);
@@ -96,7 +96,7 @@ export class Emitter extends Tone {
      */
     static mixin(constr) {
         // instance._events = {};
-        ["on", "once", "off", "emit"].forEach(name => {
+        ["on", "once", "off", "emit"].forEach((name) => {
             const property = Object.getOwnPropertyDescriptor(Emitter.prototype, name);
             Object.defineProperty(constr.prototype, name, property);
         });

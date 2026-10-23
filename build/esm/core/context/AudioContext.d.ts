@@ -9,13 +9,15 @@ export declare function createOfflineAudioContext(channels: number, length: numb
 /**
  * Either the online or offline audio context
  */
-export declare type AnyAudioContext = AudioContext | OfflineAudioContext;
+export type AnyAudioContext = AudioContext | OfflineAudioContext;
 /**
  * Interface for things that Tone.js adds to the window
  */
 interface ToneWindow extends Window {
     TONE_SILENCE_LOGGING?: boolean;
     TONE_DEBUG_CLASS?: string;
+    BaseAudioContext: any;
+    AudioWorkletNode: any;
 }
 /**
  * A reference to the window object

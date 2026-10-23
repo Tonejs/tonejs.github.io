@@ -1,6 +1,6 @@
-import { Param } from "../../core/context/Param";
-import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
-import { Decibels, Positive, Time } from "../../core/type/Units";
+import { Param } from "../../core/context/Param.js";
+import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
+import { Decibels, Positive, Time } from "../../core/type/Units.js";
 export interface CompressorOptions extends ToneAudioNodeOptions {
     attack: Time;
     knee: Decibels;

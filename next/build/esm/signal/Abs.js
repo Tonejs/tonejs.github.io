@@ -1,5 +1,5 @@
-import { SignalOperator } from "./SignalOperator";
-import { WaveShaper } from "./WaveShaper";
+import { SignalOperator } from "./SignalOperator.js";
+import { WaveShaper } from "./WaveShaper.js";
 /**
  * Return the absolute value of an incoming signal.
  *
@@ -21,7 +21,7 @@ export class Abs extends SignalOperator {
          */
         this._abs = new WaveShaper({
             context: this.context,
-            mapping: val => {
+            mapping: (val) => {
                 if (Math.abs(val) < 0.001) {
                     return 0;
                 }

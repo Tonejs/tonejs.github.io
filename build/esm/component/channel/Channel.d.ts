@@ -1,7 +1,7 @@
-import { AudioRange, Decibels } from "../../core/type/Units";
-import { InputNode, OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
-import { Param } from "../../core/context/Param";
-import { Gain } from "../../core/context/Gain";
+import { AudioRange, Decibels } from "../../core/type/Units.js";
+import { InputNode, OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
+import { Param } from "../../core/context/Param.js";
+import { Gain } from "../../core/context/Gain.js";
 export interface ChannelOptions extends ToneAudioNodeOptions {
     pan: AudioRange;
     volume: Decibels;
@@ -11,7 +11,7 @@ export interface ChannelOptions extends ToneAudioNodeOptions {
 }
 /**
  * Channel provides a channel strip interface with volume, pan, solo and mute controls.
- * See [[PanVol]] and [[Solo]]
+ * @see {@link PanVol} and {@link Solo}
  * @example
  * // pan the incoming signal left and drop the volume 12db
  * const channel = new Tone.Channel(-0.25, -12);
@@ -47,7 +47,7 @@ export declare class Channel extends ToneAudioNode<ChannelOptions> {
     constructor(options?: Partial<ChannelOptions>);
     static getDefaults(): ChannelOptions;
     /**
-     * Solo/unsolo the channel. Soloing is only relative to other [[Channels]] and [[Solo]] instances
+     * Solo/unsolo the channel. Soloing is only relative to other {@link Channel}s and {@link Solo} instances
      */
     get solo(): boolean;
     set solo(solo: boolean);
@@ -73,9 +73,9 @@ export declare class Channel extends ToneAudioNode<ChannelOptions> {
     private _getBus;
     /**
      * Send audio to another channel using a string. `send` is a lot like
-     * [[connect]], except it uses a string instead of an object. This can
-     * be useful in large applications to decouple sections since [[send]]
-     * and [[receive]] can be invoked separately in order to connect an object
+     * {@link connect}, except it uses a string instead of an object. This can
+     * be useful in large applications to decouple sections since {@link send}
+     * and {@link receive} can be invoked separately in order to connect an object
      * @param name The channel name to send the audio
      * @param volume The amount of the signal to send.
      * 	Defaults to 0db, i.e. send the entire signal
@@ -83,7 +83,7 @@ export declare class Channel extends ToneAudioNode<ChannelOptions> {
      */
     send(name: string, volume?: Decibels): Gain<"decibels">;
     /**
-     * Receive audio from a channel which was connected with [[send]].
+     * Receive audio from a channel which was connected with {@link send}.
      * @param name The channel name to receive audio from.
      */
     receive(name: string): this;

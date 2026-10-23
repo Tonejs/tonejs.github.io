@@ -1,6 +1,6 @@
-import { Effect } from "./Effect";
-import { MidSideSplit } from "../component/channel/MidSideSplit";
-import { MidSideMerge } from "../component/channel/MidSideMerge";
+import { Effect } from "./Effect.js";
+import { MidSideSplit } from "../component/channel/MidSideSplit.js";
+import { MidSideMerge } from "../component/channel/MidSideMerge.js";
 /**
  * Mid/Side processing separates the the 'mid' signal
  * (which comes out of both the left and the right channel)

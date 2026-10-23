@@ -1,7 +1,7 @@
-import { CrossFade } from "../component/channel/CrossFade";
-import { Gain } from "../core/context/Gain";
-import { ToneAudioNode } from "../core/context/ToneAudioNode";
-import { readOnly } from "../core/util/Interface";
+import { CrossFade } from "../component/channel/CrossFade.js";
+import { Gain } from "../core/context/Gain.js";
+import { ToneAudioNode, } from "../core/context/ToneAudioNode.js";
+import { readOnly } from "../core/util/Interface.js";
 /**
  * Effect is the base class for effects. Connect the effect between
  * the effectSend and effectReturn GainNodes, then control the amount of

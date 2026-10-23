@@ -1,10 +1,10 @@
-import { ToneWithContext } from "../context/ToneWithContext";
-import { optionsFromArguments } from "../util/Defaults";
-import { Emitter } from "../util/Emitter";
-import { noOp, readOnly } from "../util/Interface";
-import { StateTimeline } from "../util/StateTimeline";
-import { TickSource } from "./TickSource";
-import { assertContextRunning } from "../util/Debug";
+import { ToneWithContext, } from "../context/ToneWithContext.js";
+import { optionsFromArguments } from "../util/Defaults.js";
+import { Emitter } from "../util/Emitter.js";
+import { noOp, readOnly } from "../util/Interface.js";
+import { StateTimeline } from "../util/StateTimeline.js";
+import { TickSource } from "./TickSource.js";
+import { assertContextRunning } from "../util/Debug.js";
 /**
  * A sample accurate clock which provides a callback at the given rate.
  * While the callback is not sample-accurate (it is still susceptible to
@@ -22,7 +22,11 @@ import { assertContextRunning } from "../util/Debug";
  */
 export class Clock extends ToneWithContext {
     constructor() {
-        super(optionsFromArguments(Clock.getDefaults(), arguments, ["callback", "frequency"]));
+        const options = optionsFromArguments(Clock.getDefaults(), arguments, [
+            "callback",
+            "frequency",
+        ]);
+        super(options);
         this.name = "Clock";
         /**
          * The callback function to invoke at the scheduled tick.
@@ -41,7 +45,6 @@ export class Clock extends ToneWithContext {
          * This is necessary to remove the event in the end.
          */
         this._boundLoop = this._loop.bind(this);
-        const options = optionsFromArguments(Clock.getDefaults(), arguments, ["callback", "frequency"]);
         this.callback = options.callback;
         this._tickSource = new TickSource({
             context: this.context,
@@ -201,7 +204,7 @@ export class Clock extends ToneWithContext {
         this.log("loop", startTime, endTime);
         if (startTime !== endTime) {
             // the state change events
-            this._state.forEachBetween(startTime, endTime, e => {
+            this._state.forEachBetween(startTime, endTime, (e) => {
                 switch (e.state) {
                     case "started":
                         const offset = this._tickSource.getTicksAtTime(e.time);

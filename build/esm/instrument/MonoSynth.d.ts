@@ -1,14 +1,14 @@
-import { AmplitudeEnvelope } from "../component/envelope/AmplitudeEnvelope";
-import { EnvelopeOptions } from "../component/envelope/Envelope";
-import { Filter, FilterOptions } from "../component/filter/Filter";
-import { RecursivePartial } from "../core/util/Interface";
-import { Monophonic, MonophonicOptions } from "../instrument/Monophonic";
-import { OmniOscillator } from "../source/oscillator/OmniOscillator";
-import { FrequencyEnvelope, FrequencyEnvelopeOptions } from "../component/envelope/FrequencyEnvelope";
-import { NormalRange, Seconds, Time } from "../core/type/Units";
-import { Signal } from "../signal/Signal";
-import { ToneAudioNodeOptions } from "../core/context/ToneAudioNode";
-import { OmniOscillatorSynthOptions } from "../source/oscillator/OscillatorInterface";
+import { AmplitudeEnvelope } from "../component/envelope/AmplitudeEnvelope.js";
+import { EnvelopeOptions } from "../component/envelope/Envelope.js";
+import { Filter, FilterOptions } from "../component/filter/Filter.js";
+import { RecursivePartial } from "../core/util/Interface.js";
+import { Monophonic, MonophonicOptions } from "../instrument/Monophonic.js";
+import { OmniOscillator } from "../source/oscillator/OmniOscillator.js";
+import { FrequencyEnvelope, FrequencyEnvelopeOptions } from "../component/envelope/FrequencyEnvelope.js";
+import { NormalRange, Seconds, Time } from "../core/type/Units.js";
+import { Signal } from "../signal/Signal.js";
+import { ToneAudioNodeOptions } from "../core/context/ToneAudioNode.js";
+import { OmniOscillatorSynthOptions } from "../source/oscillator/OscillatorInterface.js";
 export interface MonoSynthOptions extends MonophonicOptions {
     oscillator: OmniOscillatorSynthOptions;
     envelope: Omit<EnvelopeOptions, keyof ToneAudioNodeOptions>;

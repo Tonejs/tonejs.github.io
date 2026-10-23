@@ -1,6 +1,6 @@
-import { Gain } from "../core/context/Gain";
-import { Param } from "../core/context/Param";
-import { Signal, SignalOptions } from "../signal/Signal";
+import { Gain } from "../core/context/Gain.js";
+import { Param } from "../core/context/Param.js";
+import { Signal, SignalOptions } from "../signal/Signal.js";
 /**
  * Subtract the signal connected to the input is subtracted from the signal connected
  * The subtrahend.

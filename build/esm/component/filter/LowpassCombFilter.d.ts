@@ -1,7 +1,7 @@
-import { Param } from "../../core/context/Param";
-import { InputNode, OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
-import { Frequency, NormalRange, Time } from "../../core/type/Units";
-import { RecursivePartial } from "../../core/util/Interface";
+import { Param } from "../../core/context/Param.js";
+import { InputNode, OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
+import { Frequency, NormalRange, Time } from "../../core/type/Units.js";
+import { RecursivePartial } from "../../core/util/Interface.js";
 interface LowpassCombFilterOptions extends ToneAudioNodeOptions {
     delayTime: Time;
     resonance: NormalRange;
@@ -9,7 +9,7 @@ interface LowpassCombFilterOptions extends ToneAudioNodeOptions {
 }
 /**
  * A lowpass feedback comb filter. It is similar to
- * [[FeedbackCombFilter]], but includes a lowpass filter.
+ * {@link FeedbackCombFilter}, but includes a lowpass filter.
  * @category Component
  */
 export declare class LowpassCombFilter extends ToneAudioNode<LowpassCombFilterOptions> {

@@ -1,8 +1,8 @@
-import { StereoEffect } from "./StereoEffect";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { LFO } from "../source/oscillator/LFO";
-import { Signal } from "../signal/Signal";
-import { readOnly } from "../core/util/Interface";
+import { StereoEffect } from "./StereoEffect.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { LFO } from "../source/oscillator/LFO.js";
+import { Signal } from "../signal/Signal.js";
+import { readOnly } from "../core/util/Interface.js";
 /**
  * Phaser is a phaser effect. Phasers work by changing the phase
  * of different frequency components of an incoming signal. Read more on
@@ -20,14 +20,18 @@ import { readOnly } from "../core/util/Interface";
  */
 export class Phaser extends StereoEffect {
     constructor() {
-        super(optionsFromArguments(Phaser.getDefaults(), arguments, ["frequency", "octaves", "baseFrequency"]));
+        const options = optionsFromArguments(Phaser.getDefaults(), arguments, [
+            "frequency",
+            "octaves",
+            "baseFrequency",
+        ]);
+        super(options);
         this.name = "Phaser";
-        const options = optionsFromArguments(Phaser.getDefaults(), arguments, ["frequency", "octaves", "baseFrequency"]);
         this._lfoL = new LFO({
             context: this.context,
             frequency: options.frequency,
             min: 0,
-            max: 1
+            max: 1,
         });
         this._lfoR = new LFO({
             context: this.context,
@@ -110,8 +114,8 @@ export class Phaser extends StereoEffect {
         this.Q.dispose();
         this._lfoL.dispose();
         this._lfoR.dispose();
-        this._filtersL.forEach(f => f.disconnect());
-        this._filtersR.forEach(f => f.disconnect());
+        this._filtersL.forEach((f) => f.disconnect());
+        this._filtersR.forEach((f) => f.disconnect());
         this.frequency.dispose();
         return this;
     }

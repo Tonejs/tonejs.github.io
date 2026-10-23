@@ -1,13 +1,13 @@
-import { Frequency, NormalRange, Time } from "../../core/type/Units";
-import { Envelope, EnvelopeOptions } from "./Envelope";
+import { Frequency, NormalRange, Time } from "../../core/type/Units.js";
+import { Envelope, EnvelopeOptions } from "./Envelope.js";
 export interface FrequencyEnvelopeOptions extends EnvelopeOptions {
     baseFrequency: Frequency;
     octaves: number;
     exponent: number;
 }
 /**
- * FrequencyEnvelope is an [[Envelope]] which ramps between [[baseFrequency]]
- * and [[octaves]]. It can also have an optional [[exponent]] to adjust the curve
+ * FrequencyEnvelope is an {@link Envelope} which ramps between {@link baseFrequency}
+ * and {@link octaves}. It can also have an optional {@link exponent} to adjust the curve
  * which it ramps.
  * @example
  * const oscillator = new Tone.Oscillator().toDestination().start();

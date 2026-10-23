@@ -1,11 +1,11 @@
-import { MidSideEffect, MidSideEffectOptions } from "../effect/MidSideEffect";
-import { Signal } from "../signal/Signal";
-import { NormalRange } from "../core/type/Units";
+import { NormalRange } from "../core/type/Units.js";
+import { MidSideEffect, MidSideEffectOptions } from "../effect/MidSideEffect.js";
+import { Signal } from "../signal/Signal.js";
 export interface StereoWidenerOptions extends MidSideEffectOptions {
     width: NormalRange;
 }
 /**
- * Applies a width factor to the mid/side seperation.
+ * Applies a width factor to the mid/side separation.
  * 0 is all mid and 1 is all side.
  * Algorithm found in [kvraudio forums](http://www.kvraudio.com/forum/viewtopic.php?t=212587).
  * ```
@@ -40,6 +40,10 @@ export declare class StereoWidener extends MidSideEffect<StereoWidenerOptions> {
      * Side multiplier
      */
     private _sideMult;
+    /**
+     * A constant source to get the value of 1 for the subtract node
+     */
+    private _constant;
     /**
      * @param width The stereo width. A width of 0 is mono and 1 is stereo. 0.5 is no change.
      */

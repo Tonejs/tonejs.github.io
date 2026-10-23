@@ -1,9 +1,9 @@
-import { InputNode, OutputNode } from "../../core/context/ToneAudioNode";
-import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
-import { NormalRange, Time } from "../../core/type/Units";
-import { Signal } from "../../signal/Signal";
-declare type BasicEnvelopeCurve = "linear" | "exponential";
-export declare type EnvelopeCurve = EnvelopeCurveName | number[];
+import { InputNode, OutputNode } from "../../core/context/ToneAudioNode.js";
+import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
+import { NormalRange, Time } from "../../core/type/Units.js";
+import { Signal } from "../../signal/Signal.js";
+type BasicEnvelopeCurve = "linear" | "exponential";
+export type EnvelopeCurve = EnvelopeCurveName | number[];
 export interface EnvelopeOptions extends ToneAudioNodeOptions {
     attack: Time;
     decay: Time;
@@ -220,8 +220,8 @@ export declare class Envelope extends ToneAudioNode<EnvelopeOptions> {
      * 	env.triggerAttack();
      * }, 1, 1);
      */
-    get decayCurve(): BasicEnvelopeCurve;
-    set decayCurve(curve: BasicEnvelopeCurve);
+    get decayCurve(): EnvelopeCurve;
+    set decayCurve(curve: EnvelopeCurve);
     /**
      * Trigger the attack/decay portion of the ADSR envelope.
      * @param  time When the attack should start.
@@ -298,5 +298,5 @@ interface EnvelopeCurveMap {
     ripple: EnvelopeCurveObject;
     step: EnvelopeCurveObject;
 }
-declare type EnvelopeCurveName = keyof EnvelopeCurveMap;
+type EnvelopeCurveName = keyof EnvelopeCurveMap;
 export {};

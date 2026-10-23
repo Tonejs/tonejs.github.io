@@ -1,11 +1,11 @@
-import { TimeClass } from "../../core/type/Time";
-import { PlaybackState } from "../../core/util/StateTimeline";
-import { Signal } from "../../signal/Signal";
-import { ToneWithContext, ToneWithContextOptions } from "../context/ToneWithContext";
-import { TransportTimeClass } from "../type/TransportTime";
-import { BarsBeatsSixteenths, BPM, NormalRange, Seconds, Subdivision, Ticks, Time, TimeSignature, TransportTime } from "../type/Units";
-import { Emitter } from "../util/Emitter";
-import { TickParam } from "./TickParam";
+import { TimeClass } from "../../core/type/Time.js";
+import { PlaybackState } from "../../core/util/StateTimeline.js";
+import { Signal } from "../../signal/Signal.js";
+import { ToneWithContext, ToneWithContextOptions } from "../context/ToneWithContext.js";
+import { TransportTimeClass } from "../type/TransportTime.js";
+import { BarsBeatsSixteenths, BPM, NormalRange, Seconds, Subdivision, Ticks, Time, TimeSignature, TransportTime } from "../type/Units.js";
+import { Emitter } from "../util/Emitter.js";
+import { TickParam } from "./TickParam.js";
 interface TransportOptions extends ToneWithContextOptions {
     bpm: BPM;
     swing: NormalRange;
@@ -15,31 +15,33 @@ interface TransportOptions extends ToneWithContextOptions {
     loopEnd: Time;
     ppq: number;
 }
-declare type TransportEventNames = "start" | "stop" | "pause" | "loop" | "loopEnd" | "loopStart" | "ticks";
-declare type TransportCallback = (time: Seconds) => void;
+type TransportEventNames = "start" | "stop" | "pause" | "loop" | "loopEnd" | "loopStart" | "ticks";
+type TransportCallback = (time: Seconds) => void;
 /**
  * Transport for timing musical events.
- * Supports tempo curves and time changes. Unlike browser-based timing (setInterval, requestAnimationFrame)
+ *
+ * Supports tempo curves and time changes.
+ *
+ * Unlike browser-based timing (setInterval, requestAnimationFrame),
  * Transport timing events pass in the exact time of the scheduled event
- * in the argument of the callback function. Pass that time value to the object
- * you're scheduling. <br><br>
+ * in the argument of the callback function.
+ *
  * A single transport is created for you when the library is initialized.
- * <br><br>
- * The transport emits the events: "start", "stop", "pause", and "loop" which are
- * called with the time of that event as the argument.
+ *
+ * The transport emits "start", "stop", "pause", and "loop" events.
  *
  * @example
  * const osc = new Tone.Oscillator().toDestination();
- * // repeated event every 8th note
- * Tone.Transport.scheduleRepeat((time) => {
- * 	// use the callback time to schedule events
+ * // Repeated event every 8th note.
+ * Tone.getTransport().scheduleRepeat((time) => {
+ * 	// Use the callback time to schedule events.
  * 	osc.start(time).stop(time + 0.1);
  * }, "8n");
- * // transport must be started before it starts invoking events
- * Tone.Transport.start();
+ * // Transport must be started before it starts invoking events.
+ * Tone.getTransport().start();
  * @category Core
  */
-export declare class Transport extends ToneWithContext<TransportOptions> implements Emitter<TransportEventNames> {
+export declare class TransportInstance extends ToneWithContext<TransportOptions> implements Emitter<TransportEventNames> {
     readonly name: string;
     /**
      * If the transport loops or not.
@@ -66,14 +68,14 @@ export declare class Transport extends ToneWithContext<TransportOptions> impleme
      * The Beats Per Minute of the Transport.
      * @example
      * const osc = new Tone.Oscillator().toDestination();
-     * Tone.Transport.bpm.value = 80;
+     * Tone.getTransport().bpm.value = 80;
      * // start/stop the oscillator every quarter note
-     * Tone.Transport.scheduleRepeat(time => {
+     * Tone.getTransport().scheduleRepeat(time => {
      * 	osc.start(time).stop(time + 0.1);
      * }, "4n");
-     * Tone.Transport.start();
+     * Tone.getTransport().start();
      * // ramp the bpm to 120 over 10 seconds
-     * Tone.Transport.bpm.rampTo(120, 10);
+     * Tone.getTransport().bpm.rampTo(120, 10);
      */
     bpm: TickParam<"bpm">;
     /**
@@ -113,31 +115,32 @@ export declare class Transport extends ToneWithContext<TransportOptions> impleme
      */
     private _processTick;
     /**
-     * Schedule an event along the timeline.
-     * @param callback The callback to be invoked at the time.
+     * Schedule an event to be invoked at a specific time.
+     * @param callback The callback to invoke at the given time.
      * @param time The time to invoke the callback at.
-     * @return The id of the event which can be used for canceling the event.
+     * @return The ID of the event, which can be used to cancel the event.
      * @example
-     * // schedule an event on the 16th measure
-     * Tone.Transport.schedule((time) => {
-     * 	// invoked on measure 16
+     * // Schedule an event on the 16th measure.
+     * Tone.getTransport().schedule((time) => {
+     * 	// Invoked on measure 16.
      * 	console.log("measure 16!");
      * }, "16:0:0");
      */
     schedule(callback: TransportCallback, time: TransportTime | TransportTimeClass): number;
     /**
-     * Schedule a repeated event along the timeline. The event will fire
-     * at the `interval` starting at the `startTime` and for the specified
-     * `duration`.
-     * @param  callback   The callback to invoke.
-     * @param  interval   The duration between successive callbacks. Must be a positive number.
-     * @param  startTime  When along the timeline the events should start being invoked.
-     * @param  duration How long the event should repeat.
-     * @return  The ID of the scheduled event. Use this to cancel the event.
+     * Schedule a repeated event.
+     *
+     * The event will fire at the `interval` starting at the `startTime` and for the specified `duration`.
+     *
+     * @param callback The callback to invoke.
+     * @param interval The duration between successive callbacks.
+     * @param startTime When the event should start.
+     * @param duration How long the event should repeat.
+     * @return The ID of the scheduled event. Use this to cancel the event.
      * @example
      * const osc = new Tone.Oscillator().toDestination().start();
-     * // a callback invoked every eighth note after the first measure
-     * Tone.Transport.scheduleRepeat((time) => {
+     * // A callback invoked every eighth note after the first measure.
+     * Tone.getTransport().scheduleRepeat((time) => {
      * 	osc.start(time).stop(time + 0.1);
      * }, "8n", "1m");
      */
@@ -172,23 +175,23 @@ export declare class Transport extends ToneWithContext<TransportOptions> impleme
      */
     private _bindClockEvents;
     /**
-     * Returns the playback state of the source, either "started", "stopped", or "paused"
+     * The playback state of the transport, either "started", "stopped", or "paused".
      */
     get state(): PlaybackState;
     /**
      * Start the transport and all sources synced to the transport.
-     * @param  time The time when the transport should start.
-     * @param  offset The timeline offset to start the transport.
+     * @param time The time when the transport should start.
+     * @param offset The timeline offset to start the transport from.
      * @example
-     * // start the transport in one second starting at beginning of the 5th measure.
-     * Tone.Transport.start("+1", "4:0:0");
+     * // Start the transport in one second, beginning at the start of the 5th measure.
+     * Tone.getTransport().start("+1", "4:0:0");
      */
     start(time?: Time, offset?: TransportTime): this;
     /**
      * Stop the transport and all sources synced to the transport.
      * @param time The time when the transport should stop.
      * @example
-     * Tone.Transport.stop();
+     * Tone.getTransport().stop();
      */
     stop(time?: Time): this;
     /**
@@ -196,9 +199,11 @@ export declare class Transport extends ToneWithContext<TransportOptions> impleme
      */
     pause(time?: Time): this;
     /**
-     * Toggle the current state of the transport. If it is
-     * started, it will stop it, otherwise it will start the Transport.
-     * @param  time The time of the event
+     * Toggle the current state of the transport.
+     *
+     * If it is started, it will stop it. If it is stopped, it will start it.
+     *
+     * @param time The time of the event.
      */
     toggle(time?: Time): this;
     /**
@@ -206,11 +211,11 @@ export declare class Transport extends ToneWithContext<TransportOptions> impleme
      * For example 4/4 would be just 4 and 6/8 would be 3.
      * @example
      * // common time
-     * Tone.Transport.timeSignature = 4;
+     * Tone.getTransport().timeSignature = 4;
      * // 7/8
-     * Tone.Transport.timeSignature = [7, 8];
+     * Tone.getTransport().timeSignature = [7, 8];
      * // this will be reduced to a single number
-     * Tone.Transport.timeSignature; // returns 3.5
+     * Tone.getTransport().timeSignature; // returns 3.5
      */
     get timeSignature(): TimeSignature;
     set timeSignature(timeSig: TimeSignature);
@@ -233,8 +238,8 @@ export declare class Transport extends ToneWithContext<TransportOptions> impleme
      * Set the loop start and stop at the same time.
      * @example
      * // loop over the first measure
-     * Tone.Transport.setLoopPoints(0, "1m");
-     * Tone.Transport.loop = true;
+     * Tone.getTransport().setLoopPoints(0, "1m");
+     * Tone.getTransport().loop = true;
      */
     setLoopPoints(startPosition: TransportTime, endPosition: TransportTime): this;
     /**
@@ -256,18 +261,18 @@ export declare class Transport extends ToneWithContext<TransportOptions> impleme
     get position(): BarsBeatsSixteenths | Time;
     set position(progress: Time);
     /**
-     * The Transport's position in seconds
+     * The Transport's position in seconds.
      * Setting the value will jump to that position right away.
      */
     get seconds(): Seconds;
     set seconds(s: Seconds);
     /**
      * The Transport's loop position as a normalized value. Always
-     * returns 0 if the transport if loop is not true.
+     * returns 0 if the Transport.loop = false.
      */
     get progress(): NormalRange;
     /**
-     * The transports current tick position.
+     * The Transport's current tick position.
      */
     get ticks(): Ticks;
     set ticks(t: Ticks);
@@ -278,11 +283,23 @@ export declare class Transport extends ToneWithContext<TransportOptions> impleme
      */
     getTicksAtTime(time?: Time): Ticks;
     /**
+     * Set the Transport's {@link ticks} value at the given time
+     * @param  ticks  The tick value to set
+     * @param  time   The Context time at which to set the seconds value
+     */
+    setTicksAtTime(ticks: Ticks, time: Time): this;
+    /**
      * Return the elapsed seconds at the given time.
      * @param  time  When to get the elapsed seconds
      * @return  The number of elapsed seconds
      */
     getSecondsAtTime(time: Time): Seconds;
+    /**
+     * Set the Transport's {@link seconds} value at the given time.
+     * @param seconds The seconds value to set
+     * @param time The Context time at which to set the seconds value
+     */
+    setSecondsAtTime(seconds: Seconds, time: Time): this;
     /**
      * Pulses Per Quarter note. This is the smallest resolution
      * the Transport timing supports. This should be set once
@@ -300,8 +317,8 @@ export declare class Transport extends ToneWithContext<TransportOptions> impleme
      * @return  The context time of the next subdivision.
      * @example
      * // the transport must be started, otherwise returns 0
-     * Tone.Transport.start();
-     * Tone.Transport.nextSubdivision("4n");
+     * Tone.getTransport().start();
+     * Tone.getTransport().nextSubdivision("4n");
      */
     nextSubdivision(subdivision?: Time): Seconds;
     /**
@@ -316,7 +333,7 @@ export declare class Transport extends ToneWithContext<TransportOptions> impleme
     syncSignal(signal: Signal<any>, ratio?: number): this;
     /**
      * Unsyncs a previously synced signal from the transport's control.
-     * See Transport.syncSignal.
+     * @see {@link syncSignal}.
      */
     unsyncSignal(signal: Signal<any>): this;
     /**

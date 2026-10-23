@@ -1,6 +1,6 @@
-import { Time, UnitMap, UnitName } from "../type/Units";
+import { Time, UnitMap, UnitName } from "../type/Units.js";
 /**
- * Abstract base class for [[Param]] and [[Signal]]
+ * Abstract base class for {@link Param} and {@link Signal}
  */
 export declare abstract class AbstractParam<TypeName extends UnitName> {
     /**
@@ -33,8 +33,8 @@ export declare abstract class AbstractParam<TypeName extends UnitName> {
     abstract getValueAtTime(time: Time): UnitMap[TypeName];
     /**
      * Creates a schedule point with the current value at the current time.
-     * Automation methods like [[linearRampToValueAtTime]] and [[exponentialRampToValueAtTime]]
-     * require a starting automation value usually set by [[setValueAtTime]]. This method
+     * Automation methods like {@link linearRampToValueAtTime} and {@link exponentialRampToValueAtTime}
+     * require a starting automation value usually set by {@link setValueAtTime}. This method
      * is useful since it will do a `setValueAtTime` with whatever the currently computed
      * value at the given time is.
      * @param time When to add a ramp point.
@@ -75,7 +75,7 @@ export declare abstract class AbstractParam<TypeName extends UnitName> {
      * duration of the rampTime.
      * @param value   The value to ramp to.
      * @param rampTime the time that it takes the
-     *                             value to ramp from it's current value
+     *                             value to ramp from its current value
      * @param startTime When the ramp should start.
      * @example
      * const delay = new Tone.FeedbackDelay(0.5, 0.98).toDestination();
@@ -97,7 +97,7 @@ export declare abstract class AbstractParam<TypeName extends UnitName> {
      *
      * @param  value   The value to ramp to.
      * @param  rampTime the time that it takes the
-     *                              value to ramp from it's current value
+     *                              value to ramp from its current value
      * @param startTime 	When the ramp should start.
      * @returns {Param} this
      * @example
@@ -119,7 +119,7 @@ export declare abstract class AbstractParam<TypeName extends UnitName> {
      * rampTime is the time that it takes to reach over 99% of the way towards the value.
      * @param  value   The value to ramp to.
      * @param  rampTime the time that it takes the
-     *                              value to ramp from it's current value
+     *                              value to ramp from its current value
      * @param startTime 	When the ramp should start.
      * @example
      * @example
@@ -136,7 +136,7 @@ export declare abstract class AbstractParam<TypeName extends UnitName> {
      * is similar to setTargetAtTime except the third argument is a time instead of a 'timeConstant'
      * @param  value   The value to ramp to.
      * @param time 	When the ramp should start.
-     * @param  rampTime the time that it takes the value to ramp from it's current value
+     * @param  rampTime the time that it takes the value to ramp from its current value
      * @example
      * const osc = new Tone.Oscillator().toDestination().start();
      * // exponential approach over 4 seconds starting in 1 second
@@ -182,7 +182,7 @@ export declare abstract class AbstractParam<TypeName extends UnitName> {
      */
     abstract cancelScheduledValues(time: Time): this;
     /**
-     * This is similar to [[cancelScheduledValues]] except
+     * This is similar to {@link cancelScheduledValues} except
      * it holds the automated value at time until the next automated event.
      * @example
      * return Tone.Offline(() => {
@@ -198,7 +198,7 @@ export declare abstract class AbstractParam<TypeName extends UnitName> {
      * depending on the `units` of the signal
      *
      * @param  value
-     * @param  rampTime The time that it takes the value to ramp from it's current value
+     * @param  rampTime The time that it takes the value to ramp from its current value
      * @param startTime When the ramp should start.
      * @example
      * const osc = new Tone.Oscillator().toDestination().start();

@@ -1,5 +1,7 @@
-import { ToneAudioNode, ToneAudioNodeOptions } from "../context/ToneAudioNode";
-export declare type ToneAudioWorkletOptions = ToneAudioNodeOptions;
+import { ToneAudioNode, ToneAudioNodeOptions } from "../context/ToneAudioNode.js";
+export interface ToneAudioWorkletOptions extends ToneAudioNodeOptions {
+    workletOptions?: Partial<AudioWorkletNodeOptions>;
+}
 export declare abstract class ToneAudioWorklet<Options extends ToneAudioWorkletOptions> extends ToneAudioNode<Options> {
     readonly name: string;
     /**
@@ -31,5 +33,6 @@ export declare abstract class ToneAudioWorklet<Options extends ToneAudioWorkletO
      */
     onprocessorerror: (e: string) => void;
     constructor(options: Options);
+    private static _workletPromises;
     dispose(): this;
 }

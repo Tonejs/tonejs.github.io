@@ -1,8 +1,8 @@
-import { SignalOperator } from "./SignalOperator";
-import { WaveShaper } from "./WaveShaper";
+import { SignalOperator } from "./SignalOperator.js";
+import { WaveShaper } from "./WaveShaper.js";
 /**
  * GainToAudio converts an input in NormalRange [0,1] to AudioRange [-1,1].
- * See [[AudioToGain]].
+ * @see {@link AudioToGain}.
  * @category Signal
  */
 export class GainToAudio extends SignalOperator {
@@ -14,7 +14,7 @@ export class GainToAudio extends SignalOperator {
          */
         this._norm = new WaveShaper({
             context: this.context,
-            mapping: x => Math.abs(x) * 2 - 1,
+            mapping: (x) => Math.abs(x) * 2 - 1,
         });
         /**
          * The NormalRange input [0, 1]

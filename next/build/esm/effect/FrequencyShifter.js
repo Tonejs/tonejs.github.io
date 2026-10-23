@@ -1,12 +1,12 @@
-import { PhaseShiftAllpass } from "../component/filter/PhaseShiftAllpass";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { Effect } from "../effect/Effect";
-import { Add } from "../signal/Add";
-import { Multiply } from "../signal/Multiply";
-import { Negate } from "../signal/Negate";
-import { Signal } from "../signal/Signal";
-import { Oscillator } from "../source/oscillator/Oscillator";
-import { ToneOscillatorNode } from "../source/oscillator/ToneOscillatorNode";
+import { PhaseShiftAllpass } from "../component/filter/PhaseShiftAllpass.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { Effect } from "../effect/Effect.js";
+import { Add } from "../signal/Add.js";
+import { Multiply } from "../signal/Multiply.js";
+import { Negate } from "../signal/Negate.js";
+import { Signal } from "../signal/Signal.js";
+import { Oscillator } from "../source/oscillator/Oscillator.js";
+import { ToneOscillatorNode } from "../source/oscillator/ToneOscillatorNode.js";
 /**
  * FrequencyShifter can be used to shift all frequencies of a signal by a fixed amount.
  * The amount can be changed at audio rate and the effect is applied in real time.
@@ -14,7 +14,7 @@ import { ToneOscillatorNode } from "../source/oscillator/ToneOscillatorNode";
  * Note: Contrary to pitch shifting, all frequencies are shifted by the same amount,
  * destroying the harmonic relationship between them. This leads to the classic ring modulator timbre distortion.
  * The algorithm will produces some aliasing towards the high end, especially if your source material
- * contains a lot of high frequencies. Unfortunatelly the webaudio API does not support resampling
+ * contains a lot of high frequencies. Unfortunately the Web Audio API does not support resampling
  * buffers in real time, so it is not possible to fix it properly. Depending on the use case it might
  * be an option to low pass filter your input before frequency shifting it to get ride of the aliasing.
  * You can find a very detailed description of the algorithm here: https://larzeitlin.github.io/RMFS/
@@ -27,9 +27,9 @@ import { ToneOscillatorNode } from "../source/oscillator/ToneOscillatorNode";
  */
 export class FrequencyShifter extends Effect {
     constructor() {
-        super(optionsFromArguments(FrequencyShifter.getDefaults(), arguments, ["frequency"]));
-        this.name = "FrequencyShifter";
         const options = optionsFromArguments(FrequencyShifter.getDefaults(), arguments, ["frequency"]);
+        super(options);
+        this.name = "FrequencyShifter";
         this.frequency = new Signal({
             context: this.context,
             units: "frequency",
@@ -63,9 +63,11 @@ export class FrequencyShifter extends Effect {
         this._negate.connect(this._add.addend);
         this._add.connect(this.effectReturn);
         // start the oscillators at the same time
-        const now = this.immediate();
-        this._sine.start(now);
-        this._cosine.start(now);
+        this._onContextRunning(() => {
+            const now = this.immediate();
+            this._sine.start(now);
+            this._cosine.start(now);
+        });
     }
     static getDefaults() {
         return Object.assign(Effect.getDefaults(), {

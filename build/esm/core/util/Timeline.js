@@ -1,12 +1,13 @@
-import { Tone } from "../Tone";
-import { optionsFromArguments } from "./Defaults";
-import { assert } from "./Debug";
-import { EQ, GT, GTE, LT } from "./Math";
+import { Tone } from "../Tone.js";
+import { optionsFromArguments } from "./Defaults.js";
+import { assert } from "./Debug.js";
+import { EQ, GT, GTE, LT } from "./Math.js";
 /**
  * A Timeline class for scheduling and maintaining state
  * along a timeline. All events must have a "time" property.
  * Internally, events are stored in time order for fast
  * retrieval.
+ * @internal
  */
 export class Timeline extends Tone {
     constructor() {
@@ -84,12 +85,14 @@ export class Timeline extends Tone {
     /**
      * Return the first event in the timeline without removing it
      * @returns {Object} The first event object
+     * @deprecated
      */
     peek() {
         return this._timeline[0];
     }
     /**
      * Return the first event in the timeline and remove it
+     * @deprecated
      */
     shift() {
         return this._timeline.shift();
@@ -333,7 +336,7 @@ export class Timeline extends Tone {
                     break;
                 }
             }
-            this._iterate(event => {
+            this._iterate((event) => {
                 callback(event);
             }, lowerBound, upperBound);
         }

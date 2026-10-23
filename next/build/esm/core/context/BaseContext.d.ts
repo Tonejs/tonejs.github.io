@@ -1,13 +1,16 @@
-import { Seconds } from "../type/Units";
-import { Emitter } from "../util/Emitter";
-import { AnyAudioContext } from "./AudioContext";
-declare type Draw = import("../util/Draw").Draw;
-declare type Destination = import("./Destination").Destination;
-declare type Transport = import("../clock/Transport").Transport;
-declare type Listener = import("./Listener").Listener;
-export declare type ExcludedFromBaseAudioContext = "onstatechange" | "addEventListener" | "removeEventListener" | "listener" | "dispatchEvent" | "audioWorklet" | "destination" | "createScriptProcessor";
-export declare type BaseAudioContextSubset = Omit<BaseAudioContext, ExcludedFromBaseAudioContext>;
-export declare type ContextLatencyHint = AudioContextLatencyCategory;
+import type { TransportInstance as Transport } from "../clock/Transport.js";
+import { Seconds } from "../type/Units.js";
+import type { DrawInstance as Draw } from "../util/Draw.js";
+import { Emitter } from "../util/Emitter.js";
+import { AnyAudioContext } from "./AudioContext.js";
+import type { DestinationInstance as Destination } from "./Destination.js";
+import type { ListenerInstance as Listener } from "./Listener.js";
+export type ExcludedFromBaseAudioContext = "onstatechange" | "addEventListener" | "removeEventListener" | "listener" | "dispatchEvent" | "audioWorklet" | "destination" | "createScriptProcessor";
+export type BaseAudioContextSubset = Omit<BaseAudioContext, ExcludedFromBaseAudioContext>;
+export type ContextLatencyHint = AudioContextLatencyCategory;
+/**
+ * Shared class for both Offline and Online Audio Context's
+ */
 export declare abstract class BaseContext extends Emitter<"statechange" | "tick"> implements BaseAudioContextSubset {
     abstract createAnalyser(): AnalyserNode;
     abstract createOscillator(): OscillatorNode;
@@ -32,7 +35,7 @@ export declare abstract class BaseContext extends Emitter<"statechange" | "tick"
     abstract decodeAudioData(_audioData: ArrayBuffer): Promise<AudioBuffer>;
     abstract createAudioWorkletNode(_name: string, _options?: Partial<AudioWorkletNodeOptions>): AudioWorkletNode;
     abstract get rawContext(): AnyAudioContext;
-    abstract addAudioWorkletModule(_url: string, _name: string): Promise<void>;
+    abstract addAudioWorkletModule(_url: string): Promise<void>;
     abstract lookAhead: number;
     abstract latencyHint: ContextLatencyHint | Seconds;
     abstract resume(): Promise<void>;
@@ -40,6 +43,9 @@ export declare abstract class BaseContext extends Emitter<"statechange" | "tick"
     abstract clearTimeout(_id: number): this;
     abstract setInterval(_fn: (...args: any[]) => void, _interval: Seconds): number;
     abstract clearInterval(_id: number): this;
+    /**
+     * @deprecated use ToneConstantSource instead
+     */
     abstract getConstant(_val: number): AudioBufferSourceNode;
     abstract get currentTime(): Seconds;
     abstract get state(): AudioContextState;
@@ -53,4 +59,3 @@ export declare abstract class BaseContext extends Emitter<"statechange" | "tick"
     toJSON(): Record<string, any>;
     readonly isOffline: boolean;
 }
-export {};

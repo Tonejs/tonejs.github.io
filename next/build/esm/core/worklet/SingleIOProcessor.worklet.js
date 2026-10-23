@@ -1,5 +1,5 @@
-import "./ToneAudioWorkletProcessor.worklet";
-import { addToWorklet } from "./WorkletGlobalScope";
+import "./ToneAudioWorkletProcessor.worklet.js";
+import { addToWorklet } from "./WorkletGlobalScope.js";
 export const singleIOProcess = /* javascript */ `
 	/**
 	 * Abstract class for a single input/output processor. 
@@ -56,11 +56,11 @@ export const singleIOProcess = /* javascript */ `
 			const input = inputs[0];
 			const output = outputs[0];
 			// get the parameter values
-			const channelCount = Math.max(input && input.length || 0, output.length);
+			const channelCount = Math.max(input?.length || 0, output.length);
 			for (let sample = 0; sample < this.blockSize; sample++) {
 				this.updateParams(parameters, sample);
 				for (let channel = 0; channel < channelCount; channel++) {
-					const inputSample = input && input.length ? input[channel][sample] : 0;
+					const inputSample = input?.length ? input[channel][sample] : 0;
 					output[channel][sample] = this.generate(inputSample, channel, this.params);
 				}
 			}

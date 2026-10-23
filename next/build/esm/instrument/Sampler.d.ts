@@ -1,7 +1,7 @@
-import { ToneAudioBuffer } from "../core/context/ToneAudioBuffer";
-import { Frequency, MidiNote, NormalRange, Note, Time } from "../core/type/Units";
-import { Instrument, InstrumentOptions } from "../instrument/Instrument";
-import { ToneBufferSourceCurve } from "../source/buffer/ToneBufferSource";
+import { ToneAudioBuffer } from "../core/context/ToneAudioBuffer.js";
+import { Frequency, MidiNote, NormalRange, Note, Time } from "../core/type/Units.js";
+import { Instrument, InstrumentOptions } from "../instrument/Instrument.js";
+import { ToneBufferSourceCurve } from "../source/buffer/ToneBufferSource.js";
 interface SamplesMap {
     [note: string]: ToneAudioBuffer | AudioBuffer | string;
     [midi: number]: ToneAudioBuffer | AudioBuffer | string;
@@ -14,6 +14,9 @@ export interface SamplerOptions extends InstrumentOptions {
     baseUrl: string;
     curve: ToneBufferSourceCurve;
     urls: SamplesMap;
+    loop: boolean;
+    loopEnd: number;
+    loopStart: number;
 }
 /**
  * Pass in an object which maps the note's pitch or midi value to the url,
@@ -22,7 +25,7 @@ export interface SamplerOptions extends InstrumentOptions {
  * were not explicitly included which can save loading time.
  *
  * For sample or buffer playback where repitching is not necessary,
- * use [[Player]].
+ * use {@link Player}.
  * @example
  * const sampler = new Tone.Sampler({
  * 	urls: {
@@ -47,6 +50,22 @@ export declare class Sampler extends Instrument<SamplerOptions> {
      */
     private _activeSources;
     /**
+     * The list of all provided midi notes
+     */
+    private _providedMidiNotes;
+    /**
+     * if the buffer should loop once its over
+     */
+    private _loop;
+    /**
+     * if 'loop' is true, the loop will start at this position
+     */
+    private _loopStart;
+    /**
+     * if 'loop' is true, the loop will end at this position
+     */
+    private _loopEnd;
+    /**
      * The envelope applied to the beginning of the sample.
      * @min 0
      * @max 1
@@ -64,6 +83,22 @@ export declare class Sampler extends Instrument<SamplerOptions> {
      */
     curve: ToneBufferSourceCurve;
     /**
+     * The urls passed in the constructor, kept so `get()` can report them back.
+     */
+    private _urls;
+    /**
+     * The baseUrl passed in the constructor, kept so `get()` can report it back.
+     */
+    private _baseUrl;
+    /**
+     * The onload callback passed in the constructor, kept so `get()` can report it back.
+     */
+    private _onload;
+    /**
+     * The onerror callback passed in the constructor, kept so `get()` can report it back.
+     */
+    private _onerror;
+    /**
      * @param samples An object of samples mapping either Midi Note Numbers or
      * 			Scientific Pitch Notation to the url of that sample.
      * @param onload The callback to invoke when all of the samples are loaded.
@@ -78,6 +113,12 @@ export declare class Sampler extends Instrument<SamplerOptions> {
     constructor(samples?: SamplesMap, options?: Partial<Omit<SamplerOptions, "urls">>);
     constructor(options?: Partial<SamplerOptions>);
     static getDefaults(): SamplerOptions;
+    /**
+     * urls, baseUrl, onload and onerror aren't stored as regular class
+     * properties (unlike attack/release/curve), so the base implementation
+     * can't find them via `Reflect.has` and they'd be silently missing here.
+     */
+    get(): SamplerOptions;
     /**
      * Returns the difference in steps between the given midi note at the closets sample.
      */
@@ -118,6 +159,43 @@ export declare class Sampler extends Instrument<SamplerOptions> {
      * If the buffers are loaded or not
      */
     get loaded(): boolean;
+    /**
+     * Set the loop start and end. Will only loop if loop is set to true.
+     * @param loopStart The loop start time
+     * @param loopEnd The loop end time
+     * @example
+     * const sampler = new Tone.Sampler({
+     *      urls: {
+     *           A1: "https://tonejs.github.io/audio/berklee/guitar_chord4.mp3",
+     *      },
+     * }).toDestination();
+     * // loop between the given points
+     * sampler.setLoopPoints(0.2, 0.3);
+     * sampler.loop = true;
+     */
+    setLoopPoints(loopStart: Time, loopEnd: Time): this;
+    /**
+     * If loop is true, the loop will start at this position.
+     */
+    get loopStart(): Time;
+    set loopStart(loopStart: Time);
+    /**
+     * If loop is true, the loop will end at this position.
+     */
+    get loopEnd(): Time;
+    set loopEnd(loopEnd: Time);
+    /**
+     * If the buffers should loop once they are over.
+     * @example
+     * const sampler = new Tone.Sampler({
+     *      urls: {
+     *           A4: "https://tonejs.github.io/audio/berklee/femalevoice_aa_A4.mp3",
+     *      },
+     * }).toDestination();
+     * sampler.loop = true;
+     */
+    get loop(): boolean;
+    set loop(loop: boolean);
     /**
      * Clean up
      */

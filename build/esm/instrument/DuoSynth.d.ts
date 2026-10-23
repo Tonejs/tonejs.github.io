@@ -1,9 +1,9 @@
-import { Monophonic, MonophonicOptions } from "./Monophonic";
-import { MonoSynth, MonoSynthOptions } from "./MonoSynth";
-import { Signal } from "../signal/Signal";
-import { RecursivePartial } from "../core/util/Interface";
-import { Frequency, NormalRange, Positive, Seconds, Time } from "../core/type/Units";
-import { Param } from "../core/context/Param";
+import { Monophonic, MonophonicOptions } from "./Monophonic.js";
+import { MonoSynth, MonoSynthOptions } from "./MonoSynth.js";
+import { Signal } from "../signal/Signal.js";
+import { RecursivePartial } from "../core/util/Interface.js";
+import { Frequency, NormalRange, Positive, Seconds, Time } from "../core/type/Units.js";
+import { Param } from "../core/context/Param.js";
 export interface DuoSynthOptions extends MonophonicOptions {
     voice0: Omit<MonoSynthOptions, keyof MonophonicOptions>;
     voice1: Omit<MonoSynthOptions, keyof MonophonicOptions>;
@@ -12,7 +12,7 @@ export interface DuoSynthOptions extends MonophonicOptions {
     vibratoAmount: Positive;
 }
 /**
- * DuoSynth is a monophonic synth composed of two [[MonoSynths]] run in parallel with control over the
+ * DuoSynth is a monophonic synth composed of two {@link MonoSynth}s run in parallel with control over the
  * frequency ratio between the two voices and vibrato effect.
  * @example
  * const duoSynth = new Tone.DuoSynth().toDestination();

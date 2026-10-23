@@ -1,16 +1,16 @@
 import { __decorate } from "tslib";
-import { FrequencyClass } from "../core/type/Frequency";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { noOp } from "../core/util/Interface";
-import { Instrument } from "../instrument/Instrument";
-import { timeRange } from "../core/util/Decorator";
+import { FrequencyClass } from "../core/type/Frequency.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { noOp } from "../core/util/Interface.js";
+import { Instrument } from "../instrument/Instrument.js";
+import { timeRange } from "../core/util/Decorator.js";
 /**
  * Abstract base class for other monophonic instruments to extend.
  */
 export class Monophonic extends Instrument {
     constructor() {
-        super(optionsFromArguments(Monophonic.getDefaults(), arguments));
         const options = optionsFromArguments(Monophonic.getDefaults(), arguments);
+        super(options);
         this.portamento = options.portamento;
         this.onsilence = options.onsilence;
     }
@@ -25,7 +25,7 @@ export class Monophonic extends Instrument {
      * Trigger the attack of the note optionally with a given velocity.
      * @param  note The note to trigger.
      * @param  time When the note should start.
-     * @param  velocity The velocity scaler determines how "loud" the note will be triggered.
+     * @param  velocity The velocity determines how "loud" the note will be.
      * @example
      * const synth = new Tone.Synth().toDestination();
      * // trigger the note a half second from now at half velocity
@@ -39,8 +39,8 @@ export class Monophonic extends Instrument {
         return this;
     }
     /**
-     * Trigger the release portion of the envelope
-     * @param  time If no time is given, the release happens immediatly
+     * Trigger the release portion of the envelope.
+     * @param  time If no time is given, the release happens immediately.
      * @example
      * const synth = new Tone.Synth().toDestination();
      * synth.triggerAttack("C4");

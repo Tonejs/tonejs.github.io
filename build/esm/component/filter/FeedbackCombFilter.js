@@ -1,10 +1,10 @@
-import { Gain } from "../../core/context/Gain";
-import { Param } from "../../core/context/Param";
-import { connectSeries, ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { readOnly } from "../../core/util/Interface";
-import { ToneAudioWorklet } from "../../core/worklet/ToneAudioWorklet";
-import { workletName } from "./FeedbackCombFilter.worklet";
+import { Gain } from "../../core/context/Gain.js";
+import { Param } from "../../core/context/Param.js";
+import { connectSeries, ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { readOnly } from "../../core/util/Interface.js";
+import { ToneAudioWorklet } from "../../core/worklet/ToneAudioWorklet.js";
+import { workletName } from "./FeedbackCombFilter.worklet.js";
 /**
  * Comb filters are basic building blocks for physical modeling. Read more
  * about comb filters on [CCRMA's website](https://ccrma.stanford.edu/~jos/pasp/Feedback_Comb_Filters.html).
@@ -16,9 +16,9 @@ import { workletName } from "./FeedbackCombFilter.worklet";
  */
 export class FeedbackCombFilter extends ToneAudioWorklet {
     constructor() {
-        super(optionsFromArguments(FeedbackCombFilter.getDefaults(), arguments, ["delayTime", "resonance"]));
-        this.name = "FeedbackCombFilter";
         const options = optionsFromArguments(FeedbackCombFilter.getDefaults(), arguments, ["delayTime", "resonance"]);
+        super(options);
+        this.name = "FeedbackCombFilter";
         this.input = new Gain({ context: this.context });
         this.output = new Gain({ context: this.context });
         this.delayTime = new Param({
@@ -54,10 +54,8 @@ export class FeedbackCombFilter extends ToneAudioWorklet {
     onReady(node) {
         connectSeries(this.input, node, this.output);
         const delayTime = node.parameters.get("delayTime");
-        ;
         this.delayTime.setParam(delayTime);
         const feedback = node.parameters.get("feedback");
-        ;
         this.resonance.setParam(feedback);
     }
     dispose() {

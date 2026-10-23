@@ -1,8 +1,8 @@
-import { FrequencyClass } from "../core/type/Frequency";
-import { Cents, Frequency, NormalRange, Seconds, Time } from "../core/type/Units";
-import { Instrument, InstrumentOptions } from "../instrument/Instrument";
-import { Signal } from "../signal/Signal";
-declare type onSilenceCallback = (instrument: Monophonic<any>) => void;
+import { FrequencyClass } from "../core/type/Frequency.js";
+import { Cents, Frequency, NormalRange, Seconds, Time } from "../core/type/Units.js";
+import { Instrument, InstrumentOptions } from "../instrument/Instrument.js";
+import { Signal } from "../signal/Signal.js";
+type onSilenceCallback = (instrument: Monophonic<any>) => void;
 export interface MonophonicOptions extends InstrumentOptions {
     portamento: Seconds;
     onsilence: onSilenceCallback;
@@ -34,7 +34,7 @@ export declare abstract class Monophonic<Options extends MonophonicOptions> exte
      * Trigger the attack of the note optionally with a given velocity.
      * @param  note The note to trigger.
      * @param  time When the note should start.
-     * @param  velocity The velocity scaler determines how "loud" the note will be triggered.
+     * @param  velocity The velocity determines how "loud" the note will be.
      * @example
      * const synth = new Tone.Synth().toDestination();
      * // trigger the note a half second from now at half velocity
@@ -42,8 +42,8 @@ export declare abstract class Monophonic<Options extends MonophonicOptions> exte
      */
     triggerAttack(note: Frequency | FrequencyClass, time?: Time, velocity?: NormalRange): this;
     /**
-     * Trigger the release portion of the envelope
-     * @param  time If no time is given, the release happens immediatly
+     * Trigger the release portion of the envelope.
+     * @param  time If no time is given, the release happens immediately.
      * @example
      * const synth = new Tone.Synth().toDestination();
      * synth.triggerAttack("C4");

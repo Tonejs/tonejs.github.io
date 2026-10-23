@@ -1,6 +1,6 @@
-import { Effect, EffectOptions } from "./Effect";
-import { Decibels, Frequency, GainFactor, Positive, Time } from "../core/type/Units";
-import { Signal } from "../signal/Signal";
+import { Effect, EffectOptions } from "./Effect.js";
+import { Decibels, Frequency, GainFactor, Positive, Time } from "../core/type/Units.js";
+import { Signal } from "../signal/Signal.js";
 export interface AutoWahOptions extends EffectOptions {
     baseFrequency: Frequency;
     octaves: Positive;
@@ -10,7 +10,7 @@ export interface AutoWahOptions extends EffectOptions {
     follower: Time;
 }
 /**
- * AutoWah connects a [[Follower]] to a [[Filter]].
+ * AutoWah connects a {@link Follower} to a {@link Filter}.
  * The frequency of the filter, follows the input amplitude curve.
  * Inspiration from [Tuna.js](https://github.com/Dinahmoe/tuna).
  *

@@ -1,11 +1,11 @@
-import { dbToGain, gainToDb } from "../type/Conversions";
-import { isAudioParam } from "../util/AdvancedTypeCheck";
-import { optionsFromArguments } from "../util/Defaults";
-import { Timeline } from "../util/Timeline";
-import { isDefined } from "../util/TypeCheck";
-import { ToneWithContext } from "./ToneWithContext";
-import { EQ } from "../util/Math";
-import { assert, assertRange } from "../util/Debug";
+import { dbToGain, gainToDb } from "../type/Conversions.js";
+import { isAudioParam } from "../util/AdvancedTypeCheck.js";
+import { optionsFromArguments } from "../util/Defaults.js";
+import { Timeline } from "../util/Timeline.js";
+import { isDefined } from "../util/TypeCheck.js";
+import { ToneWithContext } from "./ToneWithContext.js";
+import { EQ } from "../util/Math.js";
+import { assert, assertRange } from "../util/Debug.js";
 /**
  * Param wraps the native Web Audio's AudioParam to provide
  * additional unit conversion functionality. It also
@@ -15,20 +15,26 @@ import { assert, assertRange } from "../util/Debug";
  */
 export class Param extends ToneWithContext {
     constructor() {
-        super(optionsFromArguments(Param.getDefaults(), arguments, ["param", "units", "convert"]));
+        const options = optionsFromArguments(Param.getDefaults(), arguments, [
+            "param",
+            "units",
+            "convert",
+        ]);
+        super(options);
         this.name = "Param";
         this.overridden = false;
         /**
          * The minimum output value
          */
         this._minOutput = 1e-7;
-        const options = optionsFromArguments(Param.getDefaults(), arguments, ["param", "units", "convert"]);
         assert(isDefined(options.param) &&
             (isAudioParam(options.param) || options.param instanceof Param), "param must be an AudioParam");
         while (!isAudioParam(options.param)) {
             options.param = options.param._param;
         }
-        this._swappable = isDefined(options.swappable) ? options.swappable : false;
+        this._swappable = isDefined(options.swappable)
+            ? options.swappable
+            : false;
         if (this._swappable) {
             this.input = this.context.createGain();
             // initialize
@@ -45,7 +51,8 @@ export class Param extends ToneWithContext {
         this._minValue = options.minValue;
         this._maxValue = options.maxValue;
         // if the value is defined, set it immediately
-        if (isDefined(options.value) && options.value !== this._toType(this._initialValue)) {
+        if (isDefined(options.value) &&
+            options.value !== this._toType(this._initialValue)) {
             this.setValueAtTime(options.value, 0);
         }
     }
@@ -68,10 +75,15 @@ export class Param extends ToneWithContext {
         if (isDefined(this._minValue)) {
             return this._minValue;
         }
-        else if (this.units === "time" || this.units === "frequency" ||
-            this.units === "normalRange" || this.units === "positive" ||
-            this.units === "transportTime" || this.units === "ticks" ||
-            this.units === "bpm" || this.units === "hertz" || this.units === "samples") {
+        else if (this.units === "time" ||
+            this.units === "frequency" ||
+            this.units === "normalRange" ||
+            this.units === "positive" ||
+            this.units === "transportTime" ||
+            this.units === "ticks" ||
+            this.units === "bpm" ||
+            this.units === "hertz" ||
+            this.units === "samples") {
             return 0;
         }
         else if (this.units === "audioRange") {
@@ -176,7 +188,8 @@ export class Param extends ToneWithContext {
         if (before === null) {
             value = this._initialValue;
         }
-        else if (before.type === "setTargetAtTime" && (after === null || after.type === "setValueAtTime")) {
+        else if (before.type === "setTargetAtTime" &&
+            (after === null || after.type === "setValueAtTime")) {
             const previous = this._events.getBefore(before.time);
             let previousVal;
             if (previous === null) {
@@ -192,7 +205,8 @@ export class Param extends ToneWithContext {
         else if (after === null) {
             value = before.value;
         }
-        else if (after.type === "linearRampToValueAtTime" || after.type === "exponentialRampToValueAtTime") {
+        else if (after.type === "linearRampToValueAtTime" ||
+            after.type === "exponentialRampToValueAtTime") {
             let beforeValue = before.value;
             if (before.type === "setTargetAtTime") {
                 const previous = this._events.getBefore(before.time);
@@ -363,7 +377,9 @@ export class Param extends ToneWithContext {
         return this;
     }
     rampTo(value, rampTime = 0.1, startTime) {
-        if (this.units === "frequency" || this.units === "bpm" || this.units === "decibels") {
+        if (this.units === "frequency" ||
+            this.units === "bpm" ||
+            this.units === "decibels") {
             this.exponentialRampTo(value, rampTime, startTime);
         }
         else {
@@ -392,7 +408,7 @@ export class Param extends ToneWithContext {
                 param.linearRampToValueAtTime(this.getValueAtTime(i), i);
             }
         }
-        this._events.forEachAfter(this.context.currentTime, event => {
+        this._events.forEachAfter(this.context.currentTime, (event) => {
             if (event.type === "cancelScheduledValues") {
                 param.cancelScheduledValues(event.time);
             }

@@ -1,8 +1,8 @@
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { Split } from "../channel/Split";
-import { Gain } from "../../core/context/Gain";
-import { assert, assertRange } from "../../core/util/Debug";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { Split } from "../channel/Split.js";
+import { Gain } from "../../core/context/Gain.js";
+import { assert, assertRange } from "../../core/util/Debug.js";
 /**
  * Wrapper around the native Web Audio's [AnalyserNode](http://webaudio.github.io/web-audio-api/#idl-def-AnalyserNode).
  * Extracts FFT or Waveform data from the incoming signal.
@@ -10,7 +10,8 @@ import { assert, assertRange } from "../../core/util/Debug";
  */
 export class Analyser extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Analyser.getDefaults(), arguments, ["type", "size"]));
+        const options = optionsFromArguments(Analyser.getDefaults(), arguments, ["type", "size"]);
+        super(options);
         this.name = "Analyser";
         /**
          * The analyser node.
@@ -20,8 +21,10 @@ export class Analyser extends ToneAudioNode {
          * The buffer that the FFT data is written to
          */
         this._buffers = [];
-        const options = optionsFromArguments(Analyser.getDefaults(), arguments, ["type", "size"]);
-        this.input = this.output = this._gain = new Gain({ context: this.context });
+        this.input =
+            this.output =
+                this._gain =
+                    new Gain({ context: this.context });
         this._split = new Split({
             context: this.context,
             channels: options.channels,
@@ -36,6 +39,7 @@ export class Analyser extends ToneAudioNode {
         // set the values initially
         this.size = options.size;
         this.type = options.type;
+        this.smoothing = options.smoothing;
     }
     static getDefaults() {
         return Object.assign(ToneAudioNode.getDefaults(), {
@@ -46,8 +50,8 @@ export class Analyser extends ToneAudioNode {
         });
     }
     /**
-     * Run the analysis given the current settings. If [[channels]] = 1,
-     * it will return a Float32Array. If [[channels]] > 1, it will
+     * Run the analysis given the current settings. If {@link channels} = 1,
+     * it will return a Float32Array. If {@link channels} > 1, it will
      * return an array of Float32Arrays where each index in the array
      * represents the analysis done on a channel.
      */
@@ -82,7 +86,7 @@ export class Analyser extends ToneAudioNode {
     }
     /**
      * The number of channels the analyser does the analysis on. Channel
-     * separation is done using [[Split]]
+     * separation is done using {@link Split}
      */
     get channels() {
         return this._analysers.length;
@@ -104,14 +108,14 @@ export class Analyser extends ToneAudioNode {
         return this._analysers[0].smoothingTimeConstant;
     }
     set smoothing(val) {
-        this._analysers.forEach(a => a.smoothingTimeConstant = val);
+        this._analysers.forEach((a) => (a.smoothingTimeConstant = val));
     }
     /**
      * Clean up.
      */
     dispose() {
         super.dispose();
-        this._analysers.forEach(a => a.disconnect());
+        this._analysers.forEach((a) => a.disconnect());
         this._split.dispose();
         this._gain.dispose();
         return this;

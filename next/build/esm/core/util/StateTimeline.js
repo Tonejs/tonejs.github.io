@@ -1,8 +1,9 @@
-import { Timeline } from "./Timeline";
-import { assertRange } from "./Debug";
+import { assertRange } from "./Debug.js";
+import { Timeline } from "./Timeline.js";
 /**
  * A Timeline State. Provides the methods: `setStateAtTime("state", time)` and `getValueAtTime(time)`
  * @param initial The initial state of the StateTimeline.  Defaults to `undefined`
+ * @internal
  */
 export class StateTimeline extends Timeline {
     constructor(initial = "stopped") {
@@ -18,13 +19,9 @@ export class StateTimeline extends Timeline {
      * @return  The name of the state input in setStateAtTime.
      */
     getValueAtTime(time) {
+        var _a;
         const event = this.get(time);
-        if (event !== null) {
-            return event.state;
-        }
-        else {
-            return this._initial;
-        }
+        return (_a = event === null || event === void 0 ? void 0 : event.state) !== null && _a !== void 0 ? _a : this._initial;
     }
     /**
      * Add a state to the timeline.

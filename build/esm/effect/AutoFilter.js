@@ -1,6 +1,6 @@
-import { Filter } from "../component/filter/Filter";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { LFOEffect } from "./LFOEffect";
+import { Filter } from "../component/filter/Filter.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { LFOEffect } from "./LFOEffect.js";
 /**
  * AutoFilter is a Tone.Filter with a Tone.LFO connected to the filter cutoff frequency.
  * Setting the LFO rate and depth allows for control over the filter modulation rate
@@ -15,9 +15,9 @@ import { LFOEffect } from "./LFOEffect";
  */
 export class AutoFilter extends LFOEffect {
     constructor() {
-        super(optionsFromArguments(AutoFilter.getDefaults(), arguments, ["frequency", "baseFrequency", "octaves"]));
-        this.name = "AutoFilter";
         const options = optionsFromArguments(AutoFilter.getDefaults(), arguments, ["frequency", "baseFrequency", "octaves"]);
+        super(options);
+        this.name = "AutoFilter";
         this.filter = new Filter(Object.assign(options.filter, {
             context: this.context,
         }));
@@ -35,7 +35,7 @@ export class AutoFilter extends LFOEffect {
                 type: "lowpass",
                 rolloff: -12,
                 Q: 1,
-            }
+            },
         });
     }
     /**

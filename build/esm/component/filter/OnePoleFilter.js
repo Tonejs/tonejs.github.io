@@ -1,6 +1,6 @@
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { Gain } from "../../core/context/Gain";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { Gain } from "../../core/context/Gain.js";
 /**
  * A one pole filter with 6db-per-octave rolloff. Either "highpass" or "lowpass".
  * Note that changing the type or frequency may result in a discontinuity which
@@ -13,9 +13,9 @@ import { Gain } from "../../core/context/Gain";
  */
 export class OnePoleFilter extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(OnePoleFilter.getDefaults(), arguments, ["frequency", "type"]));
-        this.name = "OnePoleFilter";
         const options = optionsFromArguments(OnePoleFilter.getDefaults(), arguments, ["frequency", "type"]);
+        super(options);
+        this.name = "OnePoleFilter";
         this._frequency = options.frequency;
         this._type = options.type;
         this.input = new Gain({ context: this.context });
@@ -25,7 +25,7 @@ export class OnePoleFilter extends ToneAudioNode {
     static getDefaults() {
         return Object.assign(ToneAudioNode.getDefaults(), {
             frequency: 880,
-            type: "lowpass"
+            type: "lowpass",
         });
     }
     /**

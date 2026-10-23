@@ -1,10 +1,10 @@
-import "../core/context/Destination";
-import "../core/clock/Transport";
-import { Param } from "../core/context/Param";
-import { OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../core/context/ToneAudioNode";
-import { Decibels, Seconds, Time } from "../core/type/Units";
-import { BasicPlaybackState, StateTimeline } from "../core/util/StateTimeline";
-declare type onStopCallback = (source: Source<any>) => void;
+import "../core/context/Destination.js";
+import "../core/clock/Transport.js";
+import { Param } from "../core/context/Param.js";
+import { OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../core/context/ToneAudioNode.js";
+import { Decibels, Seconds, Time } from "../core/type/Units.js";
+import { BasicPlaybackState, StateTimeline } from "../core/util/StateTimeline.js";
+type onStopCallback = (source: Source<any>) => void;
 export interface SourceOptions extends ToneAudioNodeOptions {
     volume: Decibels;
     mute: boolean;
@@ -33,7 +33,7 @@ export declare abstract class Source<Options extends SourceOptions> extends Tone
      */
     private _volume;
     /**
-     * The output note
+     * The output node
      */
     output: OutputNode;
     /**
@@ -144,7 +144,8 @@ export declare abstract class Source<Options extends SourceOptions> extends Tone
      */
     sync(): this;
     /**
-     * Unsync the source to the Transport. See Source.sync
+     * Unsync the source to the Transport.
+     * @see {@link sync}
      */
     unsync(): this;
     /**

@@ -1,8 +1,8 @@
-import { Degrees, Frequency, Seconds, Time } from "../../core/type/Units";
-import { Signal } from "../../signal/Signal";
-import { Source } from "../Source";
-import { FMConstructorOptions, FMOscillatorOptions, ToneOscillatorInterface, ToneOscillatorType } from "./OscillatorInterface";
-export { FMOscillatorOptions } from "./OscillatorInterface";
+import { Degrees, Frequency, Seconds, Time } from "../../core/type/Units.js";
+import { Signal } from "../../signal/Signal.js";
+import { Source } from "../Source.js";
+import { FMConstructorOptions, FMOscillatorOptions, ToneOscillatorInterface, ToneOscillatorType } from "./OscillatorInterface.js";
+export { FMOscillatorOptions } from "./OscillatorInterface.js";
 /**
  * FMOscillator implements a frequency modulation synthesis
  * ```

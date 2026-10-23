@@ -1,22 +1,26 @@
-import { Gain } from "../../core/context/Gain";
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { readOnly, writable } from "../../core/util/Interface";
-import { MultibandSplit } from "../channel/MultibandSplit";
+import { Gain } from "../../core/context/Gain.js";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { readOnly, writable } from "../../core/util/Interface.js";
+import { MultibandSplit } from "../channel/MultibandSplit.js";
 /**
  * EQ3 provides 3 equalizer bins: Low/Mid/High.
  * @category Component
  */
 export class EQ3 extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(EQ3.getDefaults(), arguments, ["low", "mid", "high"]));
+        const options = optionsFromArguments(EQ3.getDefaults(), arguments, [
+            "low",
+            "mid",
+            "high",
+        ]);
+        super(options);
         this.name = "EQ3";
         /**
          * the output
          */
         this.output = new Gain({ context: this.context });
         this._internalChannels = [];
-        const options = optionsFromArguments(EQ3.getDefaults(), arguments, ["low", "mid", "high"]);
         this.input = this._multibandSplit = new MultibandSplit({
             context: this.context,
             highFrequency: options.highFrequency,

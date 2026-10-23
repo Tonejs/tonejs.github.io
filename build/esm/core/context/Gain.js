@@ -1,7 +1,7 @@
-import { Param } from "../context/Param";
-import { optionsFromArguments } from "../util/Defaults";
-import { readOnly } from "../util/Interface";
-import { ToneAudioNode } from "./ToneAudioNode";
+import { Param } from "../context/Param.js";
+import { optionsFromArguments } from "../util/Defaults.js";
+import { readOnly } from "../util/Interface.js";
+import { ToneAudioNode } from "./ToneAudioNode.js";
 /**
  * A thin wrapper around the Native Web Audio GainNode.
  * The GainNode is a basic building block of the Web Audio
@@ -17,7 +17,11 @@ import { ToneAudioNode } from "./ToneAudioNode";
  */
 export class Gain extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Gain.getDefaults(), arguments, ["gain", "units"]));
+        const options = optionsFromArguments(Gain.getDefaults(), arguments, [
+            "gain",
+            "units",
+        ]);
+        super(options);
         this.name = "Gain";
         /**
          * The wrapped GainNode.
@@ -26,7 +30,6 @@ export class Gain extends ToneAudioNode {
         // input = output
         this.input = this._gainNode;
         this.output = this._gainNode;
-        const options = optionsFromArguments(Gain.getDefaults(), arguments, ["gain", "units"]);
         this.gain = new Param({
             context: this.context,
             convert: options.convert,

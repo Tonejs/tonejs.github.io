@@ -1,7 +1,7 @@
-import { Loop } from "./Loop";
-import { PatternGenerator } from "./PatternGenerator";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { noOp } from "../core/util/Interface";
+import { Loop } from "./Loop.js";
+import { PatternGenerator } from "./PatternGenerator.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { noOp } from "../core/util/Interface.js";
 /**
  * Pattern arpeggiates between the given notes
  * in a number of patterns.
@@ -13,12 +13,16 @@ import { noOp } from "../core/util/Interface";
  */
 export class Pattern extends Loop {
     constructor() {
-        super(optionsFromArguments(Pattern.getDefaults(), arguments, ["callback", "values", "pattern"]));
+        const options = optionsFromArguments(Pattern.getDefaults(), arguments, [
+            "callback",
+            "values",
+            "pattern",
+        ]);
+        super(options);
         this.name = "Pattern";
-        const options = optionsFromArguments(Pattern.getDefaults(), arguments, ["callback", "values", "pattern"]);
         this.callback = options.callback;
         this._values = options.values;
-        this._pattern = PatternGenerator(options.values, options.pattern);
+        this._pattern = PatternGenerator(options.values.length, options.pattern);
         this._type = options.pattern;
     }
     static getDefaults() {
@@ -32,8 +36,9 @@ export class Pattern extends Loop {
      * Internal function called when the notes should be called
      */
     _tick(time) {
-        const value = this._pattern.next();
-        this._value = value.value;
+        const index = this._pattern.next();
+        this._index = index.value;
+        this._value = this._values[index.value];
         this.callback(time, this._value);
     }
     /**
@@ -54,14 +59,20 @@ export class Pattern extends Loop {
         return this._value;
     }
     /**
-     * The pattern type. See Tone.CtrlPattern for the full list of patterns.
+     * The current index of the pattern.
+     */
+    get index() {
+        return this._index;
+    }
+    /**
+     * The pattern type.
      */
     get pattern() {
         return this._type;
     }
     set pattern(pattern) {
         this._type = pattern;
-        this._pattern = PatternGenerator(this._values, this._type);
+        this._pattern = PatternGenerator(this._values.length, this._type);
     }
 }
 //# sourceMappingURL=Pattern.js.map

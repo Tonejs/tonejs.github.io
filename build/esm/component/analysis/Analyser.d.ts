@@ -1,6 +1,6 @@
-import { InputNode, OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
-import { NormalRange, PowerOfTwo } from "../../core/type/Units";
-export declare type AnalyserType = "fft" | "waveform";
+import { InputNode, OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
+import { NormalRange, PowerOfTwo } from "../../core/type/Units.js";
+export type AnalyserType = "fft" | "waveform";
 export interface AnalyserOptions extends ToneAudioNodeOptions {
     size: PowerOfTwo;
     type: AnalyserType;
@@ -44,8 +44,8 @@ export declare class Analyser extends ToneAudioNode<AnalyserOptions> {
     constructor(options?: Partial<AnalyserOptions>);
     static getDefaults(): AnalyserOptions;
     /**
-     * Run the analysis given the current settings. If [[channels]] = 1,
-     * it will return a Float32Array. If [[channels]] > 1, it will
+     * Run the analysis given the current settings. If {@link channels} = 1,
+     * it will return a Float32Array. If {@link channels} > 1, it will
      * return an array of Float32Arrays where each index in the array
      * represents the analysis done on a channel.
      */
@@ -57,7 +57,7 @@ export declare class Analyser extends ToneAudioNode<AnalyserOptions> {
     set size(size: PowerOfTwo);
     /**
      * The number of channels the analyser does the analysis on. Channel
-     * separation is done using [[Split]]
+     * separation is done using {@link Split}
      */
     get channels(): number;
     /**

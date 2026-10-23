@@ -1,7 +1,7 @@
-import { Gain } from "../../core/context/Gain";
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { Merge } from "./Merge";
+import { Gain } from "../../core/context/Gain.js";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { Merge } from "./Merge.js";
 /**
  * Mono coerces the incoming mono or stereo signal into a mono signal
  * where both left and right channels have the same value. This can be useful

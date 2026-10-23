@@ -1,5 +1,5 @@
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
 /**
  * Merge brings multiple mono input channels into a single multichannel output channel.
  *
@@ -13,10 +13,15 @@ import { optionsFromArguments } from "../../core/util/Defaults";
  */
 export class Merge extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Merge.getDefaults(), arguments, ["channels"]));
+        const options = optionsFromArguments(Merge.getDefaults(), arguments, [
+            "channels",
+        ]);
+        super(options);
         this.name = "Merge";
-        const options = optionsFromArguments(Merge.getDefaults(), arguments, ["channels"]);
-        this._merger = this.output = this.input = this.context.createChannelMerger(options.channels);
+        this._merger =
+            this.output =
+                this.input =
+                    this.context.createChannelMerger(options.channels);
     }
     static getDefaults() {
         return Object.assign(ToneAudioNode.getDefaults(), {

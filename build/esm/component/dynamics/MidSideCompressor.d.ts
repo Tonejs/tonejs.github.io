@@ -1,13 +1,14 @@
-import { InputNode, OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
-import { Compressor, CompressorOptions } from "./Compressor";
-import { RecursivePartial } from "../../core/util/Interface";
+import { InputNode, OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
+import { Compressor, CompressorOptions } from "./Compressor.js";
+import { RecursivePartial } from "../../core/util/Interface.js";
 export interface MidSideCompressorOptions extends ToneAudioNodeOptions {
     mid: Omit<CompressorOptions, keyof ToneAudioNodeOptions>;
     side: Omit<CompressorOptions, keyof ToneAudioNodeOptions>;
 }
 /**
- * MidSideCompressor applies two different compressors to the [[mid]]
- * and [[side]] signal components of the input. See [[MidSideSplit]] and [[MidSideMerge]].
+ * MidSideCompressor applies two different compressors to the {@link mid}
+ * and {@link side} signal components of the input.
+ * @see {@link MidSideSplit} and {@link MidSideMerge}.
  * @category Component
  */
 export declare class MidSideCompressor extends ToneAudioNode<MidSideCompressorOptions> {

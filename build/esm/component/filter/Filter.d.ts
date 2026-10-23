@@ -1,10 +1,10 @@
-import { Gain } from "../../core/context/Gain";
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { Frequency } from "../../core/type/Units";
-import { Signal } from "../../signal/Signal";
-import { BiquadFilterOptions } from "./BiquadFilter";
-export declare type FilterRollOff = -12 | -24 | -48 | -96;
-export declare type FilterOptions = BiquadFilterOptions & {
+import { Gain } from "../../core/context/Gain.js";
+import { ToneAudioNode } from "../../core/context/ToneAudioNode.js";
+import { Frequency } from "../../core/type/Units.js";
+import { Signal } from "../../signal/Signal.js";
+import { BiquadFilterOptions } from "./BiquadFilter.js";
+export type FilterRollOff = -12 | -24 | -48 | -96;
+export type FilterOptions = BiquadFilterOptions & {
     rolloff: FilterRollOff;
 };
 /**

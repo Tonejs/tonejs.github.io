@@ -1,11 +1,12 @@
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { Compressor } from "./Compressor";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { readOnly } from "../../core/util/Interface";
-import { MultibandSplit } from "../channel/MultibandSplit";
-import { Gain } from "../../core/context/Gain";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { Compressor } from "./Compressor.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { readOnly } from "../../core/util/Interface.js";
+import { MultibandSplit } from "../channel/MultibandSplit.js";
+import { Gain } from "../../core/context/Gain.js";
 /**
- * A compressor with separate controls over low/mid/high dynamics. See [[Compressor]] and [[MultibandSplit]]
+ * A compressor with separate controls over low/mid/high dynamics.
+ * @see {@link Compressor} and {@link MultibandSplit}
  *
  * @example
  * const multiband = new Tone.MultibandCompressor({
@@ -19,13 +20,13 @@ import { Gain } from "../../core/context/Gain";
  */
 export class MultibandCompressor extends ToneAudioNode {
     constructor() {
-        super(Object.assign(optionsFromArguments(MultibandCompressor.getDefaults(), arguments)));
-        this.name = "MultibandCompressor";
         const options = optionsFromArguments(MultibandCompressor.getDefaults(), arguments);
+        super(options);
+        this.name = "MultibandCompressor";
         this._splitter = this.input = new MultibandSplit({
             context: this.context,
             lowFrequency: options.lowFrequency,
-            highFrequency: options.highFrequency
+            highFrequency: options.highFrequency,
         });
         this.lowFrequency = this._splitter.lowFrequency;
         this.highFrequency = this._splitter.highFrequency;
@@ -48,21 +49,21 @@ export class MultibandCompressor extends ToneAudioNode {
                 threshold: -30,
                 release: 0.25,
                 attack: 0.03,
-                knee: 10
+                knee: 10,
             },
             mid: {
                 ratio: 3,
                 threshold: -24,
                 release: 0.03,
                 attack: 0.02,
-                knee: 16
+                knee: 16,
             },
             high: {
                 ratio: 3,
                 threshold: -24,
                 release: 0.03,
                 attack: 0.02,
-                knee: 16
+                knee: 16,
             },
         });
     }

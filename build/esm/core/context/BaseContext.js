@@ -1,4 +1,4 @@
-import { Emitter } from "../util/Emitter";
+import { Emitter } from "../util/Emitter.js";
 export class BaseContext extends Emitter {
     constructor() {
         super(...arguments);

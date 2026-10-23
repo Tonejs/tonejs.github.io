@@ -1,6 +1,6 @@
-import { AudioToGain } from "../signal/AudioToGain";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { ModulationSynth } from "./ModulationSynth";
+import { AudioToGain } from "../signal/AudioToGain.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { ModulationSynth } from "./ModulationSynth.js";
 /**
  * AMSynth uses the output of one Tone.Synth to modulate the
  * amplitude of another Tone.Synth. The harmonicity (the ratio between

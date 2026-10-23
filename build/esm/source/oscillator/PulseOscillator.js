@@ -1,12 +1,12 @@
 import { __awaiter } from "tslib";
-import { Gain } from "../../core/context/Gain";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { readOnly } from "../../core/util/Interface";
-import { Signal } from "../../signal/Signal";
-import { WaveShaper } from "../../signal/WaveShaper";
-import { Source } from "../Source";
-import { Oscillator } from "./Oscillator";
-import { generateWaveform } from "./OscillatorInterface";
+import { Gain } from "../../core/context/Gain.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { readOnly } from "../../core/util/Interface.js";
+import { Signal } from "../../signal/Signal.js";
+import { WaveShaper } from "../../signal/WaveShaper.js";
+import { Source } from "../Source.js";
+import { Oscillator } from "./Oscillator.js";
+import { generateWaveform, } from "./OscillatorInterface.js";
 /**
  * PulseOscillator is an oscillator with control over pulse width,
  * also known as the duty cycle. At 50% duty cycle (width = 0) the wave is
@@ -44,7 +44,8 @@ import { generateWaveform } from "./OscillatorInterface";
  */
 export class PulseOscillator extends Source {
     constructor() {
-        super(optionsFromArguments(PulseOscillator.getDefaults(), arguments, ["frequency", "width"]));
+        const options = optionsFromArguments(PulseOscillator.getDefaults(), arguments, ["frequency", "width"]);
+        super(options);
         this.name = "PulseOscillator";
         /**
          * gate the width amount
@@ -58,9 +59,8 @@ export class PulseOscillator extends Source {
          */
         this._thresh = new WaveShaper({
             context: this.context,
-            mapping: val => val <= 0 ? -1 : 1,
+            mapping: (val) => (val <= 0 ? -1 : 1),
         });
-        const options = optionsFromArguments(PulseOscillator.getDefaults(), arguments, ["frequency", "width"]);
         this.width = new Signal({
             context: this.context,
             units: "audioRange",
@@ -155,8 +155,8 @@ export class PulseOscillator extends Source {
     set carrierType(type) {
         this._triangle.type = type;
     }
-    asArray(length = 1024) {
-        return __awaiter(this, void 0, void 0, function* () {
+    asArray() {
+        return __awaiter(this, arguments, void 0, function* (length = 1024) {
             return generateWaveform(this, length);
         });
     }

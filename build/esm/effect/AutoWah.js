@@ -1,13 +1,13 @@
-import { Effect } from "./Effect";
-import { Filter } from "../component/filter/Filter";
-import { Follower } from "../component/analysis/Follower";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { Gain } from "../core/context/Gain";
-import { dbToGain, gainToDb } from "../core/type/Conversions";
-import { ScaleExp } from "../signal/ScaleExp";
-import { readOnly } from "../core/util/Interface";
+import { Effect } from "./Effect.js";
+import { Filter } from "../component/filter/Filter.js";
+import { Follower } from "../component/analysis/Follower.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { Gain } from "../core/context/Gain.js";
+import { dbToGain, gainToDb } from "../core/type/Conversions.js";
+import { ScaleExp } from "../signal/ScaleExp.js";
+import { readOnly } from "../core/util/Interface.js";
 /**
- * AutoWah connects a [[Follower]] to a [[Filter]].
+ * AutoWah connects a {@link Follower} to a {@link Filter}.
  * The frequency of the filter, follows the input amplitude curve.
  * Inspiration from [Tuna.js](https://github.com/Dinahmoe/tuna).
  *
@@ -23,9 +23,13 @@ import { readOnly } from "../core/util/Interface";
  */
 export class AutoWah extends Effect {
     constructor() {
-        super(optionsFromArguments(AutoWah.getDefaults(), arguments, ["baseFrequency", "octaves", "sensitivity"]));
+        const options = optionsFromArguments(AutoWah.getDefaults(), arguments, [
+            "baseFrequency",
+            "octaves",
+            "sensitivity",
+        ]);
+        super(options);
         this.name = "AutoWah";
-        const options = optionsFromArguments(AutoWah.getDefaults(), arguments, ["baseFrequency", "octaves", "sensitivity"]);
         this._follower = new Follower({
             context: this.context,
             smoothing: options.follower,
@@ -47,7 +51,7 @@ export class AutoWah extends Effect {
         });
         this._peaking = new Filter({
             context: this.context,
-            type: "peaking"
+            type: "peaking",
         });
         this._peaking.gain.value = options.gain;
         this.gain = this._peaking.gain;

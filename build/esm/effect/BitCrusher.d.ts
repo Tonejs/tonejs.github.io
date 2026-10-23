@@ -1,7 +1,7 @@
-import { ToneAudioWorkletOptions } from "../core/worklet/ToneAudioWorklet";
-import { Effect, EffectOptions } from "./Effect";
-import { Positive } from "../core/type/Units";
-import { Param } from "../core/context/Param";
+import { ToneAudioWorkletOptions } from "../core/worklet/ToneAudioWorklet.js";
+import { Effect, EffectOptions } from "./Effect.js";
+import { Positive } from "../core/type/Units.js";
+import { Param } from "../core/context/Param.js";
 export interface BitCrusherOptions extends EffectOptions {
     bits: Positive;
 }

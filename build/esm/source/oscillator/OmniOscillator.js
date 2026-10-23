@@ -1,16 +1,16 @@
 import { __awaiter } from "tslib";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { readOnly } from "../../core/util/Interface";
-import { isNumber, isString } from "../../core/util/TypeCheck";
-import { Signal } from "../../signal/Signal";
-import { Source } from "../Source";
-import { AMOscillator } from "./AMOscillator";
-import { FatOscillator } from "./FatOscillator";
-import { FMOscillator } from "./FMOscillator";
-import { Oscillator } from "./Oscillator";
-import { generateWaveform } from "./OscillatorInterface";
-import { PulseOscillator } from "./PulseOscillator";
-import { PWMOscillator } from "./PWMOscillator";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { readOnly } from "../../core/util/Interface.js";
+import { isNumber, isString } from "../../core/util/TypeCheck.js";
+import { Signal } from "../../signal/Signal.js";
+import { Source } from "../Source.js";
+import { AMOscillator } from "./AMOscillator.js";
+import { FatOscillator } from "./FatOscillator.js";
+import { FMOscillator } from "./FMOscillator.js";
+import { Oscillator } from "./Oscillator.js";
+import { generateWaveform, } from "./OscillatorInterface.js";
+import { PulseOscillator } from "./PulseOscillator.js";
+import { PWMOscillator } from "./PWMOscillator.js";
 const OmniOscillatorSourceMap = {
     am: AMOscillator,
     fat: FatOscillator,
@@ -29,9 +29,9 @@ const OmniOscillatorSourceMap = {
  */
 export class OmniOscillator extends Source {
     constructor() {
-        super(optionsFromArguments(OmniOscillator.getDefaults(), arguments, ["frequency", "type"]));
-        this.name = "OmniOscillator";
         const options = optionsFromArguments(OmniOscillator.getDefaults(), arguments, ["frequency", "type"]);
+        super(options);
+        this.name = "OmniOscillator";
         this.frequency = new Signal({
             context: this.context,
             units: "frequency",
@@ -80,10 +80,10 @@ export class OmniOscillator extends Source {
      */
     get type() {
         let prefix = "";
-        if (["am", "fm", "fat"].some(p => this._sourceType === p)) {
+        if (["am", "fm", "fat"].some((p) => this._sourceType === p)) {
             prefix = this._sourceType;
         }
-        return prefix + this._oscillator.type;
+        return (prefix + this._oscillator.type);
     }
     set type(type) {
         if (type.substr(0, 2) === "fm") {
@@ -117,13 +117,14 @@ export class OmniOscillator extends Source {
     /**
      * The value is an empty array when the type is not "custom".
      * This is not available on "pwm" and "pulse" oscillator types.
-     * See [[Oscillator.partials]]
+     * @see {@link Oscillator.partials}
      */
     get partials() {
         return this._oscillator.partials;
     }
     set partials(partials) {
-        if (!this._getOscType(this._oscillator, "pulse") && !this._getOscType(this._oscillator, "pwm")) {
+        if (!this._getOscType(this._oscillator, "pulse") &&
+            !this._getOscType(this._oscillator, "pwm")) {
             this._oscillator.partials = partials;
         }
     }
@@ -131,7 +132,8 @@ export class OmniOscillator extends Source {
         return this._oscillator.partialCount;
     }
     set partialCount(partialCount) {
-        if (!this._getOscType(this._oscillator, "pulse") && !this._getOscType(this._oscillator, "pwm")) {
+        if (!this._getOscType(this._oscillator, "pulse") &&
+            !this._getOscType(this._oscillator, "pwm")) {
             this._oscillator.partialCount = partialCount;
         }
     }
@@ -189,18 +191,19 @@ export class OmniOscillator extends Source {
     set sourceType(sType) {
         // the basetype defaults to sine
         let baseType = "sine";
-        if (this._oscillator.type !== "pwm" && this._oscillator.type !== "pulse") {
+        if (this._oscillator.type !== "pwm" &&
+            this._oscillator.type !== "pulse") {
             baseType = this._oscillator.type;
         }
         // set the type
         if (sType === "fm") {
-            this.type = "fm" + baseType;
+            this.type = ("fm" + baseType);
         }
         else if (sType === "am") {
-            this.type = "am" + baseType;
+            this.type = ("am" + baseType);
         }
         else if (sType === "fat") {
-            this.type = "fat" + baseType;
+            this.type = ("fat" + baseType);
         }
         else if (sType === "oscillator") {
             this.type = baseType;
@@ -216,7 +219,8 @@ export class OmniOscillator extends Source {
         return osc instanceof OmniOscillatorSourceMap[sourceType];
     }
     /**
-     * The base type of the oscillator. See [[Oscillator.baseType]]
+     * The base type of the oscillator.
+     * @see {@link Oscillator.baseType}
      * @example
      * const omniOsc = new Tone.OmniOscillator(440, "fmsquare4");
      * console.log(omniOsc.sourceType, omniOsc.baseType, omniOsc.partialCount);
@@ -227,13 +231,14 @@ export class OmniOscillator extends Source {
     set baseType(baseType) {
         if (!this._getOscType(this._oscillator, "pulse") &&
             !this._getOscType(this._oscillator, "pwm") &&
-            baseType !== "pulse" && baseType !== "pwm") {
+            baseType !== "pulse" &&
+            baseType !== "pwm") {
             this._oscillator.baseType = baseType;
         }
     }
     /**
      * The width of the oscillator when sourceType === "pulse".
-     * See [[PWMOscillator.width]]
+     * @see {@link PWMOscillator}
      */
     get width() {
         if (this._getOscType(this._oscillator, "pulse")) {
@@ -245,7 +250,7 @@ export class OmniOscillator extends Source {
     }
     /**
      * The number of detuned oscillators when sourceType === "fat".
-     * See [[FatOscillator.count]]
+     * @see {@link FatOscillator.count}
      */
     get count() {
         if (this._getOscType(this._oscillator, "fat")) {
@@ -262,7 +267,7 @@ export class OmniOscillator extends Source {
     }
     /**
      * The detune spread between the oscillators when sourceType === "fat".
-     * See [[FatOscillator.count]]
+     * @see {@link FatOscillator.count}
      */
     get spread() {
         if (this._getOscType(this._oscillator, "fat")) {
@@ -279,10 +284,11 @@ export class OmniOscillator extends Source {
     }
     /**
      * The type of the modulator oscillator. Only if the oscillator is set to "am" or "fm" types.
-     * See [[AMOscillator]] or [[FMOscillator]]
+     * @see {@link AMOscillator} or {@link FMOscillator}
      */
     get modulationType() {
-        if (this._getOscType(this._oscillator, "fm") || this._getOscType(this._oscillator, "am")) {
+        if (this._getOscType(this._oscillator, "fm") ||
+            this._getOscType(this._oscillator, "am")) {
             return this._oscillator.modulationType;
         }
         else {
@@ -290,13 +296,15 @@ export class OmniOscillator extends Source {
         }
     }
     set modulationType(mType) {
-        if ((this._getOscType(this._oscillator, "fm") || this._getOscType(this._oscillator, "am")) && isString(mType)) {
+        if ((this._getOscType(this._oscillator, "fm") ||
+            this._getOscType(this._oscillator, "am")) &&
+            isString(mType)) {
             this._oscillator.modulationType = mType;
         }
     }
     /**
      * The modulation index when the sourceType === "fm"
-     * See [[FMOscillator]].
+     * @see {@link FMOscillator}.
      */
     get modulationIndex() {
         if (this._getOscType(this._oscillator, "fm")) {
@@ -308,10 +316,11 @@ export class OmniOscillator extends Source {
     }
     /**
      * Harmonicity is the frequency ratio between the carrier and the modulator oscillators.
-     * See [[AMOscillator]] or [[FMOscillator]]
+     * @see {@link AMOscillator} or {@link FMOscillator}
      */
     get harmonicity() {
-        if (this._getOscType(this._oscillator, "fm") || this._getOscType(this._oscillator, "am")) {
+        if (this._getOscType(this._oscillator, "fm") ||
+            this._getOscType(this._oscillator, "am")) {
             return this._oscillator.harmonicity;
         }
         else {
@@ -320,7 +329,7 @@ export class OmniOscillator extends Source {
     }
     /**
      * The modulationFrequency Signal of the oscillator when sourceType === "pwm"
-     * see [[PWMOscillator]]
+     * see {@link PWMOscillator}
      * @min 0.1
      * @max 5
      */
@@ -332,8 +341,8 @@ export class OmniOscillator extends Source {
             return undefined;
         }
     }
-    asArray(length = 1024) {
-        return __awaiter(this, void 0, void 0, function* () {
+    asArray() {
+        return __awaiter(this, arguments, void 0, function* (length = 1024) {
             return generateWaveform(this, length);
         });
     }

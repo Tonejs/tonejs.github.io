@@ -1,11 +1,11 @@
-import { Tone } from "../Tone";
-import { optionsFromArguments } from "../util/Defaults";
-import { noOp } from "../util/Interface";
-import { isString } from "../util/TypeCheck";
-import { ToneAudioBuffer } from "./ToneAudioBuffer";
-import { assert } from "../util/Debug";
+import { Tone } from "../Tone.js";
+import { assert } from "../util/Debug.js";
+import { optionsFromArguments } from "../util/Defaults.js";
+import { noOp } from "../util/Interface.js";
+import { isString } from "../util/TypeCheck.js";
+import { ToneAudioBuffer } from "./ToneAudioBuffer.js";
 /**
- * A data structure for holding multiple buffers in a Map-like datastructure.
+ * A data structure for holding multiple buffers in a Map-like data structure.
  *
  * @example
  * const pianoSamples = new Tone.ToneAudioBuffers({
@@ -44,7 +44,7 @@ export class ToneAudioBuffers extends Tone {
         const options = optionsFromArguments(ToneAudioBuffers.getDefaults(), arguments, ["urls", "onload", "baseUrl"], "urls");
         this.baseUrl = options.baseUrl;
         // add each one
-        Object.keys(options.urls).forEach(name => {
+        Object.keys(options.urls).forEach((name) => {
             this._loadingCount++;
             const url = options.urls[name];
             this.add(name, url, this._bufferLoaded.bind(this, options.onload), options.onerror);
@@ -92,14 +92,15 @@ export class ToneAudioBuffers extends Tone {
     /**
      * Add a buffer by name and url to the Buffers
      * @param  name      A unique name to give the buffer
-     * @param  url  Either the url of the bufer, or a buffer which will be added with the given name.
+     * @param  url  Either the url of the buffer, or a buffer which will be added with the given name.
      * @param  callback  The callback to invoke when the url is loaded.
      * @param  onerror  Invoked if the buffer can't be loaded
      */
     add(name, url, callback = noOp, onerror = noOp) {
         if (isString(url)) {
             // don't include the baseUrl if the url is a base64 encoded sound
-            if (this.baseUrl && url.trim().substring(0, 11).toLowerCase() === "data:audio/") {
+            if (this.baseUrl &&
+                url.trim().substring(0, 11).toLowerCase() === "data:audio/") {
                 this.baseUrl = "";
             }
             this._buffers.set(name.toString(), new ToneAudioBuffer(this.baseUrl + url, callback, onerror));
@@ -111,7 +112,7 @@ export class ToneAudioBuffers extends Tone {
     }
     dispose() {
         super.dispose();
-        this._buffers.forEach(buffer => buffer.dispose());
+        this._buffers.forEach((buffer) => buffer.dispose());
         this._buffers.clear();
         return this;
     }

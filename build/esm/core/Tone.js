@@ -2,13 +2,14 @@
  * Tone.js
  * @author Yotam Mann
  * @license http://opensource.org/licenses/MIT MIT License
- * @copyright 2014-2019 Yotam Mann
+ * @copyright 2014-2024 Yotam Mann
  */
-import { version } from "../version";
-import { theWindow } from "./context/AudioContext";
-import { log } from "./util/Debug";
+import { version } from "../version.js";
+import { theWindow } from "./context/AudioContext.js";
+import { log } from "./util/Debug.js";
 /**
- * @class  Tone is the base class of all other classes.
+ * Tone is the base class of all other classes.
+ *
  * @category Core
  * @constructor
  */
@@ -50,7 +51,8 @@ export class Tone {
     log(...args) {
         // if the object is either set to debug = true
         // or if there is a string on the Tone.global.with the class name
-        if (this.debug || (theWindow && this.toString() === theWindow.TONE_DEBUG_CLASS)) {
+        if (this.debug ||
+            (theWindow && this.toString() === theWindow.TONE_DEBUG_CLASS)) {
             log(this, ...args);
         }
     }

@@ -1,10 +1,10 @@
-import { isArray } from "./TypeCheck";
+import { isArray } from "./TypeCheck.js";
 /**
  * Make the property not writable using `defineProperty`. Internal use only.
  */
 export function readOnly(target, property) {
     if (isArray(property)) {
-        property.forEach(str => readOnly(target, str));
+        property.forEach((str) => readOnly(target, str));
     }
     else {
         Object.defineProperty(target, property, {
@@ -18,7 +18,7 @@ export function readOnly(target, property) {
  */
 export function writable(target, property) {
     if (isArray(property)) {
-        property.forEach(str => writable(target, str));
+        property.forEach((str) => writable(target, str));
     }
     else {
         Object.defineProperty(target, property, {

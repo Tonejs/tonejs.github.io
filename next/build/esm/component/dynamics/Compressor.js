@@ -1,7 +1,7 @@
-import { Param } from "../../core/context/Param";
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { readOnly } from "../../core/util/Interface";
+import { Param } from "../../core/context/Param.js";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { readOnly } from "../../core/util/Interface.js";
 /**
  * Compressor is a thin wrapper around the Web Audio
  * [DynamicsCompressorNode](http://webaudio.github.io/web-audio-api/#the-dynamicscompressornode-interface).
@@ -14,7 +14,8 @@ import { readOnly } from "../../core/util/Interface";
  */
 export class Compressor extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Compressor.getDefaults(), arguments, ["threshold", "ratio"]));
+        const options = optionsFromArguments(Compressor.getDefaults(), arguments, ["threshold", "ratio"]);
+        super(options);
         this.name = "Compressor";
         /**
          * the compressor node
@@ -22,7 +23,6 @@ export class Compressor extends ToneAudioNode {
         this._compressor = this.context.createDynamicsCompressor();
         this.input = this._compressor;
         this.output = this._compressor;
-        const options = optionsFromArguments(Compressor.getDefaults(), arguments, ["threshold", "ratio"]);
         this.threshold = new Param({
             minValue: this._compressor.threshold.minValue,
             maxValue: this._compressor.threshold.maxValue,

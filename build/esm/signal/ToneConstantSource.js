@@ -1,7 +1,7 @@
-import { connect } from "../core/context/ToneAudioNode";
-import { Param } from "../core/context/Param";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { OneShotSource } from "../source/OneShotSource";
+import { connect } from "../core/context/ToneAudioNode.js";
+import { Param } from "../core/context/Param.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { OneShotSource, } from "../source/OneShotSource.js";
 /**
  * Wrapper around the native fire-and-forget ConstantSource.
  * Adds the ability to reschedule the stop method.
@@ -9,13 +9,13 @@ import { OneShotSource } from "../source/OneShotSource";
  */
 export class ToneConstantSource extends OneShotSource {
     constructor() {
-        super(optionsFromArguments(ToneConstantSource.getDefaults(), arguments, ["offset"]));
+        const options = optionsFromArguments(ToneConstantSource.getDefaults(), arguments, ["offset"]);
+        super(options);
         this.name = "ToneConstantSource";
         /**
          * The signal generator
          */
         this._source = this.context.createConstantSource();
-        const options = optionsFromArguments(ToneConstantSource.getDefaults(), arguments, ["offset"]);
         connect(this._source, this._gainNode);
         this.offset = new Param({
             context: this.context,

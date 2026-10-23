@@ -1,13 +1,13 @@
-import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
-import { Decibels, Time } from "../../core/type/Units";
+import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
+import { Decibels, Time } from "../../core/type/Units.js";
 export interface GateOptions extends ToneAudioNodeOptions {
     threshold: Decibels;
     smoothing: Time;
 }
 /**
  * Gate only passes a signal through when the incoming
- * signal exceeds a specified threshold. It uses [[Follower]] to follow the ampltiude
- * of the incoming signal and compares it to the [[threshold]] value using [[GreaterThan]].
+ * signal exceeds a specified threshold. It uses {@link Follower} to follow the ampltiude
+ * of the incoming signal and compares it to the {@link threshold} value using {@link GreaterThan}.
  *
  * @example
  * const gate = new Tone.Gate(-30, 0.2).toDestination();
@@ -45,7 +45,8 @@ export declare class Gate extends ToneAudioNode<GateOptions> {
     get threshold(): Decibels;
     set threshold(thresh: Decibels);
     /**
-     * The attack/decay speed of the gate. See [[Follower.smoothing]]
+     * The attack/decay speed of the gate.
+     * @see {@link Follower.smoothing}
      */
     get smoothing(): Time;
     set smoothing(smoothingTime: Time);

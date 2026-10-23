@@ -1,15 +1,17 @@
-import { AnyAudioContext } from "./context/AudioContext";
-import { BaseContext } from "./context/BaseContext";
+import { AnyAudioContext } from "./context/AudioContext.js";
+import { BaseContext } from "./context/BaseContext.js";
 /**
- * Returns the default system-wide [[Context]]
+ * Returns the default system-wide {@link Context}
  * @category Core
  */
 export declare function getContext(): BaseContext;
 /**
  * Set the default audio context
+ * @param context
+ * @param disposeOld Pass `true` if you don't need the old context to dispose it.
  * @category Core
  */
-export declare function setContext(context: BaseContext | AnyAudioContext): void;
+export declare function setContext(context: BaseContext | AnyAudioContext, disposeOld?: boolean): void;
 /**
  * Most browsers will not play _any_ audio until a user
  * clicks something (like a play button). Invoke this method

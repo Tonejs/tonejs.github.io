@@ -1,5 +1,5 @@
-import { Scale, ScaleOptions } from "./Scale";
-import { Positive } from "../core/type/Units";
+import { Scale, ScaleOptions } from "./Scale.js";
+import { Positive } from "../core/type/Units.js";
 export interface ScaleExpOptions extends ScaleOptions {
     exponent: Positive;
 }
@@ -27,8 +27,8 @@ export declare class ScaleExp extends Scale<ScaleExpOptions> {
     constructor(options?: Partial<ScaleExpOptions>);
     static getDefaults(): ScaleExpOptions;
     /**
-     * Instead of interpolating linearly between the [[min]] and
-     * [[max]] values, setting the exponent will interpolate between
+     * Instead of interpolating linearly between the {@link min} and
+     * {@link max} values, setting the exponent will interpolate between
      * the two values with an exponential curve.
      */
     get exponent(): Positive;

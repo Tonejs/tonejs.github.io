@@ -1,15 +1,15 @@
-import { ToneWithContext, ToneWithContextOptions } from "../context/ToneWithContext";
-import { Frequency, Hertz, Seconds, Ticks, Time } from "../type/Units";
-import { Emitter } from "../util/Emitter";
-import { PlaybackState } from "../util/StateTimeline";
-import { TickSignal } from "./TickSignal";
-declare type ClockCallback = (time: Seconds, ticks?: Ticks) => void;
+import { ToneWithContext, ToneWithContextOptions } from "../context/ToneWithContext.js";
+import { Frequency, Hertz, Seconds, Ticks, Time } from "../type/Units.js";
+import { Emitter } from "../util/Emitter.js";
+import { PlaybackState } from "../util/StateTimeline.js";
+import { TickSignal } from "./TickSignal.js";
+type ClockCallback = (time: Seconds, ticks?: Ticks) => void;
 interface ClockOptions extends ToneWithContextOptions {
     frequency: Hertz;
     callback: ClockCallback;
     units: "hertz" | "bpm";
 }
-declare type ClockEvent = "start" | "stop" | "pause";
+type ClockEvent = "start" | "stop" | "pause";
 /**
  * A sample accurate clock which provides a callback at the given rate.
  * While the callback is not sample-accurate (it is still susceptible to

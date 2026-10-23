@@ -1,7 +1,7 @@
-import { Frequency, Positive } from "../core/type/Units";
-import { Filter, FilterOptions } from "../component/filter/Filter";
-import { SourceOptions } from "../source/Source";
-import { LFOEffect, LFOEffectOptions } from "./LFOEffect";
+import { Filter, FilterOptions } from "../component/filter/Filter.js";
+import { Frequency, Positive } from "../core/type/Units.js";
+import { SourceOptions } from "../source/Source.js";
+import { LFOEffect, LFOEffectOptions } from "./LFOEffect.js";
 export interface AutoFilterOptions extends LFOEffectOptions {
     baseFrequency: Frequency;
     octaves: Positive;
@@ -13,7 +13,7 @@ export interface AutoFilterOptions extends LFOEffectOptions {
  * and depth.
  *
  * @example
- * // create an autofilter and start it's LFO
+ * // create an autofilter and start its LFO
  * const autoFilter = new Tone.AutoFilter("4n").toDestination().start();
  * // route an oscillator through the filter and start it
  * const oscillator = new Tone.Oscillator().connect(autoFilter).start();

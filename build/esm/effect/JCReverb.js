@@ -1,13 +1,18 @@
-import { StereoEffect } from "./StereoEffect";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { Scale } from "../signal/Scale";
-import { Signal } from "../signal/Signal";
-import { FeedbackCombFilter } from "../component/filter/FeedbackCombFilter";
-import { readOnly } from "../core/util/Interface";
+import { StereoEffect } from "./StereoEffect.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { Scale } from "../signal/Scale.js";
+import { Signal } from "../signal/Signal.js";
+import { FeedbackCombFilter } from "../component/filter/FeedbackCombFilter.js";
+import { readOnly } from "../core/util/Interface.js";
 /**
  * an array of the comb filter delay time values
  */
-const combFilterDelayTimes = [1687 / 25000, 1601 / 25000, 2053 / 25000, 2251 / 25000];
+const combFilterDelayTimes = [
+    1687 / 25000,
+    1601 / 25000,
+    2053 / 25000,
+    2251 / 25000,
+];
 /**
  * the resonances of each of the comb filters
  */
@@ -19,8 +24,8 @@ const allpassFilterFreqs = [347, 113, 37];
 /**
  * JCReverb is a simple [Schroeder Reverberator](https://ccrma.stanford.edu/~jos/pasp/Schroeder_Reverberators.html)
  * tuned by John Chowning in 1970.
- * It is made up of three allpass filters and four [[FeedbackCombFilter]].
- * JCReverb is now implemented with an AudioWorkletNode which may result on performance degradation on some platforms. Consider using [[Reverb]].
+ * It is made up of three allpass filters and four {@link FeedbackCombFilter}.
+ * JCReverb is now implemented with an AudioWorkletNode which may result on performance degradation on some platforms. Consider using {@link Reverb}.
  * @example
  * const reverb = new Tone.JCReverb(0.4).toDestination();
  * const delay = new Tone.FeedbackDelay(0.5);
@@ -32,7 +37,8 @@ const allpassFilterFreqs = [347, 113, 37];
  */
 export class JCReverb extends StereoEffect {
     constructor() {
-        super(optionsFromArguments(JCReverb.getDefaults(), arguments, ["roomSize"]));
+        const options = optionsFromArguments(JCReverb.getDefaults(), arguments, ["roomSize"]);
+        super(options);
         this.name = "JCReverb";
         /**
          * a series of allpass filters
@@ -42,7 +48,6 @@ export class JCReverb extends StereoEffect {
          * parallel feedback comb filters
          */
         this._feedbackCombFilters = [];
-        const options = optionsFromArguments(JCReverb.getDefaults(), arguments, ["roomSize"]);
         this.roomSize = new Signal({
             context: this.context,
             value: options.roomSize,
@@ -54,7 +59,7 @@ export class JCReverb extends StereoEffect {
             max: 0.197,
         });
         // make the allpass filters
-        this._allpassFilters = allpassFilterFreqs.map(freq => {
+        this._allpassFilters = allpassFilterFreqs.map((freq) => {
             const allpass = this.context.createBiquadFilter();
             allpass.type = "allpass";
             allpass.frequency.value = freq;
@@ -87,8 +92,8 @@ export class JCReverb extends StereoEffect {
     }
     dispose() {
         super.dispose();
-        this._allpassFilters.forEach(apf => apf.disconnect());
-        this._feedbackCombFilters.forEach(fbcf => fbcf.dispose());
+        this._allpassFilters.forEach((apf) => apf.disconnect());
+        this._feedbackCombFilters.forEach((fbcf) => fbcf.dispose());
         this.roomSize.dispose();
         this._scaleRoomSize.dispose();
         return this;

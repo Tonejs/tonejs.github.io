@@ -1,16 +1,16 @@
-import { Param } from "../../core/context/Param";
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import "../../core/context/Listener";
+import { Param } from "../../core/context/Param.js";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import "../../core/context/Listener.js";
 /**
  * A spatialized panner node which supports equalpower or HRTF panning.
  * @category Component
  */
 export class Panner3D extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Panner3D.getDefaults(), arguments, ["positionX", "positionY", "positionZ"]));
-        this.name = "Panner3D";
         const options = optionsFromArguments(Panner3D.getDefaults(), arguments, ["positionX", "positionY", "positionZ"]);
+        super(options);
+        this.name = "Panner3D";
         this._panner = this.input = this.output = this.context.createPanner();
         // set some values
         this.panningModel = options.panningModel;

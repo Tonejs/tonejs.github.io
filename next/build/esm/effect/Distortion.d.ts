@@ -1,4 +1,4 @@
-import { Effect, EffectOptions } from "./Effect";
+import { Effect, EffectOptions } from "./Effect.js";
 export interface DistortionOptions extends EffectOptions {
     distortion: number;
     oversample: OverSampleType;
@@ -6,7 +6,7 @@ export interface DistortionOptions extends EffectOptions {
 /**
  * A simple distortion effect using Tone.WaveShaper.
  * Algorithm from [this stackoverflow answer](http://stackoverflow.com/a/22313408).
- *
+ * Read more about distortion on [Wikipedia](https://en.wikipedia.org/wiki/Distortion_(music).
  * @example
  * const dist = new Tone.Distortion(0.8).toDestination();
  * const fm = new Tone.FMSynth().connect(dist);

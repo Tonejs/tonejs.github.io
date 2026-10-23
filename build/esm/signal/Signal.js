@@ -1,9 +1,9 @@
-import { Param } from "../core/context/Param";
-import { ToneAudioNode } from "../core/context/ToneAudioNode";
-import { connect } from "../core/context/ToneAudioNode";
-import { isAudioParam } from "../core/util/AdvancedTypeCheck";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { ToneConstantSource } from "./ToneConstantSource";
+import { Param } from "../core/context/Param.js";
+import { ToneAudioNode, } from "../core/context/ToneAudioNode.js";
+import { connect } from "../core/context/ToneAudioNode.js";
+import { isAudioParam } from "../core/util/AdvancedTypeCheck.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { ToneConstantSource } from "./ToneConstantSource.js";
 /**
  * A signal is an audio-rate value. Tone.Signal is a core component of the library.
  * Unlike a number, Signals can be scheduled with sample-level accuracy. Tone.Signal
@@ -25,13 +25,16 @@ import { ToneConstantSource } from "./ToneConstantSource";
  */
 export class Signal extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Signal.getDefaults(), arguments, ["value", "units"]));
+        const options = optionsFromArguments(Signal.getDefaults(), arguments, [
+            "value",
+            "units",
+        ]);
+        super(options);
         this.name = "Signal";
         /**
          * Indicates if the value should be overridden on connection.
          */
         this.override = true;
-        const options = optionsFromArguments(Signal.getDefaults(), arguments, ["value", "units"]);
         this.output = this._constantSource = new ToneConstantSource({
             context: this.context,
             convert: options.convert,
@@ -149,7 +152,7 @@ export class Signal extends ToneAudioNode {
         return this._param.minValue;
     }
     /**
-     * See [[Param.apply]].
+     * @see {@link Param.apply}.
      */
     apply(param) {
         this._param.apply(param);
@@ -167,7 +170,8 @@ export class Signal extends ToneAudioNode {
  * @param inputNum the input number
  */
 export function connectSignal(signal, destination, outputNum, inputNum) {
-    if (destination instanceof Param || isAudioParam(destination) ||
+    if (destination instanceof Param ||
+        isAudioParam(destination) ||
         (destination instanceof Signal && destination.override)) {
         // cancel changes
         destination.cancelScheduledValues(0);

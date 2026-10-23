@@ -1,6 +1,6 @@
-import { NormalRange, Positive, Seconds, Ticks, Time, TransportTime } from "../core/type/Units";
-import { ToneEvent, ToneEventCallback, ToneEventOptions } from "./ToneEvent";
-declare type SequenceEventDescription<T> = Array<T | Array<T | Array<T | Array<T | Array<T | T[]>>>>>;
+import { NormalRange, Positive, Seconds, Ticks, Time, TransportTime } from "../core/type/Units.js";
+import { ToneEvent, ToneEventCallback, ToneEventOptions } from "./ToneEvent.js";
+type SequenceEventDescription<T> = Array<T | SequenceEventDescription<T>>;
 interface SequenceOptions<T> extends Omit<ToneEventOptions<T>, "value"> {
     loopStart: number;
     loopEnd: number;
@@ -13,7 +13,7 @@ interface SequenceOptions<T> extends Omit<ToneEventOptions<T>, "value"> {
  * in an array of events which will be spaced at the
  * given subdivision. Sub-arrays will subdivide that beat
  * by the number of items are in the array.
- * Sequence notation inspiration from [Tidal](http://yaxu.org/tidal/)
+ * Sequence notation inspiration from [Tidal Cycles](http://tidalcycles.org/)
  * @example
  * const synth = new Tone.Synth().toDestination();
  * const seq = new Tone.Sequence((time, note) => {
@@ -43,7 +43,7 @@ export declare class Sequence<ValueType = any> extends ToneEvent<ValueType> {
     private _eventsArray;
     /**
      * @param  callback  The callback to invoke with every note
-     * @param  sequence  The sequence
+     * @param  events  The sequence of events
      * @param  subdivision  The subdivision between which events are placed.
      */
     constructor(callback?: ToneEventCallback<ValueType>, events?: SequenceEventDescription<ValueType>, subdivision?: Time);

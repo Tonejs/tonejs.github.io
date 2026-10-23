@@ -1,6 +1,6 @@
-import { Gain } from "../core/context/Gain";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { Signal } from "./Signal";
+import { Gain } from "../core/context/Gain.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { Signal } from "./Signal.js";
 /**
  * Multiply two incoming signals. Or, if a number is given in the constructor,
  * multiplies the incoming signal by that value.
@@ -22,19 +22,23 @@ import { Signal } from "./Signal";
  */
 export class Multiply extends Signal {
     constructor() {
-        super(Object.assign(optionsFromArguments(Multiply.getDefaults(), arguments, ["value"])));
+        const options = optionsFromArguments(Multiply.getDefaults(), arguments, ["value"]);
+        super(options);
         this.name = "Multiply";
         /**
          * Indicates if the value should be overridden on connection
          */
         this.override = false;
-        const options = optionsFromArguments(Multiply.getDefaults(), arguments, ["value"]);
-        this._mult = this.input = this.output = new Gain({
-            context: this.context,
-            minValue: options.minValue,
-            maxValue: options.maxValue,
-        });
-        this.factor = this._param = this._mult.gain;
+        this._mult =
+            this.input =
+                this.output =
+                    new Gain({
+                        context: this.context,
+                        minValue: options.minValue,
+                        maxValue: options.maxValue,
+                    });
+        this.factor = this._param = this._mult
+            .gain;
         this.factor.setValueAtTime(options.value, 0);
     }
     static getDefaults() {

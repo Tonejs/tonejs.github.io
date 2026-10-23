@@ -1,8 +1,8 @@
-import { TransportTimeClass } from "../core/type/TransportTime";
-import { NormalRange, Positive, Seconds, Ticks, Time, TransportTime } from "../core/type/Units";
-import { StateTimeline } from "../core/util/StateTimeline";
-import { ToneEvent, ToneEventCallback, ToneEventOptions } from "./ToneEvent";
-declare type CallbackType<T> = T extends {
+import { TransportTimeClass } from "../core/type/TransportTime.js";
+import { NormalRange, Positive, Seconds, Ticks, Time, TransportTime } from "../core/type/Units.js";
+import { StateTimeline } from "../core/util/StateTimeline.js";
+import { ToneEvent, ToneEventCallback, ToneEventOptions } from "./ToneEvent.js";
+type CallbackType<T> = T extends {
     time: Time;
     [key: string]: any;
 } ? T : T extends ArrayLike<any> ? T[1] : T extends Time ? null : never;
@@ -18,7 +18,7 @@ interface PartOptions<T> extends Omit<ToneEventOptions<CallbackType<T>>, "value"
  * 	// the notes given as the second element in the array
  * 	// will be passed in as the second argument
  * 	synth.triggerAttackRelease(note, "8n", time);
- * }), [[0, "C2"], ["0:2", "C3"], ["0:3:2", "G2"]]);
+ * }), [[0, "C2"], ["0:2", "C3"], ["0:3:2", "G2"]]).start(0);
  * Tone.Transport.start();
  * @example
  * const synth = new Tone.Synth().toDestination();
@@ -47,7 +47,7 @@ export declare class Part<ValueType = any> extends ToneEvent<ValueType> {
     private _events;
     /**
      * @param callback The callback to invoke on each event
-     * @param events the array of events
+     * @param value the array of events
      */
     constructor(callback?: ToneEventCallback<CallbackType<ValueType>>, value?: ValueType[]);
     constructor(options?: Partial<PartOptions<ValueType>>);
@@ -92,7 +92,7 @@ export declare class Part<ValueType = any> extends ToneEvent<ValueType> {
      * Add a an event to the part.
      * @param time The time the note should start. If an object is passed in, it should
      * 		have a 'time' attribute and the rest of the object will be used as the 'value'.
-     * @param  value
+     * @param  value Any value to add to the timeline
      * @example
      * const part = new Tone.Part();
      * part.add("1m", "C#+11");

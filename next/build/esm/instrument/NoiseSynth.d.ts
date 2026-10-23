@@ -1,16 +1,16 @@
-import { AmplitudeEnvelope } from "../component/envelope/AmplitudeEnvelope";
-import { NormalRange, Time } from "../core/type/Units";
-import { RecursivePartial } from "../core/util/Interface";
-import { Noise, NoiseOptions } from "../source/Noise";
-import { Instrument, InstrumentOptions } from "./Instrument";
-import { ToneAudioNodeOptions } from "../core/context/ToneAudioNode";
-import { EnvelopeOptions } from "../component/envelope/Envelope";
+import { AmplitudeEnvelope } from "../component/envelope/AmplitudeEnvelope.js";
+import { EnvelopeOptions } from "../component/envelope/Envelope.js";
+import { ToneAudioNodeOptions } from "../core/context/ToneAudioNode.js";
+import { NormalRange, Time } from "../core/type/Units.js";
+import { RecursivePartial } from "../core/util/Interface.js";
+import { Noise, NoiseOptions } from "../source/Noise.js";
+import { Instrument, InstrumentOptions } from "./Instrument.js";
 export interface NoiseSynthOptions extends InstrumentOptions {
     envelope: Omit<EnvelopeOptions, keyof ToneAudioNodeOptions>;
     noise: Omit<NoiseOptions, keyof ToneAudioNodeOptions>;
 }
 /**
- * Tone.NoiseSynth is composed of [[Noise]] through an [[AmplitudeEnvelope]].
+ * Tone.NoiseSynth is composed of {@link Noise} through an {@link AmplitudeEnvelope}.
  * ```
  * +-------+   +-------------------+
  * | Noise +>--> AmplitudeEnvelope +>--> Output

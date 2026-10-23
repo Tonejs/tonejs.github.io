@@ -1,17 +1,20 @@
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { dbToGain } from "../../core/type/Conversions";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { MeterBase } from "./MeterBase";
-import { assert } from "../../core/util/Debug";
+import { ToneAudioNode } from "../../core/context/ToneAudioNode.js";
+import { dbToGain } from "../../core/type/Conversions.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { MeterBase } from "./MeterBase.js";
+import { assert } from "../../core/util/Debug.js";
 /**
  * Get the current frequency data of the connected audio source using a fast Fourier transform.
+ * Read more about FFT algorithms on [Wikipedia] (https://en.wikipedia.org/wiki/Fast_Fourier_transform).
  * @category Component
  */
 export class FFT extends MeterBase {
     constructor() {
-        super(optionsFromArguments(FFT.getDefaults(), arguments, ["size"]));
+        const options = optionsFromArguments(FFT.getDefaults(), arguments, [
+            "size",
+        ]);
+        super(options);
         this.name = "FFT";
-        const options = optionsFromArguments(FFT.getDefaults(), arguments, ["size"]);
         this.normalRange = options.normalRange;
         this._analyser.type = "fft";
         this.size = options.size;
@@ -25,15 +28,15 @@ export class FFT extends MeterBase {
     }
     /**
      * Gets the current frequency data from the connected audio source.
-     * Returns the frequency data of length [[size]] as a Float32Array of decibel values.
+     * Returns the frequency data of length {@link size} as a Float32Array of decibel values.
      */
     getValue() {
         const values = this._analyser.getValue();
-        return values.map(v => this.normalRange ? dbToGain(v) : v);
+        return values.map((v) => (this.normalRange ? dbToGain(v) : v));
     }
     /**
      * The size of analysis. This must be a power of two in the range 16 to 16384.
-     * Determines the size of the array returned by [[getValue]] (i.e. the number of
+     * Determines the size of the array returned by {@link getValue} (i.e. the number of
      * frequency bins). Large FFT sizes may be costly to compute.
      */
     get size() {
@@ -52,14 +55,14 @@ export class FFT extends MeterBase {
         this._analyser.smoothing = val;
     }
     /**
-     * Returns the frequency value in hertz of each of the indices of the FFT's [[getValue]] response.
+     * Returns the frequency value in hertz of each of the indices of the FFT's {@link getValue} response.
      * @example
      * const fft = new Tone.FFT(32);
      * console.log([0, 1, 2, 3, 4].map(index => fft.getFrequencyOfIndex(index)));
      */
     getFrequencyOfIndex(index) {
         assert(0 <= index && index < this.size, `index must be greater than or equal to 0 and less than ${this.size}`);
-        return index * this.context.sampleRate / (this.size * 2);
+        return (index * this.context.sampleRate) / (this.size * 2);
     }
 }
 //# sourceMappingURL=FFT.js.map

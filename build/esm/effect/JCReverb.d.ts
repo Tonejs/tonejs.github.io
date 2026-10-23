@@ -1,14 +1,14 @@
-import { NormalRange } from "../core/type/Units";
-import { StereoEffect, StereoEffectOptions } from "./StereoEffect";
-import { Signal } from "../signal/Signal";
+import { NormalRange } from "../core/type/Units.js";
+import { StereoEffect, StereoEffectOptions } from "./StereoEffect.js";
+import { Signal } from "../signal/Signal.js";
 export interface JCReverbOptions extends StereoEffectOptions {
     roomSize: NormalRange;
 }
 /**
  * JCReverb is a simple [Schroeder Reverberator](https://ccrma.stanford.edu/~jos/pasp/Schroeder_Reverberators.html)
  * tuned by John Chowning in 1970.
- * It is made up of three allpass filters and four [[FeedbackCombFilter]].
- * JCReverb is now implemented with an AudioWorkletNode which may result on performance degradation on some platforms. Consider using [[Reverb]].
+ * It is made up of three allpass filters and four {@link FeedbackCombFilter}.
+ * JCReverb is now implemented with an AudioWorkletNode which may result on performance degradation on some platforms. Consider using {@link Reverb}.
  * @example
  * const reverb = new Tone.JCReverb(0.4).toDestination();
  * const delay = new Tone.FeedbackDelay(0.5);

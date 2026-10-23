@@ -1,8 +1,8 @@
-import { readOnly } from "../../core/util/Interface";
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { Panner } from "./Panner";
-import { Volume } from "./Volume";
+import { readOnly } from "../../core/util/Interface.js";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { Panner } from "./Panner.js";
+import { Volume } from "./Volume.js";
 /**
  * PanVol is a Tone.Panner and Tone.Volume in one.
  * @example
@@ -13,9 +13,12 @@ import { Volume } from "./Volume";
  */
 export class PanVol extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(PanVol.getDefaults(), arguments, ["pan", "volume"]));
+        const options = optionsFromArguments(PanVol.getDefaults(), arguments, [
+            "pan",
+            "volume",
+        ]);
+        super(options);
         this.name = "PanVol";
-        const options = optionsFromArguments(PanVol.getDefaults(), arguments, ["pan", "volume"]);
         this._panner = this.input = new Panner({
             context: this.context,
             pan: options.pan,

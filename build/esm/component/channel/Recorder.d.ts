@@ -1,6 +1,6 @@
-import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
-import { Gain } from "../../core/context/Gain";
-import { PlaybackState } from "../../core/util/StateTimeline";
+import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
+import { Gain } from "../../core/context/Gain.js";
+import { PlaybackState } from "../../core/util/StateTimeline.js";
 export interface RecorderOptions extends ToneAudioNodeOptions {
     mimeType?: string;
 }
@@ -8,7 +8,7 @@ export interface RecorderOptions extends ToneAudioNodeOptions {
  * A wrapper around the MediaRecorder API. Unlike the rest of Tone.js, this module does not offer
  * any sample-accurate scheduling because it is not a feature of the MediaRecorder API.
  * This is only natively supported in Chrome and Firefox.
- * For a cross-browser shim, install (audio-recorder-polyfill)[https://www.npmjs.com/package/audio-recorder-polyfill].
+ * For a cross-browser shim, install [audio-recorder-polyfill](https://www.npmjs.com/package/audio-recorder-polyfill).
  * @example
  * const recorder = new Tone.Recorder();
  * const synth = new Tone.Synth().connect(recorder);
@@ -60,13 +60,13 @@ export declare class Recorder extends ToneAudioNode<RecorderOptions> {
      */
     get state(): PlaybackState;
     /**
-     * Start the Recorder. Returns a promise which resolves
+     * Start/Resume the Recorder. Returns a promise which resolves
      * when the recorder has started.
      */
-    start(): Promise<unknown>;
+    start(): Promise<void>;
     /**
      * Stop the recorder. Returns a promise with the recorded content until this point
-     * encoded as [[mimeType]]
+     * encoded as {@link mimeType}
      */
     stop(): Promise<Blob>;
     /**

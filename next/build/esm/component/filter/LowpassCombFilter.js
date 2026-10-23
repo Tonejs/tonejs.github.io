@@ -1,17 +1,17 @@
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { FeedbackCombFilter } from "./FeedbackCombFilter";
-import { OnePoleFilter } from "./OnePoleFilter";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { FeedbackCombFilter } from "./FeedbackCombFilter.js";
+import { OnePoleFilter } from "./OnePoleFilter.js";
 /**
  * A lowpass feedback comb filter. It is similar to
- * [[FeedbackCombFilter]], but includes a lowpass filter.
+ * {@link FeedbackCombFilter}, but includes a lowpass filter.
  * @category Component
  */
 export class LowpassCombFilter extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(LowpassCombFilter.getDefaults(), arguments, ["delayTime", "resonance", "dampening"]));
-        this.name = "LowpassCombFilter";
         const options = optionsFromArguments(LowpassCombFilter.getDefaults(), arguments, ["delayTime", "resonance", "dampening"]);
+        super(options);
+        this.name = "LowpassCombFilter";
         this._combFilter = this.output = new FeedbackCombFilter({
             context: this.context,
             delayTime: options.delayTime,

@@ -1,5 +1,5 @@
-import { PowerOfTwo } from "../../core/type/Units";
-import { MeterBase, MeterBaseOptions } from "./MeterBase";
+import { PowerOfTwo } from "../../core/type/Units.js";
+import { MeterBase, MeterBaseOptions } from "./MeterBase.js";
 export interface WaveformOptions extends MeterBaseOptions {
     /**
      * The size of the Waveform. Value must be a power of two in the range 16 to 16384.
@@ -25,7 +25,7 @@ export declare class Waveform extends MeterBase<WaveformOptions> {
     getValue(): Float32Array;
     /**
      * The size of analysis. This must be a power of two in the range 16 to 16384.
-     * Determines the size of the array returned by [[getValue]].
+     * Determines the size of the array returned by {@link getValue}.
      */
     get size(): PowerOfTwo;
     set size(size: PowerOfTwo);

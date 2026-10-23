@@ -1,9 +1,9 @@
-import { Effect, EffectOptions } from "../effect/Effect";
-import { Frequency, NormalRange, Time } from "../core/type/Units";
-import { LFO } from "../source/oscillator/LFO";
-import { ToneOscillatorType } from "../source/oscillator/OscillatorInterface";
-import { Signal } from "../signal/Signal";
-import { Param } from "../core/context/Param";
+import { Effect, EffectOptions } from "../effect/Effect.js";
+import { Frequency, NormalRange, Time } from "../core/type/Units.js";
+import { LFO } from "../source/oscillator/LFO.js";
+import { ToneOscillatorType } from "../source/oscillator/OscillatorInterface.js";
+import { Signal } from "../signal/Signal.js";
+import { Param } from "../core/context/Param.js";
 export interface LFOEffectOptions extends EffectOptions {
     frequency: Frequency;
     type: ToneOscillatorType;
@@ -38,7 +38,8 @@ export declare abstract class LFOEffect<Options extends LFOEffectOptions> extend
      */
     stop(time?: Time): this;
     /**
-     * Sync the filter to the transport. See [[LFO.sync]]
+     * Sync the filter to the transport.
+     * @see {@link LFO.sync}
      */
     sync(): this;
     /**
@@ -46,7 +47,8 @@ export declare abstract class LFOEffect<Options extends LFOEffectOptions> extend
      */
     unsync(): this;
     /**
-     * The type of the LFO's oscillator: See [[Oscillator.type]]
+     * The type of the LFO's oscillator.
+     * @see {@link Oscillator.type}
      * @example
      * const autoFilter = new Tone.AutoFilter().start().toDestination();
      * const noise = new Tone.Noise().start().connect(autoFilter);

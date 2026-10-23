@@ -1,6 +1,6 @@
-import { Tone } from "../Tone";
-import { isDefined } from "./TypeCheck";
-import { assert } from "./Debug";
+import { Tone } from "../Tone.js";
+import { assert } from "./Debug.js";
+import { isDefined } from "./TypeCheck.js";
 /**
  * Similar to Tone.Timeline, but all events represent
  * intervals with both "time" and "duration" times. The
@@ -8,13 +8,14 @@ import { assert } from "./Debug";
  * for querying an intersection point with the timeline
  * events. Internally uses an [Interval Tree](https://en.wikipedia.org/wiki/Interval_tree)
  * to represent the data.
+ * @internal
  */
 export class IntervalTimeline extends Tone {
     constructor() {
         super(...arguments);
         this.name = "IntervalTimeline";
         /**
-         * The root node of the inteval tree
+         * The root node of the interval tree
          */
         this._root = null;
         /**
@@ -78,7 +79,7 @@ export class IntervalTimeline extends Tone {
      * @param  after  The time to query.
      */
     cancel(after) {
-        this.forEachFrom(after, event => this.remove(event));
+        this.forEachFrom(after, (event) => this.remove(event));
         return this;
     }
     /**
@@ -277,8 +278,8 @@ export class IntervalTimeline extends Tone {
     forEach(callback) {
         if (this._root !== null) {
             const allNodes = [];
-            this._root.traverse(node => allNodes.push(node));
-            allNodes.forEach(node => {
+            this._root.traverse((node) => allNodes.push(node));
+            allNodes.forEach((node) => {
                 if (node.event) {
                     callback(node.event);
                 }
@@ -296,7 +297,7 @@ export class IntervalTimeline extends Tone {
         if (this._root !== null) {
             const results = [];
             this._root.search(time, results);
-            results.forEach(node => {
+            results.forEach((node) => {
                 if (node.event) {
                     callback(node.event);
                 }
@@ -314,7 +315,7 @@ export class IntervalTimeline extends Tone {
         if (this._root !== null) {
             const results = [];
             this._root.searchAfter(time, results);
-            results.forEach(node => {
+            results.forEach((node) => {
                 if (node.event) {
                     callback(node.event);
                 }
@@ -328,7 +329,7 @@ export class IntervalTimeline extends Tone {
     dispose() {
         super.dispose();
         if (this._root !== null) {
-            this._root.traverse(node => node.dispose());
+            this._root.traverse((node) => node.dispose());
         }
         this._root = null;
         return this;
@@ -434,7 +435,7 @@ class IntervalNode {
         }
     }
     /**
-     * Invoke the callback on this element and both it's branches
+     * Invoke the callback on this element and both its branches
      * @param  {Function}  callback
      */
     traverse(callback) {

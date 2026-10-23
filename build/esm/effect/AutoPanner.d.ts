@@ -1,11 +1,11 @@
-import { Panner } from "../component/channel/Panner";
-import { LFOEffect, LFOEffectOptions } from "./LFOEffect";
-import { Frequency } from "../core/type/Units";
+import { Panner } from "../component/channel/Panner.js";
+import { LFOEffect, LFOEffectOptions } from "./LFOEffect.js";
+import { Frequency } from "../core/type/Units.js";
 export interface AutoPannerOptions extends LFOEffectOptions {
     channelCount: number;
 }
 /**
- * AutoPanner is a [[Panner]] with an [[LFO]] connected to the pan amount.
+ * AutoPanner is a {@link Panner} with an {@link LFO} connected to the pan amount.
  * [Related Reading](https://www.ableton.com/en/blog/autopan-chopper-effect-and-more-liveschool/).
  *
  * @example

@@ -1,7 +1,7 @@
-import { ToneWithContext, ToneWithContextOptions } from "../context/ToneWithContext";
-import { Seconds, Ticks, Time } from "../type/Units";
-import { PlaybackState } from "../util/StateTimeline";
-import { TickSignal } from "./TickSignal";
+import { ToneWithContext, ToneWithContextOptions } from "../context/ToneWithContext.js";
+import { Seconds, Ticks, Time } from "../type/Units.js";
+import { PlaybackState } from "../util/StateTimeline.js";
+import { TickSignal } from "./TickSignal.js";
 interface TickSourceOptions extends ToneWithContextOptions {
     frequency: number;
     units: "bpm" | "hertz";
@@ -23,6 +23,14 @@ export declare class TickSource<TypeName extends "bpm" | "hertz"> extends ToneWi
      * The offset values of the ticks
      */
     private _tickOffset;
+    /**
+     * Memoized values of getTicksAtTime at events with state other than "started"
+     */
+    private _ticksAtTime;
+    /**
+     * Memoized values of getSecondsAtTime at events with state other than "started"
+     */
+    private _secondsAtTime;
     /**
      * @param frequency The initial frequency that the signal ticks at
      */

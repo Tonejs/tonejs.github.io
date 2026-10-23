@@ -1,5 +1,5 @@
-import { Effect, EffectOptions } from "./Effect";
-import { Positive } from "../core/type/Units";
+import { Effect, EffectOptions } from "./Effect.js";
+import { Positive } from "../core/type/Units.js";
 export interface ChebyshevOptions extends EffectOptions {
     order: Positive;
     oversample: OverSampleType;
@@ -43,7 +43,7 @@ export declare class Chebyshev extends Effect<ChebyshevOptions> {
     private _getCoefficient;
     /**
      * The order of the Chebyshev polynomial which creates the equation which is applied to the incoming
-     * signal through a Tone.WaveShaper. The equations are in the form:
+     * signal through a Tone.WaveShaper. Must be an integer. The equations are in the form:
      * ```
      * order 2: 2x^2 + 1
      * order 3: 4x^3 + 3x

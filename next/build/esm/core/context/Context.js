@@ -1,15 +1,15 @@
 import { __awaiter } from "tslib";
-import { Ticker } from "../clock/Ticker";
-import { isAudioContext } from "../util/AdvancedTypeCheck";
-import { optionsFromArguments } from "../util/Defaults";
-import { Timeline } from "../util/Timeline";
-import { isDefined } from "../util/TypeCheck";
-import { createAudioContext, createAudioWorkletNode, } from "./AudioContext";
-import { closeContext, initializeContext } from "./ContextInitialization";
-import { BaseContext } from "./BaseContext";
-import { assert } from "../util/Debug";
+import { Ticker } from "../clock/Ticker.js";
+import { isAudioContext } from "../util/AdvancedTypeCheck.js";
+import { assert } from "../util/Debug.js";
+import { optionsFromArguments } from "../util/Defaults.js";
+import { Timeline } from "../util/Timeline.js";
+import { isDefined } from "../util/TypeCheck.js";
+import { createAudioContext, createAudioWorkletNode, } from "./AudioContext.js";
+import { BaseContext } from "./BaseContext.js";
+import { closeContext, initializeContext } from "./ContextInitialization.js";
 /**
- * Wrapper around the native AudioContext.
+ * Wraps the native AudioContext.
  * @category Core
  */
 export class Context extends BaseContext {
@@ -18,13 +18,17 @@ export class Context extends BaseContext {
         super();
         this.name = "Context";
         /**
-         * An object containing all of the constants AudioBufferSourceNodes
+         * An object containing all of the AudioBufferSourceNodes with constant values.
          */
         this._constants = new Map();
         /**
          * All of the setTimeout events.
          */
         this._timeouts = new Timeline();
+        /**
+         * A Map from timeout ID to event for O(1) lookup in clearTimeout.
+         */
+        this._timeoutMap = new Map();
         /**
          * The timeout id counter
          */
@@ -34,6 +38,10 @@ export class Context extends BaseContext {
          */
         this._initialized = false;
         /**
+         * Private indicator if a close() has been called on the context, since close is async
+         */
+        this._closeStarted = false;
+        /**
          * Indicates if the context is an OfflineAudioContext or an AudioContext
          */
         this.isOffline = false;
@@ -41,9 +49,9 @@ export class Context extends BaseContext {
         // AUDIO WORKLET
         //--------------------------------------------
         /**
-         * Maps a module name to promise of the addModule method
+         * A set of unsettled promises returned by the addModule method
          */
-        this._workletModules = new Map();
+        this._workletPromises = new Set();
         const options = optionsFromArguments(Context.getDefaults(), arguments, [
             "context",
         ]);
@@ -53,9 +61,14 @@ export class Context extends BaseContext {
             this._latencyHint = ((_a = arguments[0]) === null || _a === void 0 ? void 0 : _a.latencyHint) || "";
         }
         else {
-            this._context = createAudioContext({
-                latencyHint: options.latencyHint,
-            });
+            this._context = createAudioContext(options.sampleRate
+                ? {
+                    latencyHint: options.latencyHint,
+                    sampleRate: options.sampleRate,
+                }
+                : {
+                    latencyHint: options.latencyHint,
+                });
             this._latencyHint = options.latencyHint;
         }
         this._ticker = new Ticker(this.emit.bind(this, "tick"), options.clockSource, options.updateInterval, this._context.sampleRate);
@@ -65,7 +78,9 @@ export class Context extends BaseContext {
             this.emit("statechange", this.state);
         };
         // if no custom updateInterval provided, updateInterval will be derived by lookAhead setter
-        this[((_b = arguments[0]) === null || _b === void 0 ? void 0 : _b.hasOwnProperty("updateInterval")) ? "_lookAhead" : "lookAhead"] = options.lookAhead;
+        this[((_b = arguments[0]) === null || _b === void 0 ? void 0 : _b.hasOwnProperty("updateInterval"))
+            ? "_lookAhead"
+            : "lookAhead"] = options.lookAhead;
     }
     static getDefaults() {
         return {
@@ -223,7 +238,7 @@ export class Context extends BaseContext {
     }
     /**
      * Create an audio worklet node from a name and options. The module
-     * must first be loaded using [[addAudioWorkletModule]].
+     * must first be loaded using {@link addAudioWorkletModule}.
      */
     createAudioWorkletNode(name, options) {
         return createAudioWorkletNode(this.rawContext, name, options);
@@ -231,15 +246,14 @@ export class Context extends BaseContext {
     /**
      * Add an AudioWorkletProcessor module
      * @param url The url of the module
-     * @param name The name of the module
      */
-    addAudioWorkletModule(url, name) {
+    addAudioWorkletModule(url) {
         return __awaiter(this, void 0, void 0, function* () {
             assert(isDefined(this.rawContext.audioWorklet), "AudioWorkletNode is only available in a secure context (https or localhost)");
-            if (!this._workletModules.has(name)) {
-                this._workletModules.set(name, this.rawContext.audioWorklet.addModule(url));
-            }
-            yield this._workletModules.get(name);
+            const workletPromise = this.rawContext.audioWorklet.addModule(url);
+            this._workletPromises.add(workletPromise);
+            workletPromise.finally(() => this._workletPromises.delete(workletPromise));
+            return workletPromise;
         });
     }
     /**
@@ -247,9 +261,7 @@ export class Context extends BaseContext {
      */
     workletsAreReady() {
         return __awaiter(this, void 0, void 0, function* () {
-            const promises = [];
-            this._workletModules.forEach((promise) => promises.push(promise));
-            yield Promise.all(promises);
+            yield Promise.all(this._workletPromises);
         });
     }
     //---------------------------
@@ -258,7 +270,7 @@ export class Context extends BaseContext {
     /**
      * How often the interval callback is invoked.
      * This number corresponds to how responsive the scheduling
-     * can be. Setting to 0 will result in the lowest practial interval
+     * can be. Setting to 0 will result in the lowest practical interval
      * based on context properties. context.updateInterval + context.lookAhead
      * gives you the total latency between scheduling an event and hearing it.
      */
@@ -282,7 +294,7 @@ export class Context extends BaseContext {
      * The amount of time into the future events are scheduled. Giving Web Audio
      * a short amount of time into the future to schedule events can reduce clicks and
      * improve performance. This value can be set to 0 to get the lowest latency.
-     * Adjusting this value also affects the [[updateInterval]].
+     * Adjusting this value also affects the {@link updateInterval}.
      */
     get lookAhead() {
         return this._lookAhead;
@@ -290,7 +302,7 @@ export class Context extends BaseContext {
     set lookAhead(time) {
         this._lookAhead = time;
         // if lookAhead is 0, default to .01 updateInterval
-        this.updateInterval = time ? (time / 2) : .01;
+        this.updateInterval = time ? time / 2 : 0.01;
     }
     /**
      * The type of playback, which affects tradeoffs between audio
@@ -317,7 +329,7 @@ export class Context extends BaseContext {
         return this._context;
     }
     /**
-     * The current audio context time plus a short [[lookAhead]].
+     * The current audio context time plus a short {@link lookAhead}.
      * @example
      * setInterval(() => {
      * 	console.log("now", Tone.now());
@@ -327,18 +339,19 @@ export class Context extends BaseContext {
         return this._context.currentTime + this._lookAhead;
     }
     /**
-     * The current audio context time without the [[lookAhead]].
-     * In most cases it is better to use [[now]] instead of [[immediate]] since
-     * with [[now]] the [[lookAhead]] is applied equally to _all_ components including internal components,
-     * to making sure that everything is scheduled in sync. Mixing [[now]] and [[immediate]]
-     * can cause some timing issues. If no lookAhead is desired, you can set the [[lookAhead]] to `0`.
+     * The current audio context time without the {@link lookAhead}.
+     * In most cases it is better to use {@link now} instead of {@link immediate} since
+     * with {@link now} the {@link lookAhead} is applied equally to _all_ components including internal components,
+     * to making sure that everything is scheduled in sync. Mixing {@link now} and {@link immediate}
+     * can cause some timing issues. If no lookAhead is desired, you can set the {@link lookAhead} to `0`.
      */
     immediate() {
         return this._context.currentTime;
     }
     /**
      * Starts the audio context from a suspended state. This is required
-     * to initially start the AudioContext. See [[Tone.start]]
+     * to initially start the AudioContext.
+     * @see {@link start}
      */
     resume() {
         if (isAudioContext(this._context)) {
@@ -354,7 +367,10 @@ export class Context extends BaseContext {
      */
     close() {
         return __awaiter(this, void 0, void 0, function* () {
-            if (isAudioContext(this._context)) {
+            if (isAudioContext(this._context) &&
+                this.state !== "closed" &&
+                !this._closeStarted) {
+                this._closeStarted = true;
                 yield this._context.close();
             }
             if (this._initialized) {
@@ -364,6 +380,7 @@ export class Context extends BaseContext {
     }
     /**
      * **Internal** Generate a looped buffer at some constant value.
+     * @deprecated
      */
     getConstant(val) {
         if (this._constants.has(val)) {
@@ -392,39 +409,60 @@ export class Context extends BaseContext {
         super.dispose();
         this._ticker.dispose();
         this._timeouts.dispose();
+        this._timeoutMap.clear();
         Object.keys(this._constants).map((val) => this._constants[val].disconnect());
+        this.close();
         return this;
     }
     //---------------------------
     // TIMEOUTS
     //---------------------------
     /**
+     * Add a timeout event to the timeline and map.
+     */
+    _addTimeoutEvent(event) {
+        this._timeouts.add(event);
+        this._timeoutMap.set(event.id, event);
+    }
+    /**
+     * Remove a timeout event from the timeline and map.
+     */
+    _removeTimeoutEvent(event) {
+        this._timeouts.remove(event);
+        // Skips the map deletion in setInterval case where the same id
+        // is reused for the next event.
+        if (this._timeoutMap.get(event.id) === event) {
+            this._timeoutMap.delete(event.id);
+        }
+    }
+    /**
      * The private loop which keeps track of the context scheduled timeouts
      * Is invoked from the clock source
      */
     _timeoutLoop() {
         const now = this.now();
-        let firstEvent = this._timeouts.peek();
-        while (this._timeouts.length && firstEvent && firstEvent.time <= now) {
-            // invoke the callback
-            firstEvent.callback();
-            // shift the first event off
-            this._timeouts.shift();
-            // get the next one
-            firstEvent = this._timeouts.peek();
-        }
+        this._timeouts.forEachBefore(now, (event) => {
+            try {
+                event.callback();
+            }
+            finally {
+                this._removeTimeoutEvent(event);
+            }
+        });
     }
     /**
-     * A setTimeout which is guaranteed by the clock source.
+     * A `setTimeout` which is guaranteed by the clock source.
+     *
      * Also runs in the offline context.
-     * @param  fn       The callback to invoke
-     * @param  timeout  The timeout in seconds
-     * @returns ID to use when invoking Context.clearTimeout
+     *
+     * @param fn The callback to invoke.
+     * @param timeout The timeout in seconds.
+     * @returns ID to use when invoking {@link clearTimeout}.
      */
     setTimeout(fn, timeout) {
         this._timeoutIds++;
         const now = this.now();
-        this._timeouts.add({
+        this._addTimeoutEvent({
             callback: fn,
             id: this._timeoutIds,
             time: now + timeout,
@@ -432,31 +470,34 @@ export class Context extends BaseContext {
         return this._timeoutIds;
     }
     /**
-     * Clears a previously scheduled timeout with Tone.context.setTimeout
-     * @param  id  The ID returned from setTimeout
+     * Clears a previously scheduled timeout with {@link setTimeout}.
+     * @param id The ID returned from {@link setTimeout}.
      */
     clearTimeout(id) {
-        this._timeouts.forEach((event) => {
-            if (event.id === id) {
-                this._timeouts.remove(event);
-            }
-        });
+        const event = this._timeoutMap.get(id);
+        if (event) {
+            this._removeTimeoutEvent(event);
+        }
         return this;
     }
     /**
-     * Clear the function scheduled by [[setInterval]]
+     * Clear the function scheduled by {@link setInterval}.
+     * @param id The ID returned from {@link setInterval}.
      */
     clearInterval(id) {
         return this.clearTimeout(id);
     }
     /**
-     * Adds a repeating event to the context's callback clock
+     * Adds a repeating event to the context's callback clock.
+     * @param fn The callback to invoke.
+     * @param interval The timeout in seconds.
+     * @returns ID to use when invoking {@link clearInterval}.
      */
     setInterval(fn, interval) {
         const id = ++this._timeoutIds;
         const intervalFn = () => {
             const now = this.now();
-            this._timeouts.add({
+            this._addTimeoutEvent({
                 callback: () => {
                     // invoke the callback
                     fn();

@@ -1,12 +1,12 @@
 import { __awaiter, __decorate } from "tslib";
-import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer";
-import { defaultArg, optionsFromArguments } from "../../core/util/Defaults";
-import { noOp } from "../../core/util/Interface";
-import { isUndef } from "../../core/util/TypeCheck";
-import { Source } from "../Source";
-import { ToneBufferSource } from "./ToneBufferSource";
-import { assertRange } from "../../core/util/Debug";
-import { timeRange } from "../../core/util/Decorator";
+import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer.js";
+import { defaultArg, optionsFromArguments } from "../../core/util/Defaults.js";
+import { noOp } from "../../core/util/Interface.js";
+import { isUndef } from "../../core/util/TypeCheck.js";
+import { Source } from "../Source.js";
+import { ToneBufferSource } from "./ToneBufferSource.js";
+import { assertRange } from "../../core/util/Debug.js";
+import { timeRange } from "../../core/util/Decorator.js";
 /**
  * Player is an audio file player with start, loop, and stop functions.
  * @example
@@ -17,13 +17,16 @@ import { timeRange } from "../../core/util/Decorator";
  */
 export class Player extends Source {
     constructor() {
-        super(optionsFromArguments(Player.getDefaults(), arguments, ["url", "onload"]));
+        const options = optionsFromArguments(Player.getDefaults(), arguments, [
+            "url",
+            "onload",
+        ]);
+        super(options);
         this.name = "Player";
         /**
          * All of the active buffer source nodes
          */
         this._activeSources = new Set();
-        const options = optionsFromArguments(Player.getDefaults(), arguments, ["url", "onload"]);
         this._buffer = new ToneAudioBuffer({
             onload: this._onload.bind(this, options.onload),
             onerror: options.onerror,
@@ -85,7 +88,8 @@ export class Player extends Source {
         this.onstop(this);
         // delete the source from the active sources
         this._activeSources.delete(source);
-        if (this._activeSources.size === 0 && !this._synced &&
+        if (this._activeSources.size === 0 &&
+            !this._synced &&
             this._state.getValueAtTime(this.now()) === "started") {
             // remove the 'implicitEnd' event and replace with an explicit end
             this._state.cancel(this.now());
@@ -164,7 +168,7 @@ export class Player extends Source {
      */
     _stop(time) {
         const computedTime = this.toSeconds(time);
-        this._activeSources.forEach(source => source.stop(computedTime));
+        this._activeSources.forEach((source) => source.stop(computedTime));
     }
     /**
      * Stop and then restart the player from the beginning (or offset)
@@ -178,7 +182,8 @@ export class Player extends Source {
         return this;
     }
     _restart(time, offset, duration) {
-        this._stop(time);
+        var _a;
+        (_a = [...this._activeSources].pop()) === null || _a === void 0 ? void 0 : _a.stop(time); // explicitly stop only the most recently created source, to avoid edge case when > 1 source exists and _stop() erroneously sets all stop times past original end offset
         this._start(time, offset, duration);
     }
     /**
@@ -232,7 +237,7 @@ export class Player extends Source {
             assertRange(this.toSeconds(loopStart), 0, this.buffer.duration);
         }
         // get the current source
-        this._activeSources.forEach(source => {
+        this._activeSources.forEach((source) => {
             source.loopStart = loopStart;
         });
     }
@@ -248,7 +253,7 @@ export class Player extends Source {
             assertRange(this.toSeconds(loopEnd), 0, this.buffer.duration);
         }
         // get the current source
-        this._activeSources.forEach(source => {
+        this._activeSources.forEach((source) => {
             source.loopEnd = loopEnd;
         });
     }
@@ -278,7 +283,7 @@ export class Player extends Source {
         }
         this._loop = loop;
         // set the loop of all of the sources
-        this._activeSources.forEach(source => {
+        this._activeSources.forEach((source) => {
             source.loop = loop;
         });
         if (loop) {
@@ -308,15 +313,16 @@ export class Player extends Source {
         const stopEvent = this._state.getNextState("stopped", now);
         if (stopEvent && stopEvent.implicitEnd) {
             this._state.cancel(stopEvent.time);
-            this._activeSources.forEach(source => source.cancelStop());
+            this._activeSources.forEach((source) => source.cancelStop());
         }
         // set all the sources
-        this._activeSources.forEach(source => {
+        this._activeSources.forEach((source) => {
             source.playbackRate.setValueAtTime(rate, now);
         });
     }
     /**
-     * If the buffer should be reversed
+     * If the buffer should be reversed. Note that this sets the underlying {@link ToneAudioBuffer.reverse}, so
+     * if multiple players are pointing at the same ToneAudioBuffer, they will all be reversed.
      * @example
      * const player = new Tone.Player("https://tonejs.github.io/audio/berklee/chime_1.mp3").toDestination();
      * player.autostart = true;
@@ -337,7 +343,7 @@ export class Player extends Source {
     dispose() {
         super.dispose();
         // disconnect all of the players
-        this._activeSources.forEach(source => source.dispose());
+        this._activeSources.forEach((source) => source.dispose());
         this._activeSources.clear();
         this._buffer.dispose();
         return this;

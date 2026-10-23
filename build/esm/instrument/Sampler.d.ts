@@ -1,7 +1,7 @@
-import { ToneAudioBuffer } from "../core/context/ToneAudioBuffer";
-import { Frequency, MidiNote, NormalRange, Note, Time } from "../core/type/Units";
-import { Instrument, InstrumentOptions } from "../instrument/Instrument";
-import { ToneBufferSourceCurve } from "../source/buffer/ToneBufferSource";
+import { ToneAudioBuffer } from "../core/context/ToneAudioBuffer.js";
+import { Frequency, MidiNote, NormalRange, Note, Time } from "../core/type/Units.js";
+import { Instrument, InstrumentOptions } from "../instrument/Instrument.js";
+import { ToneBufferSourceCurve } from "../source/buffer/ToneBufferSource.js";
 interface SamplesMap {
     [note: string]: ToneAudioBuffer | AudioBuffer | string;
     [midi: number]: ToneAudioBuffer | AudioBuffer | string;
@@ -22,7 +22,7 @@ export interface SamplerOptions extends InstrumentOptions {
  * were not explicitly included which can save loading time.
  *
  * For sample or buffer playback where repitching is not necessary,
- * use [[Player]].
+ * use {@link Player}.
  * @example
  * const sampler = new Tone.Sampler({
  * 	urls: {

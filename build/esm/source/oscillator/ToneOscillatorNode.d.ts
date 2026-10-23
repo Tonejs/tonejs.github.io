@@ -1,6 +1,6 @@
-import { Param } from "../../core/context/Param";
-import { Cents, Frequency, Seconds, Time } from "../../core/type/Units";
-import { OneShotSource, OneShotSourceOptions } from "../OneShotSource";
+import { Param } from "../../core/context/Param.js";
+import { Cents, Frequency, Seconds, Time } from "../../core/type/Units.js";
+import { OneShotSource, OneShotSourceOptions } from "../OneShotSource.js";
 export interface ToneOscillatorNodeOptions extends OneShotSourceOptions {
     frequency: Frequency;
     detune: Cents;
@@ -9,7 +9,7 @@ export interface ToneOscillatorNodeOptions extends OneShotSourceOptions {
 /**
  * Wrapper around the native fire-and-forget OscillatorNode.
  * Adds the ability to reschedule the stop method.
- * ***[[Oscillator]] is better for most use-cases***
+ * ***{@link Oscillator} is better for most use-cases***
  * @category Source
  */
 export declare class ToneOscillatorNode extends OneShotSource<ToneOscillatorNodeOptions> {

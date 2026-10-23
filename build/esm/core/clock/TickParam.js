@@ -1,15 +1,16 @@
-import { Param } from "../context/Param";
-import { optionsFromArguments } from "../util/Defaults";
-import { Timeline } from "../util/Timeline";
-import { isUndef } from "../util/TypeCheck";
+import { Param } from "../context/Param.js";
+import { optionsFromArguments } from "../util/Defaults.js";
+import { Timeline } from "../util/Timeline.js";
+import { isUndef } from "../util/TypeCheck.js";
 /**
- * A Param class just for computing ticks. Similar to the [[Param]] class,
+ * A Param class just for computing ticks. Similar to the {@link Param} class,
  * but offers conversion to BPM values as well as ability to compute tick
  * duration and elapsed ticks
  */
 export class TickParam extends Param {
     constructor() {
-        super(optionsFromArguments(TickParam.getDefaults(), arguments, ["value"]));
+        const options = optionsFromArguments(TickParam.getDefaults(), arguments, ["value"]);
+        super(options);
         this.name = "TickParam";
         /**
          * The timeline which tracks all of the automations.
@@ -19,7 +20,6 @@ export class TickParam extends Param {
          * The internal holder for the multiplier value
          */
         this._multiplier = 1;
-        const options = optionsFromArguments(TickParam.getDefaults(), arguments, ["value"]);
         // set the multiplier
         this._multiplier = options.multiplier;
         // clear the ticks from the beginning
@@ -81,7 +81,7 @@ export class TickParam extends Param {
         const prevEvent = this._events.get(time);
         // approx 10 segments per second
         const segments = Math.round(Math.max((time - prevEvent.time) * 10, 1));
-        const segmentDur = ((time - prevEvent.time) / segments);
+        const segmentDur = (time - prevEvent.time) / segments;
         for (let i = 0; i <= segments; i++) {
             const segTime = segmentDur * i + prevEvent.time;
             const rampVal = this._exponentialInterpolate(prevEvent.time, prevEvent.value, time, computedVal, segTime);
@@ -112,7 +112,9 @@ export class TickParam extends Param {
         let val1 = this._fromType(this.getValueAtTime(time));
         // if it's right on the line, take the previous value
         const onTheLineEvent = this._events.get(time);
-        if (onTheLineEvent && onTheLineEvent.time === time && onTheLineEvent.type === "setValueAtTime") {
+        if (onTheLineEvent &&
+            onTheLineEvent.time === time &&
+            onTheLineEvent.type === "setValueAtTime") {
             val1 = this._fromType(this.getValueAtTime(time - this.sampleTime));
         }
         return 0.5 * (time - event.time) * (val0 + val1) + event.ticks;
@@ -149,7 +151,8 @@ export class TickParam extends Param {
         if (before && before.ticks === tick) {
             return before.time;
         }
-        else if (before && after &&
+        else if (before &&
+            after &&
             after.type === "linearRampToValueAtTime" &&
             before.value !== after.value) {
             const val0 = this._fromType(this.getValueAtTime(before.time));
@@ -183,7 +186,7 @@ export class TickParam extends Param {
         return this.getDurationOfTicks(ticks, when);
     }
     /**
-     * The inverse of [[ticksToTime]]. Convert a duration in
+     * The inverse of {@link ticksToTime}. Convert a duration in
      * seconds to the corresponding number of ticks accounting for any
      * automation curves starting at the given time.
      * @param  duration The time interval to convert to ticks.
@@ -213,7 +216,7 @@ export class TickParam extends Param {
      */
     _toType(val) {
         if (this.units === "bpm" && this.multiplier) {
-            return (val / this.multiplier) * 60;
+            return ((val / this.multiplier) * 60);
         }
         else {
             return super._toType(val);

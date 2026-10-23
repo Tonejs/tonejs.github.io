@@ -1,7 +1,7 @@
-import { addToWorklet } from "./WorkletGlobalScope";
+import { addToWorklet } from "./WorkletGlobalScope.js";
 const toneAudioWorkletProcessor = /* javascript */ `
 	/**
-	 * The base AudioWorkletProcessor for use in Tone.js. Works with the [[ToneAudioWorklet]]. 
+	 * The base AudioWorkletProcessor for use in Tone.js. Works with the {@link ToneAudioWorklet}. 
 	 */
 	class ToneAudioWorkletProcessor extends AudioWorkletProcessor {
 
@@ -9,7 +9,7 @@ const toneAudioWorkletProcessor = /* javascript */ `
 			
 			super(options);
 			/**
-			 * If the processor was disposed or not. Keep alive until it's disposed.
+			 * If the processor was disposed or not. Keep alive until its disposed.
 			 */
 			this.disposed = false;
 		   	/** 

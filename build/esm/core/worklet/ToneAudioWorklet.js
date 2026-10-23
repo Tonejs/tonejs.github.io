@@ -1,6 +1,6 @@
-import { ToneAudioNode } from "../context/ToneAudioNode";
-import { noOp } from "../util/Interface";
-import { getWorkletGlobalScope } from "./WorkletGlobalScope";
+import { ToneAudioNode, } from "../context/ToneAudioNode.js";
+import { noOp } from "../util/Interface.js";
+import { getWorkletGlobalScope } from "./WorkletGlobalScope.js";
 export class ToneAudioWorklet extends ToneAudioNode {
     constructor(options) {
         super(options);
@@ -18,11 +18,12 @@ export class ToneAudioWorklet extends ToneAudioNode {
         this._dummyGain = this.context.createGain();
         this._dummyParam = this._dummyGain.gain;
         // Register the processor
-        this.context.addAudioWorkletModule(blobUrl, name).then(() => {
+        this.context.addAudioWorkletModule(blobUrl).then(() => {
             // create the worklet when it's read
             if (!this.disposed) {
                 this._worklet = this.context.createAudioWorkletNode(name, this.workletOptions);
-                this._worklet.onprocessorerror = this.onprocessorerror.bind(this);
+                this._worklet.onprocessorerror =
+                    this.onprocessorerror.bind(this);
                 this.onReady(this._worklet);
             }
         });

@@ -1,10 +1,10 @@
 import { __awaiter } from "tslib";
-import { getContext } from "../Global";
-import { Tone } from "../Tone";
-import { optionsFromArguments } from "../util/Defaults";
-import { noOp } from "../util/Interface";
-import { isArray, isNumber, isString } from "../util/TypeCheck";
-import { assert } from "../util/Debug";
+import { Tone } from "../Tone.js";
+import { assert } from "../util/Debug.js";
+import { optionsFromArguments } from "../util/Defaults.js";
+import { noOp } from "../util/Interface.js";
+import { isArray, isNumber, isString } from "../util/TypeCheck.js";
+import { getContext } from "./GlobalContext.js";
 /**
  * AudioBuffer loading and storage. ToneAudioBuffer is used internally by all
  * classes that make requests for audio files such as Tone.Player,
@@ -45,12 +45,8 @@ export class ToneAudioBuffer extends Tone {
      * The sample rate of the AudioBuffer
      */
     get sampleRate() {
-        if (this._buffer) {
-            return this._buffer.sampleRate;
-        }
-        else {
-            return getContext().sampleRate;
-        }
+        var _a, _b;
+        return (_b = (_a = this._buffer) === null || _a === void 0 ? void 0 : _a.sampleRate) !== null && _b !== void 0 ? _b : getContext().sampleRate;
     }
     /**
      * Pass in an AudioBuffer or ToneAudioBuffer to set the value of this buffer.
@@ -62,7 +58,7 @@ export class ToneAudioBuffer extends Tone {
                 this._buffer = buffer.get();
             }
             else {
-                // otherwise when it's loaded, invoke it's callback
+                // otherwise when its loaded, invoke it's callback
                 buffer.onload = () => {
                     this.set(buffer);
                     this.onload(this);
@@ -188,12 +184,8 @@ export class ToneAudioBuffer extends Tone {
      * @return The audio as a TypedArray
      */
     getChannelData(channel) {
-        if (this._buffer) {
-            return this._buffer.getChannelData(channel);
-        }
-        else {
-            return new Float32Array(0);
-        }
+        var _a, _b;
+        return (_b = (_a = this._buffer) === null || _a === void 0 ? void 0 : _a.getChannelData(channel)) !== null && _b !== void 0 ? _b : new Float32Array(0);
     }
     /**
      * Cut a subsection of the array and return a buffer of the
@@ -234,34 +226,22 @@ export class ToneAudioBuffer extends Tone {
      * The duration of the buffer in seconds.
      */
     get duration() {
-        if (this._buffer) {
-            return this._buffer.duration;
-        }
-        else {
-            return 0;
-        }
+        var _a, _b;
+        return (_b = (_a = this._buffer) === null || _a === void 0 ? void 0 : _a.duration) !== null && _b !== void 0 ? _b : 0;
     }
     /**
      * The length of the buffer in samples
      */
     get length() {
-        if (this._buffer) {
-            return this._buffer.length;
-        }
-        else {
-            return 0;
-        }
+        var _a, _b;
+        return (_b = (_a = this._buffer) === null || _a === void 0 ? void 0 : _a.length) !== null && _b !== void 0 ? _b : 0;
     }
     /**
      * The number of discrete audio channels. Returns 0 if no buffer is loaded.
      */
     get numberOfChannels() {
-        if (this._buffer) {
-            return this._buffer.numberOfChannels;
-        }
-        else {
-            return 0;
-        }
+        var _a, _b;
+        return (_b = (_a = this._buffer) === null || _a === void 0 ? void 0 : _a.numberOfChannels) !== null && _b !== void 0 ? _b : 0;
     }
     /**
      * Reverse the buffer.
@@ -300,32 +280,12 @@ export class ToneAudioBuffer extends Tone {
      */
     static load(url) {
         return __awaiter(this, void 0, void 0, function* () {
-            // test if the url contains multiple extensions
-            const matches = url.match(/\[([^\]\[]+\|.+)\]$/);
-            if (matches) {
-                const extensions = matches[1].split("|");
-                let extension = extensions[0];
-                for (const ext of extensions) {
-                    if (ToneAudioBuffer.supportsType(ext)) {
-                        extension = ext;
-                        break;
-                    }
-                }
-                url = url.replace(matches[0], extension);
-            }
             // make sure there is a slash between the baseUrl and the url
             const baseUrl = ToneAudioBuffer.baseUrl === "" ||
                 ToneAudioBuffer.baseUrl.endsWith("/")
                 ? ToneAudioBuffer.baseUrl
                 : ToneAudioBuffer.baseUrl + "/";
-            // encode special characters in file path
-            const location = document.createElement("a");
-            location.href = baseUrl + url;
-            location.pathname = (location.pathname + location.hash)
-                .split("/")
-                .map(encodeURIComponent)
-                .join("/");
-            const response = yield fetch(location.href);
+            const response = yield fetch(baseUrl + url);
             if (!response.ok) {
                 throw new Error(`could not load url: ${url}`);
             }

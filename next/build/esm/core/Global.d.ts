@@ -1,10 +1,7 @@
-import { AnyAudioContext } from "./context/AudioContext";
-import { BaseContext } from "./context/BaseContext";
-/**
- * Returns the default system-wide [[Context]]
- * @category Core
- */
-export declare function getContext(): BaseContext;
+import { AnyAudioContext } from "./context/AudioContext.js";
+import { BaseContext } from "./context/BaseContext.js";
+import { getContext } from "./context/GlobalContext.js";
+export { getContext };
 /**
  * Set the default audio context
  * @param context

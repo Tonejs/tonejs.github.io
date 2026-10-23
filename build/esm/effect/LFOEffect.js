@@ -1,6 +1,6 @@
-import { Effect } from "../effect/Effect";
-import { LFO } from "../source/oscillator/LFO";
-import { readOnly } from "../core/util/Interface";
+import { Effect } from "../effect/Effect.js";
+import { LFO } from "../source/oscillator/LFO.js";
+import { readOnly } from "../core/util/Interface.js";
 /**
  * Base class for LFO-based effects.
  */
@@ -40,7 +40,8 @@ export class LFOEffect extends Effect {
         return this;
     }
     /**
-     * Sync the filter to the transport. See [[LFO.sync]]
+     * Sync the filter to the transport.
+     * @see {@link LFO.sync}
      */
     sync() {
         this._lfo.sync();
@@ -54,7 +55,8 @@ export class LFOEffect extends Effect {
         return this;
     }
     /**
-     * The type of the LFO's oscillator: See [[Oscillator.type]]
+     * The type of the LFO's oscillator.
+     * @see {@link Oscillator.type}
      * @example
      * const autoFilter = new Tone.AutoFilter().start().toDestination();
      * const noise = new Tone.Noise().start().connect(autoFilter);

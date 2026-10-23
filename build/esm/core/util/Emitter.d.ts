@@ -1,4 +1,4 @@
-import { Tone } from "../Tone";
+import { Tone } from "../Tone.js";
 export interface EmitterEventObject {
     [event: string]: Array<(...args: any[]) => void>;
 }
@@ -40,7 +40,7 @@ export declare class Emitter<EventType extends string = string> extends Tone {
      * @param  event  The name of the event.
      * @param args The arguments to pass to the functions listening.
      */
-    emit(event: any, ...args: any[]): this;
+    emit(event: EventType, ...args: any[]): this;
     /**
      * Add Emitter functions (on/off/emit) to the object
      */

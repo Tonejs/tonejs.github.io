@@ -1,6 +1,6 @@
-import { Tone } from "../Tone";
-import { Seconds } from "../type/Units";
-declare type TimelineSearchParam = "ticks" | "time";
+import { Tone } from "../Tone.js";
+import { Seconds } from "../type/Units.js";
+type TimelineSearchParam = "ticks" | "time";
 /**
  * The options object for Timeline
  */
@@ -19,6 +19,7 @@ export interface TimelineEvent {
  * along a timeline. All events must have a "time" property.
  * Internally, events are stored in time order for fast
  * retrieval.
+ * @internal
  */
 export declare class Timeline<GenericEvent extends TimelineEvent> extends Tone {
     readonly name: string;
@@ -65,10 +66,12 @@ export declare class Timeline<GenericEvent extends TimelineEvent> extends Tone {
     /**
      * Return the first event in the timeline without removing it
      * @returns {Object} The first event object
+     * @deprecated
      */
     peek(): GenericEvent | undefined;
     /**
      * Return the first event in the timeline and remove it
+     * @deprecated
      */
     shift(): GenericEvent | undefined;
     /**

@@ -1,6 +1,6 @@
-import { Gain } from "../../core/context/Gain";
-import { NormalRange, Time } from "../../core/type/Units";
-import { Envelope, EnvelopeOptions } from "./Envelope";
+import { Gain } from "../../core/context/Gain.js";
+import { NormalRange, Time } from "../../core/type/Units.js";
+import { Envelope, EnvelopeOptions } from "./Envelope.js";
 /**
  * AmplitudeEnvelope is a Tone.Envelope connected to a gain node.
  * Unlike Tone.Envelope, which outputs the envelope's value, AmplitudeEnvelope accepts
@@ -29,7 +29,7 @@ export declare class AmplitudeEnvelope extends Envelope {
     output: Gain;
     input: Gain;
     /**
-     * @param attack The amount of time it takes for the envelope to go from 0 to it's maximum value.
+     * @param attack The amount of time it takes for the envelope to go from 0 to its maximum value.
      * @param decay	The period of time after the attack that it takes for the envelope
      *                      	to fall to the sustain value. Value must be greater than 0.
      * @param sustain	The percent of the maximum value that the envelope rests at until

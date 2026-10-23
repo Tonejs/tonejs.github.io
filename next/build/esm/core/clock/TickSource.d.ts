@@ -1,7 +1,7 @@
-import { ToneWithContext, ToneWithContextOptions } from "../context/ToneWithContext";
-import { Seconds, Ticks, Time } from "../type/Units";
-import { PlaybackState } from "../util/StateTimeline";
-import { TickSignal } from "./TickSignal";
+import { ToneWithContext, ToneWithContextOptions } from "../context/ToneWithContext.js";
+import { Seconds, Ticks, Time } from "../type/Units.js";
+import { PlaybackState } from "../util/StateTimeline.js";
+import { TickSignal } from "./TickSignal.js";
 interface TickSourceOptions extends ToneWithContextOptions {
     frequency: number;
     units: "bpm" | "hertz";

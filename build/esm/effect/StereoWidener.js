@@ -1,10 +1,10 @@
-import { MidSideEffect } from "../effect/MidSideEffect";
-import { Signal } from "../signal/Signal";
-import { Multiply } from "../signal/Multiply";
-import { Subtract } from "../signal/Subtract";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { readOnly } from "../core/util/Interface";
-import { connect } from "../core/context/ToneAudioNode";
+import { MidSideEffect, } from "../effect/MidSideEffect.js";
+import { Signal } from "../signal/Signal.js";
+import { Multiply } from "../signal/Multiply.js";
+import { Subtract } from "../signal/Subtract.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { readOnly } from "../core/util/Interface.js";
+import { connect } from "../core/context/ToneAudioNode.js";
 /**
  * Applies a width factor to the mid/side seperation.
  * 0 is all mid and 1 is all side.
@@ -17,9 +17,9 @@ import { connect } from "../core/context/ToneAudioNode";
  */
 export class StereoWidener extends MidSideEffect {
     constructor() {
-        super(optionsFromArguments(StereoWidener.getDefaults(), arguments, ["width"]));
-        this.name = "StereoWidener";
         const options = optionsFromArguments(StereoWidener.getDefaults(), arguments, ["width"]);
+        super(options);
+        this.name = "StereoWidener";
         this.width = new Signal({
             context: this.context,
             value: options.width,

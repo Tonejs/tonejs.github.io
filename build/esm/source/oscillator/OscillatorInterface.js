@@ -1,5 +1,5 @@
 import { __awaiter } from "tslib";
-import { OfflineContext } from "../../core/context/OfflineContext";
+import { OfflineContext } from "../../core/context/OfflineContext.js";
 /**
  * Render a segment of the oscillator to an offline context and return the results as an array
  */
@@ -12,7 +12,7 @@ export function generateWaveform(instance, length) {
             frequency: 2 / duration,
             // zero out the detune
             detune: 0,
-            context
+            context,
         })).toDestination();
         clone.start(0);
         const buffer = yield context.render();

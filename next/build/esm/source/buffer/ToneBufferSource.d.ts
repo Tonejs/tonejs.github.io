@@ -1,8 +1,8 @@
-import { Param } from "../../core/context/Param";
-import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer";
-import { GainFactor, Positive, Seconds, Time } from "../../core/type/Units";
-import { OneShotSource, OneShotSourceCurve, OneShotSourceOptions } from "../OneShotSource";
-export declare type ToneBufferSourceCurve = OneShotSourceCurve;
+import { Param } from "../../core/context/Param.js";
+import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer.js";
+import { GainFactor, Positive, Seconds, Time } from "../../core/type/Units.js";
+import { OneShotSource, OneShotSourceCurve, OneShotSourceOptions } from "../OneShotSource.js";
+export type ToneBufferSourceCurve = OneShotSourceCurve;
 export interface ToneBufferSourceOptions extends OneShotSourceOptions {
     url: string | AudioBuffer | ToneAudioBuffer;
     curve: ToneBufferSourceCurve;
@@ -86,7 +86,7 @@ export declare class ToneBufferSource extends OneShotSource<ToneBufferSourceOpti
     get buffer(): ToneAudioBuffer;
     set buffer(buffer: ToneAudioBuffer);
     /**
-     * If the buffer should loop once it's over.
+     * If the buffer should loop once its over.
      */
     get loop(): boolean;
     set loop(loop: boolean);

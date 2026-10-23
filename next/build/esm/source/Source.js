@@ -1,13 +1,13 @@
-import { Volume } from "../component/channel/Volume";
-import "../core/context/Destination";
-import "../core/clock/Transport";
-import { ToneAudioNode, } from "../core/context/ToneAudioNode";
-import { defaultArg } from "../core/util/Defaults";
-import { noOp, readOnly } from "../core/util/Interface";
-import { StateTimeline, } from "../core/util/StateTimeline";
-import { isDefined, isUndef } from "../core/util/TypeCheck";
-import { assert, assertContextRunning } from "../core/util/Debug";
-import { GT } from "../core/util/Math";
+import "../core/context/Destination.js";
+import "../core/clock/Transport.js";
+import { Volume } from "../component/channel/Volume.js";
+import { ToneAudioNode, } from "../core/context/ToneAudioNode.js";
+import { assert, assertContextRunning } from "../core/util/Debug.js";
+import { defaultArg } from "../core/util/Defaults.js";
+import { noOp, readOnly } from "../core/util/Interface.js";
+import { GT } from "../core/util/Math.js";
+import { StateTimeline, } from "../core/util/StateTimeline.js";
+import { isDefined, isUndef } from "../core/util/TypeCheck.js";
 /**
  * Base class for sources.
  * start/stop of this.context.transport.
@@ -102,6 +102,15 @@ export class Source extends ToneAudioNode {
         this._volume.mute = mute;
     }
     /**
+     * Compute the buffer offset to use when the source is started mid-playback.
+     * @param explicitOffset The buffer-time offset the caller passed to `start()`
+     * @param transportElapsed Seconds of Transport time that have elapsed since
+     *   this source was scheduled to start.
+     */
+    _getSyncedStartOffset(explicitOffset, transportElapsed) {
+        return explicitOffset + transportElapsed;
+    }
+    /**
      * Ensure that the scheduled time is not before the current time.
      * Should only be used when scheduled unsynced.
      */
@@ -137,7 +146,6 @@ export class Source extends ToneAudioNode {
             this.restart(computedTime, offset, duration);
         }
         else {
-            this.log("start", computedTime);
             this._state.setStateAtTime("started", computedTime);
             if (this._synced) {
                 // add the offset time to the event
@@ -240,8 +248,11 @@ export class Source extends ToneAudioNode {
                             duration =
                                 this.toSeconds(stateEvent.duration) -
                                     startOffset;
+                            if (duration <= 0) {
+                                return;
+                            }
                         }
-                        this._start(time, this.toSeconds(stateEvent.offset) + startOffset, duration);
+                        this._start(time, this._getSyncedStartOffset(this.toSeconds(stateEvent.offset), startOffset), duration);
                     }
                 }
             };
@@ -260,7 +271,8 @@ export class Source extends ToneAudioNode {
         return this;
     }
     /**
-     * Unsync the source to the Transport. See Source.sync
+     * Unsync the source to the Transport.
+     * @see {@link sync}
      */
     unsync() {
         if (this._synced) {

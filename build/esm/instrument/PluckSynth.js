@@ -1,10 +1,10 @@
-import { LowpassCombFilter } from "../component/filter/LowpassCombFilter";
-import { deepMerge } from "../core/util/Defaults";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { Noise } from "../source/Noise";
-import { Instrument } from "./Instrument";
+import { LowpassCombFilter } from "../component/filter/LowpassCombFilter.js";
+import { deepMerge } from "../core/util/Defaults.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { Noise } from "../source/Noise.js";
+import { Instrument } from "./Instrument.js";
 /**
- * Karplus-String string synthesis.
+ * Karplus-Strong string synthesis.
  * @example
  * const plucky = new Tone.PluckSynth().toDestination();
  * plucky.triggerAttack("C4", "+0.5");
@@ -15,12 +15,12 @@ import { Instrument } from "./Instrument";
  */
 export class PluckSynth extends Instrument {
     constructor() {
-        super(optionsFromArguments(PluckSynth.getDefaults(), arguments));
-        this.name = "PluckSynth";
         const options = optionsFromArguments(PluckSynth.getDefaults(), arguments);
+        super(options);
+        this.name = "PluckSynth";
         this._noise = new Noise({
             context: this.context,
-            type: "pink"
+            type: "pink",
         });
         this.attackNoise = options.attackNoise;
         this._lfcf = new LowpassCombFilter({
@@ -64,7 +64,7 @@ export class PluckSynth extends Instrument {
         return this;
     }
     /**
-     * Ramp down the [[resonance]] to 0 over the duration of the release time.
+     * Ramp down the {@link resonance} to 0 over the duration of the release time.
      */
     triggerRelease(time) {
         this._lfcf.resonance.linearRampTo(0, this.release, time);

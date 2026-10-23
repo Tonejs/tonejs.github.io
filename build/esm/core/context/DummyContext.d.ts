@@ -1,10 +1,10 @@
-import { BaseContext } from "./BaseContext";
-import { Seconds } from "../type/Units";
-import { AnyAudioContext } from "./AudioContext";
-declare type Draw = import("../util/Draw").Draw;
-declare type Destination = import("./Destination").Destination;
-declare type Transport = import("../clock/Transport").Transport;
-declare type Listener = import("./Listener").Listener;
+import { BaseContext } from "./BaseContext.js";
+import { Seconds } from "../type/Units.js";
+import { AnyAudioContext } from "./AudioContext.js";
+import type { DrawClass as Draw } from "../util/Draw.js";
+import type { DestinationClass as Destination } from "./Destination.js";
+import type { TransportClass as Transport } from "../clock/Transport.js";
+import type { ListenerClass as Listener } from "./Listener.js";
 export declare class DummyContext extends BaseContext {
     createAnalyser(): AnalyserNode;
     createOscillator(): OscillatorNode;
@@ -29,7 +29,7 @@ export declare class DummyContext extends BaseContext {
     decodeAudioData(_audioData: ArrayBuffer): Promise<AudioBuffer>;
     createAudioWorkletNode(_name: string, _options?: Partial<AudioWorkletNodeOptions>): AudioWorkletNode;
     get rawContext(): AnyAudioContext;
-    addAudioWorkletModule(_url: string, _name: string): Promise<void>;
+    addAudioWorkletModule(_url: string): Promise<void>;
     lookAhead: number;
     latencyHint: number;
     resume(): Promise<void>;
@@ -51,4 +51,3 @@ export declare class DummyContext extends BaseContext {
     immediate(): number;
     readonly isOffline: boolean;
 }
-export {};

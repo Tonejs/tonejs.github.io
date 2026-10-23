@@ -1,12 +1,15 @@
 import { __awaiter, __decorate } from "tslib";
-import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer";
-import { defaultArg, optionsFromArguments } from "../../core/util/Defaults";
-import { noOp } from "../../core/util/Interface";
-import { isUndef } from "../../core/util/TypeCheck";
-import { Source } from "../Source";
-import { ToneBufferSource } from "./ToneBufferSource";
-import { assertRange } from "../../core/util/Debug";
-import { timeRange } from "../../core/util/Decorator";
+import { TickParam } from "../../core/clock/TickParam.js";
+import { ToneAudioBuffer } from "../../core/context/ToneAudioBuffer.js";
+import { assertRange } from "../../core/util/Debug.js";
+import { timeRange } from "../../core/util/Decorator.js";
+import { defaultArg, optionsFromArguments } from "../../core/util/Defaults.js";
+import { noOp } from "../../core/util/Interface.js";
+import { Timeline } from "../../core/util/Timeline.js";
+import { isUndef } from "../../core/util/TypeCheck.js";
+import { ToneConstantSource } from "../../signal/ToneConstantSource.js";
+import { Source } from "../Source.js";
+import { ToneBufferSource } from "./ToneBufferSource.js";
 /**
  * Player is an audio file player with start, loop, and stop functions.
  * @example
@@ -17,19 +20,37 @@ import { timeRange } from "../../core/util/Decorator";
  */
 export class Player extends Source {
     constructor() {
-        super(optionsFromArguments(Player.getDefaults(), arguments, [
+        const options = optionsFromArguments(Player.getDefaults(), arguments, [
             "url",
             "onload",
-        ]));
+        ]);
+        super(options);
         this.name = "Player";
         /**
          * All of the active buffer source nodes
          */
         this._activeSources = new Set();
-        const options = optionsFromArguments(Player.getDefaults(), arguments, [
-            "url",
-            "onload",
-        ]);
+        /**
+         * Used as the source of the TickParam, but not started or used for anything else.
+         */
+        this._constantSource = new ToneConstantSource({
+            context: this.context,
+            units: "hertz",
+            offset: 0,
+        });
+        /**
+         * Used to track the progress of the player.
+         */
+        this._progressTracker = new TickParam({
+            context: this.context,
+            units: "hertz",
+            value: 0,
+            param: this._constantSource.offset,
+        });
+        /**
+         * Combined with the _progressTracker param to track the progress of the player in seconds.
+         */
+        this._progressOffset = new Timeline(Infinity);
         this._buffer = new ToneAudioBuffer({
             onload: this._onload.bind(this, options.onload),
             onerror: options.onerror,
@@ -75,6 +96,46 @@ export class Player extends Source {
         });
     }
     /**
+     * Internal method to get the progress at a specific time.
+     * @param time The time to evaluate the progress at.
+     */
+    _getProgressAtTime(time) {
+        const state = this._state.getValueAtTime(time);
+        if (state === "stopped") {
+            return 0;
+        }
+        const startTime = this._state.getLastState("started", time);
+        // sum all of the offsets between the start time and the time
+        let seeksSinceStart = 0;
+        this._progressOffset.forEachBetween(startTime.time, time, (event) => {
+            seeksSinceStart += event.seek;
+        });
+        const progress = this._progressTracker.getTicksAtTime(time) + seeksSinceStart;
+        if (this._loop) {
+            const loopEnd = this.loopEnd === 0
+                ? this.buffer.duration
+                : this.toSeconds(this.loopEnd);
+            const loopStart = this.toSeconds(this.loopStart);
+            const duration = loopEnd - loopStart;
+            return (progress % duration) + loopStart;
+        }
+        return progress;
+    }
+    /**
+     * Displays the elapsed seconds since the player was started, taking into account playbackRate changes.
+     * @example
+     * const player = new Tone.Player("https://tonejs.github.io/audio/berklee/gong_1.mp3", () => {
+     * 	player.start();
+     * 	setInterval(() => {
+     * 		console.log(player.progress);
+     * 	}, 100);
+     * }).toDestination();
+     */
+    get progress() {
+        const now = this.now();
+        return this._getProgressAtTime(now);
+    }
+    /**
      * Internal callback when the buffer is loaded.
      */
     _onload(callback = noOp) {
@@ -113,6 +174,13 @@ export class Player extends Source {
         return this;
     }
     /**
+     * Factor in the playback rate to compute the buffer offset when the player
+     * is synced to the Transport.
+     */
+    _getSyncedStartOffset(explicitOffset, transportElapsed) {
+        return explicitOffset + transportElapsed * this._playbackRate;
+    }
+    /**
      * Internal start method
      */
     _start(startTime, offset, duration) {
@@ -146,7 +214,7 @@ export class Player extends Source {
             onended: this._onSourceEnd.bind(this),
             playbackRate: this._playbackRate,
         }).connect(this.output);
-        // set the looping properties
+        // schedule the "stopped" state
         if (!this._loop && !this._synced) {
             // cancel the previous stop
             this._state.cancel(startTime + computedDuration);
@@ -157,6 +225,13 @@ export class Player extends Source {
         }
         // add it to the array of active sources
         this._activeSources.add(source);
+        // used to track the progress of the player
+        const seekDelta = computedOffset - this._getProgressAtTime(startTime);
+        this._progressOffset.add({
+            time: startTime,
+            seek: seekDelta,
+        });
+        this._progressTracker.setValueAtTime(this._playbackRate, startTime);
         // start it
         if (this._loop && isUndef(origDuration)) {
             source.start(startTime, computedOffset);
@@ -172,6 +247,7 @@ export class Player extends Source {
     _stop(time) {
         const computedTime = this.toSeconds(time);
         this._activeSources.forEach((source) => source.stop(computedTime));
+        this._progressTracker.setValueAtTime(0, computedTime);
     }
     /**
      * Stop and then restart the player from the beginning (or offset)
@@ -207,6 +283,8 @@ export class Player extends Source {
             const computedOffset = this.toSeconds(offset);
             // if it's currently playing, stop it
             this._stop(computedTime);
+            // remove the stop event
+            this._state.cancel(computedTime);
             // restart it at the given time
             this._start(computedTime, computedOffset);
         }
@@ -270,7 +348,7 @@ export class Player extends Source {
         this._buffer.set(buffer);
     }
     /**
-     * If the buffer should loop once it's over.
+     * If the buffer should loop once its over.
      * @example
      * const player = new Tone.Player("https://tonejs.github.io/audio/drum-samples/breakbeat.mp3").toDestination();
      * player.loop = true;
@@ -312,11 +390,19 @@ export class Player extends Source {
     set playbackRate(rate) {
         this._playbackRate = rate;
         const now = this.now();
+        this._progressTracker.setValueAtTime(rate, now);
         // cancel the stop event since it's at a different time now
         const stopEvent = this._state.getNextState("stopped", now);
-        if (stopEvent && stopEvent.implicitEnd) {
+        if (stopEvent === null || stopEvent === void 0 ? void 0 : stopEvent.implicitEnd) {
             this._state.cancel(stopEvent.time);
             this._activeSources.forEach((source) => source.cancelStop());
+            const progress = this._getProgressAtTime(now);
+            const remainingTime = this._buffer.duration - progress;
+            const newStopTime = now + remainingTime / rate;
+            // reschedule the implicit stop event
+            this._state.setStateAtTime("stopped", newStopTime, {
+                implicitEnd: true,
+            });
         }
         // set all the sources
         this._activeSources.forEach((source) => {
@@ -324,7 +410,7 @@ export class Player extends Source {
         });
     }
     /**
-     * If the buffer should be reversed. Note that this sets the underlying [[ToneAudioBuffer.reverse]], so
+     * If the buffer should be reversed. Note that this sets the underlying {@link ToneAudioBuffer.reverse}, so
      * if multiple players are pointing at the same ToneAudioBuffer, they will all be reversed.
      * @example
      * const player = new Tone.Player("https://tonejs.github.io/audio/berklee/chime_1.mp3").toDestination();
@@ -349,6 +435,9 @@ export class Player extends Source {
         this._activeSources.forEach((source) => source.dispose());
         this._activeSources.clear();
         this._buffer.dispose();
+        this._constantSource.dispose();
+        this._progressTracker.dispose();
+        this._progressOffset.dispose();
         return this;
     }
 }

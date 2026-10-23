@@ -1,17 +1,17 @@
-import { ToneAudioNode } from "../../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../../core/util/Defaults";
-import { Param } from "../../core/context/Param";
-import { assert } from "../../core/util/Debug";
+import { ToneAudioNode, } from "../../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../../core/util/Defaults.js";
+import { Param } from "../../core/context/Param.js";
+import { assert } from "../../core/util/Debug.js";
 /**
  * Thin wrapper around the native Web Audio [BiquadFilterNode](https://webaudio.github.io/web-audio-api/#biquadfilternode).
- * BiquadFilter is similar to [[Filter]] but doesn't have the option to set the "rolloff" value.
+ * BiquadFilter is similar to {@link Filter} but doesn't have the option to set the "rolloff" value.
  * @category Component
  */
 export class BiquadFilter extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(BiquadFilter.getDefaults(), arguments, ["frequency", "type"]));
-        this.name = "BiquadFilter";
         const options = optionsFromArguments(BiquadFilter.getDefaults(), arguments, ["frequency", "type"]);
+        super(options);
+        this.name = "BiquadFilter";
         this._filter = this.context.createBiquadFilter();
         this.input = this.output = this._filter;
         this.Q = new Param({
@@ -58,8 +58,16 @@ export class BiquadFilter extends ToneAudioNode {
         return this._filter.type;
     }
     set type(type) {
-        const types = ["lowpass", "highpass", "bandpass",
-            "lowshelf", "highshelf", "notch", "allpass", "peaking"];
+        const types = [
+            "lowpass",
+            "highpass",
+            "bandpass",
+            "lowshelf",
+            "highshelf",
+            "notch",
+            "allpass",
+            "peaking",
+        ];
         assert(types.indexOf(type) !== -1, `Invalid filter type: ${type}`);
         this._filter.type = type;
     }

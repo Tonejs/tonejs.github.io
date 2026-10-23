@@ -1,11 +1,12 @@
-import { getContext } from "../Global";
-import { Tone } from "../Tone";
-import { FrequencyClass } from "../type/Frequency";
-import { TimeClass } from "../type/Time";
-import { TransportTimeClass } from "../type/TransportTime";
-import { assertUsedScheduleTime } from "../util/Debug";
-import { getDefaultsFromInstance, optionsFromArguments } from "../util/Defaults";
-import { isArray, isBoolean, isDefined, isNumber, isString, isUndef } from "../util/TypeCheck";
+import { getContext } from "../Global.js";
+import { Tone } from "../Tone.js";
+import { FrequencyClass } from "../type/Frequency.js";
+import { TimeClass } from "../type/Time.js";
+import { TransportTimeClass } from "../type/TransportTime.js";
+import { assertUsedScheduleTime } from "../util/Debug.js";
+import { getDefaultsFromInstance, optionsFromArguments, } from "../util/Defaults.js";
+import { isArray, isBoolean, isDefined, isNumber, isString, isUndef, } from "../util/TypeCheck.js";
+import { onContextRunning } from "./OnRunning.js";
 /**
  * The Base class for all nodes that have an AudioContext.
  */
@@ -47,8 +48,6 @@ export class ToneWithContext extends Tone {
     }
     /**
      * The duration in seconds of one sample.
-     * @example
-     * console.log(Tone.Transport.sampleTime);
      */
     get sampleTime() {
         return 1 / this.context.sampleRate;
@@ -63,7 +62,7 @@ export class ToneWithContext extends Tone {
     }
     /**
      * Convert the incoming time to seconds.
-     * This is calculated against the current [[Tone.Transport]] bpm
+     * This is calculated against the current {@link TransportInstance} bpm
      * @example
      * const gain = new Tone.Gain();
      * setInterval(() => console.log(gain.toSeconds("4n")), 100);
@@ -101,7 +100,7 @@ export class ToneWithContext extends Tone {
     _getPartialProperties(props) {
         const options = this.get();
         // remove attributes from the prop that are not in the partial
-        Object.keys(options).forEach(name => {
+        Object.keys(options).forEach((name) => {
             if (isUndef(props[name])) {
                 delete options[name];
             }
@@ -116,17 +115,22 @@ export class ToneWithContext extends Tone {
      */
     get() {
         const defaults = getDefaultsFromInstance(this);
-        Object.keys(defaults).forEach(attribute => {
+        Object.keys(defaults).forEach((attribute) => {
             if (Reflect.has(this, attribute)) {
                 const member = this[attribute];
-                if (isDefined(member) && isDefined(member.value) && isDefined(member.setValueAtTime)) {
+                if (isDefined(member) &&
+                    isDefined(member.value) &&
+                    isDefined(member.setValueAtTime)) {
                     defaults[attribute] = member.value;
                 }
                 else if (member instanceof ToneWithContext) {
                     defaults[attribute] = member._getPartialProperties(defaults[attribute]);
                     // otherwise make sure it's a serializable type
                 }
-                else if (isArray(member) || isNumber(member) || isString(member) || isBoolean(member)) {
+                else if (isArray(member) ||
+                    isNumber(member) ||
+                    isString(member) ||
+                    isBoolean(member)) {
                     defaults[attribute] = member;
                 }
                 else {
@@ -150,9 +154,11 @@ export class ToneWithContext extends Tone {
      * player.autostart = true;
      */
     set(props) {
-        Object.keys(props).forEach(attribute => {
+        Object.keys(props).forEach((attribute) => {
             if (Reflect.has(this, attribute) && isDefined(this[attribute])) {
-                if (this[attribute] && isDefined(this[attribute].value) && isDefined(this[attribute].setValueAtTime)) {
+                if (this[attribute] &&
+                    isDefined(this[attribute].value) &&
+                    isDefined(this[attribute].setValueAtTime)) {
                     // small optimization
                     if (this[attribute].value !== props[attribute]) {
                         this[attribute].value = props[attribute];
@@ -166,6 +172,23 @@ export class ToneWithContext extends Tone {
                 }
             }
         });
+        return this;
+    }
+    /**
+     * Internal method which is called the first time the context is resumed.
+     * Useful for setting up AudioNodes which should be running as soon
+     * as the context is running, but should not be started until then.
+     */
+    _onContextRunning(callback) {
+        this._removeOnContextRunning = onContextRunning(this.context, callback);
+    }
+    /**
+     * Dispose and disconnect
+     */
+    dispose() {
+        var _a;
+        super.dispose();
+        (_a = this._removeOnContextRunning) === null || _a === void 0 ? void 0 : _a.call(this);
         return this;
     }
 }

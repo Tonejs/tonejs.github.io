@@ -1,8 +1,8 @@
-import { AbstractParam } from "../core/context/AbstractParam";
-import { Param } from "../core/context/Param";
-import { InputNode, OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../core/context/ToneAudioNode";
-import { Time, UnitMap, UnitName } from "../core/type/Units";
-import { ToneConstantSource } from "./ToneConstantSource";
+import { AbstractParam } from "../core/context/AbstractParam.js";
+import { Param } from "../core/context/Param.js";
+import { InputNode, OutputNode, ToneAudioNode, ToneAudioNodeOptions } from "../core/context/ToneAudioNode.js";
+import { Time, UnitMap, UnitName } from "../core/type/Units.js";
+import { ToneConstantSource } from "./ToneConstantSource.js";
 export interface SignalOptions<TypeName extends UnitName> extends ToneAudioNodeOptions {
     value: UnitMap[TypeName];
     units: TypeName;
@@ -75,7 +75,7 @@ export declare class Signal<TypeName extends UnitName = "number"> extends ToneAu
     get maxValue(): number;
     get minValue(): number;
     /**
-     * See [[Param.apply]].
+     * @see {@link Param.apply}.
      */
     apply(param: Param | AudioParam): this;
 }

@@ -1,7 +1,7 @@
-import { StereoFeedbackEffect, StereoFeedbackEffectOptions } from "../effect/StereoFeedbackEffect";
-import { Degrees, Frequency, Milliseconds, NormalRange, Time } from "../core/type/Units";
-import { ToneOscillatorType } from "../source/oscillator/OscillatorInterface";
-import { Signal } from "../signal/Signal";
+import { StereoFeedbackEffect, StereoFeedbackEffectOptions } from "../effect/StereoFeedbackEffect.js";
+import { Degrees, Frequency, Milliseconds, NormalRange, Time } from "../core/type/Units.js";
+import { ToneOscillatorType } from "../source/oscillator/OscillatorInterface.js";
+import { Signal } from "../signal/Signal.js";
 export interface ChorusOptions extends StereoFeedbackEffectOptions {
     frequency: Frequency;
     delayTime: Milliseconds;
@@ -10,10 +10,10 @@ export interface ChorusOptions extends StereoFeedbackEffectOptions {
     spread: Degrees;
 }
 /**
- * Chorus is a stereo chorus effect composed of a left and right delay with an [[LFO]] applied to the delayTime of each channel.
- * When [[feedback]] is set to a value larger than 0, you also get Flanger-type effects.
+ * Chorus is a stereo chorus effect composed of a left and right delay with an {@link LFO} applied to the delayTime of each channel.
+ * When {@link feedback} is set to a value larger than 0, you also get Flanger-type effects.
  * Inspiration from [Tuna.js](https://github.com/Dinahmoe/tuna/blob/master/tuna.js).
- * Read more on the chorus effect on [SoundOnSound](http://www.soundonsound.com/sos/jun04/articles/synthsecrets.htm).
+ * Read more on the chorus effect on [Sound On Sound](http://www.soundonsound.com/sos/jun04/articles/synthsecrets.htm).
  *
  * @example
  * const chorus = new Tone.Chorus(4, 2.5, 0.5).toDestination().start();
@@ -93,7 +93,8 @@ export declare class Chorus extends StereoFeedbackEffect<ChorusOptions> {
      */
     stop(time?: Time): this;
     /**
-     * Sync the filter to the transport. See [[LFO.sync]]
+     * Sync the filter to the transport.
+     * @see {@link LFO.sync}
      */
     sync(): this;
     /**

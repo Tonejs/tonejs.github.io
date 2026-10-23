@@ -1,7 +1,7 @@
-import { Gain } from "../../core/context/Gain";
-import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
-import { NormalRange } from "../../core/type/Units";
-import { Signal } from "../../signal/Signal";
+import { Gain } from "../../core/context/Gain.js";
+import { ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
+import { NormalRange } from "../../core/type/Units.js";
+import { Signal } from "../../signal/Signal.js";
 interface CrossFadeOptions extends ToneAudioNodeOptions {
     fade: NormalRange;
 }
@@ -46,6 +46,10 @@ export declare class CrossFade extends ToneAudioNode<CrossFadeOptions> {
      * to the panner.pan AudioParam
      */
     private _g2a;
+    /**
+     * The constant source which is used to control the panner
+     */
+    private _constant;
     /**
      * The input which is at full level when fade = 0
      */

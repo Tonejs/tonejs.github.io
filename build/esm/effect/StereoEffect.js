@@ -1,9 +1,9 @@
-import { connect, connectSeries, ToneAudioNode } from "../core/context/ToneAudioNode";
-import { CrossFade } from "../component/channel/CrossFade";
-import { Split } from "../component/channel/Split";
-import { Gain } from "../core/context/Gain";
-import { Merge } from "../component/channel/Merge";
-import { readOnly } from "../core/util/Interface";
+import { connect, connectSeries, ToneAudioNode, } from "../core/context/ToneAudioNode.js";
+import { CrossFade } from "../component/channel/CrossFade.js";
+import { Split } from "../component/channel/Split.js";
+import { Gain } from "../core/context/Gain.js";
+import { Merge } from "../component/channel/Merge.js";
+import { readOnly } from "../core/util/Interface.js";
 /**
  * Base class for Stereo effects.
  */
@@ -17,7 +17,7 @@ export class StereoEffect extends ToneAudioNode {
         this.input.channelCountMode = "explicit";
         this._dryWet = this.output = new CrossFade({
             context: this.context,
-            fade: options.wet
+            fade: options.wet,
         });
         this.wet = this._dryWet.fade;
         this._split = new Split({ context: this.context, channels: 2 });

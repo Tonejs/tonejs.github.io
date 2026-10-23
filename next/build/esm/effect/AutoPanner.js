@@ -1,8 +1,8 @@
-import { Panner } from "../component/channel/Panner";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { LFOEffect } from "./LFOEffect";
+import { Panner } from "../component/channel/Panner.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { LFOEffect } from "./LFOEffect.js";
 /**
- * AutoPanner is a [[Panner]] with an [[LFO]] connected to the pan amount.
+ * AutoPanner is a {@link Panner} with an {@link LFO} connected to the pan amount.
  * [Related Reading](https://www.ableton.com/en/blog/autopan-chopper-effect-and-more-liveschool/).
  *
  * @example
@@ -14,12 +14,12 @@ import { LFOEffect } from "./LFOEffect";
  */
 export class AutoPanner extends LFOEffect {
     constructor() {
-        super(optionsFromArguments(AutoPanner.getDefaults(), arguments, ["frequency"]));
-        this.name = "AutoPanner";
         const options = optionsFromArguments(AutoPanner.getDefaults(), arguments, ["frequency"]);
+        super(options);
+        this.name = "AutoPanner";
         this._panner = new Panner({
             context: this.context,
-            channelCount: options.channelCount
+            channelCount: options.channelCount,
         });
         // connections
         this.connectEffect(this._panner);
@@ -29,7 +29,7 @@ export class AutoPanner extends LFOEffect {
     }
     static getDefaults() {
         return Object.assign(LFOEffect.getDefaults(), {
-            channelCount: 1
+            channelCount: 1,
         });
     }
     dispose() {

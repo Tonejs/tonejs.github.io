@@ -1,6 +1,7 @@
-import { Effect } from "./Effect";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { WaveShaper } from "../signal/WaveShaper";
+import { Effect } from "./Effect.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { WaveShaper } from "../signal/WaveShaper.js";
+import { assert } from "../core/util/Debug.js";
 /**
  * Chebyshev is a waveshaper which is good
  * for making different types of distortion sounds.
@@ -17,12 +18,12 @@ import { WaveShaper } from "../signal/WaveShaper";
  */
 export class Chebyshev extends Effect {
     constructor() {
-        super(optionsFromArguments(Chebyshev.getDefaults(), arguments, ["order"]));
-        this.name = "Chebyshev";
         const options = optionsFromArguments(Chebyshev.getDefaults(), arguments, ["order"]);
+        super(options);
+        this.name = "Chebyshev";
         this._shaper = new WaveShaper({
             context: this.context,
-            length: 4096
+            length: 4096,
         });
         this._order = options.order;
         this.connectEffect(this._shaper);
@@ -32,7 +33,7 @@ export class Chebyshev extends Effect {
     static getDefaults() {
         return Object.assign(Effect.getDefaults(), {
             order: 1,
-            oversample: "none"
+            oversample: "none",
         });
     }
     /**
@@ -52,13 +53,14 @@ export class Chebyshev extends Effect {
             memo.set(degree, x);
         }
         else {
-            memo.set(degree, 2 * x * this._getCoefficient(x, degree - 1, memo) - this._getCoefficient(x, degree - 2, memo));
+            memo.set(degree, 2 * x * this._getCoefficient(x, degree - 1, memo) -
+                this._getCoefficient(x, degree - 2, memo));
         }
         return memo.get(degree);
     }
     /**
      * The order of the Chebyshev polynomial which creates the equation which is applied to the incoming
-     * signal through a Tone.WaveShaper. The equations are in the form:
+     * signal through a Tone.WaveShaper. Must be an integer. The equations are in the form:
      * ```
      * order 2: 2x^2 + 1
      * order 3: 4x^3 + 3x
@@ -70,10 +72,11 @@ export class Chebyshev extends Effect {
         return this._order;
     }
     set order(order) {
+        assert(Number.isInteger(order), "'order' must be an integer");
         this._order = order;
-        this._shaper.setMap((x => {
+        this._shaper.setMap((x) => {
             return this._getCoefficient(x, order, new Map());
-        }));
+        });
     }
     /**
      * The oversampling of the effect. Can either be "none", "2x" or "4x".

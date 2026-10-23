@@ -1,13 +1,14 @@
-import { Volume } from "../component/channel/Volume";
-import { ToneAudioNode } from "../core/context/ToneAudioNode";
-import { optionsFromArguments } from "../core/util/Defaults";
-import { readOnly } from "../core/util/Interface";
+import { Volume } from "../component/channel/Volume.js";
+import { ToneAudioNode, } from "../core/context/ToneAudioNode.js";
+import { optionsFromArguments } from "../core/util/Defaults.js";
+import { readOnly } from "../core/util/Interface.js";
 /**
  * Base-class for all instruments
  */
 export class Instrument extends ToneAudioNode {
     constructor() {
-        super(optionsFromArguments(Instrument.getDefaults(), arguments));
+        const options = optionsFromArguments(Instrument.getDefaults(), arguments);
+        super(options);
         /**
          * Keep track of all events scheduled to the transport
          * when the instrument is 'synced'
@@ -19,7 +20,10 @@ export class Instrument extends ToneAudioNode {
         this._synced = false;
         this._original_triggerAttack = this.triggerAttack;
         this._original_triggerRelease = this.triggerRelease;
-        const options = optionsFromArguments(Instrument.getDefaults(), arguments);
+        /**
+         * The release which is scheduled to the timeline.
+         */
+        this._syncedRelease = (time) => this._original_triggerRelease(time);
         this._volume = this.output = new Volume({
             context: this.context,
             volume: options.volume,
@@ -34,7 +38,7 @@ export class Instrument extends ToneAudioNode {
     }
     /**
      * Sync the instrument to the Transport. All subsequent calls of
-     * [[triggerAttack]] and [[triggerRelease]] will be scheduled along the transport.
+     * {@link triggerAttack} and {@link triggerRelease} will be scheduled along the transport.
      * @example
      * const fmSynth = new Tone.FMSynth().toDestination();
      * fmSynth.volume.value = -6;
@@ -50,6 +54,9 @@ export class Instrument extends ToneAudioNode {
         if (this._syncState()) {
             this._syncMethod("triggerAttack", 1);
             this._syncMethod("triggerRelease", 0);
+            this.context.transport.on("stop", this._syncedRelease);
+            this.context.transport.on("pause", this._syncedRelease);
+            this.context.transport.on("loopEnd", this._syncedRelease);
         }
         return this;
     }
@@ -70,7 +77,7 @@ export class Instrument extends ToneAudioNode {
      * @param  timePosition What position the time argument appears in
      */
     _syncMethod(method, timePosition) {
-        const originalMethod = this["_original_" + method] = this[method];
+        const originalMethod = (this["_original_" + method] = this[method]);
         this[method] = (...args) => {
             const time = args[timePosition];
             const id = this.context.transport.schedule((t) => {
@@ -84,12 +91,15 @@ export class Instrument extends ToneAudioNode {
      * Unsync the instrument from the Transport
      */
     unsync() {
-        this._scheduledEvents.forEach(id => this.context.transport.clear(id));
+        this._scheduledEvents.forEach((id) => this.context.transport.clear(id));
         this._scheduledEvents = [];
         if (this._synced) {
             this._synced = false;
             this.triggerAttack = this._original_triggerAttack;
             this.triggerRelease = this._original_triggerRelease;
+            this.context.transport.off("stop", this._syncedRelease);
+            this.context.transport.off("pause", this._syncedRelease);
+            this.context.transport.off("loopEnd", this._syncedRelease);
         }
         return this;
     }

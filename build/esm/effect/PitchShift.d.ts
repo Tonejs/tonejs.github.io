@@ -1,6 +1,6 @@
-import { Interval, Seconds, Time } from "../core/type/Units";
-import { FeedbackEffect, FeedbackEffectOptions } from "./FeedbackEffect";
-import { Param } from "../core/context/Param";
+import { Interval, Seconds, Time } from "../core/type/Units.js";
+import { FeedbackEffect, FeedbackEffectOptions } from "./FeedbackEffect.js";
+import { Param } from "../core/context/Param.js";
 export interface PitchShiftOptions extends FeedbackEffectOptions {
     pitch: Interval;
     windowSize: Seconds;

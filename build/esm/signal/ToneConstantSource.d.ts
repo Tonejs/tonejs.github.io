@@ -1,6 +1,6 @@
-import { Param } from "../core/context/Param";
-import { Seconds, Time, UnitMap, UnitName } from "../core/type/Units";
-import { OneShotSource, OneShotSourceOptions } from "../source/OneShotSource";
+import { Param } from "../core/context/Param.js";
+import { Seconds, Time, UnitMap, UnitName } from "../core/type/Units.js";
+import { OneShotSource, OneShotSourceOptions } from "../source/OneShotSource.js";
 export interface ToneConstantSourceOptions<TypeName extends UnitName> extends OneShotSourceOptions {
     convert: boolean;
     offset: UnitMap[TypeName];

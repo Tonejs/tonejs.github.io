@@ -1,8 +1,8 @@
-import { AudioRange, Degrees, Frequency, Time } from "../../core/type/Units";
-import { Signal } from "../../signal/Signal";
-import { Source } from "../Source";
-import { ToneOscillatorConstructorOptions, ToneOscillatorInterface, ToneOscillatorOptions, ToneOscillatorType } from "./OscillatorInterface";
-export { ToneOscillatorOptions, ToneOscillatorType } from "./OscillatorInterface";
+import { AudioRange, Degrees, Frequency, Time } from "../../core/type/Units.js";
+import { Signal } from "../../signal/Signal.js";
+import { Source } from "../Source.js";
+import { ToneOscillatorConstructorOptions, ToneOscillatorInterface, ToneOscillatorOptions, ToneOscillatorType } from "./OscillatorInterface.js";
+export { ToneOscillatorOptions, ToneOscillatorType, } from "./OscillatorInterface.js";
 /**
  * Oscillator supports a number of features including
  * phase rotation, multiple oscillator types (see Oscillator.type),
@@ -59,6 +59,11 @@ export declare class Oscillator extends Source<ToneOscillatorOptions> implements
      */
     protected _start(time?: Time): void;
     /**
+     * Cleans up the connections to the oscillator for online contexts once it
+     * has stopped.
+     */
+    private _cleanUpConnections;
+    /**
      * stop the oscillator
      */
     protected _stop(time?: Time): void;
@@ -82,7 +87,7 @@ export declare class Oscillator extends Source<ToneOscillatorOptions> implements
     syncFrequency(): this;
     /**
      * Unsync the oscillator's frequency from the Transport.
-     * See Oscillator.syncFrequency
+     * @see {@link syncFrequency}
      */
     unsyncFrequency(): this;
     /**

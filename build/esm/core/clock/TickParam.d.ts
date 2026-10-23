@@ -1,14 +1,14 @@
-import { AutomationEvent, Param, ParamOptions } from "../context/Param";
-import { Seconds, Ticks, Time, UnitMap, UnitName } from "../type/Units";
-import { Timeline } from "../util/Timeline";
-declare type TickAutomationEvent = AutomationEvent & {
+import { AutomationEvent, Param, ParamOptions } from "../context/Param.js";
+import { Seconds, Ticks, Time, UnitMap, UnitName } from "../type/Units.js";
+import { Timeline } from "../util/Timeline.js";
+type TickAutomationEvent = AutomationEvent & {
     ticks: number;
 };
 interface TickParamOptions<TypeName extends UnitName> extends ParamOptions<TypeName> {
     multiplier: number;
 }
 /**
- * A Param class just for computing ticks. Similar to the [[Param]] class,
+ * A Param class just for computing ticks. Similar to the {@link Param} class,
  * but offers conversion to BPM values as well as ability to compute tick
  * duration and elapsed ticks
  */
@@ -72,7 +72,7 @@ export declare class TickParam<TypeName extends "hertz" | "bpm"> extends Param<T
      */
     ticksToTime(ticks: Ticks, when: Time): Seconds;
     /**
-     * The inverse of [[ticksToTime]]. Convert a duration in
+     * The inverse of {@link ticksToTime}. Convert a duration in
      * seconds to the corresponding number of ticks accounting for any
      * automation curves starting at the given time.
      * @param  duration The time interval to convert to ticks.

@@ -1,8 +1,8 @@
-import { InputNode, ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode";
-import { Compressor, CompressorOptions } from "./Compressor";
-import { RecursivePartial } from "../../core/util/Interface";
-import { Frequency } from "../../core/type/Units";
-import { Signal } from "../../signal/Signal";
+import { InputNode, ToneAudioNode, ToneAudioNodeOptions } from "../../core/context/ToneAudioNode.js";
+import { Compressor, CompressorOptions } from "./Compressor.js";
+import { RecursivePartial } from "../../core/util/Interface.js";
+import { Frequency } from "../../core/type/Units.js";
+import { Signal } from "../../signal/Signal.js";
 export interface MultibandCompressorOptions extends ToneAudioNodeOptions {
     mid: Omit<CompressorOptions, keyof ToneAudioNodeOptions>;
     low: Omit<CompressorOptions, keyof ToneAudioNodeOptions>;
@@ -11,7 +11,8 @@ export interface MultibandCompressorOptions extends ToneAudioNodeOptions {
     highFrequency: Frequency;
 }
 /**
- * A compressor with separate controls over low/mid/high dynamics. See [[Compressor]] and [[MultibandSplit]]
+ * A compressor with separate controls over low/mid/high dynamics.
+ * @see {@link Compressor} and {@link MultibandSplit}
  *
  * @example
  * const multiband = new Tone.MultibandCompressor({
