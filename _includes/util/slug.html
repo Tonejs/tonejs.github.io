@@ -1,7 +1,0 @@
-{% capture link_id %}
-	{% if include.data.scope == 'static' %}
-		{{include.data.name}} static
-	{% else %}
-		{{include.data.name}}
-	{% endif %}
-{% endcapture %}{{link_id|slugify|strip}}

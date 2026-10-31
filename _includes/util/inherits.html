@@ -1,8 +1,0 @@
-{% if include.inherits %}
-	<div id="inherits">
-		<span class="keyword"><span id="flip">&#8627;</span> inherited from</span>
-		{% capture property %}{{include.name | prepend: '#'}}{% endcapture %}
-		{% capture name %}{{include.inherits | replace: property, ''}}{% endcapture %}
-		<a href="{{name | remove: 'Tone.'}}">{{name}}</a>
-	</div>
-{% endif %}
