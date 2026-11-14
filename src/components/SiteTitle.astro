@@ -1,0 +1,17 @@
+---
+import Default from "@astrojs/starlight/components/SiteTitle.astro";
+import VersionSelect from "./VersionSelect.astro";
+---
+
+<div class="site-title-row">
+	<Default><slot /></Default>
+	<VersionSelect />
+</div>
+
+<style>
+	.site-title-row {
+		display: flex;
+		align-items: baseline;
+		gap: 0.45rem;
+	}
+</style>

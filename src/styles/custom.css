@@ -1,0 +1,393 @@
+/*
+ * Starlight's defaults with the colors of the old Tone.js docs: r13's orange → magenta
+ * categories, purple properties, blue methods, green defaults and light-blue examples,
+ * and 14.x's orange types.
+ */
+
+:root {
+	--sl-font: "Hanken Grotesk Variable", system-ui, sans-serif;
+	--sl-font-mono: "Geist Mono Variable", ui-monospace, monospace;
+
+	--tone-orange: #f5a35c;
+	--tone-purple: #b48cf7;
+	--tone-blue: #8f91ff;
+	--tone-red: #ff7b7b;
+	--tone-green: #5fd97a;
+	--tone-grey: #a3a3a3;
+	--tone-signature: var(--sl-color-gray-6);
+	--tone-example: #102a31;
+	--tone-example-border: #1d4a55;
+	--tone-example-button: #1a414b;
+	--tone-example-text: #bdf0fc;
+
+	/* a plain top bar, the same color as the page */
+	--sl-color-bg-nav: var(--sl-color-bg);
+
+	/* highlight color: charcoal, light grey in the dark theme (Starlight's default) */
+	--sl-color-accent-low: #2b2b2b;
+	--sl-color-accent: #d4d4d4;
+	--sl-color-accent-high: #ededed;
+}
+
+:root[data-theme="light"] {
+	--tone-orange: #c25700;
+	--tone-purple: #7f33ed;
+	--tone-blue: #3335ed;
+	--tone-red: #d42a2a;
+	--tone-green: #128a2a;
+	--tone-grey: #6e6e6e;
+	--tone-signature: #f6f7f9;
+	--tone-example: #ecfbff;
+	--tone-example-border: #b5e9f5;
+	--tone-example-button: #c9effa;
+	--tone-example-text: #0b5466;
+
+	--sl-color-bg-nav: var(--sl-color-bg);
+	--sl-color-accent-low: #ececec;
+	--sl-color-accent: #333;
+	--sl-color-accent-high: #1f1f1f;
+}
+
+/* smaller "link to this heading" icons (Starlight sizes them at ~0.83em of the heading) */
+.sl-markdown-content .sl-heading-wrapper {
+	--sl-anchor-icon-size: 0.55em;
+}
+
+/* one color per API category, from r13's sidebar */
+.cat-0 { --cat: #f5871f; }
+.cat-1 { --cat: #f5631f; }
+.cat-2 { --cat: #f5401f; }
+.cat-3 { --cat: #f51f22; }
+.cat-4 { --cat: #f51f46; }
+.cat-5 { --cat: #f51f69; }
+.cat-6 { --cat: #f51f8d; }
+.cat-7 { --cat: #f51fb1; }
+.cat-8 { --cat: #f51fd4; }
+.cat-9 { --cat: #f21ff5; }
+.cat-10 { --cat: #ce1ff5; }
+.cat-11 { --cat: #ab1ff5; }
+
+/* sidebar: category names in their color */
+.sidebar-content details details > summary .large {
+	color: var(--summary-color, inherit);
+}
+.sidebar-content details:has(a.cat-0) { --summary-color: #f5871f; }
+.sidebar-content details:has(a.cat-1) { --summary-color: #f5631f; }
+.sidebar-content details:has(a.cat-2) { --summary-color: #f5401f; }
+.sidebar-content details:has(a.cat-3) { --summary-color: #f51f22; }
+.sidebar-content details:has(a.cat-4) { --summary-color: #f51f46; }
+.sidebar-content details:has(a.cat-5) { --summary-color: #f51f69; }
+.sidebar-content details:has(a.cat-6) { --summary-color: #f51f8d; }
+.sidebar-content details:has(a.cat-7) { --summary-color: #f51fb1; }
+.sidebar-content details:has(a.cat-8) { --summary-color: #f51fd4; }
+.sidebar-content details:has(a.cat-9) { --summary-color: #f21ff5; }
+.sidebar-content details:has(a.cat-10) { --summary-color: #ce1ff5; }
+.sidebar-content details:has(a.cat-11) { --summary-color: #ab1ff5; }
+/* the top-level groups contain every category */
+.sidebar-content .top-level > li > details {
+	--summary-color: initial;
+}
+
+/* ---------------------------------------------------------------------------
+ * API pages
+ * ------------------------------------------------------------------------ */
+
+.api-details {
+	color: var(--sl-color-gray-3);
+	font-size: var(--sl-text-sm);
+}
+.api-details > * + *::before {
+	content: "·";
+	margin-inline: 0.5rem;
+	color: var(--sl-color-gray-4);
+}
+/* "↳ extends …" gets its own line */
+.api-details .api-extends {
+	display: block;
+	margin-top: 0.25rem;
+	/* lines up under the category */
+	margin-left: 54px;
+}
+.api-details > .api-extends::before {
+	content: none;
+}
+.api-details .api-category {
+	color: var(--cat);
+	font-weight: 600;
+}
+.api-details code {
+	background: none;
+	padding: 0;
+}
+
+.api-signature {
+	margin-block: 0.75rem;
+	padding: 0.6rem 0.9rem;
+	background: var(--tone-signature);
+	border-radius: 0.25rem;
+	overflow-x: auto;
+}
+.api-signature code {
+	background: none;
+	padding: 0;
+	white-space: pre-wrap;
+	font-size: var(--sl-text-code);
+}
+.api-keyword {
+	color: var(--tone-red);
+}
+.api-param {
+	color: var(--tone-purple);
+}
+
+/* type links are orange, as in 14.x */
+.sl-markdown-content :is(.api-signature, .api-params, .api-details) a,
+.sl-markdown-content p:has(> .api-label) code a {
+	color: var(--tone-orange);
+	text-decoration: none;
+}
+.sl-markdown-content :is(.api-signature, .api-params, .api-details) a:hover,
+.sl-markdown-content p:has(> .api-label) code a:hover {
+	text-decoration: underline;
+}
+
+/* sections and their members in r13's colors */
+.sl-markdown-content h2#constructor { color: var(--tone-grey); }
+.sl-markdown-content h2#properties,
+.api-member-property h3 { color: var(--tone-purple); }
+.sl-markdown-content h2#methods,
+.api-member-method h3 { color: var(--tone-blue); }
+.sl-markdown-content h2#types,
+.api-member-type h3 { color: var(--tone-orange); }
+
+.api-member {
+	margin-top: 2rem;
+}
+.api-member h3 {
+	font-family: var(--__sl-font-mono);
+	font-size: var(--sl-text-xl);
+	font-weight: 500;
+}
+.api-flags {
+	margin-top: 0.25rem !important;
+	color: var(--sl-color-gray-3);
+	font-size: var(--sl-text-sm);
+}
+.api-flags > * + *::before {
+	content: "·";
+	margin-inline: 0.4rem;
+}
+.api-flags a {
+	color: inherit;
+}
+.api-flag-readonly { color: var(--tone-red); }
+.api-flag-static { color: var(--tone-blue); }
+.api-flag-optional { color: var(--tone-green); }
+
+.api-label {
+	font-weight: 600;
+	color: var(--sl-color-white);
+}
+.api-params ul {
+	padding-left: 1rem;
+}
+.sl-markdown-content .api-params li > p + p {
+	margin-top: 0.15rem;
+}
+.api-params .api-param {
+	font-family: var(--__sl-font-mono);
+	font-size: var(--sl-text-code);
+	font-weight: 600;
+	margin-right: 0.4rem;
+}
+.api-params code,
+p:has(> .api-label) code {
+	background: none;
+	padding: 0;
+}
+.api-optional,
+.api-default {
+	margin-left: 0.4rem;
+	color: var(--tone-green);
+	font-size: var(--sl-text-sm);
+}
+.api-default code {
+	color: var(--sl-color-white);
+}
+
+/* overview: columns of names under each category */
+.api-group h2 {
+	color: var(--cat);
+}
+.api-group ul {
+	list-style: none;
+	padding-left: 0;
+	columns: 12rem;
+}
+.api-group li {
+	margin: 0;
+}
+.sl-markdown-content .api-group a {
+	text-decoration: none;
+}
+.sl-markdown-content .api-group a:hover {
+	text-decoration: underline;
+}
+
+/* homepage hero waveform graphic (based on Tonejs/Logo) */
+tone-hero-waveform {
+	display: block;
+	width: 100%;
+	aspect-ratio: 1;
+	background: #f734d7;
+	border-radius: max(3%, 0.25rem);
+	overflow: hidden;
+	cursor: pointer;
+	user-select: none;
+	-webkit-tap-highlight-color: transparent;
+}
+tone-hero-waveform svg {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+tone-hero-waveform path {
+	fill: #22dbc0;
+}
+
+/* on mobile, tuck the waveform square inline right next to the "Tone.js" heading */
+@media (max-width: 49.999rem) {
+	.hero:has(tone-hero-waveform) {
+		grid-template-columns: minmax(0, 1fr) auto auto minmax(0, 1fr);
+		column-gap: 0.65rem;
+		row-gap: 0;
+	}
+	.hero:has(tone-hero-waveform) :is(.stack, .copy) {
+		display: contents;
+	}
+	.hero:has(tone-hero-waveform) h1 {
+		grid-column: 2;
+		grid-row: 1;
+	}
+	.hero:has(tone-hero-waveform) > .hero-html {
+		grid-column: 3;
+		grid-row: 1;
+		width: calc(clamp(var(--sl-text-3xl), calc(0.25rem + 5vw), var(--sl-text-6xl)) * 1.1);
+		margin-inline: 0;
+	}
+	.hero:has(tone-hero-waveform) .tagline {
+		grid-column: 1 / -1;
+		grid-row: 2;
+		justify-self: center;
+		margin-top: 1rem;
+	}
+	.hero:has(tone-hero-waveform) .actions {
+		grid-column: 1 / -1;
+		grid-row: 3;
+		margin-top: clamp(1.5rem, calc(1.5rem + 1vw), 2rem);
+	}
+}
+
+/* fallback for <tone-code> until the editor loads */
+tone-code:not(:defined) pre {
+	padding: 0.75rem 1rem;
+	background: var(--tone-example);
+	border: 1px solid var(--tone-example-border);
+	border-radius: 0.25rem;
+	font-size: var(--sl-text-code);
+	overflow-x: auto;
+}
+
+/* ```dot diagrams (src/plugins/diagram.mjs); CSS wins over Graphviz's own colors */
+.sl-markdown-content .diagram {
+	margin-block: 1rem;
+	overflow-x: auto;
+}
+.diagram svg {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+.diagram .node :is(path, polygon, ellipse) {
+	fill: var(--tone-example);
+	stroke: var(--tone-example-border);
+}
+.diagram text {
+	fill: var(--tone-example-text);
+	font-family: var(--__sl-font-mono);
+}
+.diagram .edge :is(path, polygon) {
+	stroke: var(--tone-blue);
+}
+.diagram .edge polygon {
+	fill: var(--tone-blue);
+}
+.diagram .cluster :is(path, polygon) {
+	fill: none;
+	stroke: var(--tone-example-border);
+}
+.diagram .cluster text {
+	fill: var(--sl-color-gray-2);
+}
+/* routing inside a node, e.g. [class=internal] */
+.diagram :is(.edge, .node).internal :is(path, polygon, ellipse) {
+	stroke: var(--sl-color-gray-4);
+	fill: var(--sl-color-gray-4);
+}
+.diagram .edge text {
+	fill: var(--sl-color-gray-3);
+}
+
+/* hand-drawn inline SVGs, like <figure class="svg"><svg class="timeline"> */
+.sl-markdown-content .svg {
+	margin-block: 1.5rem;
+}
+.svg svg {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+.timeline text {
+	fill: var(--sl-color-gray-3);
+	font-family: var(--__sl-font-mono);
+	font-size: 12px;
+}
+.timeline .label {
+	fill: var(--sl-color-white);
+	font-size: 13px;
+}
+.timeline .axis {
+	stroke: var(--sl-color-gray-4);
+	stroke-width: 2;
+}
+.timeline .track {
+	stroke: var(--tone-blue);
+	stroke-width: 3;
+	stroke-linecap: round;
+}
+.timeline :is(.guide, .check) line {
+	stroke: var(--sl-color-gray-5);
+}
+.timeline .guide line {
+	stroke-dasharray: 3 3;
+}
+.timeline :is(.check line, .bracket) {
+	stroke-width: 1.5;
+}
+.timeline .bracket {
+	stroke: var(--sl-color-gray-3);
+}
+.timeline .loop {
+	fill: var(--tone-blue);
+}
+.timeline :is(.event, .event-dot) {
+	fill: var(--tone-orange);
+}
+.timeline .schedule {
+	fill: none;
+	stroke: var(--tone-blue);
+	stroke-width: 1.5;
+}
+.timeline .schedule-head {
+	fill: var(--tone-blue);
+}

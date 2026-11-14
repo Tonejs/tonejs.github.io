@@ -1,0 +1,15 @@
+---
+import Default from "@astrojs/starlight/components/Head.astro";
+---
+
+<Default><slot /></Default>
+
+<script>
+	// only pages with runnable code pay for the editor
+	if (document.querySelector("tone-code")) {
+		import("../tone-code/tone-code");
+	}
+	if (document.querySelector("tone-hero-waveform")) {
+		import("../hero-waveform");
+	}
+</script>

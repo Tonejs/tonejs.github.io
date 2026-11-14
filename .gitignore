@@ -1,18 +1,17 @@
-TODO.txt
-
-_site
-
-node_modules
-
-Gemfile.lock
-
-travis/tmp
-
-.jekyll-metadata
-
-tmp
-
-docs/test
-
 .DS_Store
 .vscode
+node_modules
+
+# astro
+dist
+.astro
+
+# everything produced by `npm run sync` (Tone.js clones, typedoc output, generated pages)
+.cache
+src/content/docs/index.md
+src/content/docs/next
+src/content/docs/docs
+public/build
+public/examples
+public/next
+public/docs

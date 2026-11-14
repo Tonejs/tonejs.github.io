@@ -1,0 +1,165 @@
+---
+import { archivedVersions, currentVersions } from "../versions";
+
+const current = currentVersions();
+// the current versions' folders now hold the generated docs, so they're only listed once
+const archived = archivedVersions().filter(({ name }) => !current.some(({ version }) => version === name));
+
+// outside the versioned docs, the site shows the latest release
+const { pathname } = Astro.url;
+const viewing = pathname.startsWith("/docs/")
+	? (pathname.split("/")[2] || "latest")
+	: pathname === "/next" || pathname.startsWith("/next/")
+		? "next"
+		: "latest";
+const isViewing = (name: string, version = name) => viewing === name || viewing === version;
+
+const activeVersion =
+	current.find(({ name, version }) => isViewing(name, version))?.version ??
+	archived.find(({ name }) => isViewing(name))?.name ??
+	current[0]?.version ??
+	"";
+---
+
+<div class="version-select">
+	<button
+		type="button"
+		class="version-trigger"
+		popovertarget="tone-version-menu"
+		aria-label={`Tone.js version ${activeVersion}`}
+	>
+		<span>{activeVersion}</span>
+		<svg class="caret" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+			<path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+		</svg>
+	</button>
+	<div id="tone-version-menu" class="version-menu" popover>
+		{
+			current.map(({ name, version, href }) => (
+				<a href={href} aria-current={isViewing(name, version) ? "true" : undefined}>
+					{version}
+				</a>
+			))
+		}
+		{archived.length > 0 && <hr />}
+		{
+			archived.map(({ name, href }) => (
+				<a href={href} aria-current={isViewing(name) ? "true" : undefined}>
+					{name}
+				</a>
+			))
+		}
+	</div>
+</div>
+
+<script>
+	const menu = document.getElementById("tone-version-menu");
+	const trigger = document.querySelector<HTMLButtonElement>('[popovertarget="tone-version-menu"]');
+
+	const positionMenu = () => {
+		if (!menu || !trigger) return;
+		const rect = trigger.getBoundingClientRect();
+		menu.style.top = `${rect.bottom + 6}px`;
+		menu.style.left = `${Math.max(8, rect.left - 8)}px`;
+	};
+
+	menu?.addEventListener("beforetoggle", (event) => {
+		if ((event as ToggleEvent).newState === "open") positionMenu();
+	});
+
+	menu?.addEventListener("toggle", (event) => {
+		if ((event as ToggleEvent).newState === "open") {
+			menu.querySelector<HTMLElement>('[aria-current="true"]')?.scrollIntoView({ block: "nearest" });
+		}
+	});
+
+	addEventListener("resize", () => {
+		if (menu?.matches(":popover-open")) positionMenu();
+	});
+</script>
+
+<style>
+	.version-select {
+		display: inline-flex;
+	}
+
+	.version-trigger {
+		display: inline-flex;
+		align-items: baseline;
+		gap: 0.25rem;
+		padding: 0;
+		border: none;
+		background: none;
+		font-family: inherit;
+		font-size: calc(var(--sl-text-h4) * 0.9);
+		font-weight: 500;
+		line-height: 1;
+		color: var(--tone-grey);
+		white-space: nowrap;
+		cursor: pointer;
+		transition: color 0.12s ease;
+	}
+
+	.version-trigger:hover,
+	.version-select:has(.version-menu:popover-open) .version-trigger {
+		color: var(--sl-color-text-accent);
+	}
+
+	.caret {
+		align-self: center;
+		flex: none;
+		transition: transform 0.15s ease;
+	}
+
+	.version-select:has(.version-menu:popover-open) .caret {
+		transform: rotate(180deg);
+	}
+
+	.version-menu {
+		position: fixed;
+		inset: auto;
+		margin: 0;
+		min-width: 8rem;
+		max-height: min(22rem, 70vh);
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		padding: 0.3rem;
+		border: 1px solid var(--sl-color-gray-5);
+		border-radius: 0.375rem;
+		background: var(--sl-color-bg);
+		color: var(--tone-grey);
+		box-shadow: var(--sl-shadow-md);
+	}
+
+	.version-menu a {
+		display: block;
+		padding: 0.3rem 0.55rem;
+		border-radius: 0.25rem;
+		font-family: inherit;
+		font-size: var(--sl-text-base);
+		font-weight: 500;
+		line-height: 1.35;
+		color: var(--tone-grey);
+		text-decoration: none;
+		white-space: nowrap;
+	}
+
+	.version-menu a:hover,
+	.version-menu a:focus-visible {
+		background: var(--sl-color-accent-low);
+		color: var(--sl-color-text-accent);
+		outline: none;
+	}
+
+	.version-menu a[aria-current="true"] {
+		color: var(--sl-color-text-accent);
+		font-weight: 600;
+		background: var(--sl-color-accent-low);
+	}
+
+	.version-menu hr {
+		margin: 0.25rem 0.35rem;
+		border: 0;
+		border-top: 1px solid var(--sl-color-gray-5);
+	}
+</style>

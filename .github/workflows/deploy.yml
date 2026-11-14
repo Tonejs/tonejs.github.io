@@ -1,0 +1,54 @@
+name: Build and deploy
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  # daily, to pick up the latest from Tone.js main and dev
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Sync from Tone.js
+        run: npm run sync
+      - run: npm run check
+      - run: npm run build
+      # generated files win where both have the same path, e.g. /docs/latest/index.html
+      - name: Add the archived docs
+        if: github.event_name != 'pull_request'
+        run: rsync -a --ignore-existing docs/ dist/docs/
+      - uses: actions/upload-pages-artifact@v4
+        if: github.event_name != 'pull_request'
+        with:
+          path: dist
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

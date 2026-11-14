@@ -1,0 +1,10 @@
+{
+	"extends": "astro/tsconfigs/strict",
+	"compilerOptions": {
+		// Lit's decorators (tone-code)
+		"experimentalDecorators": true,
+		"useDefineForClassFields": false
+	},
+	"include": [".astro/types.d.ts", "**/*"],
+	"exclude": ["dist", "docs", ".cache", "public"]
+}

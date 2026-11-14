@@ -1,0 +1,67 @@
+---
+import { Icon } from "@astrojs/starlight/components";
+---
+
+<tone-theme-toggle>
+	<button type="button" aria-label="Switch between light and dark mode">
+		<Icon name="moon" class="to-dark" />
+		<Icon name="sun" class="to-light" />
+	</button>
+</tone-theme-toggle>
+
+<script>
+	/** Starlight's own key, so its ThemeProvider applies the choice before the page paints */
+	const storageKey = "starlight-theme";
+
+	const systemTheme = () => (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+
+	function setTheme(theme: "light" | "dark") {
+		document.documentElement.dataset.theme = theme;
+		try {
+			localStorage.setItem(storageKey, theme);
+		} catch {}
+	}
+
+	// without a stored choice, follow the system setting
+	matchMedia("(prefers-color-scheme: light)").addEventListener("change", () => {
+		let stored = null;
+		try {
+			stored = localStorage.getItem(storageKey);
+		} catch {}
+		if (!stored) document.documentElement.dataset.theme = systemTheme();
+	});
+
+	class ToneThemeToggle extends HTMLElement {
+		connectedCallback() {
+			this.querySelector("button")?.addEventListener("click", () =>
+				setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark"),
+			);
+		}
+	}
+	if (!customElements.get("tone-theme-toggle")) customElements.define("tone-theme-toggle", ToneThemeToggle);
+</script>
+
+<style>
+	button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2rem;
+		height: 2rem;
+		padding: 0;
+		border: none;
+		border-radius: 0.25rem;
+		background: none;
+		color: var(--sl-color-gray-2);
+		font-size: 1.25rem;
+		cursor: pointer;
+	}
+	button:hover {
+		color: var(--sl-color-white);
+	}
+	/* show the theme you'd switch to */
+	:global([data-theme="dark"]) .to-dark,
+	:global([data-theme="light"]) .to-light {
+		display: none;
+	}
+</style>

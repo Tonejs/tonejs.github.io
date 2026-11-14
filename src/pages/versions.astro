@@ -1,0 +1,34 @@
+---
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import { archivedVersions, versionGroup } from "../versions";
+
+const groups = Map.groupBy(archivedVersions(), versionGroup);
+const id = (label: string) => label.replaceAll(".", "-").replaceAll(" – ", "-");
+---
+
+<StarlightPage
+	frontmatter={{ title: "Previous versions", description: "Archived documentation for every published Tone.js version" }}
+	headings={[...groups.keys()].map((text) => ({ depth: 2, slug: id(text), text }))}
+>
+	<p>Documentation for every published release of Tone.js, as it appeared when the release was current.</p>
+	{
+		[...groups].map(([label, list]) => (
+			<>
+				<h2 id={id(label)}>{label}</h2>
+				<p class="versions">
+					{list.map(({ name, href }) => (
+						<a href={href}>{name}</a>
+					))}
+				</p>
+			</>
+		))
+	}
+</StarlightPage>
+
+<style>
+	.versions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem 1rem;
+	}
+</style>
